@@ -1,0 +1,29 @@
+.grouping {
+    .u-table-expanded-row > td[colspan] {
+        padding: 0;
+    }
+    .grouping-form {
+        &.u-panel {
+            margin-bottom: 0
+        }
+        :global {
+            .groupContent {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: wrap;
+                .label {
+                    width: 110px;
+                    text-align: right;
+                }
+                .u-select-selection {
+                    width: 200px;
+                }
+            }
+        }
+        label {
+            width: 110px;
+            text-align: right;
+        }
+    }
+}

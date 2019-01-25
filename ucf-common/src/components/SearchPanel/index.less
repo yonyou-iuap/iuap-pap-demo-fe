@@ -1,0 +1,56 @@
+@import "~styles/theme";
+.search-panel.u-panel {
+    border-radius: 0;
+    border: none;
+    .panel-title {
+        font-size: 14px!important;
+        line-height: 32px;
+        &>a {
+            display: block;
+            overflow: hidden;
+        }
+    }
+    .search-panel-title {
+        float: left;
+        color: #434A54;
+    }
+    .search-panel-icon {
+        color: @color-text-brand;
+        float: right;
+    }
+    .u-panel-heading {
+        cursor: pointer;
+        background: #f7f9fb!important;
+        height: 32px;
+        box-sizing: border-box;
+        padding: 0;
+    }
+    .reset-btn {
+        margin-right: 8px;
+    }
+    .search-panel-btn {
+        text-align: right;
+        padding: 6px 0;
+    }
+    .u-panel-heading {
+        cursor: pointer;
+        background: #F7F9FB!important;
+        height: 32px;
+        box-sizing: border-box;
+        padding: 0 15px;
+    }
+    .u-panel-body {
+        background: #F7F9FB;
+        padding: 4px 16px;
+        .submit-btn .uf, .reset-btn .uf {
+            position: relative;
+            margin: 0 8px 0 0;
+            padding: 0;
+            color: #fff;
+            float: left;
+        }
+    }
+    .u-panel-collapse.collapsing {
+        width: 100%;
+    }
+}

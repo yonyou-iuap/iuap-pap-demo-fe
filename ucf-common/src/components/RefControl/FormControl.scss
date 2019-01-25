@@ -1,0 +1,86 @@
+@import "../node_modules/tinper-bee-core/scss/minxin-variables";
+@import "../node_modules/tinper-bee-core/scss/minxin-mixins";
+
+
+// Styling for the input element.
+.u-form-control {
+    position: relative;
+    display: inline-block;
+    padding: 0 12px;
+    width: 100%;
+    height: $form-control-default-height;
+    cursor: text;
+    font-size: $form-control-default-font-size;
+    line-height: 1.5;
+    color: $form-control-color;
+    background-color: $form-control-bg-color;
+    background-image: none;
+    border: 1px solid $form-control-border-color;
+    border-radius: $form-control-border-radius;
+    transition: all .3s;
+    &:focus{
+    	border-color: #66afe9;
+	    outline: 0;
+    }
+}
+.u-form-control[disabled] {
+    background: $form-control-disable-bg-color;
+    border-color: $form-control-disable-border-color;
+    color: $form-control-disable-color;
+    cursor: not-allowed;
+}
+.u-form-control.lg{
+    height: $form-control-lg-height;
+    font-size: $form-control-lg-font-size;
+}
+.u-form-control.sm{
+    font-size: $form-control-sm-font-size;
+    height: $form-control-sm-height;
+}
+.u-form-control-search-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 28px;
+    padding: 4px;
+    width: 100%;
+    .u-form-control-search-action {
+        color: #ccc;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        font-size: 14px;
+        text-decoration: none;
+        .uf {
+            transition: all .3s;
+            font-size: 12px;
+            color: #ccc;
+            &.uf-search:before {
+                content: "\e603";
+            }
+        }
+    }
+}
+
+
+
+.u-form-control-affix-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    .u-form-control-prefix,  .u-form-control-suffix {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        z-index: 2;
+        line-height: 0;
+        right: 0;
+        color: rgba(0,0,0,.65);
+    }
+}
