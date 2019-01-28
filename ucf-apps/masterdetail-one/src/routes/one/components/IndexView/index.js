@@ -51,13 +51,12 @@ export default class IndexView extends Component {
     onClickAddEditView = (btnFlag) => {
         const {selectIndex, orderObj} = this.props;
         const {list = []} = orderObj;
-        let {id} = list[selectIndex] || {};
+        let orderInfo = null;
 
-        if (btnFlag === 0) {
-            id = "";
+        if (btnFlag !== 0) {
+            orderInfo = list[selectIndex]
         }
-        this.goToOrder(id, btnFlag);
-
+        this.goToOrder(orderInfo, btnFlag);
     }
 
     /**
@@ -66,11 +65,12 @@ export default class IndexView extends Component {
      * @param {string} id 主表id
      * @param {Number} btnFlag 页面状态 0标识为新增，1标识为修改，2标识为详情
      */
-    goToOrder = (id, btnFlag) => {
+    goToOrder = (orderInfo, btnFlag) => {
+        actions.masterDetailOrder.setQueryParent(orderInfo)
         actions.routing.push(
             {
                 pathname: 'order',
-                search: `?search_id=${id}&btnFlag=${btnFlag}`
+                search: `?search_id=${orderInfo.id}&btnFlag=${btnFlag}`
             }
         )
     }
@@ -161,7 +161,7 @@ export default class IndexView extends Component {
                         className="demo-table-code"
                         onClick={(event) => {
                             event.preventDefault();
-                            this.goToOrder(record.id, 2);
+                            this.goToOrder(record, 2);
                         }}>{text}</span>
                 );
             }
@@ -436,6 +436,7 @@ export default class IndexView extends Component {
                         dataNum: _this.getDataNum(orderObj.pageSize),
                     }}
                 />
+                <div className="table-space"> </div>
                 <div className='gird-parent'>
                     <Grid
                         data={detailObj.list}

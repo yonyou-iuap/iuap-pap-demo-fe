@@ -41,10 +41,14 @@ class IndexView extends Component {
         let { btnFlag: flag, search_id: searchId, from } = searchObj;
         const btnFlag = Number(flag);
         this.setState({ btnFlag, searchId });
-        if (btnFlag && btnFlag > 0) {
-            const param = { search_id: searchId, search_from: from };
-            actions.masterDetailOne.queryParent(param); // 获取主表
-        }
+        // if (btnFlag && btnFlag > 0) {
+        //     const param = { search_id: searchId, search_from: from };
+        //     actions.masterDetailOne.queryParent(param); // 获取主表
+        // }
+    }
+
+    componentWillUnmount() {
+        actions.masterDetailOrder.initState()
     }
 
     /**
@@ -77,8 +81,8 @@ class IndexView extends Component {
      */
     clearQuery() {
         this.props.form.resetFields();
-        actions.masterDetailOne.updateState({ status: "view" });
-        actions.masterDetailOne.initState({
+        actions.masterDetailOrder.updateState({ status: "view" });
+        actions.masterDetailOrder.initState({
             queryParent: {},
             queryDetailObj: { list: [], total: 0, pageIndex: 0 },
         });
@@ -203,7 +207,7 @@ class IndexView extends Component {
         //保存处理后的数据，并且切换操作态'新增'
         queryDetailObj.list = deepClone(list);
         this.setState({ selectData: [] }); //清空选中的数据
-        actions.masterDetailOne.updateState({ queryDetailObj, status: "new", rowEditStatus: false });
+        actions.masterDetailOrder.updateState({ queryDetailObj, status: "new", rowEditStatus: false });
     }
 
 
@@ -230,7 +234,7 @@ class IndexView extends Component {
         //保存处理后的数据，并且切换操作态'编辑'
         queryDetailObj.list = list;
         this.setState({ selectData: [] }); //清空选中的数据
-        actions.masterDetailOne.updateState({
+        actions.masterDetailOrder.updateState({
             queryDetailObj: deepClone(queryDetailObj),
             status: "edit",
             rowEditStatus: false
@@ -259,9 +263,9 @@ class IndexView extends Component {
         if (type === 1) { // 确定
             const { selectData, searchId } = this.state;
             if (this.clearOldData()) {
-                const { status } = await actions.masterDetailOne.delOrderDetail(selectData);
+                const { status } = await actions.masterDetailOrder.delOrderDetail(selectData);
                 if (status === "success") {
-                    actions.masterDetailOne.queryChild({ search_orderId: searchId }); // 获取子表
+                    actions.masterDetailOrder.queryChild({ search_orderId: searchId }); // 获取子表
                     this.oldData = []; //清空用于编辑和添加的缓存数据
                 }
             }
@@ -291,7 +295,7 @@ class IndexView extends Component {
         this.oldData = list; //将数据加入缓存
         queryDetailObj.list = list;
         this.setState({ selectData: [] }); //清空选中的数据
-        actions.masterDetailOne.updateState({ queryDetailObj });  //更新action里的子表数据
+        actions.masterDetailOrder.updateState({ queryDetailObj });  //更新action里的子表数据
         return false
     }
 
@@ -423,14 +427,14 @@ class IndexView extends Component {
         //开始校验
         const { rowData, flag } = this.filterListKey(this.oldData);
         queryDetailObj.list = rowData;
-        actions.masterDetailOne.updateState({ queryDetailObj: deepClone(queryDetailObj) });
+        actions.masterDetailOrder.updateState({ queryDetailObj: deepClone(queryDetailObj) });
         //检查是否验证通过
         if (flag && formValidate) {
             const purchaseOrderDetailList = this.filterDataParam(rowData);
             const sublist = { purchaseOrderDetailList };
             const param = { entity, sublist };
-            await actions.masterDetailOne.adds(param);
-            actions.masterDetailOne.updateState({ status: "view" });  // 更新按钮状态
+            await actions.masterDetailOrder.adds(param);
+            actions.masterDetailOrder.updateState({ status: "view" });  // 更新按钮状态
             this.clearQuery();
         }
 
@@ -485,7 +489,7 @@ class IndexView extends Component {
         const { pageIndex, pageSize } = getPageParam(value, type, queryDetailObj);
         const { id: search_orderId } = queryParent;
         const temp = { search_orderId, pageSize, pageIndex };
-        actions.masterDetailOne.queryChild(temp);
+        actions.masterDetailOrder.queryChild(temp);
     }
 
     /**
@@ -550,11 +554,11 @@ class IndexView extends Component {
      */
     onBpmStart = (type) => async () => {
         if (type == 'start') {
-            await actions.masterDetailOne.updateState({
+            await actions.masterDetailOrder.updateState({
                 showLoading: true
             })
         } else {
-            await actions.masterDetailOne.updateState({
+            await actions.masterDetailOrder.updateState({
                 showLoading: false
             });
             this.onBack();
@@ -570,7 +574,7 @@ class IndexView extends Component {
         if (type == 'error') {
             Error(error.msg);
         }
-        actions.masterDetailOne.updateState({
+        actions.masterDetailOrder.updateState({
             showLoading: false
         })
     }
@@ -590,7 +594,7 @@ class IndexView extends Component {
     }
 
     closeModal() {
-        actions.masterDetailOne.updateState({
+        actions.masterDetailOrder.updateState({
             showModalCover: false
         });
         window.history.go(-1);
@@ -632,7 +636,7 @@ class IndexView extends Component {
                     cancelFn={() => {
                         _this.confirmGoBack(2)
                     }} />
-                <Header title={titleArr[btnFlag]}>
+                <Header back title={titleArr[btnFlag]}>
                     <div className='head-btn'>
                         <Button shape="border" className="ml8" onClick={_this.onBack}>取消</Button>
                         {(btnFlag !== 2) &&

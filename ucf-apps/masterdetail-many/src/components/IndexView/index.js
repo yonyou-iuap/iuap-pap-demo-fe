@@ -513,7 +513,7 @@ export default class IndexView extends Component {
                         dataNum: 0,
                     }}
                 />
-
+                <div className="table-space"> </div>
                 <div className={passengerForbid? "tabel-header-wrap-hide":"tabel-header-wrap"} >
                     <Tabs
                         defaultActiveKey={tabKey}
