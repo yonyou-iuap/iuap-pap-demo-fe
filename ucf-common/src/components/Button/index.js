@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button as BeeButton, Icon } from 'tinper-bee';
-
+import './index.less'
 const propTypes = {
     iconType: PropTypes.string,//图标的className，必填
 };

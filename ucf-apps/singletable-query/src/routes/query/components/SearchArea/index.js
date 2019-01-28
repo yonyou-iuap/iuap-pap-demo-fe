@@ -155,7 +155,7 @@ class SearchAreaForm extends Component {
                         <FormItem className="time">
                             <Label>年份</Label>
                             <YearPicker
-                                {...getFieldProps('year', {initialValue: ''})}
+                                {...getFieldProps('year', {initialValue: null})}
                                 format={format}
                                 locale={zhCN}
                                 placeholder="选择年"
