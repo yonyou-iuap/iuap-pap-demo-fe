@@ -1,0 +1,247 @@
+@import "~styles/app";
+.u-grid.ucf-example-grid {
+    background: #fff;
+    //分页媒体查询
+    @media (max-width: 1024px){
+        .u-pagination{
+            .u-pagination-list{
+                flex-shrink: 0;
+                margin-right: 2px;
+                li a{
+                    padding: 0px 6px;
+                }
+            }
+            .u-pagination-total {
+                margin:0px;
+            }
+            .data_per_select {
+                min-width: 45px;
+                .u-select{
+                    width: 48px !important;
+                }
+
+            }
+            .page_jump{
+                margin-left: 0px;
+                margin-right: 0px;
+
+
+            }
+            .page_jump_value{
+                width: 30px;
+            }
+            .page_jump_btn{
+                min-width:10px;
+            }
+        }
+    }
+    .u-select-focused .u-select-selection,
+    .u-select-selection:focus,
+    .u-select-selection:active {
+        border-color: #004898;
+    }
+    .u-table th,
+    .u-table td {
+        padding: 10px 8px;
+    }
+    .u-table th{
+        word-break: keep-all;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .u-table tr.filterable th {
+        padding: 0px 2px;
+        height: 39px;
+    }
+    .u-table-row.u-table-row-level-0 td {
+        height: 32px !important;
+        padding: 0 8px;
+    }
+    .u-table-filter-column-filter-icon {
+        right: 15px;
+    }
+
+    .u-checkbox {
+        height: 16px;
+        line-height: 16px;
+        &.is-checked, &.u-checkbox-indeterminate {
+            .u-checkbox-label:before {
+                box-shadow: inset 0 0 0 10px @brand-primary !important;
+                border-color: @brand-primary !important;
+            }
+        }
+    }
+
+    //修改table的header背景色颜色和body中隔行差色
+    .u-table {
+        .u-table-header {
+            background: #EEEEEE;
+        }
+
+        tr {
+            &:nth-child(2n) {
+                background: #FAFAFA;
+            }
+            &:nth-child(2n + 1) {
+                background: #ffffff;
+            }
+            &:hover, &.u-table-row-hover {
+                background: #E7F2FC;
+
+            }
+            &.u-table-row {
+                &.selected, &.ref-multiple-table-row-selected {
+                    background: #E7F2FC;
+                }
+            }
+
+        }
+
+    }
+
+    //重写分页样式
+    .u-pagination {
+        .u-pagination-list, .u-pagination-total, .data_per_select, .page_jump {
+            margin: 14px 5px !important;
+            height: 32px;
+            line-height: 32px;
+            font-size: @size-text-base + 1px;
+            color: @size-text-base;
+        }
+        .u-pagination-list {
+            &>li>a {
+                height: 32px;
+                font-size: @size-text-base + 1px;
+                color: @color-text-base;
+                line-height: 32px;
+                padding: 0 6px;
+                box-sizing: border-box;
+                min-width: 32px;
+            }
+            &>li.iconBtn>a {
+                font-size: 40px;
+                font-weight: 300;
+                min-width: 36px;
+                display: inherit;
+                &>span {
+                    display: inherit;
+                    margin-top: -4px;
+                }
+            }
+            &>li.active>a {
+                background: @brand-primary;
+                border-color: @brand-primary;
+                color: #fff;
+            }
+        }
+        .data_per_select {
+            &>span {
+                line-height: 32px;
+            }
+            .u-select {
+                height: 32px;
+                .u-select-selection {
+                    height: 100%;
+                    .u-select-selection-rendered {
+                        height: 100%;
+                        line-height: 32px;
+                    }
+                }
+            }
+
+
+        }
+        .page_jump {
+            &>span {
+                line-height: 32px;
+            }
+            .page_jump_value {
+                height: 32px;
+                line-height: 32px;
+            }
+        }
+        .page_jump {
+            .u-button {
+                margin:0 0 0 8px;
+                width: 84px;
+                height: 32px;
+                font-size: @size-text-base;
+                padding: 0 8px;
+                line-height: 32px;
+                border-radius: 3px;
+                min-width: 72px;
+
+                &:hover {
+
+                }
+            }
+            .u-button-primary {
+                background: @brand-primary !important;
+                border-color: @brand-primary !important;
+                color: #ffffff;
+                &:hover {
+                    background: #056CC6 !important;
+                }
+            }
+            .u-button-border {
+                border-color: @color-border-base;
+                background: #ffffff;
+                &:hover {
+                    background: #ECEFF1 !important;
+                }
+                &[disabled] {
+                    border-color: #E0E0E0;
+                    background: #eee;
+                    color: #BDBDBD;
+                }
+            }
+        }
+    }
+
+    //bee-table 列的th样式覆盖
+    .u-table th{
+        overflow: visible;
+        background-clip:padding-box;
+    }
+
+    th.column-number-right,
+    td.column-number-right {
+        text-align: right !important;
+    }
+}
+
+.u-table .u-table-tbody .u-table-row .u-input-number.simple {
+    .u-form-control {
+        width: 100%;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-right: 1px solid #bdbdbd;
+        padding-right: 12px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .u-form-control:focus {
+        border-color: #66afe9;
+    }
+    .u-input-group-btn {
+        position: relative;
+        top: 0;
+        z-index: 2;
+        right: 0;
+        width: 22px;
+        .icon-group {
+            border-right: 1px solid #bdbdbd;
+            border-top: 1px solid #bdbdbd;
+            border-bottom: 1px solid #bdbdbd;
+            width: 22px;
+            height: 30px;
+            top: 0;
+            right: 2px;
+            border-left: 0;
+            .reduce {
+                top: -1px;
+            }
+        }
+    }
+}

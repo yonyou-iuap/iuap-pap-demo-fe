@@ -6,7 +6,7 @@ import Button from 'components/Button';
 
 import './index.less';
 
-export default class Employee extends Component {
+export default class IndexView extends Component {
  
     
     onBack = () => {

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import BeeGrid from "bee-complex-grid";
 import Icon from "bee-icon";
+import './index.less'
 
 const defualtPaginationParam = {
     dataNumSelect: ["5", "10", "15", "20", "25", "50", "All"],
@@ -56,6 +57,7 @@ class Grid extends Component {
         let _exportData = props.exportData ? props.exportData : props.data;
         return (
             <BeeGrid
+                className="ucf-example-grid"
                 {...props}
                 exportData={_exportData}
                 paginationObj={paginationObj}

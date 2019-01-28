@@ -23,7 +23,7 @@ const beginFormat = "YYYY-MM-DD 00:00:00";
 const endFormat = "YYYY-MM-DD 23:59:59";
 
 
-class Query extends Component {
+class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -537,4 +537,4 @@ class Query extends Component {
     }
 }
 
-export default Query;
+export default IndexView;
