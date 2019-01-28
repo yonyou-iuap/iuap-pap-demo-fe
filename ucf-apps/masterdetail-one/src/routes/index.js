@@ -5,13 +5,14 @@
  */
 import React from "react";
 import {Route} from "mirrorx";
-import {ConnectedOne, ConnectedOrder, ConnectedChart} from "../container";
-
+import OneContainer from './one/container'
+import OrderContainer from './order/container'
+import BpmChartContainer from './bpmChart/container'
 export default () => (
     <div className="route-content">
-        <Route exact path='/' component={ConnectedOne}/>
-        <Route path='/order' component={ConnectedOrder}/>
-        <Route  path={`/bpm-chart`} component={ConnectedChart} />
+        <Route exact path='/' component={OneContainer}/>
+        <Route path='/order' component={OrderContainer}/>
+        <Route  path={`/bpm-chart`} component={BpmChartContainer} />
     </div>
 
 )

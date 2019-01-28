@@ -5,23 +5,11 @@
 import React  from "react";
 import 'core-js/es6/map';
 import 'core-js/es6/set';
-import mirror, { render,Router } from "mirrorx";
-import Routes from './routes'
+import { render } from "mirrorx";
+import AppContainer from './container'
 import 'tinper-bee/assets/tinper-bee.css'
-import "styles/app.less";
+import "./app.less";
 
 
 
-const MiddlewareConfig = [];
-
-
-mirror.defaults({
-    historyMode: "hash",
-    middlewares: MiddlewareConfig
-});
-
-
-
-render(<Router>
-    <Routes/>
-</Router>, document.querySelector("#app"));
+render(<AppContainer/>, document.querySelector("#app"));

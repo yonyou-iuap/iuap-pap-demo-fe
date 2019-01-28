@@ -11,7 +11,7 @@ import 'core-js/es6/map';
 import 'core-js/es6/set';
 
 import 'tinper-bee/assets/tinper-bee.css'
-import "styles/app.less";
+import "./app.less";
 
 
 const MiddlewareConfig = [];

@@ -107,9 +107,9 @@ export default {
                 // 如果请求出错,数据初始化
                 const { orderObj, detailObj } = getState().masterDetailOne;
                 actions.masterDetailOne.updateState({
-                    orderObj: initStateObj(orderObj),
-                    detailObj: initStateObj(detailObj),
-                }
+                        orderObj: initStateObj(orderObj),
+                        detailObj: initStateObj(detailObj),
+                    }
                 );
             }
 

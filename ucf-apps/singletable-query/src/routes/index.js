@@ -5,12 +5,14 @@
  */
 import React from "react";
 import {Route} from "mirrorx";
-import {ConnectedQuery,ConnectedEmployee} from "../container";
+
+import QueryContainer from './query/container'
+import EmployeeContainer from './employee/container'
 
 export default () => (
     <div className="route-content">
-        <Route exact path="/" component={ConnectedQuery}/>
-        <Route exact path="/employee" component={ConnectedEmployee}/>
+        <Route exact path="/" component={QueryContainer}/>
+        <Route exact path="/employee" component={EmployeeContainer}/>
     </div>
 
 )
