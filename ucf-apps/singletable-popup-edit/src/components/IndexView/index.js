@@ -20,7 +20,7 @@ import './index.less';
 
 const formatDate = "YYYY-MM-DD HH:mm:ss";
 
-class PopupEdit extends Component {
+class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -398,6 +398,6 @@ class PopupEdit extends Component {
     }
 }
 
-export default PopupEdit;
+export default IndexView;
 
 

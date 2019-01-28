@@ -21,7 +21,7 @@ import './index.less'
 
 let titleArr = ["新增", "修改", "详情"];
 
-class Order extends Component {
+class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -718,5 +718,5 @@ class Order extends Component {
     }
 }
 
-export default Form.createForm()(Order);
+export default Form.createForm()(IndexView);
 

@@ -17,7 +17,7 @@ import './index.less';
 const TreeNode = Tree.TreeNode;
 
 
-class MultiFuncTree extends Component {
+class IndexView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -367,4 +367,4 @@ class MultiFuncTree extends Component {
 	}
 }
 
-export default MultiFuncTree;
+export default IndexView;

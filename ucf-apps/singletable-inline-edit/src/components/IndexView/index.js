@@ -41,7 +41,7 @@ import 'bee-input-number/build/InputNumber.css';
 import './index.less';
 
 
-class InlineEdit extends Component {
+class IndexView extends Component {
     /**
      * Creates an instance of InlineEdit.
      * @param {*} props
@@ -972,4 +972,4 @@ class InlineEdit extends Component {
     }
 }
 
-export default InlineEdit;
+export default IndexView;

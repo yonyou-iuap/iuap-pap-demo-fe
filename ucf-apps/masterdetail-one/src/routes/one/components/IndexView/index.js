@@ -18,7 +18,7 @@ import './index.less';
 
 const format = "YYYY-MM-DD";
 
-export default class One extends Component {
+export default class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {

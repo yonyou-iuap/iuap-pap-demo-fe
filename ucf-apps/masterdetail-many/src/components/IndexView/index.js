@@ -24,7 +24,7 @@ import './index.less'
 const {TabPane} = Tabs;
 const format = "YYYY-MM-DD";
 
-export default class Many extends Component {
+export default class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {

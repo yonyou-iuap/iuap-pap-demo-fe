@@ -6,7 +6,7 @@ import Header from 'components/Header';
 
 import './index.less';
 
-class BpmChart extends Component {
+class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,4 +39,4 @@ class BpmChart extends Component {
     }
 }
 
-export default BpmChart;
+export default IndexView;
