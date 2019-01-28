@@ -284,7 +284,7 @@ class IndexView extends Component {
                         </Menu>
                     );
                     return (
-                        <div>
+                        <div className="table-menu">
                             <Dropdown
                                 trigger={['click']}
                                 overlay={menu}
