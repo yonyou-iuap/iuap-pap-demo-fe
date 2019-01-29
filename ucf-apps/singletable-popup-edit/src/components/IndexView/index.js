@@ -12,10 +12,6 @@ import PopupModal from '../PopupModal';
 
 import {deepClone, Info, success,getHeight,getPageParam} from "utils";
 
-import 'ref-tree/dist/index.css';
-import 'bee-complex-grid/build/Grid.css';
-import 'bee-table/build/Table.css';
-import 'bee-pagination/build/Pagination.css';
 import './index.less';
 
 const formatDate = "YYYY-MM-DD HH:mm:ss";

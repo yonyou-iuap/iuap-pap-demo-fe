@@ -15,12 +15,10 @@ import { Icon } from 'tinper-bee';
 //提示类组件
 import Tooltip from 'bee-tooltip';
 //日期组件
-import DatePicker from 'bee-datepicker';
+import DatePicker from "tinper-bee/lib/Datepicker";
 //本地化日期
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
-//日期样式引用
-import 'bee-datepicker/build/DatePicker.css';
 //自定义样式
 import './style.less';
 

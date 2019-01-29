@@ -13,10 +13,6 @@ import Child from '../OrderChild';
 import FactoryComp from './FactoryComp';
 
 import { uuid, deepClone, getCookie, Info, getPageParam } from "utils";
-
-import 'bee-complex-grid/build/Grid.css';
-import 'bee-pagination/build/Pagination.css';
-import 'bee-datepicker/build/DatePicker.css';
 import './index.less'
 
 let titleArr = ["新增", "修改", "详情"];

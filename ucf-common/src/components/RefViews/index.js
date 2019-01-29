@@ -11,6 +11,7 @@ import 'ref-multiple-table/dist/index.css'; //职级样式
 import 'ref-tree/dist/index.css'; // 部门样式
 
 import {RefTree} from 'ref-tree';
+import 'ref-tree/dist/index.css';
 
 import RefComboBox, {ComboStore} from 'ref-combobox';
 import 'ref-combobox/dist/index.css';

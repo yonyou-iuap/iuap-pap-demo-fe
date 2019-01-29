@@ -11,7 +11,6 @@ import { RefIuapDept } from 'components/RefViews';
 import {deepClone} from "utils";
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
-import 'bee-datepicker/build/DatePicker.css';
 import './index.less'
 
 const {FormItem} = Form;

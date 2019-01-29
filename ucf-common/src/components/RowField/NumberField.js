@@ -14,9 +14,6 @@ import { Icon } from 'tinper-bee';
 import Tooltip from 'bee-tooltip';
 //数值组件
 import InputNumber from 'bee-input-number';
-
-//样式导入
-import 'bee-input-number/build/InputNumber.css';
 //自定义样式
 import './style.less';
 

@@ -12,8 +12,6 @@ import {BpmButtonSubmit, BpmButtonRecall} from 'yyuap-bpm';
 
 import {deepClone, success, Error,getPageParam} from "utils";
 
-import 'bee-complex-grid/build/Grid.css';
-import 'bee-pagination/build/Pagination.css';
 import './index.less';
 
 const format = "YYYY-MM-DD";
@@ -70,7 +68,7 @@ export default class IndexView extends Component {
         actions.routing.push(
             {
                 pathname: 'order',
-                search: `?search_id=${orderInfo.id}&btnFlag=${btnFlag}`
+                search: `?search_id=${orderInfo ? orderInfo.id : ""}&btnFlag=${btnFlag}`
             }
         )
     }

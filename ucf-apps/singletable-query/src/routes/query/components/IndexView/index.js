@@ -11,10 +11,6 @@ import SearchArea from '../SearchArea'
 
 import {deepClone, getHeight, getSortMap} from "utils";
 
-import 'bee-complex-grid/build/Grid.css';
-import 'bee-pagination/build/Pagination.css'
-import 'bee-table/build/Table.css';
-import 'bee-input-number/build/InputNumber.css';
 import './index.less';
 
 const {Item} = Menu;

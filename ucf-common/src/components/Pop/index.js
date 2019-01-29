@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import Modal from 'bee-modal';
-import Icon from 'bee-icon';
+import { Modal, Icon } from 'tinper-bee'
 import Button from 'components/Button';
 import './style.less';
 

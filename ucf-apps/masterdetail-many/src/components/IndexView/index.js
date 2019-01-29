@@ -16,8 +16,6 @@ import Traveling from '../BookModal/index';
 
 
 import {deepClone, Warning, getPageParam} from "utils";
-
-import "bee-complex-grid/build/Grid.css"
 import 'ac-attachment/dist/ac-attachment.css';
 import './index.less'
 

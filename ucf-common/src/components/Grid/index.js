@@ -3,6 +3,8 @@ import BeeGrid from "bee-complex-grid";
 import Icon from "bee-icon";
 import './index.less'
 
+import 'bee-complex-grid/build/Grid.css';
+
 const defualtPaginationParam = {
     dataNumSelect: ["5", "10", "15", "20", "25", "50", "All"],
     horizontalPosition: 'center',

@@ -9,9 +9,7 @@ import {RefIuapDept} from 'components/RefViews';
 import PopDialog from 'components/Pop';
 import FormControlPhone from 'components/FormControlPhone';
 import FormError from 'components/FormError';
-
-import 'bee-datepicker/build/DatePicker.css';
-import 'ref-tree/dist/index.css';
+import zhCN from "rc-calendar/lib/locale/zh_CN";
 import './index.less'
 
 const {FormItem} = Form;
@@ -281,6 +279,7 @@ class AddEditPassenger extends Component {
                                 <FormItem className='time'>
                                     <Label className="mast">到期日期</Label>
                                     <DatePicker className='form-item' format={format} disabled={isDisabled}
+                                                locale={zhCN}
                                                 {...getFieldProps('expirationDate', {
                                                     initialValue: expirationDate ? moment(expirationDate) : moment(),
                                                     validateTrigger: 'onBlur',

@@ -31,13 +31,7 @@ import SearchAreaForm from '../Search-area';
 import FactoryComp from './FactoryComp';
 
 //组件样式引用
-import 'ref-tree/dist/index.css';
-import 'ref-multiple-table/dist/index.css';
-import 'bee-datepicker/build/DatePicker.css';
-import 'bee-complex-grid/build/Grid.css';
-import 'bee-table/build/Table.css';
-import 'bee-pagination/build/Pagination.css';
-import 'bee-input-number/build/InputNumber.css';
+
 import './index.less';
 
 

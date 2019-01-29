@@ -92,17 +92,17 @@ class AddEditEmergency extends Component {
     onHandleBtns = (btnFlag) => {
         let _this = this;
         let btns = [
-            {
-                label: '确定',
-                fun: _this.onSubmitEdit,
-                icon: 'uf-correct'
-            },
 
             {
                 label: '取消',
                 fun: this.onCloseEdit,
-                icon: 'uf-back'
-            }
+                shape: 'border'
+            },
+            {
+                label: '确定',
+                fun: _this.onSubmitEdit,
+                colors: 'primary'
+            },
         ];
 
         if (btnFlag == 2) {

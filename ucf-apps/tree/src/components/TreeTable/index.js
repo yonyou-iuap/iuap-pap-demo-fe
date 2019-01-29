@@ -12,8 +12,6 @@ import ButtonRoleGroup from 'components/ButtonRoleGroup';
 import {deepClone, success, Error, Warning,getPageParam} from 'utils';
 
 // 导入样式
-import 'bee-complex-grid/build/Grid.css';
-import 'bee-pagination/build/Pagination.css'
 import './index.less';
 
 class TreeTable extends Component {
