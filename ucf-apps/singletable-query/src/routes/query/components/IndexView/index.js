@@ -244,22 +244,7 @@ class IndexView extends Component {
         const {queryObj, showLoading, queryParam} = _this.props;
         const {pageIndex, total, totalPages} = queryObj;
         const {filterable, record, tableHeight} = _this.state;
-
-        const paginationObj = {   // 分页
-            activePage: pageIndex,//当前页
-            total,//总条数
-            items: totalPages,
-            freshData: _this.freshData,
-            onDataNumSelect: _this.onDataNumSelect,
-        }
-
-        const sortObj = {  //排序属性设置
-            mode: 'multiple',
-            backSource: true,
-            sortFun: _this.sortFun
-        }
-
-        const column = [
+        const gridColumn = [
             {
                 title: "数据",
                 width: 80,
@@ -306,7 +291,7 @@ class IndexView extends Component {
                 filterType: "text",
                 filterDropdownType: "string",
                 filterDropdown: "show",
-                sorter: (a, b) => a.name - b.name,
+                sorter: true, //后端排序，只需将此属性设置成true即可
                 render: (text, record, index) => {
                     return (
                         <Tooltip inverse overlay={text}>
@@ -371,7 +356,7 @@ class IndexView extends Component {
                     step: 1,
                     precision: 0
                 },
-                sorter: (a, b) => a.serviceYears - b.serviceYears,
+                sorter: true
             },
             {
                 title: "司龄",
@@ -379,7 +364,7 @@ class IndexView extends Component {
                 key: "serviceYearsCompany",
                 width: 130,
                 className: 'column-number-right ', // 靠右对齐
-                sorter: (a, b) => a.serviceYearsCompany - b.serviceYearsCompany,
+                sorter: true
             },
             {
                 title: "年份",
@@ -397,7 +382,7 @@ class IndexView extends Component {
                 key: "monthEnumValue",
                 width: 100,
                 className: 'column-number-right ', // 靠右对齐
-                sorter: (a, b) => a.month - b.month,
+                sorter: true
             },
             {
                 title: "补贴类别",
@@ -467,16 +452,30 @@ class IndexView extends Component {
                 key: "remark",
                 width: 100,
             }
-        ];
+        ]
+        const paginationObj = {   // 分页
+            activePage: pageIndex,//当前页
+            total,//总条数
+            items: totalPages,
+            freshData: _this.freshData,
+            onDataNumSelect: _this.onDataNumSelect,
+        }
+
+        const sortObj = {  //排序属性设置
+            mode: 'multiple',
+            backSource: true,
+            sortFun: _this.sortFun
+        }
+
 
         return (
             <div className='single-table-query'>
                 <Loading showBackDrop={true} loadingType="line" show={showLoading} fullScreen={true}/>
                 <Header title='A1单表查询示例'/>
                 <SearchArea
-                queryParam={queryParam}
-                clearRowFilter={this.clearRowFilter}
-                onCallback={this.resetTableHeight}
+                    queryParam={queryParam}
+                    clearRowFilter={this.clearRowFilter}
+                    onCallback={this.resetTableHeight}
                 />
                 <div className='table-header'>
                     <Button
@@ -488,7 +487,7 @@ class IndexView extends Component {
                 <div className="gird-parent">
                     <Grid
                         ref={(el) => this.grid = el} //存模版
-                        columns={column}
+                        columns={gridColumn}
                         data={queryObj.list}
                         rowKey={(r, i) => i} //生成行的key
                         paginationObj={paginationObj} //分页
@@ -500,7 +499,6 @@ class IndexView extends Component {
                         afterRowFilter={_this.afterRowFilter} //控制栏位的显示/隐藏
                         sort={sortObj} //排序属性设置
                         scroll={{y: tableHeight}}
-
                         sheetHeader={{height: 30, ifshow: false}} //设置excel导出的表头的样式、支持height、ifshow
                     />
                 </div>

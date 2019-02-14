@@ -4,10 +4,30 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from 'tinper-bee';
+import { Panel, Col, Row, Label } from 'tinper-bee';
+
 import Button from 'components/Button';
 import classnames from 'classnames';
 import './index.less';
+
+
+class SearchItem extends Component{
+    render() {
+        const { children, label } = this.props;
+        return (
+            <Col md={4} xs={6}>
+                <Row className="u-form-item">
+                    <Col md={3}  sm={4} xs={4}>
+                        <Label style={{width: "100%"}}>{label}</Label>
+                    </Col>
+                    <Col md={9} sm={8} xs={8} className="search-input-wrap">
+                        <children.type {...children.props}/>
+                    </Col>
+                </Row>
+            </Col>
+        )
+    }
+}
 
 /**
  * 部分不能通过this.props.form.resetFields()清空的组件，需要传reset方法，在reset方法中自行清空
@@ -91,7 +111,9 @@ class SearchPanel extends Component {
                 onExited={() => onCallback && onCallback(false)}//隐藏完成回调
                 onEntered={() => onCallback && onCallback(true)}//显示后回调
             >
-                {children}
+                <Row>
+                    {children}
+                </Row>
                 <div className='search-panel-btn'>
                     <Button
                         className='reset-btn'
@@ -110,4 +132,5 @@ class SearchPanel extends Component {
 }
 SearchPanel.propTypes = propTypes;
 SearchPanel.defaultProps = defaultProps;
+SearchPanel.Item = SearchItem;
 export default SearchPanel;
