@@ -19,21 +19,29 @@ module.exports = (env, argv) => {
             {
                 enable: true,
                 headers: {
+                    "Referer": "https://mock.yonyoucloud.com/mock/535"
+                },
+                //要代理访问的对方路由
+                router: ["/wbalone/appmenumgr/newSidebarList"],
+                url: 'https://mock.yonyoucloud.com/mock/535'
+            },
+            {
+                enable: true,
+                headers: {
                     "Referer": "http://172.20.52.215:8888"
                 },
                 //要代理访问的对方路由
                 router: [
                     '/iuap_walsin_demo',
-                    '/wbalone',
                     '/iuap-saas-message-center/',
                     '/iuap-saas-filesystem-service/',
-                    '/eiap-plus/',
-                    '/newref/',
+                    '/wbalone',
                     '/print_service/',
+                    '/eiap-plus',
                     '/iuap-print/'
                 ],
                 url: 'http://172.20.52.215:8888'
-            }
+            },
         ],
         // 全局环境变量
         global_env: {
