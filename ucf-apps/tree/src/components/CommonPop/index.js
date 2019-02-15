@@ -124,28 +124,28 @@ class CommonPop extends Component {
 	 * @returns {Array} btns 底部按钮数组
 	 */
 	onHandleBtns = (btnFlag) => {
-		let _this = this;
-		let btns = [
-			{
-				label: '确定',
-				fun: _this.onSubmitEdit,
-				icon: 'uf-correct'
-			},
-
-			{
-                label: '取消',
-                fun: this.onCloseEdit,
-                icon: 'uf-back'
-            }
-		];
+		let btns = null;
 
 		if (btnFlag == 2) {
 			btns = [];
+		}else {
+			btns = this.defaultBtnConfig
 		}
 
 		return btns;
 	}
 
+	defaultBtnConfig = [
+        {
+            label: '取消',
+            fun: this.onCloseEdit,
+            shape: 'border'
+        },{
+            label: '确定',
+            fun: this.onSubmitEdit,
+            colors: 'primary'
+        }
+    ]
 
     render() {
         let _this = this;
@@ -154,6 +154,7 @@ class CommonPop extends Component {
         let {showModal = false, initEditValue = {}, btnFlag = 0} = comModalParam || {}
         const {getFieldProps, getFieldError} = form;
 		const {name, sex, age} = initEditValue || {};
+
 		let btns = _this.onHandleBtns(btnFlag);
         return (
 			<PopDialog
