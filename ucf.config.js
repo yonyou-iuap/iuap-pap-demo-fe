@@ -2,7 +2,7 @@ require('@babel/polyfill');
 /**
  * UCF配置文件 更多说明文档请看 https://github.com/iuap-design/ucf-web/blob/master/packages/ucf-scripts/README.md
  */
-const config = require('./webpack.config');
+const path = require('path');
 
 module.exports = (env, argv) => {
     let openSource_map = false;
@@ -42,7 +42,12 @@ module.exports = (env, argv) => {
             'process.env.NODE_ENV': JSON.stringify(env)
         },
         // 别名配置
-        alias: config.resolve.alias,
+        alias: {
+            components: path.resolve(__dirname, 'ucf-common/src/components/'),
+            utils: path.resolve(__dirname, 'ucf-common/src/utils/'),
+            static: path.resolve(__dirname, 'ucf-common/src/static/'),
+            styles: path.resolve(__dirname, 'ucf-common/src/styles/'),
+        },
         // 构建排除指定包
         externals: {
             //'tinper-bee': 'TinperBee'
