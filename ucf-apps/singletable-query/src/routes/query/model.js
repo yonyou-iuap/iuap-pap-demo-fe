@@ -55,16 +55,18 @@ export default {
             actions.query.updateState({showLoading: true});
             const {result} = processData(await api.getList(param));  // 调用 getList 请求数据
             const {data:res}=result;
-            actions.query.updateState({showLoading: false});
+            let updateData = {showLoading: false};
             if (res) {
                 const {pageParams} = param;
                 const queryObj = structureObj(res, pageParams);
-                actions.query.updateState({queryObj, queryParam: param}); // 更新数据和查询条件
+                updateData.queryObj = queryObj;
+                updateData.queryParam = param;
             } else {
                 // 如果请求出错,数据初始化
                 const {queryObj} = getState().query;
-                actions.query.updateState({queryObj: initStateObj(queryObj)});
+                updateData.queryObj = initStateObj(queryObj);
             }
+            actions.query.updateState(updateData); // 更新数据和查询条件
         },
 
         /**

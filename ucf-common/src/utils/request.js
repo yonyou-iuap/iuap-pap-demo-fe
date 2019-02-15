@@ -11,7 +11,7 @@ export default (url, options) => {
         method: options.method,
         url: url,
         data: options.data,
-        headers: { 
+        headers: {
             'X-Requested-With': 'XMLHttpRequest',
             'random-num' : random_num,
             'x-xsrf-token' : x_xsrf_token
@@ -25,9 +25,7 @@ export default (url, options) => {
             x_xsrf_token = inner_x_xsrf_token;
         }
 
-        return new Promise((resolve, reject) => {
-            resolve(res);
-        })
+        return Promise.resolve(res)
     }).catch(function (err) {
         console.log(err);
         let res = err.response;
@@ -42,6 +40,8 @@ export default (url, options) => {
                     window.top.location.href = '/wbalone/pages/login/login.html';
                     break;
                 default:
+                    return Promise.resolve(res);
+
             }
 
         }
