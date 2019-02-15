@@ -724,7 +724,7 @@ export default class IndexView extends Component {
                     checkTable={checkTable}
                     resetIndex={this.resetIndex}
                 />
-                {/*添加紧急联系人信息modal*/}
+                {/*添加订票信息信息modal*/}
                 <Traveling
                     travelingObj={travelingObj}
                     passengerIndex={passengerIndex}
