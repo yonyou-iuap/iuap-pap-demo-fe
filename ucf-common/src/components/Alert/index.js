@@ -24,7 +24,7 @@ class AlertDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: this.props.show ? true : false
+            show: !!props.show
         }
     }
 
@@ -55,36 +55,42 @@ class AlertDialog extends Component {
         })
     }
 
+    dialogBtnConfig = [
+        {
+            label: '取消',
+            fun: this.cancelFn,
+            shape: 'border'
+        },
+        {
+            label: '确定',
+            fun: this.confirmFn,
+            colors: 'primary'
+        },
+    ]
+
     render() {
         let { context, children } = this.props;
         //按钮组
-        let btns = [
-            {
-                label: '取消',
-                fun: this.cancelFn,
-                shape: 'border'
-            },
-            {
-                label: '确定',
-                fun: this.confirmFn,
-                colors: 'primary'
-            },
-        ];
-        return (<span>
-            <span className="alert-modal-title" onClick={() => { this.setState({ show: true }) }}>
-                {children}
+        return (
+            <span>
+                <span
+                    className="alert-modal-title"
+                    onClick={() => { this.setState({ show: true }) }}
+                >
+                    {children}
+                </span>
+                <PopDialog
+                    className="alert_dialog_modal" // 设置弹框样式
+                    show={this.state.show} //默认是否显示
+                    close={this.cancelFn}
+                    title={this.props.title}
+                    size="sm"
+                    titleIcon="uf-exc-t-o"
+                    btns={this.dialogBtnConfig}>
+                    <span>{context}</span>
+                </PopDialog>
             </span>
-            <PopDialog
-                className="alert_dialog_modal" // 设置弹框样式
-                show={this.state.show} //默认是否显示
-                close={this.cancelFn}
-                title={this.props.title}
-                size="sm"
-                titleIcon="uf-exc-t-o"
-                btns={btns}>
-                <span>{context}</span>
-            </PopDialog>
-        </span>)
+        )
     }
 }
 

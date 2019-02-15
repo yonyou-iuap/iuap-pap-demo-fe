@@ -8,6 +8,7 @@ import FormControlPhone from 'components/FormControlPhone';
 import './index.less'
 
 const {FormItem} = Form;
+const SearchItem = SearchPanel.Item;
 
 class SearchArea extends Component {
 
@@ -31,7 +32,6 @@ class SearchArea extends Component {
             const {pageSize} = passengerObj;
             values.pageIndex = 0;  // 默认回到第一页
             values.pageSize = pageSize;
-            actions.masterDetailMany.updateState({searchParam: values}); // 将查询数据放在 model里
             await actions.masterDetailMany.loadList(values);
         });
     }
@@ -54,34 +54,42 @@ class SearchArea extends Component {
                 reset={this.reset}
                 search={this.search}>
 
-                <Row>
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>乘客编号</Label>
-                            <FormControl placeholder="模糊查询" {...getFieldProps('search_code', {initialValue: '',})}/>
-                        </FormItem>
-                    </Col>
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>乘客姓名</Label>
-                            <FormControl placeholder="模糊查询" {...getFieldProps('search_name', {initialValue: '',})}/>
-                        </FormItem>
-                    </Col>
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>手机号</Label>
-                            <FormControlPhone placeholder="模糊查询"
-                                         {...getFieldProps('search_phone', {initialValue: "",})}/>
-                        </FormItem>
-                    </Col>
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>联系人姓名</Label>
-                            <FormControl
-                                placeholder="精确查询" {...getFieldProps('search_contactName', {initialValue: '',})}/>
-                        </FormItem>
-                    </Col>
-                </Row>
+                <SearchItem
+                    label='乘客编号'
+                >
+                    <FormControl
+                        placeholder="模糊查询"
+                        {...getFieldProps('search_code', {initialValue: '',})}
+                    />
+                </SearchItem>
+
+                <SearchItem
+                    label='乘客姓名'
+                >
+                    <FormControl
+                        placeholder="模糊查询"
+                        {...getFieldProps('search_name', {initialValue: '',})}
+                    />
+                </SearchItem>
+
+                <SearchItem
+                    label='手机号'
+                >
+                    <FormControlPhone
+                        placeholder="模糊查询"
+                        {...getFieldProps('search_phone', {initialValue: "",})}
+                    />
+                </SearchItem>
+
+                <SearchItem
+                    label='联系人姓名'
+                >
+                    <FormControl
+                        placeholder="精确查询"
+                        {...getFieldProps('search_contactName', {initialValue: '',})}
+                    />
+                </SearchItem>
+
             </SearchPanel>
         )
     }

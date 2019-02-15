@@ -80,15 +80,19 @@ export default {
          * @param {*} getState
          */
         async loadList(param, getState) {
-
-            actions.masterDetailMany.updateState({showLoading: true});   // 正在加载数据，显示加载 Loading 图标
-            const {result} = processData(await api.getList(param));  // 调用 getList 请求数据
+            // 正在加载数据，显示加载 Loading 图标
+            actions.masterDetailMany.updateState({showLoading: true});
+            // 调用 getList 请求数据
+            const {result} = processData(await api.getList(param));
             const {data: resPassenger} = result;
             const {content = []} = resPassenger || {};
 
-            if (content.length > 0) { // 获取子表数据
+            if (content.length > 0) {
+                // 获取子表数据
                 const passengerObj = structureObj(resPassenger, param);
-                actions.masterDetailMany.updateState({passengerObj}); // 更新主表数据
+                // 更新主表数据
+                actions.masterDetailMany.updateState({passengerObj, searchParam: param});
+
                 const {tabKey} = getState().masterDetailMany;
                 if (tabKey !== "uploadFill") {
                     const {pageSize} = getState().masterDetailMany[tabKey + "Obj"];
@@ -96,7 +100,7 @@ export default {
                     let paramObj = {pageSize, pageIndex: 0, search_passengerId};
                     if (tabKey === "emergency") { // tab 页为emergency
                         // 带上子表信息
-                        const {search_contactName} = getState().masterDetailMany.searchParam;
+                        const {search_contactName} = param;
                         paramObj.search_contactName = search_contactName;
                         actions.masterDetailMany.loadEmergencyList(paramObj)
                     }
@@ -110,7 +114,8 @@ export default {
                         passengerObj: initStateObj(passengerObj),
                         emergencyObj: initStateObj(emergencyObj),
                         travelingObj: initStateObj(travelingObj),
-                        passengerRow: {}
+                        passengerRow: {},
+                        searchParam: param
                     }
                 );
             }
@@ -127,17 +132,18 @@ export default {
         async loadEmergencyList(param, getState) {
             actions.masterDetailMany.updateState({showEmergencyLoading: true});
             const {result} = processData(await api.getEmergency(param)); // 请求获取emergency数据
-            actions.masterDetailMany.updateState({showEmergencyLoading: false});
             const {data: res} = result;
+            let _emergencyObj = null;
             if (res) {
-                const emergencyObj = structureObj(res, param);
-                actions.masterDetailMany.updateState({emergencyObj});
+                _emergencyObj = structureObj(res, param);
             } else {
                 const {emergencyObj} = getState().masterDetailMany;
-                actions.masterDetailMany.updateState({   // 如果请求出错,数据初始化
-                    emergencyObj: initStateObj(emergencyObj),
-                });
+                _emergencyObj = initStateObj(emergencyObj);
             }
+            actions.masterDetailMany.updateState({
+                emergencyObj: _emergencyObj,
+                showEmergencyLoading: false
+            });
         },
 
         /**
@@ -148,18 +154,21 @@ export default {
          */
 
         async loadTravelingList(param, getState) {
-
             actions.masterDetailMany.updateState({showTravelingLoading: true});
             const {result} = processData(await api.getTraveling(param)); // 请求获取Traveling数据
-            actions.masterDetailMany.updateState({showTravelingLoading: false});
             const {data: res} = result;
+            let _travelingObj = null;
             if (res) {
-                const travelingObj = structureObj(res, param);
-                actions.masterDetailMany.updateState({travelingObj});
+                 _travelingObj = structureObj(res, param);
+
             } else {
                 const {travelingObj} = getState().masterDetailMany;
-                actions.masterDetailMany.updateState({travelingObj: initStateObj(travelingObj)}); // 如果请求出错,数据初始化
+                _travelingObj = initStateObj(travelingObj); // 如果请求出错,数据初始化
             }
+            actions.masterDetailMany.updateState({
+                travelingObj: _travelingObj,
+                showTravelingLoading: false
+            });
         },
         /**
          * getSelect：保存主表数据
