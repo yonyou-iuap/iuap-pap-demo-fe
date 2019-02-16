@@ -65,7 +65,7 @@ dist
 
 .idea
 package-lock.json
-
+webpack.config.js
 .DS_Store
 src/.DS_Store
 src/pages/.DS_Store

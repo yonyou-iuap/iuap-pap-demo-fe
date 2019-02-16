@@ -1,19 +1,20 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
-import {FormControl, Label} from "tinper-bee";
-import Form from 'bee-form';
+import {FormControl} from "tinper-bee";
 import Select from 'bee-select';
 import DatePicker from "tinper-bee/lib/Datepicker";
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
 import { RefIuapDept } from 'components/RefViews';
 
+import FormList from 'components/FormList'
+
 import {deepClone} from "utils";
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
 import './index.less'
 
-const SearchItem = SearchPanel.Item;
+const FormItem = FormList.Item;
 const {Option} = Select;
 const format = "YYYY";
 const {YearPicker} = DatePicker;
@@ -92,59 +93,70 @@ class SearchAreaForm extends Component {
 
         return (
             <SearchPanel
-                className='search-area-form small'
+                className='search-area-form'
                 form={form}
                 reset={this.reset}
                 onCallback={onCallback}
                 search={this.search}>
 
-                <SearchItem
-                    label="员工编号"
-                >
-                    <FormControl placeholder="精确查询" {...getFieldProps('code', { initialValue: '' })} />
-                </SearchItem>
+                <FormList size="sm">
+                    <FormItem
+                        label="员工编号"
+                    >
+                        <FormControl placeholder="精确查询" {...getFieldProps('code', { initialValue: '' })} />
+                    </FormItem>
 
-                <SearchItem
-                    label="员工姓名"
-                >
-                    <FormControl placeholder="模糊查询" {...getFieldProps('name', { initialValue: '' })} />
-                </SearchItem>
+                    <FormItem
+                        label="员工编号"
+                    >
+                        <FormControl placeholder="精确查询" {...getFieldProps('code', { initialValue: '' })} />
+                    </FormItem>
 
-                <SearchItem
-                    label="部门"
-                >
-                    <RefIuapDept {...getFieldProps('dept', { initialValue: '' })} />
-                </SearchItem>
+                    <FormItem
+                        label="员工姓名"
+                    >
+                        <FormControl placeholder="模糊查询" {...getFieldProps('name', { initialValue: '' })} />
+                    </FormItem>
 
-                <SearchItem
-                    label="年份"
-                >
-                    <YearPicker
-                        {...getFieldProps('year', { initialValue: '' })}
-                        format={format}
-                        locale={zhCN}
-                        placeholder="选择年"
-                    />
-                </SearchItem>
+                    <FormItem
+                        label="部门"
+                    >
+                        <RefIuapDept {...getFieldProps('dept', { initialValue: '' })} />
+                    </FormItem>
 
-                <SearchItem
-                    label="月份"
-                >
-                    <SelectMonth  {...getFieldProps('month', { initialValue: '' })} />
-                </SearchItem>
+                    <FormItem
+                        label="年份"
+                    >
+                        <YearPicker
+                            {...getFieldProps('year', { initialValue: null })}
+                            format={format}
+                            locale={zhCN}
+                            placeholder="选择年"
+                        />
+                    </FormItem>
 
-                <SearchItem
-                    label="是否超标"
-                >
-                    <Select {...getFieldProps('exdeeds', { initialValue: '' })}>
-                        <Option value="">请选择</Option>
-                        <Option value="0">未超标</Option>
-                        <Option value="1">超标</Option>
-                    </Select>
-                </SearchItem>
+                    <FormItem
+                        label="月份"
+                    >
+                        <SelectMonth  {...getFieldProps('month', { initialValue: '' })} />
+                    </FormItem>
+
+                    <FormItem
+                        label="是否超标"
+                    >
+                        <Select {...getFieldProps('exdeeds', { initialValue: '' })}>
+                            <Option value="">请选择</Option>
+                            <Option value="0">未超标</Option>
+                            <Option value="1">超标</Option>
+                        </Select>
+
+                    </FormItem>
+                </FormList>
+
+
             </SearchPanel>
         )
     }
 }
 
-export default Form.createForm()(SearchAreaForm)
+export default FormList.createForm()(SearchAreaForm)

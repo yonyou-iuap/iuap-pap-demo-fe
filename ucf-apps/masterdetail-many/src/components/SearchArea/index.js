@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
-import {Col, Row, FormControl, Label} from "tinper-bee";
-import Form from 'bee-form';
+import {FormControl} from "tinper-bee";
+import FormList from 'components/FormList';
 import SearchPanel from 'components/SearchPanel';
 import FormControlPhone from 'components/FormControlPhone';
 
 import './index.less'
 
-const {FormItem} = Form;
-const SearchItem = SearchPanel.Item;
+const FormItem = FormList.Item;
 
 class SearchArea extends Component {
 
@@ -49,50 +48,51 @@ class SearchArea extends Component {
         const {getFieldProps} = form;
         return (
             <SearchPanel
-                className="small"
                 form={form}
                 reset={this.reset}
                 search={this.search}>
 
-                <SearchItem
-                    label='乘客编号'
-                >
-                    <FormControl
-                        placeholder="模糊查询"
-                        {...getFieldProps('search_code', {initialValue: '',})}
-                    />
-                </SearchItem>
+                <FormList size="sm">
+                    <FormItem
+                        label='乘客编号'
+                    >
+                        <FormControl
+                            placeholder="模糊查询"
+                            {...getFieldProps('search_code', {initialValue: '',})}
+                        />
+                    </FormItem>
 
-                <SearchItem
-                    label='乘客姓名'
-                >
-                    <FormControl
-                        placeholder="模糊查询"
-                        {...getFieldProps('search_name', {initialValue: '',})}
-                    />
-                </SearchItem>
+                    <FormItem
+                        label='乘客姓名'
+                    >
+                        <FormControl
+                            placeholder="模糊查询"
+                            {...getFieldProps('search_name', {initialValue: '',})}
+                        />
+                    </FormItem>
 
-                <SearchItem
-                    label='手机号'
-                >
-                    <FormControlPhone
-                        placeholder="模糊查询"
-                        {...getFieldProps('search_phone', {initialValue: "",})}
-                    />
-                </SearchItem>
+                    <FormItem
+                        label='手机号'
+                    >
+                        <FormControlPhone
+                            placeholder="模糊查询"
+                            {...getFieldProps('search_phone', {initialValue: "",})}
+                        />
+                    </FormItem>
 
-                <SearchItem
-                    label='联系人姓名'
-                >
-                    <FormControl
-                        placeholder="精确查询"
-                        {...getFieldProps('search_contactName', {initialValue: '',})}
-                    />
-                </SearchItem>
+                    <FormItem
+                        label='联系人姓名'
+                    >
+                        <FormControl
+                            placeholder="精确查询"
+                            {...getFieldProps('search_contactName', {initialValue: '',})}
+                        />
+                    </FormItem>
+                </FormList>
 
             </SearchPanel>
         )
     }
 }
 
-export default Form.createForm()(SearchArea)
+export default FormList.createForm()(SearchArea)

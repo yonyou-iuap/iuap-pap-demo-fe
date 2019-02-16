@@ -10,11 +10,14 @@ const defualtPaginationParam = {
     horizontalPosition: 'center',
     verticalPosition: "bottom",
     dataNum: 4,
-    last: false,
-    first: false,
+    last: true,
+    first: true,
+    noBorder: false,
+    size: 'sm',
     btnType: {
         shape: 'border'
     },
+    confirmBtn: () => null
 };
 const defaultProps = {
     //   hideBodyScroll: true,

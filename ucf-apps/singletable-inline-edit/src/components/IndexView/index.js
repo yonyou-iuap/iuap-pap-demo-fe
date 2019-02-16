@@ -26,7 +26,7 @@ import Alert from 'components/Alert';
 import ButtonRoleGroup from 'components/ButtonRoleGroup';
 
 //搜索区组件
-import SearchAreaForm from '../Search-area';
+import SearchAreaForm from '../SearchArea';
 //行编辑组件工厂
 import FactoryComp from './FactoryComp';
 
