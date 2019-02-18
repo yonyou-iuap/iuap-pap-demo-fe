@@ -13,7 +13,7 @@
         }
         .u-form-control {
             height: 32px;
-            width: 200px;
+            width: 100%;
         }
         .u-label {
             min-width: 90px;
@@ -23,6 +23,14 @@
             height: 32px;
             line-height: 32px;
             padding-right: 8px;
+        }
+
+        .form-input-wrap {
+            height: 32px;
+            line-height: 32px;
+            //&>* {
+            //    width: 100% !important;
+            //}
         }
         .u-label:after {
             display: inline-block;
@@ -35,7 +43,7 @@
             width: 5px;
         }
         .u-label+* {
-            width: 200px;
+            width: 100%;
             display: inline-block;
         }
         .mast:after {
@@ -45,9 +53,9 @@
             .u-form-control {
                 width: 100%;
             }
-            .u-input-group-btn {
-                top: 4px;
-            }
+            //.u-input-group-btn {
+            //    top: 4px;
+            //}
         }
         .u-switch {
             width: 44px;
@@ -57,7 +65,7 @@
             background-color: @brand-primary;
         }
         .u-select {
-            width: 200px;
+            width: 100%;
             color: #424242;
             .u-select-selection {
                 height: 32px;
@@ -71,7 +79,7 @@
         }
         .calendar-picker {
             display: inline-block;
-            width: 200px;
+            width: 100%;
             input {
                 width: 100%;
             }
@@ -102,7 +110,7 @@
         .refInputWrap {
             // 参照
             input {
-                width: 200px;
+                width: 100%;
                 min-width: auto;
             }
         }
@@ -115,6 +123,14 @@
             }
         }
     }
+    .ref-input-wrap {
+        width: 100% !important;
+    }
+
+    .ref-input-wrap .u-input-group.simple .u-input-group-btn {
+        top: 0;
+    }
+
     .u-form-item.time {
         .u-label {
             bottom: 10px;
@@ -146,6 +162,13 @@
                 font-size: @size-text-base;
                 color: @color-text-secondary;
             }
+            .form-input-wrap {
+                height: 26px;
+                line-height: 26px;
+                //&>* {
+                //    width: 100% !important;
+                //}
+            }
             .mast:after {
                 content: "*";
             }
@@ -175,16 +198,9 @@
                 }
             }
         }
-        .ref-input-wrap .u-input-group.simple .u-input-group-btn {
-            top: 2px;
-        }
+        //.ref-input-wrap .u-input-group.simple .u-input-group-btn {
+        //    top: 2px;
+        //}
     }
 
-
-    .form-input-wrap {
-
-        &>* {
-            width: 100% !important;
-        }
-    }
 }

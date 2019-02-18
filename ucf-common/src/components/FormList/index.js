@@ -6,32 +6,44 @@ import PropTypes from 'prop-types'
 import { Label, Row, Col } from 'tinper-bee'
 import Form from 'bee-form'
 import './index.less'
-
 const FormItem = Form.FormItem;
 
 class FormListItem extends Component{
     constructor(props) {
         super(props)
     }
+    static defaultProps = {
+        required: false,
+        label: ''
+    }
+    static propTypes = {
+        required: PropTypes.bool,
+        label: PropTypes.node
+    }
     getLayoutOption = () => {
-        const {size} = this.props;
-        if (size === 'sm') {
-            return {
-                md: 4,
-                xs: 6
-            }
+        const {size, layoutOpt} = this.props;
+        if (layoutOpt) {
+            return layoutOpt
         } else {
-            return {
-                md: 6,
-                sm: 10,
-                xs: 12
+            if (size === 'sm') {
+                return {
+                    md: 4,
+                    xs: 6
+                }
+            } else {
+                return {
+                    md: 6,
+                    sm: 10,
+                    xs: 12
+                }
             }
         }
+
     }
 
 
     render() {
-        const { children, label, required = false } = this.props;
+        const { children, label, required } = this.props;
         const wrapLayoutOpt = this.getLayoutOption();
         return (
             <Col {...wrapLayoutOpt}>
@@ -52,6 +64,17 @@ class FormList extends Component {
     constructor(props) {
         super(props)
     }
+    static defaultProps = {
+        size: '',
+        className: ''
+    }
+    static propTypes = {
+        size: PropTypes.string,
+    }
+
+    static Item = FormListItem;
+    static createForm = Form.createForm;
+
     render() {
         const { className, size, children} = this.props;
         const cls = `ucf-exam-form ${size} ${className || ""}`;
@@ -72,11 +95,5 @@ class FormList extends Component {
         )
     }
 }
-FormList.defaultProps = {
-    size: "",
-    className: ''
-}
-FormList.Item = FormListItem;
-FormList.createForm = Form.createForm;
 
 export default FormList;

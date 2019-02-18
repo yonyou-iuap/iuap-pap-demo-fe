@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
         // 代理的配置
         proxy: [
             {
-                enable: true,
+                enable: false,
                 headers: {
                     "Referer": "https://mock.yonyoucloud.com/mock/535"
                 },
@@ -33,11 +33,12 @@ module.exports = (env, argv) => {
                 //要代理访问的对方路由
                 router: [
                     '/iuap_walsin_demo',
+                    '/wbalone',
                     '/iuap-saas-message-center/',
                     '/iuap-saas-filesystem-service/',
-                    '/wbalone',
+                    '/eiap-plus/',
+                    '/newref/',
                     '/print_service/',
-                    '/eiap-plus',
                     '/iuap-print/'
                 ],
                 url: 'http://172.20.52.215:8888'
