@@ -16,14 +16,4 @@ export default () => (
     </div>
 
 )
-// export default class App extends Component {
-//     render() {
-//         return (
-//             <div className="route-content">
-//                 <Route exact path={'/'} component={ConnectedQuery}/>
-//                 {/*配置节点路由*/}
-//             </div>
-//         )
-//     }
-// }
-//
+

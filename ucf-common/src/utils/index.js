@@ -53,6 +53,7 @@ export const processData = (response, successMsg) => {
             }
         } else {
             Error('请求错误');
+            throw new Error(`错误:${(response.status)}`);
         }
 
     } catch (e) {

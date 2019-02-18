@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {actions} from "mirrorx";
-import {Col, Row,  FormControl, Label, Switch} from "tinper-bee";
-import Form from 'bee-form';
+import { FormControl, Switch} from "tinper-bee";
 import Select from 'bee-select';
 import moment from "moment";
 import DatePicker from "tinper-bee/lib/Datepicker";
@@ -10,9 +9,10 @@ import PopDialog from 'components/Pop';
 import FormControlPhone from 'components/FormControlPhone';
 import FormError from 'components/FormError';
 import zhCN from "rc-calendar/lib/locale/zh_CN";
+import FormList from 'components/FormList'
 import './index.less'
 
-const {FormItem} = Form;
+const FormItem = FormList.Item;
 const {Option} = Select;
 const format = "YYYY-MM-DD";
 let titleArr = ["新增", "修改", "详情"];
@@ -154,149 +154,126 @@ class AddEditPassenger extends Component {
                 btns={btns}
                 className='passenger-modal'
             >
-                <Form>
-                    <Row className='detail-body form-panel'>
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label>乘客编号</Label>
-                                <FormControl disabled
-                                             {...getFieldProps('code', {
-                                                 initialValue: code || '',
-                                             })}
-                                />
-                            </FormItem>
-                        </Col>
+                <FormList>
+                    <FormItem label="乘客编号">
+                        <FormControl disabled
+                                     {...getFieldProps('code', {
+                                         initialValue: code || '',
+                                     })}
+                        />
+                    </FormItem>
 
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label className="mast">乘客姓名</Label>
-                                <FormControl disabled={isDisabled}
-                                             {...getFieldProps('name', {
-                                                 validateTrigger: 'onBlur',
-                                                 initialValue: name || '',
-                                                 rules: [{
-                                                     required: true, message: '请输入乘客姓名'
+                    <FormItem required label="乘客姓名">
+                        <FormControl disabled={isDisabled}
+                                     {...getFieldProps('name', {
+                                         validateTrigger: 'onBlur',
+                                         initialValue: name || '',
+                                         rules: [{
+                                             required: true, message: '请输入乘客姓名'
 
-                                                 }],
-                                             })}
-                                />
-                                <FormError errorMsg={getFieldError('name')}/>
-                            </FormItem>
-                        </Col>
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label className="mast">部门</Label>
-                                <RefIuapDept
-                                    disabled={btnFlag === 2}
-                                    {...getFieldProps('dept', {
-                                        validateTrigger: 'onChange',
-                                        initialValue: JSON.stringify({
-                                            refpk: dept || "",
-                                            refname: deptName || "",
-                                        }),
+                                         }],
+                                     })}
+                        />
+                        <FormError errorMsg={getFieldError('name')}/>
+                    </FormItem>
+
+                    <FormItem required label="部门">
+                        <RefIuapDept
+                            disabled={btnFlag === 2}
+                            {...getFieldProps('dept', {
+                                validateTrigger: 'onChange',
+                                initialValue: JSON.stringify({
+                                    refpk: dept || "",
+                                    refname: deptName || "",
+                                }),
+                                rules: [{
+                                    message: '请选择部门',
+                                    pattern: /[^({"refname":"","refpk":""}|{"refpk":"","refname":""})]/,
+                                }],
+                            })}
+                        />
+                        <FormError errorMsg={getFieldError('dept')}/>
+                    </FormItem>
+
+                    <FormItem required label="乘客性别">
+                        <Select disabled={isDisabled}
+                                {...getFieldProps('sex', {
+                                    initialValue: sex || 1,
+                                    rules: [{
+                                        required: true, message: '请选择乘客性别',
+                                    }],
+                                })}
+                        >
+                            <Option value={1}>女</Option>
+                            <Option value={2}>男</Option>
+                        </Select>
+                        <FormError errorMsg={getFieldError('sex')}/>
+                    </FormItem>
+
+                    <FormItem required label={"手机号"}>
+                        <FormControlPhone disabled={isDisabled}
+                                          {...getFieldProps('phone', {
+                                              validateTrigger: 'onBlur',
+                                              initialValue: phone || '',
+                                              rules: [{
+                                                  required: true,
+                                                  pattern: /^[1][3,4,5,7,8][0-9]{9}$/,
+                                                  message: '请正确输入手机号',
+
+                                              }],
+                                          })}
+                        />
+                        <FormError errorMsg={getFieldError('phone')}/>
+                    </FormItem>
+
+                    <FormItem label={"是否会员"}>
+                        <Switch
+                            disabled={isDisabled}
+                            checked={isVip}
+                            checkedChildren={"是"}
+                            unCheckedChildren={"否"}
+                            onChange={(value) => {
+                                _this.setState({isVip: value});
+                            }}
+                        />
+                    </FormItem>
+
+                    {isVip ? (
+                        <FormItem required label={"会员等级"}>
+                            <Select disabled={isDisabled}
+                                    {...getFieldProps('grade', {
+                                        initialValue: grade || 1,
                                         rules: [{
-                                            message: '请选择部门',
-                                            pattern: /[^({"refname":"","refpk":""}|{"refpk":"","refname":""})]/,
+                                            required: true, message: '请选择会员等级',
                                         }],
                                     })}
-                                />
-                                <FormError errorMsg={getFieldError('dept')}/>
-                            </FormItem>
-                        </Col>
+                            >
+                                <Option value={1}>初级会员</Option>
+                                <Option value={2}>中级会员</Option>
+                                <Option value={3}>高级会员</Option>
+                            </Select>
+                        </FormItem>
+                    ) : null}
 
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label className="mast">乘客性别</Label>
-                                <Select disabled={isDisabled}
-                                        {...getFieldProps('sex', {
-                                            initialValue: sex || 1,
+                    {isVip ? (
+                        <FormItem required label={"到期日期"}>
+                            <DatePicker className='form-item' format={format} disabled={isDisabled}
+                                        locale={zhCN}
+                                        {...getFieldProps('expirationDate', {
+                                            initialValue: expirationDate ? moment(expirationDate) : moment(),
+                                            validateTrigger: 'onBlur',
                                             rules: [{
-                                                required: true, message: '请选择乘客性别',
+                                                required: true, message: '请选择会员到期日期'
                                             }],
                                         })}
-                                >
-                                    <Option value={1}>女</Option>
-                                    <Option value={2}>男</Option>
-                                </Select>
-                                <FormError errorMsg={getFieldError('sex')}/>
-                            </FormItem>
-                        </Col>
-
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label className="mast">手机号</Label>
-                                <FormControlPhone disabled={isDisabled}
-                                             {...getFieldProps('phone', {
-                                                 validateTrigger: 'onBlur',
-                                                 initialValue: phone || '',
-                                                 rules: [{
-                                                     required: true,
-                                                     pattern: /^[1][3,4,5,7,8][0-9]{9}$/,
-                                                     message: '请正确输入手机号',
-
-                                                 }],
-                                             })}
-                                />
-                                <FormError errorMsg={getFieldError('phone')}/>
-                            </FormItem>
-                        </Col>
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label>是否会员</Label>
-                                <Switch
-                                    disabled={isDisabled}
-                                    checked={isVip}
-                                    checkedChildren={"是"}
-                                    unCheckedChildren={"否"}
-                                    onChange={(value) => {
-                                        _this.setState({isVip: value});
-                                    }}
-                                />
-                            </FormItem>
-
-                        </Col>
-                        {isVip && (
-                            <Col md={6} xs={12} sm={10}>
-                                <FormItem>
-                                    <Label className="mast">会员等级</Label>
-                                    <Select disabled={isDisabled}
-                                            {...getFieldProps('grade', {
-                                                initialValue: grade || 1,
-                                                rules: [{
-                                                    required: true, message: '请选择会员等级',
-                                                }],
-                                            })}
-                                    >
-                                        <Option value={1}>初级会员</Option>
-                                        <Option value={2}>中级会员</Option>
-                                        <Option value={3}>高级会员</Option>
-                                    </Select>
-                                </FormItem>
-                            </Col>
-                        )}
-                        {isVip && (
-                            <Col md={6} xs={12} sm={10}>
-                                <FormItem className='time'>
-                                    <Label className="mast">到期日期</Label>
-                                    <DatePicker className='form-item' format={format} disabled={isDisabled}
-                                                locale={zhCN}
-                                                {...getFieldProps('expirationDate', {
-                                                    initialValue: expirationDate ? moment(expirationDate) : moment(),
-                                                    validateTrigger: 'onBlur',
-                                                    rules: [{
-                                                        required: true, message: '请选择会员到期日期'
-                                                    }],
-                                                })}
-                                    />
-                                    <FormError errorMsg={getFieldError('expirationDate')}/>
-                                </FormItem>
-                            </Col>
-                        )}
-                    </Row>
-                </Form>
+                            />
+                            <FormError errorMsg={getFieldError('expirationDate')}/>
+                        </FormItem>
+                    ) : null}
+                </FormList>
             </PopDialog>
         )
     }
 }
 
-export default Form.createForm()(AddEditPassenger);
+export default FormList.createForm()(AddEditPassenger);

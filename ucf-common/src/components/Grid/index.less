@@ -18,7 +18,9 @@
         height: 39px;
     }
 
-
+    table {
+        table-layout: fixed;
+    }
 
 
     .table-menu {
@@ -90,6 +92,7 @@
 
     //重写分页样式
     .u-pagination {
+        margin: 0;
         .u-pagination-list, .u-pagination-total, .data_per_select, .page_jump {
             margin: 14px 5px !important;
             height: 32px;
@@ -107,16 +110,7 @@
                 box-sizing: border-box;
                 min-width: 32px;
             }
-            &>li.iconBtn>a {
-                font-size: 40px;
-                font-weight: 300;
-                min-width: 36px;
-                display: inherit;
-                &>span {
-                    display: inherit;
-                    margin-top: -4px;
-                }
-            }
+
             &>li.active>a {
                 background: @brand-primary;
                 border-color: @brand-primary;

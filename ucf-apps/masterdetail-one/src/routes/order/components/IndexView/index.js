@@ -3,7 +3,7 @@ import { actions } from "mirrorx";
 import { Loading, Icon, Modal } from "tinper-bee";
 import queryString from 'query-string';
 import moment from "moment";
-import Form from 'bee-form';
+import FormList from 'components/FormList';
 import Grid from 'components/Grid';
 import { BpmTaskApprovalWrap } from 'yyuap-bpm';
 import Header from "components/Header";
@@ -644,7 +644,7 @@ class IndexView extends Component {
                 {
                     _this.showBpmComponent(btnFlag, appType ? appType : "1", processDefinitionId, processInstanceId, orderRow)
                 }
-                <Child orderRow={orderRow} btnFlag={btnFlag} form={form}></Child>
+                <Child orderRow={orderRow} btnFlag={btnFlag} form={form}/>
                 {/*<ButtonRoleGroup funcCode="singletable-popupedit"></ButtonRoleGroup>*/}
                 <div className='table-header'>
                     <Button
@@ -718,5 +718,5 @@ class IndexView extends Component {
     }
 }
 
-export default Form.createForm()(IndexView);
+export default FormList.createForm()(IndexView);
 

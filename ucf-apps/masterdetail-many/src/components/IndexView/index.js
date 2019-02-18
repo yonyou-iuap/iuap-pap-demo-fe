@@ -9,10 +9,10 @@ import moment from 'moment';
 import ButtonRoleGroup from 'components/ButtonRoleGroup';
 import AcAttachment from 'ac-attachment';
 
-import SearchArea from '../SearchArea/index';
-import Passenger from '../PassengerModal/index';
-import Emergency from '../EmergencyModal/index';
-import Traveling from '../BookModal/index';
+import SearchArea from '../SearchArea';
+import Passenger from '../PassengerModal';
+import Emergency from '../EmergencyModal';
+import Traveling from '../TraveModal';
 
 
 import {deepClone, Warning, getPageParam} from "utils";
@@ -724,7 +724,7 @@ export default class IndexView extends Component {
                     checkTable={checkTable}
                     resetIndex={this.resetIndex}
                 />
-                {/*添加紧急联系人信息modal*/}
+                {/*添加订票信息信息modal*/}
                 <Traveling
                     travelingObj={travelingObj}
                     passengerIndex={passengerIndex}

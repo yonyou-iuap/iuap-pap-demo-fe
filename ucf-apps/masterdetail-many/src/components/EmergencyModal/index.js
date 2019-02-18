@@ -1,15 +1,13 @@
 import React, {Component} from "react";
 import {actions} from "mirrorx";
-import {Col, Row, FormControl, Label} from "tinper-bee";
-import Form from 'bee-form';
+import {FormControl} from "tinper-bee";
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
 import FormControlPhone from 'components/FormControlPhone';
-
-import 'bee-datepicker/build/DatePicker.css';
+import FormList from 'components/FormList';
 import './index.less'
 
-const {FormItem} = Form;
+const FormItem = FormList.Item;
 let titleArr = ["新增", "修改", "详情"];
 
 class AddEditEmergency extends Component {
@@ -129,78 +127,69 @@ class AddEditEmergency extends Component {
                 btns={btns}
                 className='emergency-modal'
             >
-                <Form>
-                    <Row className='detail-body form-panel'>
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label className="mast">联系人姓名</Label>
-                                <FormControl disabled={btnFlag > 0}
-                                             {...getFieldProps('contactName', {
-                                                 validateTrigger: 'onBlur',
-                                                 initialValue: contactName || '',
-                                                 rules: [{
-                                                     type: 'string',
-                                                     required: true,
-                                                     pattern: /\S+/ig,
-                                                     message: '请输入联系人姓名',
-                                                 }],
-                                             })}
-                                />
-                                <FormError errorMsg={getFieldError('contactName')}/>
-                            </FormItem>
-                        </Col>
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label className="mast">联系人电话</Label>
-                                <FormControlPhone disabled={btnFlag === 2}
-                                             {...getFieldProps('contactPhone', {
-                                                 validateTrigger: 'onBlur',
-                                                 initialValue: contactPhone || '',
-                                                 rules: [{
-                                                     type: 'string',
-                                                     required: true,
-                                                     pattern: /^[1][3,4,5,7,8][0-9]{9}$/,
-                                                     message: '请输入联系人电话',
-                                                 }],
-                                             })}
-                                />
-                                <FormError errorMsg={getFieldError('contactPhone')}/>
-                            </FormItem>
-                        </Col>
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label className="mast">与乘客关系</Label>
-                                <FormControl disabled={btnFlag === 2}
-                                             {...getFieldProps('contactRelation', {
-                                                 validateTrigger: 'onBlur',
-                                                 initialValue: contactRelation || '',
-                                                 rules: [{
-                                                     type: 'string',
-                                                     required: true,
-                                                     pattern: /\S+/ig,
-                                                     message: '请输入与乘客关系',
-                                                 }],
-                                             })}
-                                />
-                                <FormError errorMsg={getFieldError('contactRelation')}/>
-                            </FormItem>
-                        </Col>
-                        <Col md={6} xs={12} sm={10}>
-                            <FormItem>
-                                <Label>备注</Label>
-                                <FormControl disabled={btnFlag === 2}
-                                             {...getFieldProps('remark', {
-                                                 initialValue: remark || '',
-                                             })}
-                                />
-                                <FormError errorMsg={getFieldError('remark')}/>
-                            </FormItem>
-                        </Col>
-                    </Row>
-                </Form>
+
+                <FormList>
+                    <FormItem required label="联系人姓名">
+                        <FormControl disabled={btnFlag > 0}
+                                     {...getFieldProps('contactName', {
+                                         validateTrigger: 'onBlur',
+                                         initialValue: contactName || '',
+                                         rules: [{
+                                             type: 'string',
+                                             required: true,
+                                             pattern: /\S+/ig,
+                                             message: '请输入联系人姓名',
+                                         }],
+                                     })}
+                        />
+                        <FormError errorMsg={getFieldError('contactName')}/>
+                    </FormItem>
+
+
+                    <FormItem required label="联系人电话">
+                        <FormControlPhone disabled={btnFlag === 2}
+                                          {...getFieldProps('contactPhone', {
+                                              validateTrigger: 'onBlur',
+                                              initialValue: contactPhone || '',
+                                              rules: [{
+                                                  type: 'string',
+                                                  required: true,
+                                                  pattern: /^[1][3,4,5,7,8][0-9]{9}$/,
+                                                  message: '请输入联系人电话',
+                                              }],
+                                          })}
+                        />
+                        <FormError errorMsg={getFieldError('contactPhone')}/>
+                    </FormItem>
+
+                    <FormItem required label="与乘客关系">
+                        <FormControl disabled={btnFlag === 2}
+                                     {...getFieldProps('contactRelation', {
+                                         validateTrigger: 'onBlur',
+                                         initialValue: contactRelation || '',
+                                         rules: [{
+                                             type: 'string',
+                                             required: true,
+                                             pattern: /\S+/ig,
+                                             message: '请输入与乘客关系',
+                                         }],
+                                     })}
+                        />
+                        <FormError errorMsg={getFieldError('contactRelation')}/>
+                    </FormItem>
+
+                    <FormItem label="备注">
+                        <FormControl disabled={btnFlag === 2}
+                                     {...getFieldProps('remark', {
+                                         initialValue: remark || '',
+                                     })}
+                        />
+                        <FormError errorMsg={getFieldError('remark')}/>
+                    </FormItem>
+                </FormList>
             </PopDialog>
         )
     }
 }
 
-export default Form.createForm()(AddEditEmergency);
+export default FormList.createForm()(AddEditEmergency);

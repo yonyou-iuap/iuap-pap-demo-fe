@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {
-    Col, Row, FormControl, Label
+	FormControl
 } from "tinper-bee";
-import Form from 'bee-form';
+import FormList from 'components/FormList';
 import Select from 'bee-select';
 import InputNumber from "bee-input-number";
 import PopDialog from 'components/Pop';
@@ -13,7 +13,7 @@ import {actions, connect} from "mirrorx";
 import './index.less';
 
 
-const {FormItem} = Form;
+const FormItem = FormList.Item;
 const {Option} = Select;
 
 const titleArr = ["新增", "修改", "详情"];
@@ -164,63 +164,53 @@ class CommonPop extends Component {
 				btns={btns}
 				close={_this.onCloseEdit}
 				>
-				<Form>
-					<Row className='form-panel'>
-						<Col md={6} xs={12} sm={10}>
-							<FormItem>
-								<Label className="mast">员工姓名</Label>
-								<FormControl
-									disabled = {btnFlag == 2}
-									{...getFieldProps('name', {
-										validateTrigger: 'onBlur',
-										initialValue: name || '',
-										rules: [{
-											type: 'string',
-											required: true,
-											pattern: /\S+/ig,
-											message: '请输入员工姓名',
-										}],
-									})}
-								/>
-								<span className='error'>{getFieldError('name')}</span>
-							</FormItem>
-						</Col>
-						<Col md={6} xs={12} sm={10}>
-							<FormItem>
-								<Label className="mast">员工性别</Label>
-								<Select
-									disabled = {btnFlag == 2}
-									{...getFieldProps('sex', {
-										initialValue: sex || 1,
-										rules: [{
-											required: true, message: '请选择员工性别',
-										}],
-									})}
-								>
-									<Option value={1}>女</Option>
-									<Option value={2}>男</Option>
-								</Select>
-								<span className='error'>{getFieldError('sex')}</span>
-							</FormItem>
-						</Col>
-						<Col md={6} xs={12} sm={10} >
-							<FormItem className='time'>
-								<Label className="mast">年龄</Label>
-								<InputNumber iconStyle="one" min={0} step={1}  max={99}
-									disabled = {btnFlag == 2}
-									{...getFieldProps('age', {
-										initialValue: age ? age : 0,
-										rules: [{pattern: /^[0-9]+$/, required: true}],
-									})}
-								/>
-								<span className='error'>{getFieldError('age')}</span>
-							</FormItem>
-						</Col>
-					</Row>
-				</Form>
+				<FormList>
+                    <FormItem required label={"员工姓名"}>
+                        <FormControl
+                            disabled = {btnFlag == 2}
+                            {...getFieldProps('name', {
+                                validateTrigger: 'onBlur',
+                                initialValue: name || '',
+                                rules: [{
+                                    type: 'string',
+                                    required: true,
+                                    pattern: /\S+/ig,
+                                    message: '请输入员工姓名',
+                                }],
+                            })}
+                        />
+                        <span className='error'>{getFieldError('name')}</span>
+                    </FormItem>
+
+                    <FormItem required label={"员工性别"}>
+                        <Select
+                            disabled = {btnFlag == 2}
+                            {...getFieldProps('sex', {
+                                initialValue: sex || 1,
+                                rules: [{
+                                    required: true, message: '请选择员工性别',
+                                }],
+                            })}
+                        >
+                            <Option value={1}>女</Option>
+                            <Option value={2}>男</Option>
+                        </Select>
+                        <span className='error'>{getFieldError('sex')}</span>
+                    </FormItem>
+                    <FormItem required label={"年龄"}>
+                        <InputNumber iconStyle="one" min={0} step={1}  max={99}
+                                     disabled = {btnFlag == 2}
+                                     {...getFieldProps('age', {
+                                         initialValue: age ? age : 0,
+                                         rules: [{pattern: /^[0-9]+$/, required: true}],
+                                     })}
+                        />
+                        <span className='error'>{getFieldError('age')}</span>
+                    </FormItem>
+				</FormList>
 			</PopDialog>
         )
     }
 }
 
-export default connect(state => state.walsinTree, null )(Form.createForm()(CommonPop));
+export default connect(state => state.walsinTree, null )(FormList.createForm()(CommonPop));

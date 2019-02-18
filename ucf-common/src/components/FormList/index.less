@@ -1,0 +1,206 @@
+@import "~styles/theme";
+// form 布局样式
+.ucf-exam-form.u-form{
+    .u-form-item {
+        min-width: 100%;
+        margin-bottom: 4px;
+        min-height: 48px;
+        height: 52px;
+        padding-left: 0;
+        padding-right: 0;
+        &>div {
+            padding: 0 0;
+        }
+        .u-form-control {
+            height: 32px;
+            width: 100%;
+        }
+        .u-label {
+            min-width: 90px;
+            display: inline-block;
+            text-align: right;
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            padding-right: 8px;
+        }
+
+        .form-input-wrap {
+            height: 32px;
+            line-height: 32px;
+            //&>* {
+            //    width: 100% !important;
+            //}
+        }
+        .u-label:after {
+            display: inline-block;
+            margin-right: 4px;
+            content: "  ";
+            line-height: 1;
+            font-size: 14px;
+            color: #f5222d;
+            font-family: monospace;
+            width: 5px;
+        }
+        .u-label+* {
+            width: 100%;
+            display: inline-block;
+        }
+        .mast:after {
+            content: "*";
+        }
+        .datepicker-input-group {
+            .u-form-control {
+                width: 100%;
+            }
+            //.u-input-group-btn {
+            //    top: 4px;
+            //}
+        }
+        .u-switch {
+            width: 44px;
+        }
+        .u-switch.is-checked {
+            border-color: @brand-primary;
+            background-color: @brand-primary;
+        }
+        .u-select {
+            width: 100%;
+            color: #424242;
+            .u-select-selection {
+                height: 32px;
+                .u-select-selection-rendered {
+                    line-height: 32px;
+                }
+            }
+        }
+        .u-select.u-select-disabled {
+            color: #bdbdbd;
+        }
+        .calendar-picker {
+            display: inline-block;
+            width: 100%;
+            input {
+                width: 100%;
+            }
+        }
+        .error {
+            color: #fff;
+            display: block;
+            font-size: 12px;
+            margin-top: 2px;
+            line-height: 14px;
+            background: red;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .u-form-control-close {
+            width: auto;
+            .u-form-control {
+                width: 100%;
+            }
+        }
+        .u-form-control[readonly="readonly"] {
+            background: #eee;
+            border-color: #e0e0e0;
+            color: #424242;
+            cursor: not-allowed;
+        }
+        .refInputWrap {
+            // 参照
+            input {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+
+        .u-input-number.u-input-group.simple {
+            .u-input-group-btn {
+                .icon-group {
+                    height: 32px;
+                }
+            }
+        }
+    }
+    .ref-input-wrap {
+        width: 100% !important;
+    }
+
+    .ref-input-wrap .u-input-group.simple .u-input-group-btn {
+        top: 0;
+    }
+
+    .u-form-item.time {
+        .u-label {
+            bottom: 10px;
+        }
+        .error {
+            position: relative;
+            top: -10px;
+        }
+        .u-input-number {
+            .u-form-control {
+                width: 100%;
+            }
+        }
+
+    }
+    // form 高度26样式
+    &.sm {
+        .u-form-item {
+            min-height: 38px;
+            height: 38px;
+            .u-form-control {
+                height: 26px;
+                font-size: @size-text-base;
+                color: @color-text-secondary;
+            }
+            .u-label {
+                height: 26px;
+                line-height: 26px;
+                font-size: @size-text-base;
+                color: @color-text-secondary;
+            }
+            .form-input-wrap {
+                height: 26px;
+                line-height: 26px;
+                //&>* {
+                //    width: 100% !important;
+                //}
+            }
+            .mast:after {
+                content: "*";
+            }
+            .datepicker-input-group {
+                .u-input-group-btn {
+                    top: 2px;
+                }
+            }
+            .u-select {
+                .u-select-selection {
+                    height: 26px;
+                    .u-select-selection-rendered {
+                        line-height: 26px;
+                    }
+                }
+            }
+            .u-input-number.u-input-group.simple {
+                .u-input-group-btn {
+                    .icon-group {
+                        height: 26px;
+                    }
+                }
+            }
+            .u-input-number.u-input-group {
+                .u-input-group-addon {
+                    font-size: 12px;
+                }
+            }
+        }
+        //.ref-input-wrap .u-input-group.simple .u-input-group-btn {
+        //    top: 2px;
+        //}
+    }
+
+}

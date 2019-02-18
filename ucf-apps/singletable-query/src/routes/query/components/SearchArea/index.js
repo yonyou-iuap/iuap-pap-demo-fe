@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
-import {Col, Row, FormControl, Label} from "tinper-bee";
-import Form from 'bee-form';
+import { FormControl} from "tinper-bee";
+import FormList from 'components/FormList';
 import Select from 'bee-select';
 import DatePicker from "tinper-bee/lib/Datepicker";
 import InputNumber from 'bee-input-number';
@@ -15,7 +15,7 @@ import zhCN from "rc-calendar/lib/locale/zh_CN";
 import 'ref-tree/dist/index.css';
 import './index.less'
 
-const {FormItem} = Form;
+const FormItem = FormList.Item;
 const {Option} = Select;
 const format = "YYYY";
 const {YearPicker} = DatePicker;
@@ -31,30 +31,33 @@ class SearchAreaForm extends Component {
      * @param {*} error 校验是否成功
      * @param {*} values 表单数据
      */
-    search = (error, values) => {
-        // 年份特殊处理
-        if (values.year) {
-            values.year = values.year.format('YYYY');
-        }
-        // 参照特殊处理
-        const {dept} = values;
-        if (dept) {
-            const {refpk} = JSON.parse(dept);
-            values.dept = refpk;
-        }
+    search = () => {
+        this.props.form.validateFields((err, values) => {
+            // 年份特殊处理
+            if (values.year) {
+                values.year = values.year.format('YYYY');
+            }
+            // 参照特殊处理
+            const {dept} = values;
+            if (dept) {
+                const {refpk} = JSON.parse(dept);
+                values.dept = refpk;
+            }
 
-        let queryParam = deepClone(this.props.queryParam);
-        let {pageParams} = queryParam;
-        pageParams.pageIndex = 0;
+            let queryParam = deepClone(this.props.queryParam);
+            let {pageParams} = queryParam;
+            pageParams.pageIndex = 0;
 
-        const arrayNew = this.getSearchPanel(values); //对搜索条件拼接
-        // queryParam.whereParams = mergeListObj(whereParams, arrayNew, "key"); //合并对象
+            const arrayNew = this.getSearchPanel(values); //对搜索条件拼接
+            // queryParam.whereParams = mergeListObj(whereParams, arrayNew, "key"); //合并对象
 
-        queryParam.whereParams=arrayNew;
+            queryParam.whereParams=arrayNew;
 
-        actions.query.updateState({cacheFilter: arrayNew});  //缓存查询条件
-        actions.query.loadList(queryParam);
-        this.props.clearRowFilter()
+            actions.query.updateState({cacheFilter: arrayNew});  //缓存查询条件
+            actions.query.loadList(queryParam);
+            this.props.clearRowFilter()
+        });
+
 
     }
 
@@ -63,6 +66,7 @@ class SearchAreaForm extends Component {
      * 重置 如果无法清空，请手动清空
      */
     reset = () => {
+        this.props.form.resetFields();
         this.props.form.validateFields((err, values) => {
             let queryParam = deepClone(this.props.queryParam);
             let {whereParams} = queryParam;
@@ -112,76 +116,70 @@ class SearchAreaForm extends Component {
         const {getFieldProps} = form;
         return (
             <SearchPanel
-                className="small"
-                form={form}
                 reset={this.reset}
                 onCallback={onCallback}
                 search={this.search}>
-                <Row>
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>员工编号</Label>
-                            <FormControl placeholder='精确查询' {...getFieldProps('code', {initialValue: ''})}/>
-                        </FormItem>
-                    </Col>
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>员工姓名</Label>
-                            <FormControl placeholder='模糊查询' {...getFieldProps('name', {initialValue: ''})}/>
-                        </FormItem>
-                    </Col>
+                <FormList size="sm">
+                    <FormItem
+                        label="员工编号"
+                    >
+                        <FormControl placeholder='精确查询' {...getFieldProps('code', {initialValue: ''})}/>
+                    </FormItem>
 
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>部门</Label>
-                            <RefIuapDept {...getFieldProps('dept', {initialValue: ''})}/>
-                        </FormItem>
-                    </Col>
+                    <FormItem
+                        label="员工姓名"
+                    >
+                        <FormControl placeholder='模糊查询' {...getFieldProps('name', {initialValue: ''})}/>
+                    </FormItem>
 
-                    <Col md={4} xs={6}>
-                        <FormItem className="time">
-                            <Label>司龄≥</Label>
-                            <InputNumber min={0} iconStyle="one"
-                                         {...getFieldProps('serviceYearsCompany', {
-                                             initialValue: "",
-                                         })}
-                            />
-                        </FormItem>
-                    </Col>
+                    <FormItem
+                        label="部门"
+                    >
+                        <RefIuapDept {...getFieldProps('dept', {initialValue: ''})}/>
+                    </FormItem>
+
+                    <FormItem
+                        label="司龄"
+                    >
+                        <InputNumber
+                            min={0}
+                            iconStyle="one"
+                            {...getFieldProps('serviceYearsCompany', {initialValue: "",})}
+                        />
+                    </FormItem>
+
+                    <FormItem
+                        label="年份"
+                    >
+                        <YearPicker
+                            {...getFieldProps('year', {initialValue: null})}
+                            format={format}
+                            locale={zhCN}
+                            placeholder="选择年"
+                        />
+                    </FormItem>
+
+                    <FormItem
+                        label="月份"
+                    >
+                        <SelectMonth {...getFieldProps('month', {initialValue: ''})} />
+                    </FormItem>
+
+                    <FormItem
+                        label="是否超标"
+                    >
+                        <Select {...getFieldProps('exdeeds', {initialValue: ''})}>
+                            <Option value="">请选择</Option>
+                            <Option value="0">未超标</Option>
+                            <Option value="1">超标</Option>
+                        </Select>
+                    </FormItem>
+                </FormList>
 
 
-                    <Col md={4} xs={6}>
-                        <FormItem className="time">
-                            <Label>年份</Label>
-                            <YearPicker
-                                {...getFieldProps('year', {initialValue: null})}
-                                format={format}
-                                locale={zhCN}
-                                placeholder="选择年"
-                            />
-                        </FormItem>
-                    </Col>
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>月份</Label>
-                            <SelectMonth {...getFieldProps('month', {initialValue: ''})} />
-                        </FormItem>
-                    </Col>
-
-                    <Col md={4} xs={6}>
-                        <FormItem>
-                            <Label>是否超标</Label>
-                            <Select {...getFieldProps('exdeeds', {initialValue: ''})}>
-                                <Option value="">请选择</Option>
-                                <Option value="0">未超标</Option>
-                                <Option value="1">超标</Option>
-                            </Select>
-                        </FormItem>
-                    </Col>
-                </Row>
             </SearchPanel>
         )
     }
 }
 
-export default Form.createForm()(SearchAreaForm)
+export default FormList.createForm()(SearchAreaForm)

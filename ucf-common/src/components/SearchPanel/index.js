@@ -4,10 +4,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from 'tinper-bee';
-import Button from 'components/Button';
+import { Panel, Icon } from 'tinper-bee';
+
 import classnames from 'classnames';
 import './index.less';
+
 
 /**
  * 部分不能通过this.props.form.resetFields()清空的组件，需要传reset方法，在reset方法中自行清空
@@ -25,9 +26,10 @@ const defaultProps = {
     searchOpen: true,
     search: () => { },
     reset: () => { },
-    title: "查询与筛选",
+    title: "默认筛选",
     resetName: "清除查询",
-    searchName: "查询"
+    searchName: "查询",
+    bgColor: "#F7F9FB"
 };
 
 
@@ -35,7 +37,7 @@ class SearchPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchOpen: this.props.searchOpen
+            searchOpen: props.searchOpen
         };
     }
     componentDidMount() {
@@ -49,60 +51,73 @@ class SearchPanel extends Component {
     }
 
     search = () => {
-        let self = this;
-        this.props.form.validateFields((err, values) => {
-            self.props.search(err, values);
-        });
+        // let self = this;
+        // this.props.form.validateFields((err, values) => {
+        //     self.props.search(err, values);
+        // });
+        const { search } = this.props;
+        search && search();
     }
     reset = () => {
-        this.props.form.resetFields();
-        this.props.reset();
+        // this.props.form.resetFields();
+        const { reset } = this.props;
+        reset && reset();
     }
     render() {
-        const { children, className, resetName, searchName, onCallback } = this.props;
+        const { children, className, resetName, searchName, onCallback, bgColor } = this.props;
         let classes = 'search-panel form-panel';
         if (className) {
             classes += ' ' + className
         }
-        let header = () => {
-            return (
-                <div className="panel-title clearfix" onClick={this.open}>
-                    <span  className={'search-panel-title'}>
-                        {this.props.title}
-                    </span>
+        let PanelHeader = (
+            <div className="search-panel-header">
+                <div className="search-panel-header-title">
+                    <span>{this.props.title}</span>
+                    <Icon type="uf-arrow-c-o-down"/>
+                </div>
 
-                    <span className={'search-panel-icon'}>
+                <div className="search-panel-header-oper">
+                    <a
+                        className="header-oper-btn"
+                        role="button"
+                        onClick={this.open}
+                    >
                         {this.state.searchOpen ? '收起' : '展开'}
                         <i className={classnames({
                             'uf': true,
-                            'uf-arrow-down': this.state.searchOpen,
-                            'uf-arrow-right': !this.state.searchOpen
+                            'uf-arrow-down': !this.state.searchOpen,
+                            'uf-arrow-up': this.state.searchOpen
                         })} />
-                    </span>
+                    </a>
+                    <a className="header-oper-btn" role="button" onClick={this.reset}>清空</a>
+                    <a className="header-oper-btn primary" role="button" onClick={this.search}>查询</a>
                 </div>
-            )
-        };
+            </div>
+        );
         return (
             <Panel
                 className={classes}
-                header={header()}
+                header={PanelHeader}
                 collapsible
                 expanded={this.state.searchOpen}
                 onExited={() => onCallback && onCallback(false)}//隐藏完成回调
                 onEntered={() => onCallback && onCallback(true)}//显示后回调
+                style={{
+                    backgroundColor: bgColor
+                }}
             >
                 {children}
-                <div className='search-panel-btn'>
-                    <Button
-                        className='reset-btn'
-                        shape='border'
-                        onClick={this.reset}>{resetName}</Button>
-                    <Button
-                        className='submit-btn'
-                        colors="primary"
-                        onClick={this.search}
-                    >{searchName}</Button>
-                </div>
+                {/*<div className='search-panel-btn'>*/}
+                    {/*<Button*/}
+                        {/*className='reset-btn'*/}
+                        {/*shape='border'*/}
+                        {/*onClick={this.reset}>{resetName}</Button>*/}
+                    {/*<Button*/}
+                        {/*className='submit-btn'*/}
+                        {/*colors="primary"*/}
+                        {/*onClick={this.search}*/}
+                    {/*>{searchName}</Button>*/}
+                {/*</div>*/}
             </Panel>
 
         )

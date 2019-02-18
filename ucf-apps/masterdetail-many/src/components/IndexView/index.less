@@ -1,46 +1,54 @@
 @import "~styles/theme";
+
 .master-detail-many {
 
-  .total{
-    background: #F7F9FB;
-    padding: 8px 16px;
-  }
-
-  .u-tabs-top {
-    border-bottom: 2px solid #f3f3f3;
-     overflow: hidden;
-  }
-  .tabel-header-wrap{
-    margin: 16px 0 0 0;
-    background: #fff,
-  }
-  .tabel-header-wrap-hide{
-   display: none;
-  }
-
-  .table-header-child {
-    padding: 8px;
-    background: #fff;
-  }
-
-  .u-tabs-top .u-tabs-nav-scroll {
-    width: auto;
-    text-align: center;
-    .u-tabs-nav {
-      float: none;
+    .total {
+        background: #F7F9FB;
+        padding: 8px 16px;
     }
-  }
 
-  .u-tabs-ink-bar {
-    background-color: @color-text-brand;
-  }
-  .u-tabs-tab {
-    font-size: @size-text-base;
-    color: @color-text-base;
-  }
-  .u-tabs-tab-active, .u-tabs-tab:hover {
-    color: @color-text-brand;
-  }
+    .u-tabs-top {
+        border-bottom: 2px solid #f3f3f3;
+        overflow: hidden;
+    }
+
+    .tabel-header-wrap {
+        background: #fff;
+    }
+
+    .tabel-header-wrap-hide {
+        display: none;
+    }
+
+    .table-header-child {
+        padding: 8px;
+        background: #fff;
+    }
+
+    .u-tabs-top .u-tabs-nav-scroll {
+        width: auto;
+        text-align: center;
+
+        .u-tabs-nav {
+            float: none;
+        }
+    }
+
+
+    .u-tabs {
+        .u-tabs-tab {
+            font-size: @size-text-base;
+            color: @color-text-base;
+        }
+
+        .u-tabs-tab-active, .u-tabs-tab:hover {
+            color: @color-text-brand;
+        }
+
+        .u-tabs-ink-bar {
+            background-color: @color-text-brand;
+        }
+    }
 }
 
 
