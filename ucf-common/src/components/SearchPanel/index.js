@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from 'tinper-bee';
+import { Panel, Icon } from 'tinper-bee';
 
 import classnames from 'classnames';
 import './index.less';
@@ -37,7 +37,7 @@ class SearchPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchOpen: this.props.searchOpen
+            searchOpen: props.searchOpen
         };
     }
     componentDidMount() {
@@ -51,14 +51,17 @@ class SearchPanel extends Component {
     }
 
     search = () => {
-        let self = this;
-        this.props.form.validateFields((err, values) => {
-            self.props.search(err, values);
-        });
+        // let self = this;
+        // this.props.form.validateFields((err, values) => {
+        //     self.props.search(err, values);
+        // });
+        const { search } = this.props;
+        search && search();
     }
     reset = () => {
-        this.props.form.resetFields();
-        this.props.reset();
+        // this.props.form.resetFields();
+        const { reset } = this.props;
+        reset && reset();
     }
     render() {
         const { children, className, resetName, searchName, onCallback, bgColor } = this.props;
@@ -70,6 +73,7 @@ class SearchPanel extends Component {
             <div className="search-panel-header">
                 <div className="search-panel-header-title">
                     <span>{this.props.title}</span>
+                    <Icon type="uf-arrow-c-o-down"/>
                 </div>
 
                 <div className="search-panel-header-oper">

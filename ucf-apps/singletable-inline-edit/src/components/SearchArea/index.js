@@ -49,24 +49,36 @@ class SearchAreaForm extends Component {
      * @param {array} error 校验是否成功
      * @param {json} values 表单数据
      */
-    search = (error, values) => {
-        let { status } = this.props;
-        //针对不同数据进行处理
-        if (values.year) {
-            values.year = values.year.format('YYYY');
-        }
-        if (values.dept) {
-            values.dept = JSON.parse(values.dept).refpk;
-        }
-        //检测是否为编辑查询
-        if (status != 'view') {
-            this.setState({
-                show: true,
-                values
-            });
-        } else {
-            this.getQuery(values, 0);
-        }
+    search = () => {
+        let { status, form: {validateFields} } = this.props;
+
+        validateFields((err, values) => {
+            //针对不同数据进行处理
+            if (values.year) {
+                values.year = values.year.format('YYYY');
+            }
+            if (values.dept) {
+                values.dept = JSON.parse(values.dept).refpk;
+            }
+            //检测是否为编辑查询
+            if (status != 'view') {
+                this.setState({
+                    show: true,
+                    values
+                });
+            } else {
+                this.getQuery(values, 0);
+            }
+        })
+
+    }
+
+    /**
+     * 重置 如果无法清空，请手动清空
+     *
+     */
+    reset = () => {
+        this.props.form.resetFields();
     }
 
     /**
@@ -85,16 +97,6 @@ class SearchAreaForm extends Component {
      */
     onClickCancel = () => {
         this.setState({ show: false });
-    }
-
-    /**
-     * 重置 如果无法清空，请手动清空
-     *
-     */
-    reset = () => {
-        // this.props.form.validateFields((err, values) => {
-        //     this.getQuery(values, 1)
-        // });
     }
 
     /**
@@ -141,12 +143,10 @@ class SearchAreaForm extends Component {
 
 
     render() {
-        const { getFieldProps } = this.props.form;
-        const { form, searchOpen, onCallback } = this.props;
+        const { form: { getFieldProps }, searchOpen, onCallback } = this.props;
         return (
             <SearchPanel
                 className='edlin-form'
-                form={form}
                 searchOpen={searchOpen}
                 reset={this.reset}
                 onCallback={onCallback}

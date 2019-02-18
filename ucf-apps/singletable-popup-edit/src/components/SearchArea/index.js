@@ -25,27 +25,27 @@ class SearchAreaForm extends Component {
      * @param {*} error 校验是否成功
      * @param {*} values 表单数据
      */
-    search = (error, values) => {
+    search = () => {
+        this.props.form.validateFields((err, values) => {
+            if (values.year) {
+                values.year = values.year.format('YYYY');
+            }
+            const {dept} = values;
+            if (dept) {
+                const {refpk} = JSON.parse(dept);
+                values.dept = refpk;
+            }
 
-        if (values.year) {
-            values.year = values.year.format('YYYY');
-        }
-        const {dept} = values;
-        if (dept) {
-            const {refpk} = JSON.parse(dept);
-            values.dept = refpk;
-        }
+            this.getQuery(values, 0);
+        });
 
-        this.getQuery(values, 0);
     }
 
     /**
      * 重置 如果无法清空，请手动清空
      */
     reset = () => {
-        this.props.form.validateFields((err, values) => {
-            this.getQuery(values, 1)
-        });
+        this.props.form.resetFields();
     }
 
 

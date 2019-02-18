@@ -21,24 +21,25 @@ class SearchArea extends Component {
      * @param {Object} values 表单数据
      */
     search = () => {
-        this.props.form.validateFields(async (err, values) => {
+        this.props.form.validateFields((err, values) => {
             // 获取默认请求的 分页信息
             if(!err){
                 const {pageSize} = this.props.orderObj;
                 values.pageIndex = 0;
                 values.pageSize = pageSize;
-                actions.masterDetailOne.updateState({searchParam:values}); // 保存查询条件
-                await actions.masterDetailOne.loadList(values);
+                actions.masterDetailOne.loadList(values);
             }
         });
     }
 
+    reset = () => {
+        this.props.form.resetFields();
+    }
+
     render() {
-        const {form} = this.props;
-        const {getFieldProps} = form;
+        const {form: {getFieldProps}} = this.props;
         return (
             <SearchPanel
-                form={form}
                 reset={this.reset}
                 search={this.search}
             >

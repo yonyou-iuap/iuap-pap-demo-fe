@@ -26,13 +26,13 @@ class SearchArea extends Component {
      * @param {object} values 表单数据
      */
     search = () => {
-        this.props.form.validateFields(async (err, values) => {
+        this.props.form.validateFields((err, values) => {
             const {passengerObj} = this.props;
             const {pageSize} = passengerObj;
             values.pageIndex = 0;  // 默认回到第一页
             values.pageSize = pageSize;
-            await actions.masterDetailMany.loadList(values);
-        });
+            actions.masterDetailMany.loadList(values);
+        } );
     }
 
     /**
@@ -48,7 +48,6 @@ class SearchArea extends Component {
         const {getFieldProps} = form;
         return (
             <SearchPanel
-                form={form}
                 reset={this.reset}
                 search={this.search}>
 

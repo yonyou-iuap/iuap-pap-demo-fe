@@ -95,10 +95,8 @@ export default {
             const { content = [] } = res || {};
 
             if (content.length > 0) { // 获取子表数据
-
                 const orderObj = structureObj(res, param);
-                actions.masterDetailOne.updateState({ orderObj }); // 更新主表数据
-
+                actions.masterDetailOne.updateState({ orderObj, searchParam: param }); // 更新主表数据
                 const { pageSize } = getState().masterDetailOne.detailObj;
                 const { id: search_orderId } = content[0];
                 const paramObj = { pageSize, pageIndex: 0, search_orderId };

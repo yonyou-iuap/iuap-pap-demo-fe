@@ -31,30 +31,33 @@ class SearchAreaForm extends Component {
      * @param {*} error 校验是否成功
      * @param {*} values 表单数据
      */
-    search = (error, values) => {
-        // 年份特殊处理
-        if (values.year) {
-            values.year = values.year.format('YYYY');
-        }
-        // 参照特殊处理
-        const {dept} = values;
-        if (dept) {
-            const {refpk} = JSON.parse(dept);
-            values.dept = refpk;
-        }
+    search = () => {
+        this.props.form.validateFields((err, values) => {
+            // 年份特殊处理
+            if (values.year) {
+                values.year = values.year.format('YYYY');
+            }
+            // 参照特殊处理
+            const {dept} = values;
+            if (dept) {
+                const {refpk} = JSON.parse(dept);
+                values.dept = refpk;
+            }
 
-        let queryParam = deepClone(this.props.queryParam);
-        let {pageParams} = queryParam;
-        pageParams.pageIndex = 0;
+            let queryParam = deepClone(this.props.queryParam);
+            let {pageParams} = queryParam;
+            pageParams.pageIndex = 0;
 
-        const arrayNew = this.getSearchPanel(values); //对搜索条件拼接
-        // queryParam.whereParams = mergeListObj(whereParams, arrayNew, "key"); //合并对象
+            const arrayNew = this.getSearchPanel(values); //对搜索条件拼接
+            // queryParam.whereParams = mergeListObj(whereParams, arrayNew, "key"); //合并对象
 
-        queryParam.whereParams=arrayNew;
+            queryParam.whereParams=arrayNew;
 
-        actions.query.updateState({cacheFilter: arrayNew});  //缓存查询条件
-        actions.query.loadList(queryParam);
-        this.props.clearRowFilter()
+            actions.query.updateState({cacheFilter: arrayNew});  //缓存查询条件
+            actions.query.loadList(queryParam);
+            this.props.clearRowFilter()
+        });
+
 
     }
 
@@ -63,6 +66,7 @@ class SearchAreaForm extends Component {
      * 重置 如果无法清空，请手动清空
      */
     reset = () => {
+        this.props.form.resetFields();
         this.props.form.validateFields((err, values) => {
             let queryParam = deepClone(this.props.queryParam);
             let {whereParams} = queryParam;
@@ -112,7 +116,6 @@ class SearchAreaForm extends Component {
         const {getFieldProps} = form;
         return (
             <SearchPanel
-                form={form}
                 reset={this.reset}
                 onCallback={onCallback}
                 search={this.search}>
