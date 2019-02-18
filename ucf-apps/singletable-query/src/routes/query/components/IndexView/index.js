@@ -28,6 +28,7 @@ class IndexView extends Component {
             showModal: false,
             record: {}, // 存储关联数据信息
         }
+
     }
 
     componentWillMount() {
@@ -244,6 +245,15 @@ class IndexView extends Component {
         const {queryObj, showLoading, queryParam} = _this.props;
         const {pageIndex, total, totalPages} = queryObj;
         const {filterable, record, tableHeight} = _this.state;
+
+        const paginationObj = {   // 分页
+            activePage: pageIndex,//当前页
+            total,//总条数
+            items: totalPages,
+            freshData: _this.freshData,
+            onDataNumSelect: _this.onDataNumSelect,
+        }
+
         const gridColumn = [
             {
                 title: "数据",
@@ -326,10 +336,14 @@ class IndexView extends Component {
                 filterDropdownAuto: "manual",
                 filterDropdownData: this.props.colFilterSelectdept,
                 filterDropdownFocus: () => { //组件焦点的回调函数
-                    let param = {
-                        distinctParams: ['dept']
+                    if (!this.props.colFilterSelectdept) {
+                        let param = {
+                            distinctParams: ['dept']
+                        }
+                        actions.query.getListByCol(param); //获取所有部门
+                        debugger
                     }
-                    actions.query.getListByCol(param); //获取所有部门
+
                 },
                 render: (text, record, index) => {
                     return (<span>{record.deptName}</span>)
@@ -453,14 +467,6 @@ class IndexView extends Component {
                 width: 100,
             }
         ]
-        const paginationObj = {   // 分页
-            activePage: pageIndex,//当前页
-            total,//总条数
-            items: totalPages,
-            freshData: _this.freshData,
-            onDataNumSelect: _this.onDataNumSelect,
-        }
-
         const sortObj = {  //排序属性设置
             mode: 'multiple',
             backSource: true,

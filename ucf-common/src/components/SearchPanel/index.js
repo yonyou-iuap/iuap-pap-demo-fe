@@ -73,7 +73,7 @@ class SearchPanel extends Component {
             <div className="search-panel-header">
                 <div className="search-panel-header-title">
                     <span>{this.props.title}</span>
-                    <Icon type="uf-arrow-c-o-down"/>
+                    {/*<Icon type="uf-arrow-c-o-down"/>*/}
                 </div>
 
                 <div className="search-panel-header-oper">

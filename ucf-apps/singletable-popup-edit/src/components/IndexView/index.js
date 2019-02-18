@@ -11,7 +11,7 @@ import SearchArea from '../SearchArea';
 import PopupModal from '../PopupModal';
 
 import {deepClone, Info, success,getHeight,getPageParam} from "utils";
-
+import 'bee-table/build/Table.css'
 import './index.less';
 
 const formatDate = "YYYY-MM-DD HH:mm:ss";
@@ -317,29 +317,32 @@ class IndexView extends Component {
                                 _this.onClickShowModel(0);
                             }}
                         >新增</Button>
-                        <Button
-                            role="update"
-                            shape="border"
-                            className="ml8"
-                            disabled={btnForbid}
-                            onClick={() => {
-                                _this.onClickShowModel(1);
-                            }}
-                        >修改</Button>
-                        <Button
-                            shape="border"
-                            className="ml8"
-                            disabled={btnForbid}
-                            onClick={() => {
-                                _this.onClickShowModel(2);
-                            }}
-                        >详情</Button>
-                        <Button
-                            role="delete"
-                            shape="border"
-                            className="ml8"
-                            disabled={btnForbid}
-                            onClick={_this.onClickDel}>删除</Button>
+                        {/*<Button*/}
+                            {/*role="update"*/}
+                            {/*shape="border"*/}
+                            {/*className="ml8"*/}
+                            {/*disabled={btnForbid}*/}
+                            {/*onClick={() => {*/}
+                                {/*_this.onClickShowModel(1);*/}
+                            {/*}}*/}
+                        {/*>修改</Button>*/}
+                        {/*<Button*/}
+                            {/*shape="border"*/}
+                            {/*className="ml8"*/}
+                            {/*disabled={btnForbid}*/}
+                            {/*onClick={() => {*/}
+                                {/*_this.onClickShowModel(2);*/}
+                            {/*}}*/}
+                        {/*>详情</Button>*/}
+                        {/*<Button*/}
+                            {/*role="delete"*/}
+                            {/*shape="border"*/}
+                            {/*className="ml8"*/}
+                            {/*disabled={btnForbid}*/}
+                            {/*onClick={_this.onClickDel}>删除</Button>*/}
+                    <Button shape="border" className="ml8" onClick={_this.export}>
+                        导出
+                    </Button>
 				</ButtonRoleGroup>
 
                     <Alert show={delModalVisible} context="是否要删除 ?"
@@ -350,9 +353,7 @@ class IndexView extends Component {
                                _this.confirmGoBack(2);
                            }}
                     />
-                    <Button shape="border" className="ml8" onClick={_this.export}>
-                        导出
-                    </Button>
+
                 </div>
                 <div className="gird-parent">
                     <Grid
@@ -363,15 +364,48 @@ class IndexView extends Component {
                         paginationObj={paginationObj}
                         selectedRow={this.selectedRow}
                         multiSelect={false}
-                        onRowClick={(record, index) => {
-                            _this.setState({selectedIndex: index, editModelVisible: false});
+                        // onRowClick={(record, index) => {
+                        //     _this.setState({selectedIndex: index, editModelVisible: false});
+                        // }}
+                        // rowClassName={(record, index, indent) => {
+                        //     if (_this.state.selectedIndex === index) {
+                        //         return 'selected';
+                        //     } else {
+                        //         return '';
+                        //     }
+                        // }}
+                        hoverContent={() => {
+                            return (
+                                <ButtonRoleGroup funcCode="singletable-popupedit">
+                                    <Button
+                                        isAction
+                                        role="update"
+                                        className="ml8"
+                                        disabled={btnForbid}
+                                        onClick={() => {
+                                            _this.onClickShowModel(1);
+                                        }}
+                                    >修改</Button>
+                                    <Button
+                                        isAction
+                                        className="ml8"
+                                        disabled={btnForbid}
+                                        onClick={() => {
+                                            _this.onClickShowModel(2);
+                                        }}
+                                    >详情</Button>
+                                    <Button
+                                        isAction
+                                        role="delete"
+                                        className="ml8"
+                                        disabled={btnForbid}
+                                        onClick={_this.onClickDel}
+                                    >删除</Button>
+                                </ButtonRoleGroup>
+                            )
                         }}
-                        rowClassName={(record, index, indent) => {
-                            if (_this.state.selectedIndex === index) {
-                                return 'selected';
-                            } else {
-                                return '';
-                            }
+                        onRowHover={(index) => {
+                            _this.setState({selectedIndex: index, editModelVisible: false});
                         }}
                         showHeaderMenu={true}
                         sort={sortObj} //后端排序

@@ -26,10 +26,14 @@ class Button extends Component {
             iconType,
             disabled,
             authority,
+            isAction = false,
             ...other
         } = this.props;
         // let classname = className||'';
         let classname = (disabled && authority) && `${className || ''} btn-authority-disabled` || `${className || ''}`;
+        if (isAction) {
+            classname += ' action-button'
+        }
         return (
             <BeeButton
                 className={'demo-button ' + classname}
