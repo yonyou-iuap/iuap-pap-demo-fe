@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
         // 代理的配置
         proxy: [
             {
-                enable: false,
+                enable: true,
                 headers: {
                     "Referer": "https://mock.yonyoucloud.com/mock/535"
                 },
