@@ -4,11 +4,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel, Icon } from 'tinper-bee';
-
-import classnames from 'classnames';
-import './index.less';
-
+import BeeSearchPanel from 'bee-search-panel'
+import 'bee-search-panel/build/SearchPanel.css';
+import "./index.less"
 
 /**
  * 部分不能通过this.props.form.resetFields()清空的组件，需要传reset方法，在reset方法中自行清空
@@ -27,7 +25,7 @@ const defaultProps = {
     search: () => { },
     reset: () => { },
     title: "默认筛选",
-    resetName: "清除查询",
+    resetName: "清空",
     searchName: "查询",
     bgColor: "#F7F9FB"
 };
@@ -64,47 +62,20 @@ class SearchPanel extends Component {
         reset && reset();
     }
     render() {
-        const { children, className, resetName, searchName, onCallback, bgColor } = this.props;
-        let classes = 'search-panel form-panel';
-        if (className) {
-            classes += ' ' + className
-        }
-        let PanelHeader = (
-            <div className="search-panel-header">
-                <div className="search-panel-header-title">
-                    <span>{this.props.title}</span>
-                    {/*<Icon type="uf-arrow-c-o-down"/>*/}
-                </div>
-
-                <div className="search-panel-header-oper">
-                    <a
-                        className="header-oper-btn"
-                        role="button"
-                        onClick={this.open}
-                    >
-                        {this.state.searchOpen ? '收起' : '展开'}
-                        <i className={classnames({
-                            'uf': true,
-                            'uf-arrow-down': !this.state.searchOpen,
-                            'uf-arrow-up': this.state.searchOpen
-                        })} />
-                    </a>
-                    <a className="header-oper-btn" role="button" onClick={this.reset}>清空</a>
-                    <a className="header-oper-btn primary" role="button" onClick={this.search}>查询</a>
-                </div>
-            </div>
-        );
+        const { children, onCallback, bgColor } = this.props;
         return (
-            <Panel
-                className={classes}
-                header={PanelHeader}
+            <BeeSearchPanel
+                className="ucf-exam-search-panel"
                 collapsible
                 expanded={this.state.searchOpen}
-                onExited={() => onCallback && onCallback(false)}//隐藏完成回调
-                onEntered={() => onCallback && onCallback(true)}//显示后回调
-                style={{
-                    backgroundColor: bgColor
+                onSearch={this.search}
+                onReset={this.reset}
+                onChange={this.open}
+                onPanelChanged={status => {
+                    const open = status === "visible"
+                    onCallback(open)
                 }}
+                bgColor={bgColor}
             >
                 {children}
                 {/*<div className='search-panel-btn'>*/}
@@ -118,7 +89,7 @@ class SearchPanel extends Component {
                         {/*onClick={this.search}*/}
                     {/*>{searchName}</Button>*/}
                 {/*</div>*/}
-            </Panel>
+            </BeeSearchPanel>
 
         )
     }

@@ -90,17 +90,13 @@ class IndexView extends Component {
      * @param {Number} type 1、取消 2、确定
      * @returns {Promise<void>}
      */
-    async confirmGoBack(type) {
+    confirmGoBack(type) {
         this.setState({delModalVisible: false});
         if (type === 1) { // 确定
             const {list} = this.props;
             const {selectedIndex: index} = this.state;
             const record = list[index];
-            const {status} = await actions.popupEdit.removeList(record);
-            if (status === 'success') {
-                this.setState({selectedIndex: 0}); //默认选中第一行
-                this.onRefreshList();
-            }
+            actions.popupEdit.removeList(record);
         }
     }
 
@@ -303,9 +299,9 @@ class IndexView extends Component {
             <div className='single-table-popup'>
                 <Header title='A3 单表弹框编辑示例'/>
                 <SearchArea
-                {...this.props}
-                onCloseEdit={this.onCloseEdit}
-                onCallback={this.resetTableHeight}
+                    {...this.props}
+                    onCloseEdit={this.onCloseEdit}
+                    onCallback={this.resetTableHeight}
                 />
                 <div className='table-header'>
 				<ButtonRoleGroup funcCode="singletable-popupedit">

@@ -7,11 +7,11 @@ import Button from 'components/Button';
 import './index.less';
 
 export default class IndexView extends Component {
- 
-    
+
+
     onBack = () => {
         // 通过routing 返回上一页
-        actions.routing.replace({pathname: '/'});
+        actions.routing.goBack();
     }
 
     render() {

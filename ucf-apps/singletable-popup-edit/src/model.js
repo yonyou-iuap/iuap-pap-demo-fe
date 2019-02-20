@@ -55,26 +55,29 @@ export default {
          * @param {*} param
          * @param {*} getState
          */
-        async loadList(param = {}, getState) {
+        async loadList(param, getState) {
             // 正在加载数据，显示加载 Loading 图标
-            await actions.popupEdit.updateState({showLoading: true});
+            actions.popupEdit.updateState({showLoading: true});
             // 调用 getList 请求数据
-            let {result} = processData(await api.getList(param));
+            const _param = param || getState().popupEdit.queryParam;
+            const {result} = processData(await api.getList(_param));
             const {data:res}=result;
-            actions.popupEdit.updateState({
+            let _state = {
                 showLoading: false,
                 queryParam: param //更新搜索条件
-            });
+            }
+
             if (res) {
-                actions.popupEdit.updateState({
+                _state = Object.assign({}, _state, {
                     list: res.content,
                     pageIndex: res.number + 1,
                     totalPages: res.totalPages,
                     total: res.totalElements,
                     pageSize: res.size,
                     rowPopData: (res.content.length > 0 ? res.content[0] : {}),
-                });
+                })
             }
+            actions.popupEdit.updateState(_state);
         },
 
         /**
@@ -85,15 +88,17 @@ export default {
         async removeList(param, getState) {
             actions.popupEdit.updateState({ showLoading: true });
             const {id} = param;
-            let { result } = processData(await api.deleteList([{id}]),'删除成功');
-            actions.popupEdit.updateState({ showLoading: false});
-            return result;
+            const { result } = processData(await api.deleteList([{id}]),'删除成功');
+            if (result.status === "success") {
+                actions.popupEdit.loadList();
+            } else {
+                actions.popupEdit.updateState({ showLoading: false});
+            }
         },
 
 
         async saveOrder(param, getState) {//保存或许更新
             actions.popupEdit.updateState({showLoading: true});
-            let queryParam = getState().popupEdit.queryParam;
             let status = null;
             const {btnFlag} = param;
             delete param.btnFlag; //删除标识字段
@@ -107,9 +112,10 @@ export default {
                 status = result.status;
             }
             if (status==="success") {
-                actions.popupEdit.loadList(queryParam);
+                actions.popupEdit.loadList();
+            }else {
+                actions.popupEdit.updateState({showLoading: false});
             }
-            actions.popupEdit.updateState({showLoading: false});
         },
 
         // /**queryDetail
