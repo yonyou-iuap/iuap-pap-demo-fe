@@ -2,22 +2,6 @@
 .u-grid.ucf-example-grid {
     background: #fff;
 
-    .u-table th,
-    .u-table td {
-        padding: 10px 8px;
-    }
-    .u-table th{
-        overflow: visible;
-        background-clip:padding-box;
-        word-break: keep-all;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .u-table tr.filterable th {
-        padding: 0 2px;
-        height: 39px;
-    }
-
     table {
         table-layout: fixed;
     }
@@ -30,6 +14,12 @@
 
     //修改table的header背景色颜色和body中隔行差色
     .u-table {
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.35s;
+        transition-duration: 0.35s;
+        -webkit-transition-timing-function: ease;
+        transition-timing-function: ease;
         .u-table-header {
             background: #EEEEEE;
         }
@@ -54,57 +44,35 @@
 
         }
 
-    }
-
-    //分页媒体查询
-    @media (max-width: 1024px){
-        .u-pagination{
-            .u-pagination-list{
-                flex-shrink: 0;
-                margin-right: 2px;
-                li a{
-                    padding: 0px 6px;
-                }
-            }
-            .u-pagination-total {
-                margin:0px;
-            }
-            .data_per_select {
-                min-width: 45px;
-                .u-select{
-                    width: 48px !important;
-                }
-
-            }
-            .page_jump{
-                margin-left: 0px;
-                margin-right: 0px;
-
-
-            }
-            .page_jump_value{
-                width: 30px;
-            }
-            .page_jump_btn{
-                min-width:10px;
-            }
+        th, td {
+            padding: 10px 8px;
         }
+        th{
+            overflow: visible;
+            background-clip:padding-box;
+            word-break: keep-all;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        tr.filterable th {
+            padding: 0 2px;
+            height: 39px;
+        }
+
+        //.u-table-body {
+        //    transition: max-height 0.35s ease, height 0.35s ease;
+        //}
     }
+
 
     //重写分页样式
     .u-pagination {
         margin: 0;
-        .u-pagination-list, .u-pagination-total, .data_per_select, .page_jump {
-            margin: 14px 5px !important;
-            height: 32px;
-            line-height: 32px;
-            font-size: @size-text-base + 1px;
-            color: @size-text-base;
-        }
+
         .u-pagination-list {
             &>li>a {
                 height: 32px;
-                font-size: @size-text-base + 1px;
+                font-size: @size-text-base + 2px;
                 color: @color-text-base;
                 line-height: 32px;
                 padding: 0 6px;
@@ -118,68 +86,68 @@
                 color: #fff;
             }
         }
-        .data_per_select {
-            &>span {
-                line-height: 32px;
-            }
-            .u-select {
-                height: 32px;
-                .u-select-selection {
-                    height: 100%;
-                    .u-select-selection-rendered {
-                        height: 100%;
-                        line-height: 32px;
-                    }
-                }
-            }
-
-
-        }
-        .page_jump {
-            &>span {
-                line-height: 32px;
-            }
-            .page_jump_value {
-                height: 32px;
-                line-height: 32px;
-            }
-        }
-        .page_jump {
-            .u-button {
-                margin:0 0 0 8px;
-                width: 84px;
-                height: 32px;
-                font-size: @size-text-base;
-                padding: 0 8px;
-                line-height: 32px;
-                border-radius: 3px;
-                min-width: 72px;
-
-                &:hover {
-
-                }
-            }
-            .u-button-primary {
-                background: @brand-primary !important;
-                border-color: @brand-primary !important;
-                color: #ffffff;
-                &:hover {
-                    background: #056CC6 !important;
-                }
-            }
-            .u-button-border {
-                border-color: @color-border-base;
-                background: #ffffff;
-                &:hover {
-                    background: #ECEFF1 !important;
-                }
-                &[disabled] {
-                    border-color: #E0E0E0;
-                    background: #eee;
-                    color: #BDBDBD;
-                }
-            }
-        }
+        //.data_per_select {
+        //    &>span {
+        //        line-height: 32px;
+        //    }
+        //    .u-select {
+        //        height: 32px;
+        //        .u-select-selection {
+        //            height: 100%;
+        //            .u-select-selection-rendered {
+        //                height: 100%;
+        //                line-height: 32px;
+        //            }
+        //        }
+        //    }
+        //
+        //
+        //}
+        //.page_jump {
+        //    &>span {
+        //        line-height: 32px;
+        //    }
+        //    .page_jump_value {
+        //        height: 32px;
+        //        line-height: 32px;
+        //    }
+        //}
+        //.page_jump {
+        //    .u-button {
+        //        margin:0 0 0 8px;
+        //        width: 84px;
+        //        height: 32px;
+        //        font-size: @size-text-base;
+        //        padding: 0 8px;
+        //        line-height: 32px;
+        //        border-radius: 3px;
+        //        min-width: 72px;
+        //
+        //        &:hover {
+        //
+        //        }
+        //    }
+        //    .u-button-primary {
+        //        background: @brand-primary !important;
+        //        border-color: @brand-primary !important;
+        //        color: #ffffff;
+        //        &:hover {
+        //            background: #056CC6 !important;
+        //        }
+        //    }
+        //    .u-button-border {
+        //        border-color: @color-border-base;
+        //        background: #ffffff;
+        //        &:hover {
+        //            background: #ECEFF1 !important;
+        //        }
+        //        &[disabled] {
+        //            border-color: #E0E0E0;
+        //            background: #eee;
+        //            color: #BDBDBD;
+        //        }
+        //    }
+        //}
     }
 
 
@@ -222,4 +190,8 @@
             }
         }
     }
+}
+
+.u-table-thead-th-drag-gap .online {
+    background: transparent;
 }

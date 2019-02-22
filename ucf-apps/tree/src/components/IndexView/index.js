@@ -302,57 +302,55 @@ class IndexView extends Component {
 									type="search"
 									/>
 							</div>
-							{
-								content.length ? (
-									<Tree
-										// 是否显示连接线
-										showLine={true}
+							{content.length ? (
+                                <Tree
+									// 是否显示连接线
+                                    showLine={true}
 
-										// 设置显示复选框
-										// checkable={true}
+									// 设置显示复选框
+									// checkable={true}
 
-										// 设置打开节点时的图标
-										openIcon={<Icon type="uf-arrow-down" />}
+									// 设置打开节点时的图标
+                                    openIcon={<Icon type="uf-arrow-down" />}
 
-										// 设置关闭节点时的图标
-										closeIcon={<Icon type="uf-arrow-right" />}
+									// 设置关闭节点时的图标
+                                    closeIcon={<Icon type="uf-arrow-right" />}
 
-										// 打开或关闭节点时触发的方法
-										onExpand={_this.onExpand}
-										expandedKeys={expandedKeys}
-										autoExpandParent={autoExpandParent}
+									// 打开或关闭节点时触发的方法
+                                    onExpand={_this.onExpand}
+                                    expandedKeys={expandedKeys}
+                                    autoExpandParent={autoExpandParent}
 
-										// 默认是否展开所有节点
-										defaultExpandAll = {true}
+									// 默认是否展开所有节点
+                                    defaultExpandAll = {true}
 
-										// 点击节点数据回调函数
-										onSelect={_this.onSelect}
+									// 点击节点数据回调函数
+                                    onSelect={_this.onSelect}
 
-										// 点击复选框回调函数
-										onCheck={_this.onSelect}
+									// 点击复选框回调函数
+                                    onCheck={_this.onSelect}
 
-										// 编辑回调函数
-										onMouseEnter={_this.onMouseEnter}
-										onMouseLeave={_this.onMouseLeave}
+									// 编辑回调函数
+                                    onMouseEnter={_this.onMouseEnter}
+                                    onMouseLeave={_this.onMouseLeave}
 
-										// 拖拽
-										draggable = {false}
-										onDragEnter = {this.onDragEnter}
-										onDrop = {this.onDrop}
+									// 拖拽
+                                    draggable = {false}
+                                    onDragEnter = {this.onDragEnter}
+                                    onDrop = {this.onDrop}
 
-										// 异步加载数据
-										loadData = {_this.onLoadData}
+									// 异步加载数据
+                                    loadData = {_this.onLoadData}
 
-										selectedKeys = {[search_treeId]}
-									>
-										{loop2(content)}
-									</Tree>
-								) : (
-									<div className = "no-search-container" >
-										<span className="no-search">未查询到相关数据</span>
-									</div>
-								)
-							}
+                                    selectedKeys = {[search_treeId]}
+                                >
+                                    {loop2(content)}
+                                </Tree>
+                            ) : (
+                                <div className = "no-search-container" >
+                                    <span className="no-search">未查询到相关数据</span>
+                                </div>
+                            )}
 
 						</div>
 						<div className = 'table-wrap'>

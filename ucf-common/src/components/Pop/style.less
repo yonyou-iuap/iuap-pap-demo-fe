@@ -1,34 +1,41 @@
 // u-modal 样式hock
 .u-modal {
-  overflow: auto !important;
+    overflow: auto !important;
 }
 
-.pop_dialog {
-  .pop_footer {
-    text-align: right;
-
-    button {
-      width: 66px;
+.pop_dialog.u-modal {
+    .pop_body, .pop_footer {
+        padding-left: 25px;
+        padding-right: 25px;
     }
 
-  }
-  .u-modal-header {
-    h4 {
-      font-size: 16px;
-      color: rgba(23, 43, 77, 1);
-    }
-  }
-
-  .btn {
-    margin-right: 10px;
-  }
-  .u-modal-dialog {
-    .u-modal-content {
-      .u-modal-footer {
+    .pop_footer {
         text-align: right;
-      }
+
+        button {
+            width: 66px;
+        }
+
     }
-  }
+
+    .u-modal-header {
+        h4 {
+            font-size: 16px;
+            color: rgba(23, 43, 77, 1);
+        }
+    }
+
+    .btn {
+        margin-left: 10px;
+    }
+
+    .u-modal-dialog {
+        .u-modal-content {
+            .u-modal-footer {
+                text-align: right;
+            }
+        }
+    }
 }
 
 /*

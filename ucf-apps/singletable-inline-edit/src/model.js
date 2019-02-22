@@ -50,25 +50,36 @@ export default {
          * 加载列表数据
          * @param {object} param
          */
-        async loadList(param) {
-            // 正在加载数据，显示加载 Loading 图标
-            actions.inlineEdit.updateState({ showLoading: true });
+        async loadList(param, getState) {
+            // 正在加载数据，显示加载 Loading 图标, 并初识化配置
+            actions.inlineEdit.updateState({
+                showLoading: true,
+                status: "view",
+                rowEditStatus: true,
+                selectData: []
+            });
+            const _param = param || getState().inlineEdit.queryParam;
             // 调用 getList 请求数据
-            let {result} = processData(await api.getList(param));
+            let {result} = processData(await api.getList(_param));
             const {data:res}=result;
-            actions.inlineEdit.updateState({ showLoading: false });
+            const defState = { showLoading: false }
+            let _state = null;
+            actions.inlineEdit.updateState();
             if (res) {
                 const { content: list, number, totalPages, totalElements: total } = res;
                 const pageIndex = number + 1;
-                actions.inlineEdit.updateState({
+                _state = Object.assign({}, defState, {
                     list,
                     pageIndex,
                     totalPages,
                     total,
-                    queryParam: param,
+                    queryParam: _param,
                     cacheData: list
-                });
+                })
+            }else {
+                _state = defState
             }
+            actions.inlineEdit.updateState(_state);
         },
         /**
          * 批量添加数据
@@ -76,14 +87,13 @@ export default {
          * @param {Array} [param=[]] 数组对象的数据
          * @returns {bool} 操作是否成功
          */
-        async adds(param, getState) {
+        async adds(param) {
             actions.inlineEdit.updateState({ showLoading: true });
             let { result } = processData(await api.adds(param),'保存成功');
             const {status}=result;
-            actions.inlineEdit.updateState({ showLoading: false });
+            actions.inlineEdit.updateState({ showLoading: false});
             if (status === 'success') {
-                actions.inlineEdit.loadList(getState().inlineEdit.queryParam);
-                actions.inlineEdit.updateState({ status: "view", rowEditStatus: true, selectData: [] });
+                actions.inlineEdit.loadList();
                 return true;
             } else {
                 return false;
@@ -94,13 +104,13 @@ export default {
          *
          * @param {Array} [param=[]]
          */
-        async removes(param, getState) {
+        async removes(param) {
             actions.inlineEdit.updateState({ showLoading: true });
             let { result } = processData(await api.removes(param),'删除成功');
             const {status}=result;
-            actions.inlineEdit.updateState({ showLoading: false, selectData: [] });
+            actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
-                actions.inlineEdit.loadList(getState().inlineEdit.queryParam);
+                actions.inlineEdit.loadList();
                 return true;
             } else {
                 return false;
@@ -111,14 +121,13 @@ export default {
          *
          * @param {Array} [param=[]]
          */
-        async updates(param, getState) {
+        async updates(param) {
             actions.inlineEdit.updateState({ showLoading: true });
             let { result } = processData(await api.updates(param),'更新成功');
             const {status}=result;
-            actions.inlineEdit.updateState({ showLoading: false, selectData: [] });
+            actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
-                actions.inlineEdit.loadList(getState().inlineEdit.queryParam);
-                actions.inlineEdit.updateState({ status: "view", rowEditStatus: true, selectData: [] });
+                actions.inlineEdit.loadList();
                 return true;
             } else {
                 return false;
@@ -128,11 +137,13 @@ export default {
             let cacheData = getState().inlineEdit.cacheData.slice();
             cacheData.map(item => delete item.edit);
             cacheData.map(item => delete item._edit);
-            if (status) {
-                actions.inlineEdit.updateState({ list: cacheData, status: "view" });
-            } else {
-                actions.inlineEdit.updateState({ list: cacheData });
+            let state = {
+                list: cacheData
             }
+            if (status) {
+                state.status = 'view';
+            }
+            actions.inlineEdit.updateState(state);
         }
     }
 };

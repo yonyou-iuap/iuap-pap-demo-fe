@@ -11,7 +11,6 @@ import SearchArea from '../SearchArea';
 import PopupModal from '../PopupModal';
 
 import {deepClone, Info, success,getHeight,getPageParam} from "utils";
-import 'bee-table/build/Table.css'
 import './index.less';
 
 const formatDate = "YYYY-MM-DD HH:mm:ss";

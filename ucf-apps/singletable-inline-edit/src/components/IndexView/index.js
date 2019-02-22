@@ -34,7 +34,6 @@ import FactoryComp from './FactoryComp';
 
 import './index.less';
 
-
 class IndexView extends Component {
     /**
      * Creates an instance of InlineEdit.
@@ -706,7 +705,7 @@ class IndexView extends Component {
                 if (this.isVerifyData(this.filterChecked(deepClone(this.oldData), this.props.list))) {
                     let vals = this.filterChecked(this.oldData, this.props.list);
                     if (vals.length == 0) {
-                        Info('请勾选数据后再新增');
+                        Error('请勾选数据后再新增');
                     } else {
                         let newResult = await actions.inlineEdit.adds(vals);
                         if (newResult) {
@@ -878,7 +877,8 @@ class IndexView extends Component {
                             role="update"
                             shape="border"
                             disabled={getButtonStatus('edit', status)}
-                            className="ml8" onClick={this.onClickUpdate}
+                            className="ml8"
+                            onClick={this.onClickUpdate}
                         >
                             修改
                         </Button>
@@ -897,21 +897,21 @@ class IndexView extends Component {
                             confirmFn={this.onClickDel}
                             cancelFn={this.onClickPopCancel}
                         />
-                        <Button
-                            shape="border"
-                            disabled={getButtonStatus('down', status)}
-                            className="ml8"
-                            onClick={this.onClickDownloadTemplate}
-                        >
-                            下载模板
-                     </Button>
-                        <Button
-                            shape="border"
-                            disabled={getButtonStatus('import', status)}
-                            className="ml8"
-                        >
-                            导入
-                    </Button>
+                        {/*<Button*/}
+                            {/*shape="border"*/}
+                            {/*disabled={getButtonStatus('down', status)}*/}
+                            {/*className="ml8"*/}
+                            {/*onClick={this.onClickDownloadTemplate}*/}
+                        {/*>*/}
+                            {/*下载模板*/}
+                        {/*</Button>*/}
+                        {/*<Button*/}
+                            {/*shape="border"*/}
+                            {/*disabled={getButtonStatus('import', status)}*/}
+                            {/*className="ml8"*/}
+                        {/*>*/}
+                            {/*导入*/}
+                        {/*</Button>*/}
                         <Button
                             shape="border"
                             disabled={getButtonStatus('export', status)}
@@ -919,7 +919,7 @@ class IndexView extends Component {
                             onClick={this.onClickExport}
                         >
                             导出
-                     </Button>
+                        </Button>
                         <Button
                             shape="border"
                             disabled={getButtonStatus('save', status)}
@@ -927,7 +927,7 @@ class IndexView extends Component {
                             onClick={this.onClickSave}
                         >
                             保存
-                    </Button>
+                        </Button>
                         <Button
                             shape="border"
                             disabled={getButtonStatus('cancel', status)}
@@ -935,7 +935,7 @@ class IndexView extends Component {
                             onClick={this.onClickCancel}
                         >
                             取消
-                    </Button>
+                        </Button>
                         <Alert
                             show={showPopCancel}
                             context="数据未保存，确定离开 ?"

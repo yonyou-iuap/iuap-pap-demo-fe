@@ -20,10 +20,10 @@ export default class IndexView extends Component {
         const {code, name, sexEnumValue, levelName} = searchObj;
         return (
             <div className="employee">
-                <Header title='A1单表查询示例'>
-                    <div className='head-btn'>
-                        <Button shape="border" className="ml8" onClick={_this.onBack}>取消</Button>
-                    </div>
+                <Header title='A1单表查询示例' back={true}>
+                    {/*<div className='head-btn'>*/}
+                        {/*<Button shape="border" className="ml8" onClick={_this.onBack}>取消</Button>*/}
+                    {/*</div>*/}
                 </Header>
                 <div className="content">
                     <div className="item">

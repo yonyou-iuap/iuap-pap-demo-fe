@@ -26,8 +26,7 @@ import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
 import Alert from 'components/Alert';
 
-//样式导入
-import 'ref-tree/dist/index.css';
+
 
 //所需变量
 const FormItem = FormList.Item;

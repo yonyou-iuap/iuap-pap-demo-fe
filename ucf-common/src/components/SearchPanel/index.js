@@ -38,9 +38,6 @@ class SearchPanel extends Component {
             searchOpen: props.searchOpen
         };
     }
-    componentDidMount() {
-
-    }
 
     open = () => {
         this.setState({
@@ -49,15 +46,10 @@ class SearchPanel extends Component {
     }
 
     search = () => {
-        // let self = this;
-        // this.props.form.validateFields((err, values) => {
-        //     self.props.search(err, values);
-        // });
         const { search } = this.props;
         search && search();
     }
     reset = () => {
-        // this.props.form.resetFields();
         const { reset } = this.props;
         reset && reset();
     }
@@ -71,24 +63,13 @@ class SearchPanel extends Component {
                 onSearch={this.search}
                 onReset={this.reset}
                 onChange={this.open}
-                onPanelChanged={status => {
-                    const open = status === "visible"
+                onPanelChangeStart={status => {
+                    const open = status === "visible";
                     onCallback(open)
                 }}
                 bgColor={bgColor}
             >
                 {children}
-                {/*<div className='search-panel-btn'>*/}
-                    {/*<Button*/}
-                        {/*className='reset-btn'*/}
-                        {/*shape='border'*/}
-                        {/*onClick={this.reset}>{resetName}</Button>*/}
-                    {/*<Button*/}
-                        {/*className='submit-btn'*/}
-                        {/*colors="primary"*/}
-                        {/*onClick={this.search}*/}
-                    {/*>{searchName}</Button>*/}
-                {/*</div>*/}
             </BeeSearchPanel>
 
         )

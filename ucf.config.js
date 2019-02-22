@@ -5,10 +5,6 @@ require('@babel/polyfill');
 const path = require('path');
 
 module.exports = (env, argv) => {
-    let openSource_map = false;
-    if (env === 'development')  {
-        openSource_map = true
-    }
     return {
         // 启动所有模块，默认这个配置，速度慢的时候使用另外的配置
         // bootList: true,
@@ -68,6 +64,6 @@ module.exports = (env, argv) => {
         devPlugins: [],
         // 构建服务需要运行的插件
         buildPlugins: [],
-        source_map: openSource_map
+        source_map: false
     }
 }

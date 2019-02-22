@@ -35,13 +35,12 @@ class Header extends Component {
         return (
             <Row className={"title title-develop"}>
                 <Col xs={12}>
-                    {
-                        back ? (
-                            <span onClick={backFn} className="back-icon">
-                                <i className={classnames({ 'uf uf-arrow-left pull-left': true, 'hide': !back })} />
-                                返回
-                        </span>) : ''
-                    }
+                    {back ? (
+                        <span onClick={backFn} className="back-icon">
+                            <i className={classnames({ 'uf uf-arrow-left pull-left': true, 'hide': !back })} />
+                            返回
+                        </span>
+                    ) : null}
                     <span className="main-title">
                         {title}
                     </span>

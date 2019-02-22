@@ -84,7 +84,7 @@ class PopDialog extends Component {
             </Modal.Title>
           </Modal.Header>
 
-          <Modal.Body>
+          <Modal.Body className="pop_body">
             <div className="pop_dialog">
               {this.props.children}
             </div>

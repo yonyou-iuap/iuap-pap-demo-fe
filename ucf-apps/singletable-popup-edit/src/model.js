@@ -64,7 +64,7 @@ export default {
             const {data:res}=result;
             let _state = {
                 showLoading: false,
-                queryParam: param //更新搜索条件
+                queryParam: _param //更新搜索条件
             }
 
             if (res) {

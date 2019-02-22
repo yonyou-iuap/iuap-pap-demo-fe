@@ -12,7 +12,6 @@ import SelectMonth from 'components/SelectMonth';
 import {deepClone, mergeListObj, delListObj} from "utils";
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
-import 'ref-tree/dist/index.css';
 import './index.less'
 
 const FormItem = FormList.Item;

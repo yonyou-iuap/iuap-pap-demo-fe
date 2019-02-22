@@ -39,6 +39,19 @@ class IndexView extends Component {
         actions.query.loadList(this.props.queryParam); // 查询默认条件
     }
 
+    componentWillReceiveProps(nextProps) {
+        //后台获取部门行过滤下拉列表 动态更新 colFilterSelectdept 部门行过滤下拉列表
+        if (!this.props.colFilterSelectdept && nextProps.colFilterSelectdept) {
+            for (let i = 0, len = this.gridColumn.length; i<len; i++) {
+                const item = this.gridColumn[i]
+                if (item.key === 'dept') {
+                    item.filterDropdownData = nextProps.colFilterSelectdept;
+                    break;
+                }
+            }
+        }
+    }
+
     /**
      *
      * 关联数据钻取
@@ -240,6 +253,219 @@ class IndexView extends Component {
         this.setState({ tableHeight });
     }
 
+    gridColumn = [
+        {
+            title: "数据",
+            width: 80,
+            dataIndex: "k",
+            key: "k",
+            fixed: "left",
+            className: 'data-cls ',
+            exportHidden: true, //是否在导出中隐藏此列
+            render: (text, record, index) => {
+
+                //列注释的右键菜单
+                const menu = (
+                    <Menu
+                        onClick={e => this.onRelevance(record, e.key)}>
+                        <Item key='code'>模态弹出</Item>
+                        <Item key='year'>链接跳转</Item>
+                        <Item key='name'>打开新页</Item>
+                    </Menu>
+                );
+                return (
+                    <div className="table-menu">
+                        <Dropdown
+                            trigger={['click']}
+                            overlay={menu}
+                            animation="slide-up"
+                        >
+                            <Icon type="uf-link" style={{"color": "#004898"}}/>
+                        </Dropdown>
+                    </div>
+                )
+            }
+        },
+        {
+            title: "员工编号",
+            dataIndex: "code",
+            key: "code",
+            width: 160,
+        },
+        {
+            title: "员工姓名",
+            dataIndex: "name",
+            key: "name",
+            width: 120,
+            filterType: "text",
+            filterDropdownType: "string",
+            filterDropdown: "show",
+            sorter: true, //后端排序，只需将此属性设置成true即可
+            render: (text, record, index) => {
+                return (
+                    <Tooltip inverse overlay={text}>
+                        <span>{text}</span>
+                    </Tooltip>
+                );
+            }
+        },
+        {
+            title: "员工性别",
+            dataIndex: "sex",
+            key: "sex",
+            exportKey: 'sexEnumValue',
+            width: 120,
+            filterType: "dropdown",
+            filterDropdown: "hide", //条件的下拉是否显示（string，number）
+            filterDropdownAuto: "manual", //是否自动和手动设置 filterDropdownData 属性
+            filterDropdownData: [{key: "男", value: "1"}, {key: "女", value: "0"}],
+            render: (text, record, index) => {
+                return (<span>{record.sexEnumValue}</span>)
+            }
+
+        },
+        {
+            title: "部门",
+            dataIndex: "dept",
+            key: "dept",
+            exportKey: "deptName",
+            width: 150,
+            filterType: "dropdown",
+            filterDropdown: "hide",
+            filterDropdownAuto: "manual",
+            filterDropdownData: this.props.colFilterSelectdept,
+            filterDropdownFocus: () => { //组件焦点的回调函数
+                if (!this.props.colFilterSelectdept) {
+                    let param = {
+                        distinctParams: ['dept']
+                    }
+                    actions.query.getListByCol(param); //获取所有部门
+                }
+
+            },
+            render: (text, record, index) => {
+                return (<span>{record.deptName}</span>)
+            }
+        },
+        {
+            title: "职级",
+            dataIndex: "levelName",
+            key: "levelName",
+            width: 120,
+        },
+        {
+            title: "工龄",
+            dataIndex: "serviceYears",
+            key: "serviceYears",
+            width: 180,
+            // filterDropdown: "hide", //条件的下拉是否显示（string，number）
+            filterType: "number",//输入框类型
+            filterDropdownType: "number",//数值类条件
+            className: 'column-number-right ', // 靠右对齐
+            filterInputNumberOptions: {
+                max: 100,
+                min: 0,
+                step: 1,
+                precision: 0
+            },
+            sorter: true
+        },
+        {
+            title: "司龄",
+            dataIndex: "serviceYearsCompany",
+            key: "serviceYearsCompany",
+            width: 130,
+            className: 'column-number-right ', // 靠右对齐
+            sorter: true
+        },
+        {
+            title: "年份",
+            dataIndex: "year",
+            key: "year",
+            width: 100,
+            className: 'column-number-right ', // 靠右对齐
+            render: (text, record, index) => {
+                return <div>{text ? moment(text).format("YYYY") : ""}</div>
+            }
+        },
+        {
+            title: "月份",
+            dataIndex: "monthEnumValue",
+            key: "monthEnumValue",
+            width: 100,
+            className: 'column-number-right ', // 靠右对齐
+            sorter: true
+        },
+        {
+            title: "补贴类别",
+            dataIndex: "allowanceTypeEnumValue",
+            key: "allowanceTypeEnumValue",
+            width: 120,
+        },
+        {
+            title: "补贴标准",
+            dataIndex: "allowanceStandard",
+            key: "allowanceStandard",
+            width: 120,
+            className: 'column-number-right ', // 靠右对齐
+            render: (text, record, index) => {
+                return (<span>{(typeof text)==='number'? text.toFixed(2):""}</span>)
+            }
+
+        },
+        {
+            title: "实际补贴",
+            dataIndex: "allowanceActual",
+            key: "allowanceActual",
+            width: 120,
+            className: 'column-number-right ', // 靠右对齐
+            render: (text, record, index) => {
+                return (<span>{(typeof text)==='number'? text.toFixed(2):""}</span>)
+            }
+
+        },
+        {
+            title: "是否超标",
+            dataIndex: "exdeedsEnumValue",
+            key: "exdeedsEnumValue",
+            width: 120,
+        },
+        {
+            title: "申请时间",
+            dataIndex: "applyTime",
+            key: "applyTime",
+            width: 300,
+            filterDropdown: "hide", //条件的下拉是否显示（string，number）
+            filterType: "daterange",//输入框类型
+            filterDropdownType: "daterange",//数值类条件
+            render: (text, record, index) => {
+                return <div>{text ? moment(text).format(format) : ""}</div>
+
+            }
+        },
+        {
+            title: "领取方式",
+            dataIndex: "pickTypeEnumValue",
+            key: "pickTypeEnumValue",
+            width: 120,
+        },
+        {
+            title: "领取时间",
+            dataIndex: "pickTime",
+            key: "pickTime",
+            width: 150,
+            render: (text, record, index) => {
+                return <div>{text ? moment(text).format(format) : ""}</div>
+            }
+        },
+        {
+            title: "备注",
+            dataIndex: "remark",
+            key: "remark",
+            width: 100,
+        }
+    ]
+
     render() {
         const _this = this;
         const {queryObj, showLoading, queryParam} = _this.props;
@@ -254,225 +480,12 @@ class IndexView extends Component {
             onDataNumSelect: _this.onDataNumSelect,
         }
 
-        const gridColumn = [
-            {
-                title: "数据",
-                width: 80,
-                dataIndex: "k",
-                key: "k",
-                fixed: "left",
-                className: 'data-cls ',
-                exportHidden: true, //是否在导出中隐藏此列
-                render: (text, record, index) => {
-
-                    //列注释的右键菜单
-                    const menu = (
-                        <Menu
-                            onClick={e => this.onRelevance(record, e.key)}>
-                            <Item key='code'>模态弹出</Item>
-                            <Item key='year'>链接跳转</Item>
-                            <Item key='name'>打开新页</Item>
-                        </Menu>
-                    );
-                    return (
-                        <div className="table-menu">
-                            <Dropdown
-                                trigger={['click']}
-                                overlay={menu}
-                                animation="slide-up"
-                            >
-                                <Icon type="uf-link" style={{"color": "#004898"}}/>
-                            </Dropdown>
-                        </div>
-                    )
-                }
-            },
-            {
-                title: "员工编号",
-                dataIndex: "code",
-                key: "code",
-                width: 160,
-            },
-            {
-                title: "员工姓名",
-                dataIndex: "name",
-                key: "name",
-                width: 120,
-                filterType: "text",
-                filterDropdownType: "string",
-                filterDropdown: "show",
-                sorter: true, //后端排序，只需将此属性设置成true即可
-                render: (text, record, index) => {
-                    return (
-                        <Tooltip inverse overlay={text}>
-                            <span>{text}</span>
-                        </Tooltip>
-                    );
-                }
-            },
-            {
-                title: "员工性别",
-                dataIndex: "sex",
-                key: "sex",
-                exportKey: 'sexEnumValue',
-                width: 120,
-                filterType: "dropdown",
-                filterDropdown: "hide", //条件的下拉是否显示（string，number）
-                filterDropdownAuto: "manual", //是否自动和手动设置 filterDropdownData 属性
-                filterDropdownData: [{key: "男", value: "1"}, {key: "女", value: "0"}],
-                render: (text, record, index) => {
-                    return (<span>{record.sexEnumValue}</span>)
-                }
-
-            },
-            {
-                title: "部门",
-                dataIndex: "dept",
-                key: "dept",
-                exportKey: "deptName",
-                width: 150,
-                filterType: "dropdown",
-                filterDropdown: "hide",
-                filterDropdownAuto: "manual",
-                filterDropdownData: this.props.colFilterSelectdept,
-                filterDropdownFocus: () => { //组件焦点的回调函数
-                    if (!this.props.colFilterSelectdept) {
-                        let param = {
-                            distinctParams: ['dept']
-                        }
-                        actions.query.getListByCol(param); //获取所有部门
-                        debugger
-                    }
-
-                },
-                render: (text, record, index) => {
-                    return (<span>{record.deptName}</span>)
-                }
-            },
-            {
-                title: "职级",
-                dataIndex: "levelName",
-                key: "levelName",
-                width: 120,
-            },
-            {
-                title: "工龄",
-                dataIndex: "serviceYears",
-                key: "serviceYears",
-                width: 180,
-                // filterDropdown: "hide", //条件的下拉是否显示（string，number）
-                filterType: "number",//输入框类型
-                filterDropdownType: "number",//数值类条件
-                className: 'column-number-right ', // 靠右对齐
-                filterInputNumberOptions: {
-                    max: 100,
-                    min: 0,
-                    step: 1,
-                    precision: 0
-                },
-                sorter: true
-            },
-            {
-                title: "司龄",
-                dataIndex: "serviceYearsCompany",
-                key: "serviceYearsCompany",
-                width: 130,
-                className: 'column-number-right ', // 靠右对齐
-                sorter: true
-            },
-            {
-                title: "年份",
-                dataIndex: "year",
-                key: "year",
-                width: 100,
-                className: 'column-number-right ', // 靠右对齐
-                render: (text, record, index) => {
-                    return <div>{text ? moment(text).format("YYYY") : ""}</div>
-                }
-            },
-            {
-                title: "月份",
-                dataIndex: "monthEnumValue",
-                key: "monthEnumValue",
-                width: 100,
-                className: 'column-number-right ', // 靠右对齐
-                sorter: true
-            },
-            {
-                title: "补贴类别",
-                dataIndex: "allowanceTypeEnumValue",
-                key: "allowanceTypeEnumValue",
-                width: 120,
-            },
-            {
-                title: "补贴标准",
-                dataIndex: "allowanceStandard",
-                key: "allowanceStandard",
-                width: 120,
-                className: 'column-number-right ', // 靠右对齐
-                render: (text, record, index) => {
-                    return (<span>{(typeof text)==='number'? text.toFixed(2):""}</span>)
-                }
-
-            },
-            {
-                title: "实际补贴",
-                dataIndex: "allowanceActual",
-                key: "allowanceActual",
-                width: 120,
-                className: 'column-number-right ', // 靠右对齐
-                render: (text, record, index) => {
-                    return (<span>{(typeof text)==='number'? text.toFixed(2):""}</span>)
-                }
-
-            },
-            {
-                title: "是否超标",
-                dataIndex: "exdeedsEnumValue",
-                key: "exdeedsEnumValue",
-                width: 120,
-            },
-            {
-                title: "申请时间",
-                dataIndex: "applyTime",
-                key: "applyTime",
-                width: 300,
-                filterDropdown: "hide", //条件的下拉是否显示（string，number）
-                filterType: "daterange",//输入框类型
-                filterDropdownType: "daterange",//数值类条件
-                render: (text, record, index) => {
-                    return <div>{text ? moment(text).format(format) : ""}</div>
-
-                }
-            },
-            {
-                title: "领取方式",
-                dataIndex: "pickTypeEnumValue",
-                key: "pickTypeEnumValue",
-                width: 120,
-            },
-            {
-                title: "领取时间",
-                dataIndex: "pickTime",
-                key: "pickTime",
-                width: 150,
-                render: (text, record, index) => {
-                    return <div>{text ? moment(text).format(format) : ""}</div>
-                }
-            },
-            {
-                title: "备注",
-                dataIndex: "remark",
-                key: "remark",
-                width: 100,
-            }
-        ]
+        // const
         const sortObj = {  //排序属性设置
             mode: 'multiple',
             backSource: true,
             sortFun: _this.sortFun
         }
-
 
         return (
             <div className='single-table-query'>
@@ -493,7 +506,7 @@ class IndexView extends Component {
                 <div className="gird-parent">
                     <Grid
                         ref={(el) => this.grid = el} //存模版
-                        columns={gridColumn}
+                        columns={this.gridColumn}
                         data={queryObj.list}
                         rowKey={(r, i) => i} //生成行的key
                         paginationObj={paginationObj} //分页

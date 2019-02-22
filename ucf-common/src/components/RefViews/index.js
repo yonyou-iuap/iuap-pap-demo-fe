@@ -1,26 +1,16 @@
 
 import React from 'react';
-// import ReactDOM from 'react-dom';
-// import RefWithInput from './RefCoreWithInput';
-
-// import {RefTree} from 'ref-tree/';
-
 import {RefMultipleTable,RefWithInput } from 'ref-multiple-table';
 
-import 'ref-multiple-table/dist/index.css'; //职级样式
-import 'ref-tree/dist/index.css'; // 部门样式
-
 import {RefTree} from 'ref-tree';
-import 'ref-tree/dist/index.css';
 
 import RefComboBox, {ComboStore} from 'ref-combobox';
-import 'ref-combobox/dist/index.css';
 
 import { Icon } from 'tinper-bee'
-// import {RefMultipleTable} from './ref-multiple-table';
 
-// import './ref-multiple-table/index.css'; //职级样式
-// import './ref-tree/index.css'; // 部门样式
+import 'ref-multiple-table/dist/index.css'; //职级样式
+import 'ref-tree/dist/index.css';
+import 'ref-combobox/dist/index.css';
 
 
 function RefIuapDept(props){
@@ -74,7 +64,7 @@ function RefWalsinLevel(props){
 
 function RefWalsinComboLevel(props){
     return (
-        <RefComboBox 
+        <RefComboBox
             displayField={'{refname}-{refcode}'}
             valueField={'refpk'}
             onClickItem={(record) =>{
@@ -84,13 +74,13 @@ function RefWalsinComboLevel(props){
             filterUrl = '/iuap_walsin_demo/common-ref/filterRefJSON'
             { ...props }
         >
-            <ComboStore 
+            <ComboStore
                 ajax = {{
                     url: '/iuap_walsin_demo/common-ref/blobRefTreeGrid',
                     params: {
                         refCode: 'post_level'
                     },
-                    
+
                 }}
                 strictMode = {true}
                 displayField={(record)=>{
