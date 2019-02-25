@@ -1,21 +1,21 @@
 
 import React from 'react';
-import {RefMultipleTable,RefWithInput } from 'ref-multiple-table';
+import RefMultipleTableWithInput, {RefMultipleTable } from 'ref-multiple-table';
 
-import {RefTree} from 'ref-tree';
+import RefTreeWithInput, {RefTree} from 'ref-tree';
 
-import RefComboBox, {ComboStore} from 'ref-combobox';
+// import RefComboBox, {ComboStore} from 'ref-combobox';
 
-import { Icon } from 'tinper-bee'
+// import { Icon } from 'tinper-bee'
 
 import 'ref-multiple-table/dist/index.css'; //职级样式
 import 'ref-tree/dist/index.css';
-import 'ref-combobox/dist/index.css';
+// import 'ref-combobox/dist/index.css';
 
 
 function RefIuapDept(props){
     return (
-        <RefWithInput
+        <RefTreeWithInput
             style={{
             }}
             title={'部门'}
@@ -36,12 +36,12 @@ function RefIuapDept(props){
             {...props}
         >
             <RefTree />
-        </RefWithInput>
+        </RefTreeWithInput>
     )
 }
 function RefWalsinLevel(props){
     return (
-        <RefWithInput
+        <RefMultipleTableWithInput
             title= '职级'
             backdrop = {false}
             param = {{//url请求参数
@@ -58,38 +58,38 @@ function RefWalsinLevel(props){
             {...props}
         >
             <RefMultipleTable />
-        </RefWithInput>
+        </RefMultipleTableWithInput>
     )
 }
 
-function RefWalsinComboLevel(props){
-    return (
-        <RefComboBox
-            displayField={'{refname}-{refcode}'}
-            valueField={'refpk'}
-            onClickItem={(record) =>{
-                console.log(record)
-            }}
-            matchUrl = '/iuap_walsin_demo/common-ref/matchPKRefJSON'
-            filterUrl = '/iuap_walsin_demo/common-ref/filterRefJSON'
-            { ...props }
-        >
-            <ComboStore
-                ajax = {{
-                    url: '/iuap_walsin_demo/common-ref/blobRefTreeGrid',
-                    params: {
-                        refCode: 'post_level'
-                    },
+// function RefWalsinComboLevel(props){
+//     return (
+//         <RefComboBox
+//             displayField={'{refname}-{refcode}'}
+//             valueField={'refpk'}
+//             onClickItem={(record) =>{
+//                 console.log(record)
+//             }}
+//             matchUrl = '/iuap_walsin_demo/common-ref/matchPKRefJSON'
+//             filterUrl = '/iuap_walsin_demo/common-ref/filterRefJSON'
+//             { ...props }
+//         >
+//             <ComboStore
+//                 ajax = {{
+//                     url: '/iuap_walsin_demo/common-ref/blobRefTreeGrid',
+//                     params: {
+//                         refCode: 'post_level'
+//                     },
+//
+//                 }}
+//                 strictMode = {true}
+//                 displayField={(record)=>{
+//                     return <div > <Icon type="uf-personin-o" style={{color: 'red'}}/> {record.refname}-{record.refcode}-{record.type}</div>
+//                 }}
+//             />
+//         </RefComboBox>
+//     )
+// }
 
-                }}
-                strictMode = {true}
-                displayField={(record)=>{
-                    return <div > <Icon type="uf-personin-o" style={{color: 'red'}}/> {record.refname}-{record.refcode}-{record.type}</div>
-                }}
-            />
-        </RefComboBox>
-    )
-}
-
-export {RefIuapDept, RefWalsinLevel, RefWalsinComboLevel};
+export {RefIuapDept, RefWalsinLevel};
 

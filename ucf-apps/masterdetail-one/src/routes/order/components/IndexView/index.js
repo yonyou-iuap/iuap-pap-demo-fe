@@ -20,11 +20,15 @@ let titleArr = ["新增", "修改", "详情"];
 class IndexView extends Component {
     constructor(props) {
         super(props);
+        const searchObj = queryString.parse(props.location.search);
+        let { btnFlag: flag, search_id: searchId, from } = searchObj;
+        const btnFlag = Number(flag);
+
         this.state = {
             showPopAlert: false,
             showPopBackVisible: false,
-            searchId: "",
-            btnFlag: 0,
+            searchId: searchId || "",
+            btnFlag: btnFlag,
             selectData: [],
         }
     }
@@ -33,10 +37,7 @@ class IndexView extends Component {
     oldData = []
 
     componentDidMount() {
-        const searchObj = queryString.parse(this.props.location.search);
-        let { btnFlag: flag, search_id: searchId, from } = searchObj;
-        const btnFlag = Number(flag);
-        this.setState({ btnFlag, searchId });
+
         // if (btnFlag && btnFlag > 0) {
         //     const param = { search_id: searchId, search_from: from };
         //     actions.masterDetailOne.queryParent(param); // 获取主表
@@ -616,9 +617,8 @@ class IndexView extends Component {
             disabled: status !== "view"
         }
 
-        const rowEditStatus = btnFlag === 2 ? true : false;
-        const btnForbid = queryDetailObj.list.length > 0 ? false : true;
-
+        const rowEditStatus = btnFlag === 2;
+        const btnForbid = queryDetailObj.list.length === 0;
 
         return (
             <div className='purchase-order'>
@@ -693,6 +693,7 @@ class IndexView extends Component {
                         dragborder={rowEditStatus}
                         draggable={rowEditStatus}
                         syncHover={rowEditStatus}
+                        multiSelect={!rowEditStatus}
                         getSelectedDataFunc={this.getSelectedDataFunc}
                         emptyText={() => <Icon style={{ "fontSize": "60px" }} type="uf-nodata" />}
                         loading={{ show: (!showLoading && showDetailLoading), loadingType: "line" }}

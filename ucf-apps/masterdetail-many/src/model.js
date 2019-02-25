@@ -93,21 +93,7 @@ export default {
                 // 更新主表数据
                 actions.masterDetailMany.updateState({passengerObj, searchParam: param});
 
-                const {tabKey} = getState().masterDetailMany;
-                if (tabKey !== "uploadFill") {
-                    const {pageSize} = getState().masterDetailMany[tabKey + "Obj"];
-                    const {id: search_passengerId} = content[0];
-                    let paramObj = {pageSize, pageIndex: 0, search_passengerId};
-                    if (tabKey === "emergency") { // tab 页为emergency
-                        // 带上子表信息
-                        const {search_contactName} = param;
-                        paramObj.search_contactName = search_contactName;
-                        actions.masterDetailMany.loadEmergencyList(paramObj)
-                    }
-                    if (tabKey === "traveling") { // tab travling
-                        actions.masterDetailMany.loadTravelingList(paramObj)
-                    }
-                }
+                actions.masterDetailMany.loadSubList()
             } else {
                 const {travelingObj, emergencyObj, passengerObj} = getState().masterDetailMany;
                 actions.masterDetailMany.updateState({   // 如果请求出错,数据初始化
@@ -122,59 +108,53 @@ export default {
             actions.masterDetailMany.updateState({showLoading: false, passengerIndex: 0});
         },
 
-
         /**
-         * 获取emergency 列表
-         * @param param
-         * @param getState
-         * @returns {Promise<void>}
-         */
-        async loadEmergencyList(param, getState) {
-            actions.masterDetailMany.updateState({showEmergencyLoading: true});
-            const {result} = processData(await api.getEmergency(param)); // 请求获取emergency数据
-            const {data: res} = result;
-            let _emergencyObj = null;
-            if (res) {
-                _emergencyObj = structureObj(res, param);
-            } else {
-                const {emergencyObj} = getState().masterDetailMany;
-                _emergencyObj = initStateObj(emergencyObj);
+         * @function loadSubList 获取子表数据
+         * @description 根据tabKey调用不通的后台接口
+         * @param {Object} param 后台接口参数 可不不传默认{}
+         * */
+
+        async loadSubList(param = {}, getState) {
+            const state = getState().masterDetailMany;
+            const { tabKey, passengerObj: {list}, passengerIndex} = state;
+            if (tabKey !== 'uploadFill' && list.length > 0) {
+                const passenger = list[passengerIndex];
+                const subObj = state[`${tabKey}Obj`];
+                if (passenger) {
+                    let _param = Object.assign({}, {
+                        search_passengerId: passenger.id,
+                        pageIndex: 0,
+                        pageSize: subObj.pageSize
+                    }, param);
+                    let apiService = null;
+                    let loadingKey = ''; //子表loading显示key
+                    if (tabKey === 'emergency') {
+                        const { searchParam: { search_contactName } } = state;
+                        _param.search_contactName = search_contactName;
+                        apiService = api.getEmergency;
+                        loadingKey = 'showEmergencyLoading';
+                    } else if (tabKey === 'traveling') {
+                        apiService = api.getTraveling;
+                        loadingKey = 'showTravelingLoading';
+                    }
+                    actions.masterDetailMany.updateState({[loadingKey]: true});
+                    const {result: { data: res }} = processData(await apiService(_param));
+                    let newObj = null;
+                    if (res) {
+                        newObj = structureObj(res, param);
+
+                    } else {
+                        newObj = initStateObj(subObj); // 如果请求出错,数据初始化
+                    }
+                    actions.masterDetailMany.updateState({
+                        [`${tabKey}Obj`]: newObj,
+                        [loadingKey]: false
+                    });
+                }
             }
-            actions.masterDetailMany.updateState({
-                emergencyObj: _emergencyObj,
-                showEmergencyLoading: false
-            });
+
         },
 
-        /**
-         * 获取 Traveling 列表
-         * @param param
-         * @param getState
-         * @returns {Promise<void>}
-         */
-
-        async loadTravelingList(param, getState) {
-            actions.masterDetailMany.updateState({showTravelingLoading: true});
-            const {result} = processData(await api.getTraveling(param)); // 请求获取Traveling数据
-            const {data: res} = result;
-            let _travelingObj = null;
-            if (res) {
-                 _travelingObj = structureObj(res, param);
-
-            } else {
-                const {travelingObj} = getState().masterDetailMany;
-                _travelingObj = initStateObj(travelingObj); // 如果请求出错,数据初始化
-            }
-            actions.masterDetailMany.updateState({
-                travelingObj: _travelingObj,
-                showTravelingLoading: false
-            });
-        },
-        /**
-         * getSelect：保存主表数据
-         * @param {*} param
-         * @param {*} getState
-         */
 
         async savePassenger(param, getState) {
             actions.masterDetailMany.updateState({showLoading: true});   // 正在加载数据，显示加载 Loading 图标
@@ -191,9 +171,10 @@ export default {
             }
 
             if (status === 'success') { // 如果不判断是会报错，param参数有错
-                const {pageSize} = getState().masterDetailMany.passengerObj;
-                // 带上子表信息
-                const {search_contactName} = getState().masterDetailMany.searchParam;
+                const {
+                    passengerObj: {pageSize} ,
+                    searchParam: {search_contactName}
+                } = getState().masterDetailMany;
                 const param = {pageIndex: 0, pageSize, search_contactName}; // 获取主表信息
                 actions.masterDetailMany.loadList(param);
             }
@@ -220,12 +201,12 @@ export default {
             }
             if (status === 'success') {
                 // 获取主表的id;
-                const {passengerIndex, passengerObj} = getState().masterDetailMany;
-                const {list} = passengerObj;
-                const {id: search_passengerId} = list[passengerIndex];
-                const {pageSize} = getState().masterDetailMany.travelingObj;
-                const param = {pageIndex: 0, pageSize, search_passengerId}; // 获取Traveling表信息
-                actions.masterDetailMany.loadTravelingList(param);
+                // const {passengerIndex, passengerObj} = getState().masterDetailMany;
+                // const {list} = passengerObj;
+                // const {id: search_passengerId} = list[passengerIndex];
+                // const {pageSize} = getState().masterDetailMany.travelingObj;
+                // const param = {pageIndex: 0, pageSize, search_passengerId}; // 获取Traveling表信息
+                actions.masterDetailMany.loadSubList();
             }
             actions.masterDetailMany.updateState({showLoading: false});
 
@@ -251,15 +232,15 @@ export default {
             }
             if (status === 'success') {
                 // 获取主表的id;
-                const {passengerIndex, passengerObj, emergencyObj} = getState().masterDetailMany;
-                const {list} = passengerObj;
-                const {id: search_passengerId} = list[passengerIndex];
-
-                const {pageSize} = emergencyObj;
-                // 带上子表信息
-                const {search_contactName} = getState().masterDetailMany.searchParam;
-                const param = {pageIndex: 0, pageSize, search_passengerId, search_contactName}; // 获取Emergency表信息
-                actions.masterDetailMany.loadEmergencyList(param);
+                // const {passengerIndex, passengerObj, emergencyObj} = getState().masterDetailMany;
+                // const {list} = passengerObj;
+                // const {id: search_passengerId} = list[passengerIndex];
+                //
+                // const {pageSize} = emergencyObj;
+                // // 带上子表信息
+                // const {search_contactName} = getState().masterDetailMany.searchParam;
+                // const param = {pageIndex: 0, pageSize, search_passengerId, search_contactName}; // 获取Emergency表信息
+                actions.masterDetailMany.loadSubList();
             }
             actions.masterDetailMany.updateState({showLoading: false});
         },
@@ -326,15 +307,15 @@ export default {
          * @param {*} getState
          */
         async delEmergency(param, getState) {
-            const {id, passengerId: search_passengerId} = param;
+            const {id} = param;
             const {result}=processData(await api.delEmergency([{id}]), '删除成功');
             const {status}=result;
             if(status==='success'){
-                // 获取表pageSize;
-                const {emergencyObj} = getState().masterDetailMany;
-                const {pageSize} = emergencyObj;
-                const initPage = {pageIndex: 0, pageSize, search_passengerId};
-                actions.masterDetailMany.loadEmergencyList(initPage);
+                //获取表pageSize;
+                // const {emergencyObj} = getState().masterDetailMany;
+                // const {pageSize} = emergencyObj;
+                // const initPage = {pageIndex: 0, pageSize, search_passengerId};
+                actions.masterDetailMany.loadSubList();
             }
         },
 
@@ -345,15 +326,15 @@ export default {
          * @param {*} getState
          */
         async delTraveling(param, getState) {
-            const {id, passengerId: search_passengerId} = param;
+            const {id} = param;
             const {result}=processData(await api.delTraveling([{id}]), '删除成功');
             const {status}=result;
             if(status==='success'){
                 // 获取表pageSize;
-                const {travelingObj} = getState().masterDetailMany;
-                const {pageSize} = travelingObj;
-                const initPage = {pageIndex: 0, pageSize, search_passengerId};
-                actions.masterDetailMany.loadTravelingList(initPage);
+                // const {travelingObj} = getState().masterDetailMany;
+                // const {pageSize} = travelingObj;
+                // const initPage = {pageIndex: 0, pageSize, search_passengerId};
+                actions.masterDetailMany.loadSubList();
             }
         },
 

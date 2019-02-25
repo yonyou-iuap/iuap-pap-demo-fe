@@ -72,23 +72,27 @@ export default class IndexView extends Component {
      * @param {string} tabKey uploadFill为文件上传，emergency子表，traveling子表
      */
     onChangeTab = (tabKey) => {
-        if (tabKey !== "uploadFill") { // 判断是否文件上传
-            const {passengerObj, passengerIndex, searchParam} = this.props;
-            const {pageSize} = this.props[tabKey + "Obj"];
-            const {id: search_passengerId} = passengerObj.list[passengerIndex] || {};
-            if (search_passengerId) { //如果主表有数据，子表在获取数据
-                const param = {search_passengerId, pageIndex: 0, pageSize};
-                if (tabKey === "emergency") {
-                    const {search_contactName} = searchParam;
-                    param.search_contactName = search_contactName; // 添加子表数据
-                    actions.masterDetailMany.loadEmergencyList(param); //获取emergency
-                }
-                if (tabKey === "traveling") {
-                    actions.masterDetailMany.loadTravelingList(param);  //获取traveling
-                }
-            }
-        }
-        actions.masterDetailMany.updateState({tabKey});
+        // if (tabKey !== "uploadFill") { // 判断是否文件上传
+        //     const {passengerObj, passengerIndex, searchParam} = this.props;
+        //     const {pageSize} = this.props[tabKey + "Obj"];
+        //     const {id: search_passengerId} = passengerObj.list[passengerIndex] || {};
+        //     if (search_passengerId) { //如果主表有数据，子表在获取数据
+        //         const param = {search_passengerId, pageIndex: 0, pageSize};
+        //         if (tabKey === "emergency") {
+        //             const {search_contactName} = searchParam;
+        //             param.search_contactName = search_contactName; // 添加子表数据
+        //             actions.masterDetailMany.loadEmergencyList(param); //获取emergency
+        //         }
+        //         if (tabKey === "traveling") {
+        //             actions.masterDetailMany.loadTravelingList(param);  //获取traveling
+        //         }
+        //     }
+        // }
+        Promise
+            .resolve(actions.masterDetailMany.updateState({tabKey}))
+            .then(() => {
+                actions.masterDetailMany.loadSubList()
+            })
     }
 
 
@@ -138,21 +142,24 @@ export default class IndexView extends Component {
             actions.masterDetailMany.loadList(searchParam);
         } else {
             //子表分页
-            const {passengerIndex, passengerObj} = this.props;
-            const {id: search_passengerId} = passengerObj.list[passengerIndex];
-
-            const {search_contactName} = searchParam;
-
-            if (tableName === "emergencyObj") { //emergency 表分页
-                const temp = {search_passengerId, pageSize, pageIndex, search_contactName};
-                actions.masterDetailMany.loadEmergencyList(temp);
-            }
-            if (tableName === "travelingObj") { //emergency 表分页
-                const temp = {search_passengerId, pageSize, pageIndex, search_contactName};
-                actions.masterDetailMany.loadTravelingList(temp);
-            }
+            actions.masterDetailMany.loadSubList({
+                pageSize,
+                pageIndex
+            });
+            // const {passengerIndex, passengerObj} = this.props;
+            // const {id: search_passengerId} = passengerObj.list[passengerIndex];
+            //
+            // const {search_contactName} = searchParam;
+            //
+            // if (tableName === "emergencyObj") { //emergency 表分页
+            //     const temp = {search_passengerId, pageSize, pageIndex, search_contactName};
+            //     actions.masterDetailMany.loadEmergencyList(temp);
+            // }
+            // if (tableName === "travelingObj") { //emergency 表分页
+            //     const temp = {search_passengerId, pageSize, pageIndex, search_contactName};
+            //     actions.masterDetailMany.loadTravelingList(temp);
+            // }
         }
-        actions.masterDetailMany.updateState({searchParam});
     }
 
     /**
@@ -482,20 +489,7 @@ export default class IndexView extends Component {
                     multiSelect={false}
                     onRowClick={(record, index) => {
                         actions.masterDetailMany.updateState({passengerIndex: index});
-                        // 根据tab 页来获取子表数据
-                        const {passengerObj, travelingObj, emergencyObj, tabKey, searchParam} = this.props;
-                        const {search_contactName} = searchParam;
-                        const {list} = passengerObj;
-                        const {id: search_passengerId} = list[index];
-                        let param = {pageIndex: 0, search_passengerId, search_contactName};
-                        if (tabKey === "emergency") { // tab为emergency 获取emergency子表数据
-                            param.pageSize = emergencyObj.pageSize;
-                            actions.masterDetailMany.loadEmergencyList(param)
-                        }
-                        if (tabKey === "traveling") { // tab为travling 获取travling子表数据
-                            param.pageSize = travelingObj.pageSize;
-                            actions.masterDetailMany.loadTravelingList(param)
-                        }
+                        actions.masterDetailMany.loadSubList();
                     }}
                     rowClassName={(record, index, indent) => { //判断是否选中当前行
                         return passengerIndex === index ? "selected" : "";

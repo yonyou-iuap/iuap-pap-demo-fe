@@ -54,20 +54,20 @@ class SearchPanel extends Component {
         reset && reset();
     }
     render() {
-        const { children, onCallback, bgColor } = this.props;
+        const { children, onCallback, bgColor, search, reset, ...otherProps  } = this.props;
         return (
             <BeeSearchPanel
                 className="ucf-exam-search-panel"
-                collapsible
                 expanded={this.state.searchOpen}
                 onSearch={this.search}
                 onReset={this.reset}
                 onChange={this.open}
-                onPanelChangeStart={status => {
+                onPanelChangeEnd={status => {
                     const open = status === "visible";
-                    onCallback(open)
+                    onCallback && onCallback(open);
                 }}
                 bgColor={bgColor}
+                {...otherProps}
             >
                 {children}
             </BeeSearchPanel>

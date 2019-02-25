@@ -117,7 +117,8 @@ class SearchAreaForm extends Component {
             <SearchPanel
                 reset={this.reset}
                 onCallback={onCallback}
-                search={this.search}>
+                search={this.search}
+            >
                 <FormList size="sm">
                     <FormItem
                         label="员工编号"

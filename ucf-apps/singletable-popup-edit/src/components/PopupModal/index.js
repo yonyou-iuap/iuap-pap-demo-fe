@@ -9,7 +9,7 @@ import DatePicker from "tinper-bee/lib/Datepicker";
 import SelectMonth from 'components/SelectMonth';
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
-import {RefWalsinLevel, RefIuapDept, RefWalsinComboLevel} from 'components/RefViews'
+import {RefWalsinLevel, RefIuapDept} from 'components/RefViews'
 
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 import './index.less'
