@@ -43,14 +43,6 @@ export default {
             total: 0,
         },
         searchParam: {},
-        queryParent: {},
-        queryDetailObj: {
-            list: [],
-            pageIndex: 1,
-            pageSize: 10,
-            totalPages: 1,
-            total: 0,
-        },
     },
     reducers: {
         /**
@@ -137,81 +129,6 @@ export default {
         },
 
 
-        /**
-         * 添加主表和子表
-         * @param param
-         * @param getState
-         * @returns {Promise<void>}
-         */
-        async adds(param, getState) {
-            actions.masterDetailOne.updateState({ showLoading: true });
-            const { result } = processData(await api.saveAsso(param), '保存成功');
-            const { data: res } = result;
-            actions.masterDetailOne.updateState({ showLoading: false });
-            if (res) {
-                actions.routing.push({ pathname: '/' });
-            }
-        },
-
-
-        /**
-         * getSelect：通过id查询主表数据
-         * @param {*} param
-         * @param {*} getState
-         */
-
-        async queryParent(param, getState) {
-            actions.masterDetailOne.updateState({ showLoading: true });   // 正在加载数据，显示加载 Loading 图标
-            const { result } = processData(await api.getList(param));  // 调用 getList 请求数据
-            actions.masterDetailOne.updateState({ showLoading: false });
-            const { data: res, status } = result;
-
-            // 跳转消息中心
-            const { search_from } = param;
-            // if (status !== 'success' && search_from) {
-            //     window.history.go(-1);
-            // }
-
-            const { content = [] } = res || {};
-            const queryParent = content[0] ? content[0] : {};
-            actions.masterDetailOne.updateState({ queryParent });
-            if (content.length > 0) { // 获取子表数据
-                const { search_id: search_orderId } = param;
-                // const {pageSize} = getState().masterDetailOne.queryDetailObj;
-                const paramObj = { pageSize: 10, pageIndex: 0, search_orderId };
-                actions.masterDetailOne.queryChild(paramObj);
-            } else {
-                // 如果请求出错,数据初始化
-                const { queryDetailObj } = getState().masterDetailOne;
-                actions.masterDetailOne.updateState({
-                    queryDetailObj: initStateObj(queryDetailObj),
-                    showModalCover: true,
-                });
-            }
-        },
-
-        /**
-         * getSelect：通过id查询子表数据 紧急联系人
-         * @param {*} param
-         * @param {*} getState
-         */
-
-        async queryChild(param, getState) {
-
-            actions.masterDetailOne.updateState({ showDetailLoading: true });
-            const { result } = processData(await api.getOrderDetail(param));  // 调用 getList 请求数据
-            actions.masterDetailOne.updateState({ showDetailLoading: false });
-            const { data: res } = result;
-            if (res) {
-                const queryDetailObj = structureObj(res, param);
-                actions.masterDetailOne.updateState({ queryDetailObj }); // 更新 子表
-            } else {
-                // 如果请求出错,数据初始化
-                const { queryDetailObj } = getState().masterDetailOne;
-                actions.masterDetailOne.updateState({ queryDetailObj: initStateObj(queryDetailObj) });
-            }
-
-        },
 
 
         /**
@@ -235,17 +152,6 @@ export default {
                 actions.masterDetailOne.loadList(initPage);
             }
         },
-        /**
-         * 删除子表数据
-         * @param {*} param
-         * @param {*} getState
-         */
-        async delOrderDetail(param, getState) {
-            actions.masterDetailOne.updateState({ showLoading: true });
-            const { result } = processData(await api.delOrderDetail(param), '删除成功');
-            actions.masterDetailOne.updateState({ showLoading: false });
-            return result;
 
-        },
     }
 };

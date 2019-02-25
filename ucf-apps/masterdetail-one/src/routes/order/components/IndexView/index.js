@@ -78,7 +78,6 @@ class IndexView extends Component {
      */
     clearQuery() {
         this.props.form.resetFields();
-        actions.masterDetailOrder.updateState({ status: "view" });
         actions.masterDetailOrder.initState({
             queryParent: {},
             queryDetailObj: { list: [], total: 0, pageIndex: 0 },
@@ -327,7 +326,7 @@ class IndexView extends Component {
                     actions.routing.replace({ pathname: '/' });
                     break;
                 default:
-                    window.history.go(-1);
+                    actions.routing.goBack()
             }
 
         } else {
@@ -406,7 +405,7 @@ class IndexView extends Component {
     /**
      * 保存
      */
-    onClickSave = async () => {
+    onClickSave =  () => {
         const queryDetailObj = deepClone(this.props.queryDetailObj);
         let { form } = this.props;
         let entity = {};
@@ -430,8 +429,7 @@ class IndexView extends Component {
             const purchaseOrderDetailList = this.filterDataParam(rowData);
             const sublist = { purchaseOrderDetailList };
             const param = { entity, sublist };
-            await actions.masterDetailOrder.adds(param);
-            actions.masterDetailOrder.updateState({ status: "view" });  // 更新按钮状态
+            actions.masterDetailOrder.adds(param);
             this.clearQuery();
         }
 
@@ -515,6 +513,7 @@ class IndexView extends Component {
             return (
                 <div>
                     {appType == 1 && <BpmTaskApprovalWrap
+                        className={123}
                         id={rowData.id}
                         onBpmFlowClick={() => {
                             this.onClickToBPM(rowData)
@@ -594,7 +593,7 @@ class IndexView extends Component {
         actions.masterDetailOrder.updateState({
             showModalCover: false
         });
-        window.history.go(-1);
+        actions.routing.goBack()
     }
 
     render() {

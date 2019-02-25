@@ -338,7 +338,7 @@ export default class IndexView extends Component {
 
         const {submitForbid, recallForbid} = _this.handleBpmState(list, selectIndex);
         //  数据为空，按钮disable
-        const btnForbid = list.length > 0 ? false : true;
+        const btnForbid = list.length === 0;
         return (
             <div className="master-detail-one">
                 <Header title='B2 一主一子示例 '/>

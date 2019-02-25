@@ -32,17 +32,6 @@ export const getOrderDetail = (param) => {
     });
 }
 
-/**
- * 保存
- * @param {*} params
- */
-export const saveAsso = (params) => {
-    return request(URL.SAVE_ASSO, {
-        method: "post",
-        data:params
-    });
-}
-
 
 /**
  * 删除数据
@@ -55,16 +44,6 @@ export const delOrder = (params) => {
     });
 }
 
-/**
- * 删除子表数据
- * @param {*} params
- */
-export const delOrderDetail = (params) => {
-    return request(URL.DEL_ORDER_DETAIL, {
-        method: "post",
-        data:params
-    });
-}
 
 
 /**

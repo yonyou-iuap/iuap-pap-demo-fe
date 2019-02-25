@@ -383,7 +383,6 @@ class IndexView extends Component {
             dataIndex: "year",
             key: "year",
             width: 100,
-            className: 'column-number-right ', // 靠右对齐
             render: (text, record, index) => {
                 return <div>{text ? moment(text).format("YYYY") : ""}</div>
             }

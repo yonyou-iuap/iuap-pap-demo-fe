@@ -12,7 +12,7 @@ import { Loading, Message } from 'tinper-bee';
 import moment from 'moment'
 
 //工具类
-import { uuid, deepClone, success, Error, Info, getButtonStatus, getHeight, getPageParam } from "utils";
+import { uuid, deepClone, Error, Info, getButtonStatus, getHeight, getPageParam } from "utils";
 
 //Grid组件
 import Grid from 'components/Grid';
@@ -172,7 +172,6 @@ class IndexView extends Component {
             dataIndex: "year",
             key: "year",
             width: 100,
-            className: 'column-number-right ', // 靠右对齐
             render: (text, record, index) => {
                 return <FactoryComp
                     type='year'//姓名业务组件类型

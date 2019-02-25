@@ -3,42 +3,14 @@
 //修改button样式
 .demo-button {
     &.u-button {
-        width: 84px;
-        //height: 26px;
-        //font-size: @size-text-base;
-        //padding: 0 8px;
-        //line-height: 26px;
-        //border-radius: 3px;
-        //min-width: 72px;
-
-    }
-    &.u-button-primary {
-        background: @brand-primary !important;
-        border-color: @brand-primary !important;
-        color: #ffffff;
-        &:hover, &:focus {
-            background: #056CC6 !important;
-        }
         &[disabled] {
             border-color: #E0E0E0 !important;
             background: #eee !important;
-            color: #BDBDBD;
+            color: #BDBDBD !important;
         }
+
     }
-    &.u-button-border {
-        border-color: @color-border-base;
-        color: @color-text-brand;
-        background: #ffffff;
-        &:hover, &:focus {
-            background: #ECEFF1 !important;
-            color: @color-text-brand;
-        }
-        &[disabled] {
-            border-color: #E0E0E0;
-            background: #eee;
-            color: #BDBDBD;
-        }
-    }
+
     &.action-button {
         min-width: 64px;
         width: 64px;
@@ -54,9 +26,7 @@
         color: #ffffff;
         padding: 0;
         &:hover {
-            background: #5E6C84;
-            color: #ffffff;
-            opacity: .8;
+            background: #344563;
         }
     }
 }

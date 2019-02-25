@@ -67,21 +67,6 @@ export default {
 
     },
     effects: {
-        /**
-         * 添加主表和子表
-         * @param param
-         * @param getState
-         * @returns {Promise<void>}
-         */
-        async adds(param, getState) {
-            actions.masterDetailOrder.updateState({ showLoading: true });
-            const { result } = processData(await api.saveAsso(param), '保存成功');
-            const { data: res } = result;
-            actions.masterDetailOrder.updateState({ showLoading: false });
-            if (res) {
-                actions.routing.push({ pathname: '/' });
-            }
-        },
 
         /**
          * setQueryParent 当从主页跳转过来的时候设置 queryParent
@@ -91,7 +76,7 @@ export default {
                 actions.masterDetailOrder.updateState({ queryParent: orderInfo });
                 const paramObj = { pageSize: 10, pageIndex: 0, search_orderId: orderInfo.id };
                 actions.masterDetailOrder.queryChild(paramObj);
-            } 
+            }
         },
 
         /**
@@ -116,6 +101,24 @@ export default {
             }
 
         },
+
+        /**
+         * 添加主表和子表
+         * @param param
+         * @param getState
+         * @returns {Promise<void>}
+         */
+        async adds(param, getState) {
+            actions.masterDetailOrder.updateState({ showLoading: true });
+            const { result } = processData(await api.saveAsso(param), '保存成功');
+            const { data: res } = result;
+            actions.masterDetailOrder.updateState({ showLoading: false, status: 'view' });
+            if (res) {
+                actions.routing.push({ pathname: '/' });
+            }
+        },
+
+
 
         /**
          * 删除子表数据
