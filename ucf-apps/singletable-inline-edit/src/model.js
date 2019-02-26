@@ -64,7 +64,6 @@ export default {
             const {data:res}=result;
             const defState = { showLoading: false }
             let _state = null;
-            actions.inlineEdit.updateState();
             if (res) {
                 const { content: list, number, totalPages, totalElements: total } = res;
                 const pageIndex = number + 1;

@@ -537,7 +537,7 @@ class IndexView extends Component {
         }
 
         this.oldData.unshift(tmp);//插入到最前
-        newData = this.oldData.concat(newData)
+        newData.unshift(tmp);
 
         //保存处理后的数据，并且切换操作态'新增'
         actions.inlineEdit.updateState({ list: newData, status: "new", rowEditStatus: false, selectData: [] });
@@ -708,7 +708,7 @@ class IndexView extends Component {
                 //开始校验actions
                 await actions.inlineEdit.updateState({ list: _list });
                 //检查是否验证通过
-                if (this.isVerifyData(this.filterChecked(deepClone(this.oldData), this.props.list))) {
+                if (this.isVerifyData(data)) {
                     let vals = this.filterChecked(this.oldData, this.props.list);
                     if (vals.length == 0) {
                         Error('请勾选数据后再新增');
@@ -724,7 +724,9 @@ class IndexView extends Component {
                 //筛选打过对号的
                 data = this.filterSelectedById(data, selectData);
                 //如果没有找到继续从左侧找check数据
-                data = data.length == 0 ? this.filterSelectedListById(this.oldData, _list) : data;
+                if (data.length <= 0) {
+                    data = this.filterSelectedListById(this.oldData, _list);
+                }
                 //检查校验数据合法性
                 //查找对应的id关系来开启验证
                 _list = this.filterListId(data, _list);
