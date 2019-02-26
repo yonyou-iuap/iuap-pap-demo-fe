@@ -230,8 +230,6 @@ class IndexView extends Component {
 			scrollTop = document.documentElement.scrollTop,
 			treeHeight = 0,
 			pageHeadHeight = 32;
-
-		console.log('clientHeight',clientHeight, 'scrollHeight', scrollHeight, 'offsetHeight',offsetHeight);
 		let showHeight = (clientHeight < scrollHeight ) && clientHeight || scrollHeight;
 		treeHeight = showHeight - pageHeadHeight - scrollTop;
 

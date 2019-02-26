@@ -48,6 +48,7 @@ class IndexView extends Component {
             showPopCancel: false//取消提示的状态
         }
     }
+
     //缓存数据
     oldData = [];
 
@@ -365,7 +366,7 @@ class IndexView extends Component {
         let _sourseData = deepClone(this.props.list);
         oldData[index][field] = value;
         //有字段修改后去同步左侧对号checkbox
-        if (_sourseData[index]['_checked'] != true) {
+        if (!_sourseData[index]['_checked']) {
             _sourseData[index]['_checked'] = true;
             actions.inlineEdit.updateState({ list: _sourseData });
         }
@@ -482,72 +483,78 @@ class IndexView extends Component {
         return flag
     }
 
+    //新增数据模版
+    newDataTmp = {
+        _edit: true,
+        _isNew: true,
+        _checked: false,
+        _disabled: false,
+        _flag: false,
+        code: '',
+        name: '',
+        sex: '',
+        sexEnumValue: '',
+        deptName: '',
+        levelName: '',
+        serviceYears: 0,
+        serviceYearsCompany: 0,
+        year: moment().format('YYYY'),
+        month: '',
+        monthEnumValue: '',
+        allowanceType: '',
+        allowanceTypeEnumValue: '',
+        allowanceStandard: 0,
+        allowanceActual: 0,
+        exdeeds: '',
+        exdeedsEnumValue: '',
+        // applyTime: moment(),
+        pickType: '',
+        pickTypeEnumValue: '',
+        // pickTime: moment(),
+        remark: ''
+    }
+
     /**
      * 新增行数据
      */
     handlerNew = () => {
-        // actions.inlineEdit.updateState({ selectData: [] });//清空checkbox选择字段
         let newData = deepClone(this.props.list);//克隆原始数据
-        newData = newData.filter(item => !item._isNew);//去除新增字段
         //这里是新增后的新数据模板，用于默认值
         let tmp = {
             key: uuid(),
-            _edit: true,
-            _isNew: true,
-            _checked: false,
-            _disabled: false,
-            _flag: false,
-            code: '',
-            name: '',
-            sex: '',
-            sexEnumValue: '',
-            deptName: '',
-            levelName: '',
-            serviceYears: 0,
-            serviceYearsCompany: 0,
-            year: moment().format('YYYY'),
-            month: '',
-            monthEnumValue: '',
-            allowanceType: '',
-            allowanceTypeEnumValue: '',
-            allowanceStandard: 0,
-            allowanceActual: 0,
-            exdeeds: '',
-            exdeedsEnumValue: '',
-            // applyTime: moment(),
-            pickType: '',
-            pickTypeEnumValue: '',
-            // pickTime: moment(),
-            remark: ''
-        }
-        //newData.unshift(tmp);//插入到最前
-        this.oldData.unshift(tmp);//插入到最前
-        //禁用其他checked
-        for (let i = 0; i < newData.length; i++) {
-            newData[i]['_disabled'] = true;
-            newData[i]['_checked'] = false;
-            newData[i]['_status'] = 'new';
+            ...this.newDataTmp
         }
 
-        //重置操作栏位
-        this.grid.resetColumns(this.column);
-        //同步状态数据
-        // this.oldData = deepClone(newData);
+        //当第一次新增的时候
+        // 禁用其他checked
+        //重置表头状态
+        if (this.oldData.length <= 0) {
+            newData.forEach(item => {
+                item['_disabled'] = true;
+                item['_checked'] = false;
+            })
+            this.grid.resetColumns(this.column);
+        }
+
+        this.oldData.unshift(tmp);//插入到最前
+        newData = this.oldData.concat(newData)
+
         //保存处理后的数据，并且切换操作态'新增'
-        actions.inlineEdit.updateState({ list: this.oldData.concat(newData), status: "new", rowEditStatus: false, selectData: [] });
+        actions.inlineEdit.updateState({ list: newData, status: "new", rowEditStatus: false, selectData: [] });
     }
 
     /**
      * 修改
      */
     onClickUpdate = () => {
-        let editData = [...this.props.list];
         //当前行数据设置编辑态
-        for (let i = 0; i < editData.length; i++) {
-            editData[i]['_edit'] = true;
-            editData[i]['_checked'] = false;
-            editData[i]['_status'] = 'edit';
-        }
+        let editData = this.props.list.map(item => {
+            item['_edit'] = true;
+            item['_checked'] = false;
+            item['_status'] = 'edit';
+            return item
+        });
+
         //重置操作栏位
         this.grid.resetColumns(this.column);
         //同步操作数据

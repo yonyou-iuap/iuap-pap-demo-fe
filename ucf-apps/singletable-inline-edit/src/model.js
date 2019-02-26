@@ -135,8 +135,9 @@ export default {
         },
         resetData(status, getState) {
             let cacheData = getState().inlineEdit.cacheData.slice();
-            cacheData.map(item => delete item.edit);
-            cacheData.map(item => delete item._edit);
+            cacheData.forEach(item => {
+                delete item._edit;
+            });
             let state = {
                 list: cacheData
             }

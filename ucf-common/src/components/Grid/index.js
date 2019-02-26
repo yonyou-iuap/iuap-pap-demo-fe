@@ -49,21 +49,19 @@ class Grid extends Component {
     };
 
     render() {
-
-        const props = this.props;
-        const paginationObj = {...defualtPaginationParam, ...props.paginationObj};
-        paginationObj.disabled = paginationObj.disabled
+        const { paginationObj, data, exportData,  ...otherProps } = this.props;
+        const _paginationObj = {...defualtPaginationParam, ...paginationObj};
+        _paginationObj.disabled = paginationObj.disabled !== undefined
             ? paginationObj.disabled
-            : props.data.length == 0
-                ? true
-                : false;
-        let _exportData = props.exportData ? props.exportData : props.data;
+            : data.length === 0;
+        let _exportData = exportData || data;
         return (
             <BeeGrid
                 className="ucf-example-grid"
-                {...props}
+                data={data}
+                {...otherProps}
                 exportData={_exportData}
-                paginationObj={paginationObj}
+                paginationObj={_paginationObj}
                 ref={el => this.grid = el}
                 emptyText={() => <Icon style={{fontSize: "60px"}} type="uf-nodata"/>}
             />

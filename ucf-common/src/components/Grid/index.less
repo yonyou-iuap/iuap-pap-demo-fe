@@ -6,12 +6,6 @@
         table-layout: fixed;
     }
 
-
-    .table-menu {
-        height: 16px;
-        line-height: 1;
-    }
-
     //修改table的header背景色颜色和body中隔行差色
     .u-table {
 
@@ -39,82 +33,11 @@
 
         }
 
-        th, td {
-            padding: 10px 8px;
-        }
-        th{
-            overflow: visible;
-            background-clip:padding-box;
-            word-break: keep-all;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        tr.filterable th {
-            padding: 0 2px;
-            height: 39px;
-        }
+
     }
-
-
-    //重写分页样式
-    .u-pagination {
-        .u-pagination-list {
-            &>li>a {
-                height: 32px;
-                line-height: 32px;
-                padding: 0 6px;
-                box-sizing: border-box;
-                min-width: 32px;
-            }
-
-            &>li.active>a {
-                color: #fff;
-            }
-        }
-    }
-
 
     th.column-number-right,
     td.column-number-right {
         text-align: right !important;
     }
 }
-
-//.u-table .u-table-tbody .u-table-row .u-input-number.simple {
-//    .u-form-control {
-//        width: 100%;
-//        border-bottom-right-radius: 0;
-//        border-top-right-radius: 0;
-//        border-right: 1px solid #bdbdbd;
-//        padding-right: 12px;
-//        margin-left: 0;
-//        margin-right: 0;
-//    }
-//    .u-form-control:focus {
-//        border-color: #66afe9;
-//    }
-//    .u-input-group-btn {
-//        position: relative;
-//        top: 0;
-//        z-index: 2;
-//        right: 0;
-//        width: 22px;
-//        .icon-group {
-//            border-right: 1px solid #bdbdbd;
-//            border-top: 1px solid #bdbdbd;
-//            border-bottom: 1px solid #bdbdbd;
-//            width: 22px;
-//            height: 30px;
-//            top: 0;
-//            right: 2px;
-//            border-left: 0;
-//            .reduce {
-//                top: -1px;
-//            }
-//        }
-//    }
-//}
-//
-//.u-table-thead-th-drag-gap .online {
-//    background: transparent;
-//}
