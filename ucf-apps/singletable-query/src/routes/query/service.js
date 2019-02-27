@@ -2,8 +2,8 @@ import request from "utils/request";
 import { deepClone } from 'utils';
 //定义接口地址
 const URL = {
-    "GET_LIST": `${GROBAL_HTTP_CTX}/allowances/list`,
-    "GET_LIST_BY_COL": `${GROBAL_HTTP_CTX}/allowances/distinct`,
+    "GET_LIST": `${GROBAL_HTTP_CTX}/query_allowances/list`,
+    "GET_LIST_BY_COL": `${GROBAL_HTTP_CTX}/query_allowances/distinct`,
 }
 
 /**

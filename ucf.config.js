@@ -25,11 +25,11 @@ module.exports = (env, argv) => {
             {
                 enable: true,
                 headers: {
-                    "Referer": "http://172.20.52.215:8888"
+                    "Referer": "http://172.20.52.123"
                 },
                 //要代理访问的对方路由
                 router: [
-                    '/iuap_walsin_demo',
+                    '/iuap-pap-demo-be',
                     '/wbalone',
                     '/iuap-saas-message-center/',
                     '/iuap-saas-filesystem-service/',
@@ -38,7 +38,7 @@ module.exports = (env, argv) => {
                     '/print_service/',
                     '/iuap-print/'
                 ],
-                url: 'http://172.20.52.215:8888'
+                url: 'http://172.20.52.123'
             }
 
         ],

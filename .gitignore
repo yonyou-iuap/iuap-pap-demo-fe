@@ -67,7 +67,7 @@ dist
 package-lock.json
 
 alias.config.js
-ucf-public/
+
 .DS_Store
 src/.DS_Store
 src/pages/.DS_Store

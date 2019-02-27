@@ -28,7 +28,7 @@ export default {
                 pageIndex: 0,
                 pageSize: 25
             },
-            groupParams: [],
+            // groupParams: [],
             whereParams: []
         }
     },
@@ -60,6 +60,7 @@ export default {
             });
             const _param = param || getState().inlineEdit.queryParam;
             // 调用 getList 请求数据
+
             let {result} = processData(await api.getList(_param));
             const {data:res}=result;
             const defState = { showLoading: false }

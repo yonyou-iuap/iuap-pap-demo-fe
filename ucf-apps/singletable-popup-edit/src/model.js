@@ -32,7 +32,7 @@ export default {
                 pageIndex: 0,
                 pageSize: 25,
             },
-            groupParams: [],
+            // groupParams: [],
             whereParams: []
         }
     },

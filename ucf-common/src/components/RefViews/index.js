@@ -48,11 +48,11 @@ function RefWalsinLevel(props){
                     refCode:'post_level',//test_common||test_grid||test_tree||test_treeTable
                 }}
             refModelUrl = {{
-                tableBodyUrl:'/iuap_walsin_demo/common-ref/blobRefTreeGrid',//表体请求
-                refInfo:'/iuap_walsin_demo/common-ref/refInfo',//表头请求
+                tableBodyUrl:`${GROBAL_HTTP_CTX}/common-ref/blobRefTreeGrid`,//表体请求
+                refInfo:`${GROBAL_HTTP_CTX}/common-ref/refInfo`,//表头请求
             }}
-            matchUrl='/iuap_walsin_demo/common-ref/matchPKRefJSON'
-            filterUrl='/iuap_walsin_demo/common-ref/filterRefJSON'
+            matchUrl={`${GROBAL_HTTP_CTX}/common-ref/matchPKRefJSON`}
+            filterUrl={`${GROBAL_HTTP_CTX}/common-ref/filterRefJSON`}
             valueField="refpk"
             displayField="{refcode}"
             {...props}
