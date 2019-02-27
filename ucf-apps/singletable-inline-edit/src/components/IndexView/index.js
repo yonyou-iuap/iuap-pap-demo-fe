@@ -45,7 +45,8 @@ class IndexView extends Component {
         this.state = {
             tableHeight: 0,
             showPop: false,//删除需要的状态
-            showPopCancel: false//取消提示的状态
+            showPopCancel: false,//取消提示的状态
+            validate: false
         }
     }
 
@@ -383,7 +384,7 @@ class IndexView extends Component {
      */
     onValidate = (field, flag, index) => {
         //只要是修改过就启用校验
-        if (this.oldData.length != 0) {
+        if (this.oldData.length > 0) {
             this.oldData[index][`_${field}Validate`] = (flag == null);
         }
 

@@ -32,7 +32,20 @@
             }
 
         }
-
+        th, td {
+            padding: 10px 8px;
+        }
+        th{
+            overflow: visible;
+            background-clip:padding-box;
+            word-break: keep-all;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        tr.filterable th {
+            padding: 0 2px;
+            height: 39px;
+        }
 
     }
 
