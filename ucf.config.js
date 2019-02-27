@@ -5,7 +5,7 @@ require('@babel/polyfill');
 const path = require('path');
 
 module.exports = (env, argv) => {
-    
+
     return {
         // 启动所有模块，默认这个配置，速度慢的时候使用另外的配置
         // bootList: true,
@@ -45,7 +45,7 @@ module.exports = (env, argv) => {
         // 全局环境变量
         global_env: {
             __MODE__: JSON.stringify(env),
-            GROBAL_HTTP_CTX: JSON.stringify("/iuap_walsin_demo"),
+            GROBAL_HTTP_CTX: JSON.stringify("/iuap-pap-demo-be"),
             'process.env.NODE_ENV': JSON.stringify(env)
         },
         // 别名配置
