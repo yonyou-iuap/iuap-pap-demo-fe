@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {actions} from 'mirrorx';
-import {Tooltip, Dropdown, Menu, Icon, Loading} from 'tinper-bee';
+import {Tooltip, Menu, Icon, Loading} from 'tinper-bee';
 import queryString from "query-string";
 import moment from 'moment'
 import Grid from 'components/Grid';
@@ -8,7 +8,7 @@ import Header from 'components/Header';
 import Button from 'components/Button';
 import PopDialog from 'components/Pop';
 import SearchArea from '../SearchArea'
-
+import Dropdown from 'bee-dropdown'
 import {deepClone, getHeight, getSortMap} from "utils";
 
 import './index.less';

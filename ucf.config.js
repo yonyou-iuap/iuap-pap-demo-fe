@@ -7,6 +7,7 @@ const path = require('path');
 module.exports = (env, argv) => {
 
     return {
+        context: 'iuap-pap-demo-fe', // 上下文对象
         // 启动所有模块，默认这个配置，速度慢的时候使用另外的配置
         // bootList: true,
         // 启动这两个模块，启动调试、构建
@@ -65,6 +66,6 @@ module.exports = (env, argv) => {
         devPlugins: [],
         // 构建服务需要运行的插件
         buildPlugins: [],
-        source_map: false
+        open_source_map: false
     }
 }
