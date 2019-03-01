@@ -8,10 +8,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //验证组件 https://www.npmjs.com/package/async-validator
 import schema from 'async-validator';
-//Tinper-bee
-import { Icon } from 'tinper-bee';
-//提示类组件
-import Tooltip from 'bee-tooltip';
+import FieldWrap from './FieldWrap'
 //部门参照组件
 import { RefIuapDept } from 'components/RefViews';
 
@@ -122,25 +119,22 @@ class RefDept extends Component {
 
         let { className, message, required } = this.props;
 
-        return (<div className="triangle-flag">
-            {required && <div className="triangle-redline"></div>}
-            <RefIuapDept
-                style={{ "width": "100%" }}
-                className={className}
-                value={value}
-                onChange={this.handlerChange}
-            />
-            {error && <div className="triangle-icon">
-                <Tooltip
-                    className="inline-edit-tooltip"
-                    placement="bottom"
-                    overlay={<div><Icon type="uf-exc-t-o" />{message}</div>}
-                >
-                    <Icon type="uf-exc-t-o" />
-                </Tooltip>
-            </div>}
-            {flag && <div className="triangle_border_nw" style={required ? { "left": "6px", "top": "2px" } : { "left": "2px", "top": "2px" }}></div>}
-        </div>);
+        return (
+            <FieldWrap
+                required={required}
+                error={error}
+                message={message}
+                flag={flag}
+            >
+                <RefIuapDept
+                    style={{ "width": "100%" }}
+                    className={className}
+                    value={value}
+                    onChange={this.handlerChange}
+                />
+            </FieldWrap>
+        );
+
     }
 }
 

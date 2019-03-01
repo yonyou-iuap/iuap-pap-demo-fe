@@ -8,10 +8,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //验证组件 https://www.npmjs.com/package/async-validator
 import schema from 'async-validator';
-//Tinper-bee
-import { Icon } from 'tinper-bee';
-//提示类组件
-import Tooltip from 'bee-tooltip';
+
+import FieldWrap from './FieldWrap'
 //数值组件
 import InputNumber from 'bee-input-number';
 //自定义样式
@@ -120,29 +118,25 @@ class NumberField extends Component {
 
         let { className, message, required, iconStyle, max, min, step, precision } = this.props;
 
-        return (<div className="triangle-flag">
-            {required && <div className="triangle-redline"></div>}
-            <InputNumber
-                className={className}
-                value={value}
-                onChange={this.handlerChange}
-                iconStyle={iconStyle}
-                max={max}
-                min={min}
-                step={step}
-                precision={precision}
-            />
-            {error && <div className="triangle-icon">
-                <Tooltip
-                    className="inline-edit-tooltip"
-                    placement="bottom"
-                    overlay={<div><Icon type="uf-exc-t-o" />{message}</div>}
-                >
-                    <Icon type="uf-exc-t-o" />
-                </Tooltip>
-            </div>}
-            {flag && <div className="triangle_border_nw_number" style={{ "left": required ? "6px" : "2px" }}></div>}
-        </div>);
+        return (
+            <FieldWrap
+                required={required}
+                error={error}
+                message={message}
+                flag={flag}
+            >
+                <InputNumber
+                    className={className}
+                    value={value}
+                    onChange={this.handlerChange}
+                    iconStyle={iconStyle}
+                    max={max}
+                    min={min}
+                    step={step}
+                    precision={precision}
+                />
+            </FieldWrap>
+        )
     }
 }
 

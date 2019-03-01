@@ -9,9 +9,8 @@ import PropTypes from 'prop-types';
 //验证组件 https://www.npmjs.com/package/async-validator
 import schema from 'async-validator';
 //Tinper-bee
-import { FormControl, Icon } from 'tinper-bee';
-//提示类组件
-import Tooltip from 'bee-tooltip';
+import { FormControl } from 'tinper-bee';
+import FieldWrap from './FieldWrap'
 
 //自定义样式
 import './style.less';
@@ -114,24 +113,20 @@ class TextField extends Component {
 
         let { className, message, required } = this.props;
 
-        return (<div className="triangle-flag">
-            {required && <div className="triangle-redline"></div>}
-            <FormControl
-                className={`${className} triangle-element`}
-                value={value}
-                onChange={this.handlerChange}
-            />
-            {error && <div className="triangle-icon">
-                <Tooltip
-                    className="inline-edit-tooltip"
-                    placement="bottom"
-                    overlay={<div><Icon type="uf-exc-t-o" />{message}</div>}
-                >
-                    <Icon type="uf-exc-t-o" />
-                </Tooltip>
-            </div>}
-            {flag && <div className="triangle_border_nw" style={{ "left": required ? "4px" : "0px" }}></div>}
-        </div>);
+        return (
+            <FieldWrap
+                required={required}
+                error={error}
+                message={message}
+                flag={flag}
+            >
+                <FormControl
+                    className={`${className} triangle-element`}
+                    value={value}
+                    onChange={this.handlerChange}
+                />
+            </FieldWrap>
+        );
     }
 }
 

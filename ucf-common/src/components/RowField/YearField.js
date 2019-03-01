@@ -10,10 +10,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 //验证组件 https://www.npmjs.com/package/async-validator
 import schema from 'async-validator';
-//Tinper-bee
-import { Icon } from 'tinper-bee';
-//提示类组件
-import Tooltip from 'bee-tooltip';
+import FieldWrap from './FieldWrap'
 //日期组件
 import DatePicker from 'bee-datepicker';
 //本地化日期
@@ -123,27 +120,23 @@ class YearField extends Component {
 
         let { className, message, required } = this.props;
 
-        return (<div className="triangle-flag">
-            {required && <div className="triangle-redline"></div>}
-            <YearPicker
-                className={className}
-                value={value}
-                onChange={this.handlerChange}
-                format={'YYYY'}
-                locale={zhCN}
-                placeholder={"选择年"}
-            />
-            {error && <div className="triangle-icon">
-                <Tooltip
-                    className="inline-edit-tooltip"
-                    placement="bottom"
-                    overlay={<div><Icon type="uf-exc-t-o" />{message}</div>}
-                >
-                    <Icon type="uf-exc-t-o" />
-                </Tooltip>
-            </div>}
-            {flag && <div className="triangle_border_nw" style={{ "left": required ? "4px" : "0px" }}></div>}
-        </div>);
+        return (
+            <FieldWrap
+                required={required}
+                error={error}
+                message={message}
+                flag={flag}
+            >
+                <YearPicker
+                    className={className}
+                    value={value}
+                    onChange={this.handlerChange}
+                    format={'YYYY'}
+                    locale={zhCN}
+                    placeholder={"选择年"}
+                />
+            </FieldWrap>
+        );
     }
 }
 

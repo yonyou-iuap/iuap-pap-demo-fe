@@ -471,12 +471,12 @@ class IndexView extends Component {
     hasCheck = () => {
         let { selectData, list } = this.props;
         let flag = false;
-        selectData.map(item => {
+        selectData.forEach(item => {
             if (item._checked == true) {
                 flag = true;
             }
         });
-        list.map(item => {
+        list.forEach(item => {
             if (item._checked == true) {
                 flag = true;
             }
@@ -572,6 +572,7 @@ class IndexView extends Component {
         window.open(`${GROBAL_HTTP_CTX}/inline_allowances/excelTemplateDownload`);
     }
 
+
     /**
      * 根据key关联对应数据后校验
      *
@@ -579,34 +580,21 @@ class IndexView extends Component {
      * @param {array} list 被关联数据
      * @returns
      */
-    filterListKey = (data, list) => {
-        let _list = list.slice();
-        data.forEach((_data, _index) => {
-            _list.forEach((item, i) => {
-                if (_data['key'] == item['key']) {
-                    _list[i]['_validate'] = true;
+    filterList = (data, list, key) => {
+        let newList = list.slice();
+        let selectList = []
+        data.forEach((_data) => {
+            newList.forEach((item, i) => {
+                if (_data[key] === item[key] && item['_checked']) {
+                    item['_validate'] = true;
+                    selectList.push(_data)
                 }
             });
         });
-        return _list;
-    }
-    /**
-     * 根据id关联对应数据后校验
-     *
-     * @param {array} data 要关联数据
-     * @param {array} list 被关联数据
-     * @returns {array}
-     */
-    filterListId = (data, list) => {
-        let _list = list.slice();
-        data.forEach((_data, _index) => {
-            _list.forEach((item, i) => {
-                if (_data['id'] == item['id']) {
-                    _list[i]['_validate'] = true;
-                }
-            });
-        });
-        return _list;
+        return {
+            newList,
+            selectList
+        };
     }
     /**
      * 验证数据否正确
@@ -617,6 +605,8 @@ class IndexView extends Component {
     isVerifyData = (data) => {
         let flag = true;
         let pattern = /Validate\b/;//校验的正则结尾
+
+
         data.forEach((item, index) => {
             let keys = Object.keys(item);
             //如果标准为false直接不参与计算说明已经出现了错误
@@ -635,120 +625,44 @@ class IndexView extends Component {
         });
         return flag
     }
-    /**
-     * 过滤左侧check选中后的数据
-     *
-     * @param {array} data 新增数据
-     * @param {array} list 数据
-     * @returns 选中后的数据
-     */
-    filterChecked = (data, list) => {
-        let result = [];
-        data.forEach((_data, _index) => {
-            list.forEach((item) => {
-                if (_data['key'] == item['key'] && item['_checked']) {
-                    result.push(_data);
-                }
-            });
-        });
-        return result;
-    }
-    /**
-     * 过滤选择的数据根据ID关联
-     *
-     * @param {array} data 新增数据
-     * @param {array} selected 选择后的数据
-     * @returns
-     */
-    filterSelectedById = (data, selected) => {
-        let result = [];
-        data.forEach((_data, _index) => {
-            selected.forEach((item) => {
-                if (_data['id'] == item['id'] && item['_checked']) {
-                    _data['_checked'] = true;
-                    result.push(_data);
-                }
-            });
-        });
-        return result;
-    }
-    /**
-     * 过滤表格内的数据与左侧check同步数据根据id
-     *
-     * @param {array} data 数据
-     * @param {array} list 来源数据
-     * @returns 关联好的数据
-     */
-    filterSelectedListById = (data, list) => {
-        let result = [];
-        data.forEach((_data, _index) => {
-            list.forEach((item) => {
-                if (_data['id'] == item['id'] && item['_checked']) {
-                    _data['_checked'] = true;
-                    result.push(_data);
-                }
-            });
-        });
-        return result;
-    }
+
     /**
      * 保存
      */
     onClickSave = async () => {
-        let { status, list, selectData } = this.props;
-        let data = deepClone(this.oldData);
-        let _list = list.slice();
+        let {status, list} = this.props;
+        let filterResult = null;
+        let ajaxFun = null;
         switch (status) {
             case 'new':
-                //筛选新增的值
-                //筛选打过对号的
-                data = this.filterChecked(data, this.props.list);
-                //检查校验数据合法性
-                //查找对应的key关系来开启验证
-                _list = this.filterListKey(data, _list);
-                //开始校验actions
-                await actions.inlineEdit.updateState({ list: _list });
-                //检查是否验证通过
-                if (this.isVerifyData(data)) {
-                    let vals = this.filterChecked(this.oldData, this.props.list);
-                    if (vals.length == 0) {
-                        Error('请勾选数据后再新增');
-                    } else {
-                        let newResult = await actions.inlineEdit.adds(vals);
-                        if (newResult) {
-                            this.oldData = [];
-                        }
-                    }
-                }
+                filterResult = this.filterList(this.oldData, list, 'key');
+                ajaxFun = actions.inlineEdit.adds;
                 break;
             case 'edit':
-                //筛选打过对号的
-                data = this.filterSelectedById(data, selectData);
-                //如果没有找到继续从左侧找check数据
-                if (data.length <= 0) {
-                    data = this.filterSelectedListById(this.oldData, _list);
-                }
-                //检查校验数据合法性
-                //查找对应的id关系来开启验证
-                _list = this.filterListId(data, _list);
-                await actions.inlineEdit.updateState({ list: _list });
-                //检查是否验证通过
-                if (this.isVerifyData(data)) {
-                    if (data.length == 0) {
-                        Info('请勾选数据后再修改');
-                    } else {
-                        let editResult = await actions.inlineEdit.updates(data);
-                        if (editResult) {
-                            this.oldData = [];
-                        }
-                    }
-                }
+                filterResult = this.filterList(this.oldData, list, 'id');
+                ajaxFun = actions.inlineEdit.updates;
                 break;
             default:
                 break;
         }
-    }
 
+        if (filterResult.selectList.length > 0) {
+            //开始校验actions
+            await actions.inlineEdit.updateState({list: filterResult.newList});
+            //检查是否验证通过
+            if (this.isVerifyData(filterResult.selectList)) {
+
+                let newResult = await ajaxFun(filterResult.selectList);
+                if (newResult) {
+                    this.oldData = [];
+                }
+            } else {
+                Info('数据填写不完整')
+            }
+        } else {
+            Info('请勾选数据后再新增');
+        }
+    }
     /**
      * 删除询问Pop
      *

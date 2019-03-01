@@ -10,17 +10,13 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 //验证组件 https://www.npmjs.com/package/async-validator
 import schema from 'async-validator';
-//Tinper-bee
-import { Icon } from 'tinper-bee';
-//提示类组件
-import Tooltip from 'bee-tooltip';
+
 //日期组件
 import DatePicker from "tinper-bee/lib/Datepicker";
 //本地化日期
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
-//自定义样式
-import './style.less';
+import FieldWrap from './FieldWrap'
 
 
 //类型校验
@@ -61,6 +57,7 @@ class DateField extends Component {
             value: moment(props.value),//组件的值
             flag: false,//是否编辑过
             error: false//校验是否有错误
+
         }
     }
     /**
@@ -121,27 +118,23 @@ class DateField extends Component {
 
         let { className, message, required } = this.props;
 
-        return (<div className="triangle-flag">
-            {required && <div className="triangle-redline"></div>}
-            <DatePicker
-                className={className}
-                value={value}
-                onChange={this.handlerChange}
-                format={'YYYY-MM-DD'}
-                locale={zhCN}
-                placeholder={"选择年"}
-            />
-            {error && <div className="triangle-icon">
-                <Tooltip
-                    className="inline-edit-tooltip"
-                    placement="bottom"
-                    overlay={<div><Icon type="uf-exc-t-o" />{message}</div>}
-                >
-                    <Icon type="uf-exc-t-o" />
-                </Tooltip>
-            </div>}
-            {flag && <div className="triangle_border_nw" style={{ "left": required ? "4px" : "0px" }}></div>}
-        </div>);
+        return (
+            <FieldWrap
+                required={required}
+                error={error}
+                message={message}
+                flag={flag}
+            >
+                <DatePicker
+                    className={className}
+                    value={value}
+                    onChange={this.handlerChange}
+                    format={'YYYY-MM-DD'}
+                    locale={zhCN}
+                    placeholder={"选择年"}
+                />
+            </FieldWrap>
+        );
     }
 }
 
