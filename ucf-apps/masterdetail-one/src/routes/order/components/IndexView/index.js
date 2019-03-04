@@ -45,7 +45,10 @@ class IndexView extends Component {
     }
 
     componentWillUnmount() {
-        actions.masterDetailOrder.initState()
+        const { history } = this.props;
+        if (history.action === "POP") {
+            actions.masterDetailOrder.initState();
+        }
     }
 
     /**
