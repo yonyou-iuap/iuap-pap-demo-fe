@@ -2,7 +2,7 @@
 import React from 'react';
 import RefMultipleTableWithInput, {RefMultipleTable } from 'ref-multiple-table';
 
-import RefTreeWithInput, {RefTree} from 'ref-tree';
+import RefTreeWithInput, { RefTree } from 'ref-tree';
 
 // import RefComboBox, {ComboStore} from 'ref-combobox';
 
@@ -13,7 +13,7 @@ import 'ref-tree/dist/index.css';
 // import 'ref-combobox/dist/index.css';
 
 
-function RefIuapDept(props){
+export function RefIuapDept(props){
     return (
         <RefTreeWithInput
             style={{
@@ -39,7 +39,7 @@ function RefIuapDept(props){
         </RefTreeWithInput>
     )
 }
-function RefWalsinLevel(props){
+export function RefWalsinLevel(props){
     return (
         <RefMultipleTableWithInput
             title= '职级'
@@ -91,5 +91,4 @@ function RefWalsinLevel(props){
 //     )
 // }
 
-export {RefIuapDept, RefWalsinLevel};
 

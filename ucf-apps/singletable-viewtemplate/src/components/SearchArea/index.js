@@ -10,7 +10,6 @@ import SelectMonth from 'components/SelectMonth';
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
 //导入样式
-import 'bee-datepicker/build/DatePicker.css';
 import './index.less'
 
 const {FormItem} = Form;

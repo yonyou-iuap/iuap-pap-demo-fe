@@ -9,7 +9,6 @@ import mirror, { render,Router } from "mirrorx";
 import Routes from './routes'
 import 'tinper-bee/assets/tinper-bee.css'
 import "styles/app.less";
-import "bee-complex-grid/build/Grid.css";
 
 
 const MiddlewareConfig = [];

@@ -17,9 +17,7 @@ import SearchArea from "./SearchArea";
 import {deepClone,getSortMap,getPageParam} from "utils";
 
 //样式文件
-import "bee-complex-grid/build/Grid.css";
-import "bee-pagination/build/Pagination.css";
-import 'bee-table/build/Table.css'
+
 import "./index.less";
 
 const Option = Select.Option;
@@ -166,7 +164,7 @@ class Index extends Component {
             property = property.replace("EnumValue", ''); //去掉枚举尾标记，前后端约定
         }
         sortMap[property] = direction;
-        
+
       }
 
       //合并选中columns，生成最终的columns

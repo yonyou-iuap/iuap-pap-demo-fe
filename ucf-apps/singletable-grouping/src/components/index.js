@@ -13,7 +13,6 @@ import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
 import Button from 'components/Button';
 
-import 'bee-pagination/build/Pagination.css';
 import './index.less';
 
 
