@@ -46,7 +46,7 @@
     "ref-combobox": "0.0.2",
     "ref-multiple-table": "^1.0.12-beta",
     "ref-tree": "^1.0.20-beta",
-    "tinper-bee": "^2.0.0",
+    "tinper-bee": "2.0.0",
     "ucf-fe": "^0.1.0",
     "ucf-request": "^1.0.0",
     "yyuap-bpm": "^0.3.29",
