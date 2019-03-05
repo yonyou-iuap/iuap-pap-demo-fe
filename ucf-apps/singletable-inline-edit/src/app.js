@@ -8,6 +8,4 @@ import { render } from "mirrorx";
 import AppContainer from './container'
 import "./app.less";
 
-
-
 render(<AppContainer/>, document.querySelector("#app"));
