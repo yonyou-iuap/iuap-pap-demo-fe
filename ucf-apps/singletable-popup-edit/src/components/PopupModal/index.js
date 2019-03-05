@@ -157,13 +157,17 @@ class PopupModal extends Component {
 
         return (
 
-            <PopDialog show={editModelVisible}
-                       title={titleArr[btnFlag]}
-                       size='lg'
-                       btns={btns}
-                       autoFocus={false}
-                       enforceFocus={false}
-                       close={this.onCloseEdit}>
+            <PopDialog
+                show={editModelVisible}
+                title={titleArr[btnFlag]}
+                size='lg'
+                btns={btns}
+                autoFocus={false}
+                enforceFocus={false}
+                close={this.onCloseEdit}
+                className="single-table-pop-model"
+            >
+
 
                 <FormList>
                     <FormItem
@@ -292,6 +296,9 @@ class PopupModal extends Component {
                                         validateTrigger: 'onBlur',
                                         rules: [{required: true, message: '请选择申请时间'}],
                                     })}
+                                    getCalendarContainer={() => {
+                                        return document.querySelector('.single-table-pop-model')
+                                    }}
                                     format={formatYYYY}
                                     locale={zhCN}
                                     placeholder="选择年"

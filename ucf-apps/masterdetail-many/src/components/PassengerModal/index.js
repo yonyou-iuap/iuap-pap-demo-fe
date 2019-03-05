@@ -64,6 +64,7 @@ class AddEditPassenger extends Component {
         this.props.onCloseModal(isSave);
     }
 
+
     /**
      *  提交信息
      */
@@ -147,6 +148,7 @@ class AddEditPassenger extends Component {
             isDisabled = btnFlag > 1 ? true : false;
         return (
             <PopDialog
+                ref={node => this.dialogNode = node}
                 show={modalVisible}
                 size='lg'
                 close={this.onCloseEdit}
@@ -259,6 +261,9 @@ class AddEditPassenger extends Component {
                         <FormItem required label={"到期日期"}>
                             <DatePicker className='form-item' format={format} disabled={isDisabled}
                                         locale={zhCN}
+                                        getCalendarContainer={() => {
+                                            return document.querySelector('.passenger-modal')
+                                        }}
                                         {...getFieldProps('expirationDate', {
                                             initialValue: expirationDate ? moment(expirationDate) : moment(),
                                             validateTrigger: 'onBlur',
