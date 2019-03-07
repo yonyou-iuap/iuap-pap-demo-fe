@@ -3,6 +3,9 @@
 
 body {
     margin: 0;
+    * {
+        box-sizing: border-box;
+    }
 }
 .u-row {
     margin: 0;
@@ -93,43 +96,6 @@ body {
     margin-left: 8px;
 }
 
-.u-dropdown .u-dropdown-menu {
-    &>.u-dropdown-menu-item {
-        height: 32px;
-        line-height: 32px;
-        cursor: pointer;
-    }
-
-    &>.u-dropdown-menu-item-selected {
-        background-color: #ECEFF1;
-        color: #0084FF;
-    }
-}
-
-// liuzhpc修改
-.u-tabs-upborder .u-tabs-nav-container {
-    background: #F7F9FB;
-}
-
-//行编辑内的错误Tip
-.inline-edit-tooltip {
-    line-height: 1 !important;
-    div.tooltip-arrow {
-        border-bottom-color: #de2626 !important;
-    }
-    div.tooltip-inner {
-        background-color: #de2626;
-        height: 28px;
-        line-height: 22px;
-    }
-}
-
-//checkbox disabled状态
-.u-checkbox.disabled.is-checked .u-checkbox-label:before {
-    box-shadow: inset 0 0 0 10px #becadb;
-    border-color: #becadb;
-}
-
 
 
 // 手机号输入，去掉type='number'的选择样式
@@ -162,18 +128,6 @@ button::selection {
     margin-left: 10px;
 }
 
-
-
-
-//.u-table td, .u-table th {
-//    line-height: 20px;
-//}
-
-//修改tree 组件中 selected 样式
-.u-tree li a.u-tree-node-selected {
-    background-color: transparent;
-    color: @color-text-brand;
-}
 
 
 

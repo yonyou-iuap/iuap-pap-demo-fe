@@ -3,8 +3,6 @@ import BeeGrid from "bee-complex-grid";
 import Icon from "bee-icon";
 import './index.less'
 
-import 'bee-complex-grid/build/Grid.css';
-
 
 const defualtPaginationParam = {
     dataNumSelect: ["5", "10", "15", "20", "25", "50", "All"],
@@ -55,15 +53,17 @@ class Grid extends Component {
             : data.length === 0;
         let _exportData = exportData || data;
         return (
-            <BeeGrid
-                className="ucf-example-grid"
-                data={data}
-                {...otherProps}
-                exportData={_exportData}
-                paginationObj={_paginationObj}
-                ref={el => this.grid = el}
-                emptyText={() => <Icon style={{fontSize: "60px"}} type="uf-nodata"/>}
-            />
+            <div className='demo-grid-wrapper'>
+                <BeeGrid
+                    className="ucf-example-grid"
+                    data={data}
+                    {...otherProps}
+                    exportData={_exportData}
+                    paginationObj={_paginationObj}
+                    ref={el => this.grid = el}
+                    emptyText={() => <Icon style={{fontSize: "60px"}} type="uf-nodata"/>}
+                />
+            </div>
         );
     }
 }

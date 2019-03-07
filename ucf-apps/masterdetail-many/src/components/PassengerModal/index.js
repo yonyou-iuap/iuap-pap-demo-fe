@@ -5,6 +5,7 @@ import Select from 'bee-select';
 import moment from "moment";
 import DatePicker from "tinper-bee/lib/Datepicker";
 import {RefIuapDept} from 'components/RefViews';
+import InputNumber from "bee-input-number";
 import PopDialog from 'components/Pop';
 import FormControlPhone from 'components/FormControlPhone';
 import FormError from 'components/FormError';
@@ -24,7 +25,6 @@ class AddEditPassenger extends Component {
             rowData: {},
             btnFlag: 0,
             isVip: false
-
         }
     }
 
@@ -71,7 +71,7 @@ class AddEditPassenger extends Component {
     onSubmitEdit = () => {
         const _this = this;
         const {btnFlag}=_this.state;
-        this.props.form.validateFields(async (err, values) => {
+        this.props.form.validateFields(async (err, values) => {ls
             if (!err) {
                 let {rowData} = _this.state;
                 if (rowData && rowData.id) {
@@ -194,6 +194,8 @@ class AddEditPassenger extends Component {
                                 }],
                             })}
                         />
+                        {/*<InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}/>*/}
+
                         <FormError errorMsg={getFieldError('dept')}/>
                     </FormItem>
 

@@ -298,7 +298,7 @@ class IndexView extends Component {
 									onSearch = {_this.onSearch}
 									value = {searchValue}
 									type="search"
-									/>
+								/>
 							</div>
 							{content.length ? (
                                 <Tree

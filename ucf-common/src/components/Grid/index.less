@@ -1,61 +1,65 @@
 @import "~styles/app";
-.u-grid.ucf-example-grid {
-    background: #fff;
+@import (less) '~bee-complex-grid/build/Grid.css';
+.demo-grid-wrapper {
+    .u-grid.ucf-example-grid {
+        background: #fff;
 
-    table {
-        table-layout: fixed;
-    }
-
-    //修改table的header背景色颜色和body中隔行差色
-    .u-table {
-
-        .u-table-header {
-            background: #EEEEEE;
+        table {
+            table-layout: fixed;
         }
 
-        tr {
-            transition: none;
-            &:nth-child(2n) {
-                background: #FAFAFA;
-            }
-            &:nth-child(2n + 1) {
-                background: #ffffff;
-            }
-            &:hover, &.u-table-row-hover {
-                background: #E7F2FC;
+        //修改table的header背景色颜色和body中隔行差色
+        .u-table {
 
+            .u-table-header {
+                background: #EEEEEE;
             }
-            &.u-table-row {
-                &.selected, &.ref-multiple-table-row-selected {
-                    background: #E7F2FC;
+
+            tr {
+                transition: none;
+                &:nth-child(2n) {
+                    background: #FAFAFA;
                 }
+                &:nth-child(2n + 1) {
+                    background: #ffffff;
+                }
+                &:hover, &.u-table-row-hover {
+                    background: #E7F2FC;
+
+                }
+                &.u-table-row {
+                    &.selected, &.ref-multiple-table-row-selected {
+                        background: #E7F2FC;
+                    }
+                }
+
+            }
+            th, td {
+                padding: 10px 8px;
+            }
+            th{
+                overflow: visible;
+                background-clip:padding-box;
+                word-break: keep-all;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            tr.filterable th {
+                padding: 0 2px;
+                height: 39px;
             }
 
         }
-        th, td {
-            padding: 10px 8px;
-        }
-        th{
-            overflow: visible;
-            background-clip:padding-box;
-            word-break: keep-all;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        tr.filterable th {
-            padding: 0 2px;
-            height: 39px;
+
+        .table-menu {
+            height: 16px;
+            line-height: 1;
         }
 
-    }
-
-    .table-menu {
-        height: 16px;
-        line-height: 1;
-    }
-
-    th.column-number-right,
-    td.column-number-right {
-        text-align: right !important;
+        th.column-number-right,
+        td.column-number-right {
+            text-align: right !important;
+        }
     }
 }
+

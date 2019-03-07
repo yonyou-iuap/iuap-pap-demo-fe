@@ -6,11 +6,9 @@ import RefTreeWithInput, { RefTree } from 'ref-tree';
 
 // import RefComboBox, {ComboStore} from 'ref-combobox';
 
-// import { Icon } from 'tinper-bee'
 
-import 'ref-multiple-table/dist/index.css'; //职级样式
-import 'ref-tree/dist/index.css';
-// import 'ref-combobox/dist/index.css';
+import './index.less'
+
 
 
 export function RefIuapDept(props){
@@ -45,8 +43,8 @@ export function RefWalsinLevel(props){
             title= '职级'
             backdrop = {false}
             param = {{//url请求参数
-                    refCode:'post_level',//test_common||test_grid||test_tree||test_treeTable
-                }}
+                refCode:'post_level',//test_common||test_grid||test_tree||test_treeTable
+            }}
             refModelUrl = {{
                 tableBodyUrl:`${GROBAL_HTTP_CTX}/common-ref/blobRefTreeGrid`,//表体请求
                 refInfo:`${GROBAL_HTTP_CTX}/common-ref/refInfo`,//表头请求
