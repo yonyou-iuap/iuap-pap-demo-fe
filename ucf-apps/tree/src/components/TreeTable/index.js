@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {connect, actions} from 'mirrorx';
+import {actions} from 'mirrorx';
 
 // 导入组件
 import Grid from 'components/Grid';
@@ -13,6 +13,7 @@ import {deepClone, success, Error, Warning,getPageParam} from 'utils';
 
 // 导入样式
 import './index.less';
+
 
 class TreeTable extends Component {
 	constructor(props) {
@@ -352,7 +353,7 @@ class TreeTable extends Component {
 					multiSelect={{ type: "checkbox" }}
 					scroll={{y: tableHeight}}
                 />
-				<CommonPop />
+				<CommonPop {...this.props}/>
 				<Alert
 					show = {delModal}
 					context = "是否要删除 ?"
@@ -364,4 +365,4 @@ class TreeTable extends Component {
 	}
 }
 
-export default connect( state => state.walsinTree, null )(TreeTable);
+export default TreeTable;

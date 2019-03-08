@@ -814,12 +814,6 @@ class IndexView extends Component {
                         >
                             删除
                           </Button>
-                        <Alert
-                            show={showPop}
-                            context="是否要删除 ?"
-                            confirmFn={this.onClickDel}
-                            cancelFn={this.onClickPopCancel}
-                        />
                         {/*<Button*/}
                             {/*shape="border"*/}
                             {/*disabled={getButtonStatus('down', status)}*/}
@@ -883,6 +877,14 @@ class IndexView extends Component {
                         scroll={{ y: tableHeight }}
                     />
                 </div>
+
+                <Alert
+                    show={showPop}
+                    context="是否要删除 ?"
+                    confirmFn={this.onClickDel}
+                    cancelFn={this.onClickPopCancel}
+                />
+
                 <Loading fullScreen={true} show={showLoading} loadingType="line" />
             </div>
         )

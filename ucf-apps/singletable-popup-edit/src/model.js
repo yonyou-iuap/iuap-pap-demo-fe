@@ -90,7 +90,15 @@ export default {
             const {id} = param;
             const { result } = processData(await api.deleteList([{id}]),'删除成功');
             if (result.status === "success") {
-                actions.popupEdit.loadList();
+                const state = getState().popupEdit;
+                const { queryParam, list, totalPages } = state;
+                // 调用 getList 请求数据
+                const { pageParams: { pageIndex } } = queryParam;
+                if ( pageIndex + 1 === totalPages && list.length === 1) {
+                    queryParam.pageParams.pageIndex = pageIndex - 1;
+                }
+
+                actions.popupEdit.loadList(queryParam);
             } else {
                 actions.popupEdit.updateState({ showLoading: false});
             }

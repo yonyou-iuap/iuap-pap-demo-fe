@@ -8,7 +8,7 @@ import InputNumber from "bee-input-number";
 import PopDialog from 'components/Pop';
 
 import {success, Error} from "utils";
-import {actions, connect} from "mirrorx";
+import {actions} from "mirrorx";
 
 import './index.less';
 
@@ -35,11 +35,12 @@ class CommonPop extends Component {
             resultObj = {};
         resultObj = Object.assign({}, comModalParam, {
 			showModal : false,
-			btnFlag : 0
+			btnFlag : 0,
 		});
 
         actions.walsinTree.updateState({
-            comModalParam : resultObj
+            comModalParam : resultObj,
+            showLoading : false
         })
     }
 
@@ -89,13 +90,8 @@ class CommonPop extends Component {
 				} else {
 					await actions.walsinTree.addTableData(resultObj);
 				}
-				await actions.walsinTree.updateState({
-					showLoading : false
-				});
-				_this.onCloseEdit();
 
-
-
+                _this.onCloseEdit();
             }
 
         });
@@ -213,4 +209,4 @@ class CommonPop extends Component {
     }
 }
 
-export default connect(state => state.walsinTree, null )(FormList.createForm()(CommonPop));
+export default FormList.createForm()(CommonPop);
