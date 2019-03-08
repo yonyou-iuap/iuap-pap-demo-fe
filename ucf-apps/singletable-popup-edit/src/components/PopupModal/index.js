@@ -286,7 +286,7 @@ class PopupModal extends Component {
                         required
                         label="年份"
                     >
-                        <YearPicker disabled={btnFlag == 2}
+                        <DatePicker disabled={btnFlag == 2}
                                     {...getFieldProps('year', {
                                         initialValue: year ? moment(year) : moment(),
                                         validateTrigger: 'onBlur',
