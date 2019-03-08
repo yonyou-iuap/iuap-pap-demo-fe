@@ -11,10 +11,6 @@
         //修改table的header背景色颜色和body中隔行差色
         .u-table {
 
-            .u-table-header {
-                background: #EEEEEE;
-            }
-
             tr {
                 transition: none;
                 &:nth-child(2n) {
@@ -36,6 +32,7 @@
             }
             th, td {
                 padding: 10px 8px;
+                height: 40px;
             }
             th{
                 overflow: visible;
@@ -50,6 +47,8 @@
             }
 
         }
+
+
 
         .table-menu {
             height: 16px;

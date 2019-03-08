@@ -24,6 +24,7 @@ class IndexView extends Component {
             editModelVisible: false,
             btnFlag: 0,
             delModalVisible: false, //删除弹框
+            showHoverContent: false
         }
 
     }
@@ -105,7 +106,10 @@ class IndexView extends Component {
     onClickDel = () => {
         const {list} = this.props;
         if (list.length > 0) {
-            this.setState({delModalVisible: true});
+            this.setState({
+                delModalVisible: true,
+                showHoverContent: false
+            });
         } else {
             Info("数据为空，不能删除");
         }
@@ -277,7 +281,7 @@ class IndexView extends Component {
     render() {
         const _this = this;
         let {list, showLoading, pageIndex, totalPages, total} = _this.props;
-        let {editModelVisible, selectedIndex, btnFlag, delModalVisible,tableHeight} = _this.state;
+        let {editModelVisible, selectedIndex, btnFlag, delModalVisible,tableHeight, showHoverContent} = _this.state;
         const paginationObj = {   // 分页
             activePage: pageIndex,//当前页
             total: total,//总条数
@@ -302,42 +306,42 @@ class IndexView extends Component {
                     onCallback={this.resetTableHeight}
                 />
                 <div className='table-header'>
-				<ButtonRoleGroup funcCode="singletable-popupedit">
-                        <Button
-                            role="add"
-                            colors="primary"
-                            className="ml8"
-                            onClick={() => {
-                                _this.onClickShowModel(0);
-                            }}
-                        >新增</Button>
-                        {/*<Button*/}
-                            {/*role="update"*/}
-                            {/*shape="border"*/}
-                            {/*className="ml8"*/}
-                            {/*disabled={btnForbid}*/}
-                            {/*onClick={() => {*/}
-                                {/*_this.onClickShowModel(1);*/}
-                            {/*}}*/}
-                        {/*>修改</Button>*/}
-                        {/*<Button*/}
-                            {/*shape="border"*/}
-                            {/*className="ml8"*/}
-                            {/*disabled={btnForbid}*/}
-                            {/*onClick={() => {*/}
-                                {/*_this.onClickShowModel(2);*/}
-                            {/*}}*/}
-                        {/*>详情</Button>*/}
-                        {/*<Button*/}
-                            {/*role="delete"*/}
-                            {/*shape="border"*/}
-                            {/*className="ml8"*/}
-                            {/*disabled={btnForbid}*/}
-                            {/*onClick={_this.onClickDel}>删除</Button>*/}
-                    <Button shape="border" className="ml8" onClick={_this.export}>
-                        导出
-                    </Button>
-				</ButtonRoleGroup>
+                    <ButtonRoleGroup funcCode="singletable-popupedit">
+                            <Button
+                                role="add"
+                                colors="primary"
+                                className="ml8"
+                                onClick={() => {
+                                    _this.onClickShowModel(0);
+                                }}
+                            >新增</Button>
+                            {/*<Button*/}
+                                {/*role="update"*/}
+                                {/*shape="border"*/}
+                                {/*className="ml8"*/}
+                                {/*disabled={btnForbid}*/}
+                                {/*onClick={() => {*/}
+                                    {/*_this.onClickShowModel(1);*/}
+                                {/*}}*/}
+                            {/*>修改</Button>*/}
+                            {/*<Button*/}
+                                {/*shape="border"*/}
+                                {/*className="ml8"*/}
+                                {/*disabled={btnForbid}*/}
+                                {/*onClick={() => {*/}
+                                    {/*_this.onClickShowModel(2);*/}
+                                {/*}}*/}
+                            {/*>详情</Button>*/}
+                            {/*<Button*/}
+                                {/*role="delete"*/}
+                                {/*shape="border"*/}
+                                {/*className="ml8"*/}
+                                {/*disabled={btnForbid}*/}
+                                {/*onClick={_this.onClickDel}>删除</Button>*/}
+                        <Button shape="border" className="ml8" onClick={_this.export}>
+                            导出
+                        </Button>
+                    </ButtonRoleGroup>
 
                     <Alert show={delModalVisible} context="是否要删除 ?"
                            confirmFn={() => {
@@ -369,37 +373,45 @@ class IndexView extends Component {
                         //     }
                         // }}
                         hoverContent={() => {
-                            return (
-                                <ButtonRoleGroup funcCode="singletable-popupedit">
-                                    <Button
-                                        isAction
-                                        role="update"
-                                        className="ml8"
-                                        disabled={btnForbid}
-                                        onClick={() => {
-                                            _this.onClickShowModel(1);
-                                        }}
-                                    >修改</Button>
-                                    <Button
-                                        isAction
-                                        className="ml8"
-                                        disabled={btnForbid}
-                                        onClick={() => {
-                                            _this.onClickShowModel(2);
-                                        }}
-                                    >详情</Button>
-                                    <Button
-                                        isAction
-                                        role="delete"
-                                        className="ml8"
-                                        disabled={btnForbid}
-                                        onClick={_this.onClickDel}
-                                    >删除</Button>
-                                </ButtonRoleGroup>
-                            )
+                            if ( showHoverContent ) {
+                                return (
+                                    <ButtonRoleGroup funcCode="singletable-popupedit">
+                                        <Button
+                                            isAction
+                                            role="update"
+                                            className="ml8"
+                                            disabled={btnForbid}
+                                            onClick={() => {
+                                                this.setState({showHoverContent: false});
+                                                _this.onClickShowModel(1);
+                                            }}
+                                        >修改</Button>
+                                        <Button
+                                            isAction
+                                            className="ml8"
+                                            disabled={btnForbid}
+                                            onClick={() => {
+                                                this.setState({showHoverContent: false});
+                                                _this.onClickShowModel(2);
+                                            }}
+                                        >详情</Button>
+                                        <Button
+                                            isAction
+                                            role="delete"
+                                            className="ml8"
+                                            disabled={btnForbid}
+                                            onClick={_this.onClickDel}
+                                        >删除</Button>
+                                    </ButtonRoleGroup>
+                                )
+                            }
+                            else  {
+                                return null
+                            }
+
                         }}
                         onRowHover={(index) => {
-                            _this.setState({selectedIndex: index, editModelVisible: false});
+                            _this.setState({selectedIndex: index,  showHoverContent: true});
                         }}
                         showHeaderMenu={true}
                         sort={sortObj} //后端排序

@@ -352,7 +352,7 @@ class IndexView extends Component {
 
 						</div>
 						<div className = 'table-wrap'>
-							<TreeTable tableWidth = {tableWidth}/>
+							<TreeTable {...this.props} tableWidth = {tableWidth}/>
 						</div>
 					</div>
 					<Loading show={showLoading} loadingType="line" fullScreen />

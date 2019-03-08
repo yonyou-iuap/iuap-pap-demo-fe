@@ -58,7 +58,9 @@ export default {
                 rowEditStatus: true,
                 selectData: []
             });
-            const _param = param || getState().inlineEdit.queryParam;
+
+            const inlineEditState = getState().inlineEdit;
+            const _param = param || inlineEditState.queryParam;
             // 调用 getList 请求数据
 
             let {result} = processData(await api.getList(_param));
@@ -67,6 +69,7 @@ export default {
             let _state = null;
             if (res) {
                 const { content: list, number, totalPages, totalElements: total } = res;
+
                 const pageIndex = number + 1;
                 _state = Object.assign({}, defState, {
                     list,
@@ -104,13 +107,22 @@ export default {
          *
          * @param {Array} [param=[]]
          */
-        async removes(param) {
+        async removes(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
             let { result } = processData(await api.removes(param),'删除成功');
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
-                actions.inlineEdit.loadList();
+                const inlineEditState = getState().inlineEdit;
+                const { queryParam, list, totalPages } = inlineEditState;
+                // 调用 getList 请求数据
+
+                const { pageParams: { pageIndex } } = queryParam;
+                if ( pageIndex + 1 === totalPages && param.length === list.length) {
+                    queryParam.pageParams.pageIndex = pageIndex - 1;
+                }
+
+                actions.inlineEdit.loadList(queryParam);
                 return true;
             } else {
                 return false;
