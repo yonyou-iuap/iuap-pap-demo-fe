@@ -7,11 +7,9 @@ import React, { Component } from 'react';
 //状态管理
 import { actions } from "mirrorx";
 //Tinper-bee组件库
-import { FormControl } from "tinper-bee";
+import { FormControl, Select } from "tinper-bee";
 //表单
 import FormList from 'components/FormList';
-//下拉
-import Select from 'bee-select';
 //日期
 import DatePicker from "tinper-bee/lib/Datepicker";
 //日期本地化

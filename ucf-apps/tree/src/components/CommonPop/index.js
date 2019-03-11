@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import {
-	FormControl
+	FormControl, Select, InputNumber
 } from "tinper-bee";
 import FormList from 'components/FormList';
-import Select from 'bee-select';
-import InputNumber from "bee-input-number";
 import PopDialog from 'components/Pop';
 
 import {success, Error} from "utils";

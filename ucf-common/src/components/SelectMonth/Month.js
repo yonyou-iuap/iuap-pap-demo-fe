@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Select from "bee-select";
+import { Select } from 'tinper-bee'
 
 const { Option } = Select;
 

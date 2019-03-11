@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
-import { FormControl} from "tinper-bee";
+import { FormControl, Select, InputNumber} from "tinper-bee";
 import FormList from 'components/FormList';
-import Select from 'bee-select';
 import DatePicker from "tinper-bee/lib/Datepicker";
-import InputNumber from 'bee-input-number';
 import {RefIuapDept} from 'components/RefViews';
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';

@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import {actions} from "mirrorx";
-import { FormControl, Switch} from "tinper-bee";
-import Select from 'bee-select';
+import { FormControl, Switch, Select} from "tinper-bee";
 import moment from "moment";
 import DatePicker from "tinper-bee/lib/Datepicker";
 import {RefIuapDept} from 'components/RefViews';
-import InputNumber from "bee-input-number";
 import PopDialog from 'components/Pop';
 import FormControlPhone from 'components/FormControlPhone';
 import FormError from 'components/FormError';
@@ -194,7 +192,6 @@ class AddEditPassenger extends Component {
                                 }],
                             })}
                         />
-                        {/*<InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}/>*/}
 
                         <FormError errorMsg={getFieldError('dept')}/>
                     </FormItem>

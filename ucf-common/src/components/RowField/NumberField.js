@@ -4,6 +4,7 @@
 
 //React导入
 import React, { Component } from 'react';
+import { InputNumber } from 'tinper-bee'
 //类型校验
 import PropTypes from 'prop-types';
 //验证组件 https://www.npmjs.com/package/async-validator
@@ -11,7 +12,6 @@ import schema from 'async-validator';
 
 import FieldWrap from './FieldWrap'
 //数值组件
-import InputNumber from 'bee-input-number';
 //自定义样式
 import './style.less';
 

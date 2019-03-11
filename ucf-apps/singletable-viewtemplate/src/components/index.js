@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { actions } from "mirrorx";
 import classNames from "classnames";
 //UI组件
-import { FormControl, Label, Loading, Tooltip, Icon} from "tinper-bee";
-import Select from 'bee-select';
+import { FormControl, Label, Loading, Tooltip, Icon, Select} from "tinper-bee";
 import Form from "bee-form";
 import Grid from 'components/Grid';
 import Header from "components/Header";

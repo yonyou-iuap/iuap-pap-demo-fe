@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { actions } from 'mirrorx';
 import moment from 'moment';
-import { Row, Col, Label, FormControl } from 'tinper-bee';
-import Select from 'bee-select';
+import { Row, Col, Label, FormControl, Select } from 'tinper-bee';
 import Pagination from 'bee-pagination';
 import Form from 'bee-form';
 import Grid from 'components/Grid';

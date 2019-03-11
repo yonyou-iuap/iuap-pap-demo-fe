@@ -3,8 +3,7 @@
  * */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Label, Row, Col } from 'tinper-bee'
-import Form from 'bee-form'
+import { Label, Row, Col, Form } from 'tinper-bee'
 import './index.less'
 const FormItem = Form.FormItem;
 

@@ -6,9 +6,6 @@ import mirror, { render,Router } from "mirrorx";
 
 import Routes from './routes'
 
-import 'core-js/es6/map';
-import 'core-js/es6/set';
-
 import "./app.less";
 
 

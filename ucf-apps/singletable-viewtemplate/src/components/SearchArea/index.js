@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
 //导入组件
-import {Col, Row, FormControl, Label} from "tinper-bee";
+import {Col, Row, FormControl, Label, Select} from "tinper-bee";
 import Form from 'bee-form';
-import Select from 'bee-select';
 import DatePicker from "tinper-bee/lib/Datepicker";
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
