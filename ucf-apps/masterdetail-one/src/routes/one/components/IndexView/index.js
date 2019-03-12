@@ -64,7 +64,7 @@ export default class IndexView extends Component {
      * @param {Number} btnFlag 页面状态 0标识为新增，1标识为修改，2标识为详情
      */
     goToOrder = (orderInfo, btnFlag) => {
-        // actions.masterDetailOrder.setQueryParent(orderInfo)
+        actions.masterDetailOrder.setQueryParent(orderInfo)
         actions.routing.push(
             {
                 pathname: 'order',

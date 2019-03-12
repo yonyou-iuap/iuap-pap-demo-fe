@@ -37,10 +37,10 @@ class IndexView extends Component {
     oldData = []
 
     componentDidMount() {
+        const searchObj = queryString.parse(this.props.location.search);
+        let {btnFlag: flag, search_id: searchId, from} = searchObj;
         const { queryParent } = this.props;
-        if (!queryParent) {
-            const searchObj = queryString.parse(this.props.location.search);
-            let {btnFlag: flag, search_id: searchId, from} = searchObj;
+        if (!queryParent.id && flag > 0) {
             const btnFlag = Number(flag);
             this.setState({btnFlag, searchId});
             if (btnFlag && btnFlag > 0) {
@@ -611,7 +611,7 @@ class IndexView extends Component {
             appType, processDefinitionId, processInstanceId, showDetailLoading, showModalCover
         } = this.props;
         const { showPopAlert, showPopBackVisible, btnFlag } = this.state;
-        if (!orderRow) {
+        if (!orderRow.id && btnFlag > 0) {
             return null
         }
         const paginationObj = {   // 分页

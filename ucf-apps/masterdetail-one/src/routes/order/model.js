@@ -22,7 +22,7 @@ const initialState = {
     showDetailLoading: false,
     showModalCover: false,
     searchParam: {},
-    queryParent: null,
+    queryParent: {},
     queryDetailObj: {
         list: [],
         pageIndex: 1,
