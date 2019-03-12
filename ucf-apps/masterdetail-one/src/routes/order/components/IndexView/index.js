@@ -37,11 +37,17 @@ class IndexView extends Component {
     oldData = []
 
     componentDidMount() {
-
-        // if (btnFlag && btnFlag > 0) {
-        //     const param = { search_id: searchId, search_from: from };
-        //     actions.masterDetailOne.queryParent(param); // 获取主表
-        // }
+        const { queryParent } = this.props;
+        if (!queryParent) {
+            const searchObj = queryString.parse(this.props.location.search);
+            let {btnFlag: flag, search_id: searchId, from} = searchObj;
+            const btnFlag = Number(flag);
+            this.setState({btnFlag, searchId});
+            if (btnFlag && btnFlag > 0) {
+                const param = {search_id: searchId, search_from: from};
+                actions.masterDetailOrder.getQueryParent(param); // 获取主表
+            }
+        }
     }
 
     componentWillUnmount() {
@@ -600,27 +606,28 @@ class IndexView extends Component {
     }
 
     render() {
-        const _this = this;
         const {
             queryDetailObj, status, showLoading, form, queryParent: orderRow,
             appType, processDefinitionId, processInstanceId, showDetailLoading, showModalCover
-        } = _this.props;
-
-        const { showPopAlert, showPopBackVisible, btnFlag: flag } = _this.state;
-        const btnFlag = Number(flag);
-
+        } = this.props;
+        const { showPopAlert, showPopBackVisible, btnFlag } = this.state;
+        if (!orderRow) {
+            return null
+        }
         const paginationObj = {   // 分页
             activePage: queryDetailObj.pageIndex,//当前页
             total: queryDetailObj.total,//总条数
             items: queryDetailObj.totalPages,
-            freshData: _this.freshData,
-            onDataNumSelect: _this.onDataNumSelect,
+            freshData: this.freshData,
+            onDataNumSelect: this.onDataNumSelect,
             dataNum: 1,
             disabled: status !== "view"
         }
 
         const rowEditStatus = btnFlag === 2;
         const btnForbid = queryDetailObj.list.length === 0;
+
+
 
         return (
             <div className='purchase-order'>
@@ -629,22 +636,22 @@ class IndexView extends Component {
                     show={showPopBackVisible}
                     context="数据未保存，确定离开 ?"
                     confirmFn={() => {
-                        _this.confirmGoBack(1)
+                        this.confirmGoBack(1)
                     }}
                     cancelFn={() => {
-                        _this.confirmGoBack(2)
+                        this.confirmGoBack(2)
                     }} />
                 <Header back title={titleArr[btnFlag]}>
                     <div className='head-btn'>
-                        <Button shape="border" className="ml8" onClick={_this.onBack}>取消</Button>
+                        <Button shape="border" className="ml8" onClick={this.onBack}>取消</Button>
                         {(btnFlag !== 2) &&
-                        <Button colors="primary" className="ml8" onClick={_this.onClickSave}>保存</Button>
+                        <Button colors="primary" className="ml8" onClick={this.onClickSave}>保存</Button>
                         }
                     </div>
 
                 </Header>
                 {
-                    _this.showBpmComponent(btnFlag, appType ? appType : "1", processDefinitionId, processInstanceId, orderRow)
+                    this.showBpmComponent(btnFlag, appType ? appType : "1", processDefinitionId, processInstanceId, orderRow)
                 }
                 <Child orderRow={orderRow} btnFlag={btnFlag} form={form}/>
                 {/*<ButtonRoleGroup funcCode="singletable-popupedit"></ButtonRoleGroup>*/}
@@ -677,10 +684,10 @@ class IndexView extends Component {
                         show={showPopAlert}
                         context="新增、修改数据未保存将无法生效，确定删除这些记录吗 ?"
                         confirmFn={() => {
-                            _this.confirmDel(1)
+                            this.confirmDel(1)
                         }}
                         cancelFn={() => {
-                            _this.confirmDel(2)
+                            this.confirmDel(2)
                         }} />
                 </div>
                 <div className='grid-parent'>

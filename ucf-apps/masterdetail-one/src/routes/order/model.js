@@ -1,6 +1,7 @@
 import { actions } from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
+import * as oneApi from '../one/service'
 import * as commonApi from '../common/service'
 // 接口返回数据公共处理方法，根据具体需要
 import { processData, deepAssign, structureObj, initStateObj, Error } from "utils";
@@ -21,7 +22,7 @@ const initialState = {
     showDetailLoading: false,
     showModalCover: false,
     searchParam: {},
-    queryParent: {},
+    queryParent: null,
     queryDetailObj: {
         list: [],
         pageIndex: 1,
@@ -76,6 +77,36 @@ export default {
                 actions.masterDetailOrder.updateState({ queryParent: orderInfo });
                 const paramObj = { pageSize: 10, pageIndex: 0, search_orderId: orderInfo.id };
                 actions.masterDetailOrder.queryChild(paramObj);
+            }
+        },
+
+        async getQueryParent(param, getState) {
+            actions.masterDetailOrder.updateState({ showLoading: true });   // 正在加载数据，显示加载 Loading 图标
+            const { result } = processData(await oneApi.getList(param));  // 调用 getList 请求数据
+            actions.masterDetailOrder.updateState({ showLoading: false });
+            const { data: res, status } = result;
+
+            // 跳转消息中心
+            const { search_from } = param;
+            // if (status !== 'success' && search_from) {
+            //     window.history.go(-1);
+            // }
+
+            const { content = [] } = res || {};
+            const queryParent = content[0] ? content[0] : {};
+            actions.masterDetailOrder.updateState({ queryParent });
+            if (content.length > 0) { // 获取子表数据
+                const { search_id: search_orderId } = param;
+                // const {pageSize} = getState().masterDetailOne.queryDetailObj;
+                const paramObj = { pageSize: 10, pageIndex: 0, search_orderId };
+                actions.masterDetailOrder.queryChild(paramObj);
+            } else {
+                // 如果请求出错,数据初始化
+                const { queryDetailObj } = getState().masterDetailOrder;
+                actions.masterDetailOne.updateState({
+                    queryDetailObj: initStateObj(queryDetailObj),
+                    showModalCover: true,
+                });
             }
         },
 

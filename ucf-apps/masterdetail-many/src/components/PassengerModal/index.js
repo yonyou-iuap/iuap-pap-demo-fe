@@ -69,7 +69,7 @@ class AddEditPassenger extends Component {
     onSubmitEdit = () => {
         const _this = this;
         const {btnFlag}=_this.state;
-        this.props.form.validateFields(async (err, values) => {ls
+        this.props.form.validateFields(async (err, values) => {
             if (!err) {
                 let {rowData} = _this.state;
                 if (rowData && rowData.id) {
