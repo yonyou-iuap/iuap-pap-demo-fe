@@ -40,6 +40,7 @@ class IndexView extends Component {
         const searchObj = queryString.parse(this.props.location.search);
         let {btnFlag: flag, search_id: searchId, from} = searchObj;
         const { queryParent } = this.props;
+        //非新增状态 当 没有提前设置主数据时 根据 search_id 向后台请求主表数据
         if (!queryParent.id && flag > 0) {
             const btnFlag = Number(flag);
             this.setState({btnFlag, searchId});
