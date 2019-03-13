@@ -329,6 +329,7 @@ class IndexView extends Component {
         const { btnFlag } = this.state;
         if (btnFlag === 2) { //判断是否为详情态
             const searchObj = queryString.parse(this.props.location.search);
+            console.log(searchObj)
             let { from } = searchObj;
             switch (from) {
                 case undefined:
@@ -336,7 +337,7 @@ class IndexView extends Component {
                     actions.routing.replace({ pathname: '/' });
                     break;
                 default:
-                    actions.routing.goBack()
+                    window.history.go(-1);
             }
 
         } else {

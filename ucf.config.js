@@ -6,6 +6,7 @@ const path = require('path');
 
 module.exports = (env, argv) => {
 
+    // let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
     return {
         context: 'iuap-pap-demo-fe',
         // 启动所有模块，默认这个配置，速度慢的时候使用另外的配置
@@ -66,14 +67,17 @@ module.exports = (env, argv) => {
         },
         // 构建排除指定包
         externals: {
-            //'tinper-bee': 'TinperBee'
+            // 'tinper-bee': 'TinperBee'
         },
         // 加载器Loader
         loader: [],
         // 调试服务需要运行的插件
         devPlugins: [],
         // 构建服务需要运行的插件
-        buildPlugins: [],
-        open_source_map: false
+        buildPlugins: [
+            // new BundleAnalyzerPlugin()
+        ],
+        open_source_map: false,
+        res_extra: true
     }
 }
