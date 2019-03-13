@@ -17,7 +17,8 @@ module.exports = (env, argv) => {
             'singletable-inline-edit',
             'singletable-popup-edit',
             'singletable-query',
-            'tree'
+            'tree',
+            'ref-demo'
         ],
         // 代理的配置
         proxy: [
@@ -44,11 +45,11 @@ module.exports = (env, argv) => {
                     '/eiap-plus/',
                     '/newref/',
                     '/print_service/',
-                    '/iuap-print/'
+                    '/iuap-print/',
+                    '/pap_basedoc',
                 ],
                 url: 'http://172.20.52.123'
             }
-
         ],
         // 全局环境变量
         global_env: {
