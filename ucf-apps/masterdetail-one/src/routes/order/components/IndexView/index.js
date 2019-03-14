@@ -21,7 +21,7 @@ class IndexView extends Component {
     constructor(props) {
         super(props);
         const searchObj = queryString.parse(props.location.search);
-        let { btnFlag: flag, search_id: searchId, from } = searchObj;
+        let { btnFlag: flag, search_id: searchId, from, ...oterSearch } = searchObj;
         const btnFlag = Number(flag);
 
         this.state = {
@@ -30,6 +30,7 @@ class IndexView extends Component {
             searchId: searchId || "",
             btnFlag: btnFlag,
             selectData: [],
+            ...oterSearch
         }
     }
 
@@ -609,10 +610,9 @@ class IndexView extends Component {
 
     render() {
         const {
-            queryDetailObj, status, showLoading, form, queryParent: orderRow,
-            appType, processDefinitionId, processInstanceId, showDetailLoading, showModalCover
+            queryDetailObj, status, showLoading, form, queryParent: orderRow, showDetailLoading, showModalCover
         } = this.props;
-        const { showPopAlert, showPopBackVisible, btnFlag } = this.state;
+        const { showPopAlert, showPopBackVisible, btnFlag, appType, processDefinitionId, processInstanceId } = this.state;
         if (!orderRow.id && btnFlag > 0) {
             return null
         }
@@ -629,7 +629,7 @@ class IndexView extends Component {
         const rowEditStatus = btnFlag === 2;
         const btnForbid = queryDetailObj.list.length === 0;
 
-
+        debugger
 
         return (
             <div className='purchase-order'>
