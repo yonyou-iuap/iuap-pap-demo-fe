@@ -18,6 +18,7 @@ export function RefIuapDept(props){
             }}
             title={'部门'}
             searchable= {true}
+            strictMode={true}
             param= {
                 {"refCode":"newdept"}
             }
@@ -41,6 +42,7 @@ export function RefWalsinLevel(props){
     return (
         <RefMultipleTableWithInput
             title= '职级'
+            strictMode={true}
             backdrop = {false}
             param = {{//url请求参数
                 refCode:'post_level',//test_common||test_grid||test_tree||test_treeTable

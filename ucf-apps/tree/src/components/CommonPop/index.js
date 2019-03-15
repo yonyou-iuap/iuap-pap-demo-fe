@@ -192,11 +192,20 @@ class CommonPop extends Component {
                         <span className='error'>{getFieldError('sex')}</span>
                     </FormItem>
                     <FormItem required label={"年龄"}>
-                        <InputNumber iconStyle="one" min={0} step={1}  max={99}
+                        <InputNumber iconStyle="one" min={1} step={1}  max={99}
                                      disabled = {btnFlag == 2}
                                      {...getFieldProps('age', {
-                                         initialValue: age ? age : 0,
-                                         rules: [{pattern: /^[0-9]+$/, required: true}],
+                                         initialValue: age ? age : "",
+                                         rules: [{
+                                           type: 'number',
+                                           max: 99,
+                                           transform: (value) => {
+                                             return value * 1
+                                           },
+                                           pattern: /^[0-9]+$/,
+                                           required: true,
+                                           message: "年龄需小于100"
+                                         }],
                                      })}
                         />
                         <span className='error'>{getFieldError('age')}</span>
