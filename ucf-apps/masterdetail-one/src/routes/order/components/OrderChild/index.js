@@ -102,7 +102,7 @@ class OrderChild extends Component {
                 <FormItem label={"申请人"} layoutOpt={layoutOpt}>
                     <FormControl disabled={true}
                                  {...getFieldProps('createUserName', {
-                                     initialValue: orderRow.orderUserName ? orderRow.orderUserName : "",
+                                     initialValue: orderRow.orderUserName ? orderRow.orderUserName : decodeURIComponent(getCookie("_A_P_userName")),
                                  })}
                     />
                 </FormItem>

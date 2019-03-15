@@ -105,12 +105,6 @@ class SearchAreaForm extends Component {
                     </FormItem>
 
                     <FormItem
-                        label="员工编号"
-                    >
-                        <FormControl placeholder="精确查询" {...getFieldProps('code', { initialValue: '' })} />
-                    </FormItem>
-
-                    <FormItem
                         label="员工姓名"
                     >
                         <FormControl placeholder="模糊查询" {...getFieldProps('name', { initialValue: '' })} />

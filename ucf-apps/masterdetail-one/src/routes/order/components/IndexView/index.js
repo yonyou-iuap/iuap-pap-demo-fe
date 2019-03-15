@@ -460,6 +460,8 @@ class IndexView extends Component {
             for (const field in ele) {
                 if (data[index][field] && data[index][`_${field}Validate`] !== undefined) {
                     data[index][`_${field}Validate`] = true;
+                }else {
+                    data[index][`_${field}Validate`] = false;
                 }
             }
 
@@ -525,7 +527,6 @@ class IndexView extends Component {
             return (
                 <div>
                     {appType == 1 && <BpmTaskApprovalWrap
-                        className={123}
                         id={rowData.id}
                         onBpmFlowClick={() => {
                             this.onClickToBPM(rowData)
@@ -537,7 +538,7 @@ class IndexView extends Component {
                         onEnd={_this.onBpmEnd('end')}
                     />}
                     {appType == 2 && <BpmTaskApprovalWrap
-                        id={rowData.id}
+                        id={this.state.id}
                         processDefinitionId={processDefinitionId}
                         processInstanceId={processInstanceId}
                         onBpmFlowClick={() => {
@@ -628,8 +629,6 @@ class IndexView extends Component {
 
         const rowEditStatus = btnFlag === 2;
         const btnForbid = queryDetailObj.list.length === 0;
-
-        debugger
 
         return (
             <div className='purchase-order'>
