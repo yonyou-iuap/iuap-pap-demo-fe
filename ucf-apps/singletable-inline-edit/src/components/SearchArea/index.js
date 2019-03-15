@@ -143,7 +143,6 @@ class SearchAreaForm extends Component {
         const { form: { getFieldProps }, searchOpen, onCallback } = this.props;
         return (
             <SearchPanel
-                className='edlin-form'
                 searchOpen={searchOpen}
                 reset={this.reset}
                 onCallback={onCallback}

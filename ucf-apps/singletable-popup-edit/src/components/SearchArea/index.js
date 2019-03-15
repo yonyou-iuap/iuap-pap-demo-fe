@@ -92,7 +92,6 @@ class SearchAreaForm extends Component {
 
         return (
             <SearchPanel
-                className='search-area-form'
                 form={form}
                 reset={this.reset}
                 onCallback={onCallback}
