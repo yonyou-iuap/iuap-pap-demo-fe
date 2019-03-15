@@ -32,6 +32,12 @@ class IndexView extends Component {
             selectData: [],
             ...oterSearch
         }
+        this.validateKeys = [
+            "detailCount",
+            "detailDate",
+            "detailModel",
+            "detailName"
+        ]
     }
 
     //缓存数据
@@ -192,7 +198,7 @@ class IndexView extends Component {
             _checked: false,
             detailName: '',
             detailModel: '',
-            detailCount: 0,
+            detailCount: 1,
             detailDate: moment(),
             _detailNameValidate: false, // detailName默认验证没有通过
             _detailModelValidate: false,
@@ -363,6 +369,27 @@ class IndexView extends Component {
     }
 
     /**
+     * 处理验证后的状态
+     *
+     * @param {string} field 校验字段
+     * @param {Object} flag 是否有错误
+     * @param {Number} index 位置
+     */
+    validateChild = (data) => {
+        data.forEach(item => {
+            this.validateKeys.forEach(key => {
+                if (item[key] !== "") {
+                    item[`_${key}Validate`] = true;
+                }else {
+                    item[`_${key}Validate`] = false;
+                }
+            })
+        })
+
+        return data;
+    }
+
+    /**
      *
      *验证子表的数据是否通过，
      * @param {*} data 子表数据集
@@ -448,26 +475,7 @@ class IndexView extends Component {
     }
 
 
-    /**
-     * 处理验证后的状态
-     *
-     * @param {string} field 校验字段
-     * @param {Object} flag 是否有错误
-     * @param {Number} index 位置
-     */
-    validateChild = (data) => {
-        for (const [index, ele] of data.entries()) {
-            for (const field in ele) {
-                if (data[index][field] && data[index][`_${field}Validate`] !== undefined) {
-                    data[index][`_${field}Validate`] = true;
-                }else {
-                    data[index][`_${field}Validate`] = false;
-                }
-            }
 
-        }
-        return data;
-    }
 
 
     /**
