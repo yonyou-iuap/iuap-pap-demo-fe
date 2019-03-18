@@ -62,7 +62,7 @@ class Demo1 extends Component {
                             console.log(err, values)
                         });
                     }}>
-                    submit
+                     提交
                 </Button>
             </div>
         )

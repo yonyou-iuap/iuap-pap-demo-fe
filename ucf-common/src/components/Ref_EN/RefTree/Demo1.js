@@ -30,7 +30,7 @@ let code =
             searchable={true}
             checkStrictly= {true}
             strictMode = {true}
-            displayField='{refname}'
+            nodeDisplay='{refname}'
             valueField='refpk'
 
             {...getFieldProps('code', {
@@ -66,7 +66,7 @@ let code =
             searchable={true}
             checkStrictly= {true}
             strictMode = {true}
-            displayField='{refname}'
+            nodeDisplay='{refname}'
             valueField='refpk'
 
             {...getFieldProps('code1', {
@@ -138,15 +138,15 @@ class Demo1 extends Component {
                                 searchable={true}
                                 checkStrictly= {true}
                                 strictMode = {true}
-                                displayField='{refname}'
+                                displayField='{code}' nodeDisplay='{code}'
                                 valueField='refpk'
                                 lang={this.props.lang} emptyBut={true}
                                 emptyBut={true}
                                 {...getFieldProps('code', {
-                                    initialValue: '{"refname":"","refpk":""}',
+                                    initialValue: '{"code":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择组织_en',
-                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+                                        pattern: /[^{"code":"","refpk":""}|{"refpk":"","code":""}]/
                                     }]
                                 })}
                             />
@@ -175,15 +175,15 @@ class Demo1 extends Component {
                                 searchable={true}
                                 checkStrictly= {true}
                                 strictMode = {true}
-                                displayField='{refname}'
+                                displayField='{code}' nodeDisplay='{code}'
                                 valueField='refpk'
                                 lang={this.props.lang} 
                                 emptyBut={true}
                                 {...getFieldProps('code1', {
-                                    initialValue: '{"refname":"","refpk":""}',
+                                    initialValue: '{"code":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择组织_en',
-                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+                                        pattern: /[^{"code":"","refpk":""}|{"refpk":"","code":""}]/
                                     }]
                                 })}
                             />
