@@ -132,7 +132,7 @@ class Demo1 extends Component {
                             <RefMultipleTableWithInput
                                 title={'用户'}
                                 param={{
-                                    "refCode": "neworganizition_grid"
+                                    "refCode": "new_bd_user"
                                 }}
                                 refModelUrl={{
                                     tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
