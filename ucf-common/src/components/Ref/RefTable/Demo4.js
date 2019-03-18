@@ -50,9 +50,9 @@ class Demo4 extends Component {
                         <div className="demo-label">
                             <span >角色</span>
                             <RefMultipleTableWithInput
-                                title={'用户'}
+                                title={'角色'}
                                 param={{
-                                    "refCode": "neworganizition_grid"
+                                    "refCode": "newrole_grid"
                                 }}
                                 refModelUrl={{
                                     tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
@@ -88,10 +88,10 @@ class Demo4 extends Component {
                         <div className="demo-label">
                             <span >岗位</span>
                             <RefMultipleTableWithInput
-                                title={'人员'}
+                                title={'岗位'}
 
                                 param={{
-                                    "refCode": "new_bd_staff"
+                                    "refCode": "newposition_grid"
                                 }}
                                 refModelUrl={{
                                     tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求

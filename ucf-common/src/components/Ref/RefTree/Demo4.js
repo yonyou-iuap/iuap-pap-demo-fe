@@ -100,7 +100,7 @@ class Demo4 extends Component {
     singleSave = (result) =>{
         //组织单选的保存，级联参照
         this.setState({
-            singleClientParam:result.length === 0?{}:{'pk_org':result[0].refpk},
+            singleClientParam:result.length === 0?{}:{'organization_id':result[0].refpk},
         })
         
     }
@@ -176,7 +176,7 @@ class Demo4 extends Component {
                                 title={'组织部门'}
                             
                                 param={{
-                                    "refCode": "neworganizition_tree",
+                                    "refCode": "newdeptUnderOrg_trees",
                                     "clientParam":Object.keys(singleClientParam).length===0?'':singleClientParam
                                 }}
                                 refModelUrl={{
