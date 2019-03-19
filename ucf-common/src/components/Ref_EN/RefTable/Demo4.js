@@ -12,7 +12,89 @@ import "ref-multiple-table/dist/index.css"
 // import Form from 'bee-form';
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
-let code;
+let code = 
+`
+    <div className="demo-label">
+    <span >角色_en</span>
+    <RefMultipleTableWithInput
+        title={'角色_en'}
+        param={{
+            "refCode": "newrole_grid"
+        }}
+        refModelUrl={{
+            tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
+            refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+            }}
+        matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
+        filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+        multiple={false}
+        searchable={true}
+        checkStrictly= {true}
+        strictMode = {true}
+        displayField='{refname}'
+        valueField='refpk'
+        lang={this.props.lang}
+        {...getFieldProps('code', {
+            initialValue: '{"refname":"","refpk":""}',
+            rules: [{
+                message: '提示：请选择_en',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+            }]
+        })}
+        emptyBut={true}                                                                                            
+
+    />
+    <span style={{
+        color: 'red'
+    }}>
+        {
+            getFieldError('code')
+        }
+    </span>
+</div>
+<div className="demo-label">
+    <span >岗位_en</span>
+    <RefMultipleTableWithInput
+        title={'岗位_en'}
+
+        param={{
+            "refCode": "newposition_grid"
+        }}
+        refModelUrl={{
+            tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
+            refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+            }}
+        matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
+        filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+        multiple={false}
+        searchable={true}
+        checkStrictly= {true}
+        strictMode = {true}
+        displayField='{refname}'
+        valueField='refpk'
+        lang={this.props.lang}
+        emptyBut={true}                              
+
+        {...getFieldProps('code1', {
+            initialValue: '{"refname":"","refpk":""}',
+            rules: [{
+                message: '提示：请选择_en',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+            }]
+        })}
+    />
+
+    <span style={{
+        color: 'red'
+    }}>
+        {
+            getFieldError('code1')
+        }
+    </span>
+</div>
+                    
+
+`
 class Demo4 extends Component {
     constructor() {
         super();

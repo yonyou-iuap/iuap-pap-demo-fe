@@ -13,8 +13,52 @@ import {Button,Form,Panel} from 'tinper-bee';
 import Card from '../Card'
 let code = 
 `
-<div>
+<div className="demo-label">
+    <span >穿梭框：：</span>
+    <RefTreeTransferWithInput
+        title = '组织部门人员穿梭'
+        textOption= {{
+            leftTitle:'组织部门树',
+                rightTitle:'人员穿梭框'
+        }}
+        textOption= {
+            {
+                leftTitle:'',
+                rightTitle:'',
+                leftTransferText:'',
+                rightTransferText:'',
+            }
+        }
+        param = {{//url请求参数
+            refCode:'neworgdeptstaff_treegrid',
+        }}
+        refModelUrl = {{
+            treeUrl: '/pap_basedoc/common-ref/blobRefTree',
+            tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',
+            tableBodyUrlSearch: ''
+        }}
+        displayField='{refname}-{refcode}'
+        valueField='refcode'
+        lang={this.props.lang}
+        {...getFieldProps('code', {
+            initialValue: '{"refname":"","refpk":""}',
+            rules: [{
+                message: '提示：请选择',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+            }]
+        })}
+        size='lg'
+        emptyBut={false}
+    />
+    <span style={{
+        color: 'red'
+    }}>
+        {
+            getFieldError('code')
+        }
+    </span>
 </div>
+                    
 `
 class Demo2 extends Component {
     constructor() {

@@ -30,7 +30,7 @@ let code =
             searchable={true}
             checkStrictly= {true}
             strictMode = {true}
-            nodeDisplay='{refname}'
+            displayField='{code}' nodeDisplay='{code}'
             valueField='refpk'
 
             {...getFieldProps('code', {
@@ -66,7 +66,7 @@ let code =
             searchable={true}
             checkStrictly= {true}
             strictMode = {true}
-            nodeDisplay='{refname}'
+            displayField='{code}' nodeDisplay='{code}'
             valueField='refpk'
 
             {...getFieldProps('code1', {
@@ -143,10 +143,10 @@ class Demo1 extends Component {
                                 lang={this.props.lang} emptyBut={true}
                                 emptyBut={true}
                                 {...getFieldProps('code', {
-                                    initialValue: '{"code":"","refpk":""}',
+                                    initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择组织_en',
-                                        pattern: /[^{"code":"","refpk":""}|{"refpk":"","code":""}]/
+                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
                             />
@@ -180,10 +180,10 @@ class Demo1 extends Component {
                                 lang={this.props.lang} 
                                 emptyBut={true}
                                 {...getFieldProps('code1', {
-                                    initialValue: '{"code":"","refpk":""}',
+                                    initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择组织_en',
-                                        pattern: /[^{"code":"","refpk":""}|{"refpk":"","code":""}]/
+                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
                             />

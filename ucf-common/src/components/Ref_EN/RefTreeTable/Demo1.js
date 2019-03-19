@@ -13,8 +13,7 @@ import {Button,Form,Panel} from 'tinper-bee';
 import Card from '../Card'
 let code = 
 `
-<div>
-    <div className="demo-label">
+<div className="demo-label">
         <span >组织人员：_en</span>
         <RefTreeTableWithInput
             title = '组织部门人员_en'
@@ -35,6 +34,7 @@ let code =
             filterUrl= '/pap_basedoc/common-ref/filterRefJSON'
             displayField='{refname}'
             valueField='refpk'
+            lang={this.props.lang}
             {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
@@ -51,8 +51,6 @@ let code =
             }
         </span>
     </div>
-
-</div>
 `
 class Demo1 extends Component {
     constructor() {

@@ -30,7 +30,7 @@ let code =
             searchable={true}
             checkStrictly= {true}
             strictMode = {true}
-            displayField='{refname}'
+            displayField='{code}' nodeDisplay='{code}'
             valueField='refpk'
 
             {...getFieldProps('code', {
@@ -66,7 +66,7 @@ let code =
             searchable={true}
             checkStrictly= {true}
             strictMode = {true}
-            displayField='{refname}'
+            displayField='{code}' nodeDisplay='{code}'
             valueField='refpk'
 
             {...getFieldProps('code1', {
@@ -138,7 +138,7 @@ class Demo1 extends Component {
                                 searchable={true}
                                 checkStrictly= {true}
                                 strictMode = {true}
-                                displayField='{refname}'
+                                displayField='{code}' nodeDisplay='{code}'
                                 valueField='refpk'
                                 lang={this.props.lang} emptyBut={true}
                                 emptyBut={true}
@@ -175,7 +175,7 @@ class Demo1 extends Component {
                                 searchable={true}
                                 checkStrictly= {true}
                                 strictMode = {true}
-                                displayField='{refname}'
+                                displayField='{code}' nodeDisplay='{code}'
                                 valueField='refpk'
                                 lang={this.props.lang} 
                                 emptyBut={true}
