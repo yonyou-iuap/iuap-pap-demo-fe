@@ -1,7 +1,7 @@
 /**
  *
- * @title ref-tree 参照-树形
- * @description 具有单选多选的树形参照
+ * @title ref-tree 参照_tw-树形_tw
+ * @description 具有单选多选的树形参照_tw
  *
  */
 
@@ -14,9 +14,9 @@ let code =
 `
 <div>
     <div className="demo-label">
-        <span >组织：</span>
+        <span >组织：_tw</span>
         <RefTreeWithInput
-            title={'组织'}
+            title={'组织_tw'}
         
             param={{
                 "refCode": "neworganizition_tree"
@@ -36,7 +36,7 @@ let code =
             {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
-                    message: '提示：请选择',
+                    message: '提示：请选择_tw',
                     pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
             })}
@@ -50,9 +50,9 @@ let code =
         </span>
     </div>
     <div className="demo-label">
-        <span >部门：</span>
+        <span >部门：_tw</span>
         <RefTreeWithInput
-            title={'组织部门'}
+            title={'组织部门_tw'}
         
             param={{
                 "refCode": "neworganizition_tree",
@@ -73,7 +73,7 @@ let code =
             {...getFieldProps('code1', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
-                    message: '提示：请选择',
+                    message: '提示：请选择_tw',
                     pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
             })}
@@ -111,7 +111,7 @@ class Demo4 extends Component {
         let {  singleClientParam } = this.state;
         return (
                     <Card
-                        title="参照级联"
+                        title="参照级联_tw"
                         codeText={code}
                         footer={
                             <Button colors="primary"
@@ -123,18 +123,18 @@ class Demo4 extends Component {
                                 onClick={() => {
                                     this.props.form.validateFields((err, values) => {
                                         if(err) return;
-                                        alert(`您选择的是${JSON.stringify(values)}`)
+                                        alert(`您选择的是_tw${JSON.stringify(values)}`)
                                     });
                                 }}
                             >
-                                提交
+                                提交_tw
                             </Button>
                         }
                     >
                         <div className="demo-label">
-                            <span >组织：</span>
+                            <span >组织：_tw</span>
                             <RefTreeWithInput
-                                title={'组织'}
+                                title={'组织_tw'}
                             
                                 param={{
                                     "refCode": "neworganizition_tree"
@@ -157,7 +157,7 @@ class Demo4 extends Component {
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: '提示：请选择',
+                                        message: '提示：请选择_tw',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
@@ -171,9 +171,9 @@ class Demo4 extends Component {
                             </span>
                         </div>
                         <div className="demo-label">
-                            <span >部门：</span>
+                            <span >部门：_tw</span>
                             <RefTreeWithInput
-                                title={'组织部门'}
+                                title={'组织部门_tw'}
                             
                                 param={{
                                     "refCode": "newdeptUnderOrg_trees",
@@ -195,7 +195,7 @@ class Demo4 extends Component {
                                 {...getFieldProps('code1', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: '提示：请选择',
+                                        message: '提示：请选择_tw',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}

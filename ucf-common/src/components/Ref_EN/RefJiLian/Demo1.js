@@ -1,7 +1,7 @@
 /**
  *
- * @title ref-tree 参照-树形
- * @description 具有单选多选的树形参照
+ * @title ref-tree 参照_en-树形_en
+ * @description 具有单选多选的树形参照_en
  *
  */
 
@@ -15,9 +15,9 @@ import Card from '../Card'
 let code =
 `
 <div className="demo-label">
-  <span >单选（组织）：</span>
+  <span >单选（组织）：_en</span>
   <RefTreeWithInput
-    title={'组织'}
+    title={'组织_en'}
     param={{
       "refCode": "neworganizition_tree"
     }}
@@ -36,7 +36,7 @@ let code =
     {...getFieldProps('code', {
       initialValue: '{"refname":"","refpk":""}',
       rules: [{
-        message: '提示：请选择组织',
+        message: '提示：请选择组织_en',
         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
       }]
     })}
@@ -51,9 +51,9 @@ let code =
   </span>
 </div>
 <div className="demo-label">
-  <span >级联（部门）：</span>
+  <span >级联（部门）：_en</span>
   <RefTreeWithInput
-    title={'部门'}
+    title={'部门_en'}
     refModelUrl={{
       treeUrl: '/pap_basedoc/common-ref/blobRefTree',
     }}
@@ -74,7 +74,7 @@ let code =
     {...getFieldProps('code1', {
       initialValue: '{"refname":"","refpk":""}',
       rules: [{
-        message: '提示：请选择部门',
+        message: '提示：请选择部门_en',
         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
       }]
     })}
@@ -116,7 +116,7 @@ class Demo1 extends Component {
     singleClientParam = Object.assign({},clientParam,singleClientParam)
     return (
       <Card
-        title="单选级联参照：组织-部门"
+        title="单选级联参照：组织_en-部门_en"
         codeText={code}
         footer={
           <Button colors="primary"
@@ -128,18 +128,18 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(`您选择的是${JSON.stringify(values)}`)
+                alert(`您选择的是_en${JSON.stringify(values)}`)
               });
             }}
           >
-            提交
+            提交_en
           </Button>
         }
       >
         <div className="demo-label">
-          <span >单选（组织）：</span>
+          <span >单选（组织）：_en</span>
           <RefTreeWithInput
-            title={'组织'}
+            title={'组织_en'}
             param={{
               "refCode": "neworganizition_tree"
             }}
@@ -158,7 +158,7 @@ class Demo1 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: '提示：请选择组织_en',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -173,9 +173,9 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >级联（部门）：</span>
+          <span >级联（部门）：_en</span>
           <RefTreeWithInput
-            title={'部门'}
+            title={'部门_en'}
             refModelUrl={{
               treeUrl: '/pap_basedoc/common-ref/blobRefTree',
             }}
@@ -196,7 +196,7 @@ class Demo1 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择部门',
+                message: '提示：请选择部门_en',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

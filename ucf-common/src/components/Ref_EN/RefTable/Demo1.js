@@ -1,7 +1,7 @@
 /**
  *
- * @title ref-tree 参照-树形
- * @description 具有单选多选的树形参照
+ * @title ref-tree 参照_en-树形_en
+ * @description 具有单选多选的树形参照_en
  *
  */
 
@@ -14,88 +14,86 @@ import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
 let code = 
 `
+<div>
     <div className="demo-label">
-    <span >角色</span>
-    <RefMultipleTableWithInput
-        title={'角色'}
-        param={{
-            "refCode": "newrole_grid"
-        }}
-        refModelUrl={{
-            tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
-            refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+        <span >单选（用户）：_en</span>
+        <RefMultipleTableWithInput
+            title={'用户_en'}
+
+            param={{
+                "refCode": "neworganizition_grid"
             }}
-        matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-        filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-        multiple={false}
-        searchable={true}
-        checkStrictly= {true}
-        strictMode = {true}
-        displayField='{refname}'
-        valueField='refpk'
-        lang={this.props.lang}
-        {...getFieldProps('code', {
-            initialValue: '{"refname":"","refpk":""}',
-            rules: [{
-                message: '提示：请选择',
-                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-            }]
-        })}
-        emptyBut={true}                                                                                            
-
-    />
-    <span style={{
-        color: 'red'
-    }}>
-        {
-            getFieldError('code')
-        }
-    </span>
-</div>
-<div className="demo-label">
-    <span >岗位</span>
-    <RefMultipleTableWithInput
-        title={'岗位'}
-
-        param={{
-            "refCode": "newposition_grid"
-        }}
-        refModelUrl={{
-            tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
-            refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+            refModelUrl={{
+                tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
+                refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
             }}
-        matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-        filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-        multiple={false}
-        searchable={true}
-        checkStrictly= {true}
-        strictMode = {true}
-        displayField='{refname}'
-        valueField='refpk'
-        lang={this.props.lang}
-        emptyBut={true}                              
+            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
+            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+            multiple={false}
+            searchable={true}
+            checkStrictly= {true}
+            strictMode = {true}
+            displayField='{refname}'
+            valueField='refpk'
 
-        {...getFieldProps('code1', {
-            initialValue: '{"refname":"","refpk":""}',
-            rules: [{
-                message: '提示：请选择',
-                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-            }]
-        })}
-    />
+            {...getFieldProps('code', {
+                initialValue: '{"refname":"","refpk":""}',
+                rules: [{
+                    message: '提示：请选择_en',
+                    pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+                }]
+            })}
+        />
+        <span style={{
+            color: 'red'
+        }}>
+            {
+                getFieldError('code')
+            }
+        </span>
+    </div>
+    <div className="demo-label">
+        <span >多选（人员）：_en</span>
+        <RefMultipleTableWithInput
+            title={'人员_en'}
 
-    <span style={{
-        color: 'red'
-    }}>
-        {
-            getFieldError('code1')
-        }
-    </span>
+            param={{
+                "refCode": "new_bd_staff"
+            }}
+            refModelUrl={{
+                tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
+                refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+            }}
+            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
+            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+            multiple={true}
+            searchable={true}
+            checkStrictly= {true}
+            strictMode = {true}
+            displayField='{refname}'
+            valueField='refpk'
+
+            {...getFieldProps('code1', {
+                initialValue: '{"refname":"","refpk":""}',
+                rules: [{
+                    message: '提示：请选择_en',
+                    pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+                }]
+            })}
+        />
+
+        <span style={{
+            color: 'red'
+        }}>
+            {
+                getFieldError('code1')
+            }
+        </span>
+    </div>
+
 </div>
-                    
-
 `
-class Demo4 extends Component {
+class Demo1 extends Component {
     constructor() {
         super();
         this.state = {
@@ -108,7 +106,7 @@ class Demo4 extends Component {
         const { getFieldProps, getFieldError } = this.props.form;
         return (
                     <Card
-                        title="业务示例"
+                        title="基础示例_en"
                         codeText={code}
 
                         footer={
@@ -121,20 +119,20 @@ class Demo4 extends Component {
                                 onClick={() => {
                                     this.props.form.validateFields((err, values) => {
                                         if(err) return;
-                                        alert(`您选择的是${JSON.stringify(values)}`)
+                                        alert(`您选择的是_en${JSON.stringify(values)}`)
                                     });
                                 }}
                             >
-                                提交
+                                提交_en
                             </Button>
                         }
                     >
                         <div className="demo-label">
-                            <span >角色</span>
+                            <span >单选（用户）：_en</span>
                             <RefMultipleTableWithInput
-                                title={'角色'}
+                                title={'用户_en'}
                                 param={{
-                                    "refCode": "newrole_grid"
+                                    "refCode": "new_bd_user"
                                 }}
                                 refModelUrl={{
                                     tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
@@ -152,7 +150,7 @@ class Demo4 extends Component {
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: '提示：请选择',
+                                        message: '提示：请选择_en',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
@@ -168,12 +166,12 @@ class Demo4 extends Component {
                             </span>
                         </div>
                         <div className="demo-label">
-                            <span >岗位</span>
+                            <span >多选（人员）：_en</span>
                             <RefMultipleTableWithInput
-                                title={'岗位'}
+                                title={'人员_en'}
 
                                 param={{
-                                    "refCode": "newposition_grid"
+                                    "refCode": "new_bd_staff"
                                 }}
                                 refModelUrl={{
                                     tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
@@ -181,7 +179,7 @@ class Demo4 extends Component {
                                  }}
                                 matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
                                 filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-                                multiple={false}
+                                multiple={true}
                                 searchable={true}
                                 checkStrictly= {true}
                                 strictMode = {true}
@@ -193,7 +191,7 @@ class Demo4 extends Component {
                                 {...getFieldProps('code1', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: '提示：请选择',
+                                        message: '提示：请选择_en',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
@@ -212,6 +210,6 @@ class Demo4 extends Component {
     }
 };
 
-export default Form.createForm()(Demo4);
+export default Form.createForm()(Demo1);
 
 

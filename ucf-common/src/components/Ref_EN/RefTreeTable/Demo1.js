@@ -1,7 +1,7 @@
 /**
  *
- * @title ref-tree 参照-树形
- * @description 具有单选多选的树形参照
+ * @title ref-tree 参照_en-树形_en
+ * @description 具有单选多选的树形参照_en
  *
  */
 
@@ -14,12 +14,12 @@ import Card from '../Card'
 let code = 
 `
 <div className="demo-label">
-        <span >组织人员：</span>
+        <span >组织人员：_en</span>
         <RefTreeTableWithInput
-            title = '组织部门人员'
+            title = '组织部门人员_en'
             textOption= {{
-                menuTitle: '组织',
-                tableTitle: '人员',
+                menuTitle: '组织_en',
+                tableTitle: '人员_en',
             }}
             param = {{//url请求参数
                 refCode:'neworgdeptstaff_treegrid',
@@ -38,7 +38,7 @@ let code =
             {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
-                    message: '提示：请选择',
+                    message: '提示：请选择_en',
                     pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
             })}
@@ -65,7 +65,7 @@ class Demo1 extends Component {
         const { getFieldProps, getFieldError } = this.props.form;
         return (
                     <Card
-                        title="基础示例"
+                        title="基础示例_en"
                         codeText={code}
 
                         footer={
@@ -78,21 +78,21 @@ class Demo1 extends Component {
                                 onClick={() => {
                                     this.props.form.validateFields((err, values) => {
                                         if(err) return;
-                                        alert(`您选择的是${JSON.stringify(values)}`)
+                                        alert(`您选择的是_en${JSON.stringify(values)}`)
                                     });
                                 }}
                             >
-                                提交
+                                提交_en
                             </Button>
                         }
                     >
                         <div className="demo-label">
-                            <span >组织人员：</span>
+                            <span >组织人员：_en</span>
                             <RefTreeTableWithInput
-                                title = '组织部门人员'
+                                title = '组织部门人员_en'
                                 textOption= {{
-                                    menuTitle: '组织',
-	                                tableTitle: '人员',
+                                    menuTitle: '组织_en',
+	                                tableTitle: '人员_en',
                                 }}
                                 param = {{//url请求参数
                                     refCode:'neworgdeptstaff_treegrid',
@@ -111,7 +111,7 @@ class Demo1 extends Component {
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: '提示：请选择',
+                                        message: '提示：请选择_en',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}

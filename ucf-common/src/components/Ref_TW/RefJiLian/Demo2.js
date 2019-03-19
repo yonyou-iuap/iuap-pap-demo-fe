@@ -1,23 +1,23 @@
 /**
  *
- * @title ref-tree 参照-树形
- * @description 具有单选多选的树形参照
+ * @title ref-tree 参照_tw-树形_tw
+ * @description 具有单选多选的树形参照_tw
  *
  */
 
 import React, { Component } from 'react';
 import RefTreeWithInput from 'ref-tree';
-import "ref-tree/dist/index.css";
-// import { Button} from 'tinper-bee';
+import "ref-tree/dist/index.css"
+// import { Button, Panel } from 'tinper-bee';
 // import Form from 'bee-form';
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
 let code =
-`
+  `
 <div className="demo-label">
-  <span >单选（组织）：</span>
+  <span >多选（组织）：_tw</span>
   <RefTreeWithInput
-    title={'组织'}
+    title={'组织_tw'}
     param={{
       "refCode": "neworganizition_tree"
     }}
@@ -26,7 +26,7 @@ let code =
     }}
     matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
     filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-    multiple={false}
+    multiple={true}
     searchable={true}
     checkStrictly={true}
     strictMode={true}
@@ -36,11 +36,11 @@ let code =
     {...getFieldProps('code', {
       initialValue: '{"refname":"","refpk":""}',
       rules: [{
-        message: '提示：请选择组织',
+        message: '提示：请选择组织_tw',
         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
       }]
     })}
-    onSave={this.singleSaveOrgParam}
+    onSave={this.multiSave}
   />
   <span style={{
     color: 'red'
@@ -51,9 +51,9 @@ let code =
   </span>
 </div>
 <div className="demo-label">
-  <span >级联（部门）：</span>
+  <span >级联（部门）：_tw</span>
   <RefTreeWithInput
-    title={'部门'}
+    title={'部门_tw'}
     refModelUrl={{
       treeUrl: '/pap_basedoc/common-ref/blobRefTree',
     }}
@@ -66,15 +66,14 @@ let code =
     displayField='{refname}'
     valueField='refpk'
     param={{
-        "refCode": "newdeptUnderOrg_trees",
-        "clientParam":Object.keys(singleClientParam).length===0?'':singleClientParam
-        
+      "refCode": "newdeptUnderOrg_treem",
+      "clientParam": Object.keys(multiClientParam).length === 0 ? '' : multiClientParam
     }}
     lang={this.props.lang}
     {...getFieldProps('code1', {
       initialValue: '{"refname":"","refpk":""}',
       rules: [{
-        message: '提示：请选择部门',
+        message: '提示：请选择部门_tw',
         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
       }]
     })}
@@ -89,34 +88,36 @@ let code =
     }
   </span>
 </div>
-      
+
 `
 class Demo1 extends Component {
   constructor() {
     super();
     this.state = {
       value: '',
-      singleClientParam:{},
+      multiClientParam: {},
     }
 
   }
-  
-  singleSaveOrgParam = (result) =>{
-    //组织单选的保存，级联参照
-    this.setState({
-        singleClientParam:result.length === 0?{}:{'organization_id':result[0].refpk},
+
+  multiSave = (result) => {
+    let arr = [];
+    result.forEach(item => {
+      item && arr.push(item.refpk);
     })
-    
+    this.setState({
+      multiClientParam: arr.length === 0 ? {} : { 'organization_id': arr.toString() }
+    })
+
   }
   render() {
-
     const { getFieldProps, getFieldError } = this.props.form;
-    let {singleClientParam} = this.state;
-    const clientParam = {"isUseDataPower":"true"};
-    singleClientParam = Object.assign({},clientParam,singleClientParam)
+    let { multiClientParam } = this.state;
+    const clientParam = { "isUseDataPower": "true" };
+    multiClientParam = Object.assign({}, clientParam, multiClientParam)
     return (
       <Card
-        title="单选级联参照：组织-部门"
+        title="多选级联参照：组织_tw-部门_tw"
         codeText={code}
         footer={
           <Button colors="primary"
@@ -128,18 +129,18 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(`您选择的是${JSON.stringify(values)}`)
+                alert(`您选择的是_tw${JSON.stringify(values)}`)
               });
             }}
           >
-            提交
+            提交_tw
           </Button>
         }
       >
         <div className="demo-label">
-          <span >单选（组织）：</span>
+          <span >多选（组织）：_tw</span>
           <RefTreeWithInput
-            title={'组织'}
+            title={'组织_tw'}
             param={{
               "refCode": "neworganizition_tree"
             }}
@@ -148,7 +149,7 @@ class Demo1 extends Component {
             }}
             matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
             filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-            multiple={false}
+            multiple={true}
             searchable={true}
             checkStrictly={true}
             strictMode={true}
@@ -158,11 +159,11 @@ class Demo1 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: '提示：请选择组织_tw',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
-            onSave={this.singleSaveOrgParam}
+            onSave={this.multiSave}
           />
           <span style={{
             color: 'red'
@@ -173,9 +174,9 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >级联（部门）：</span>
+          <span >级联（部门）：_tw</span>
           <RefTreeWithInput
-            title={'部门'}
+            title={'部门_tw'}
             refModelUrl={{
               treeUrl: '/pap_basedoc/common-ref/blobRefTree',
             }}
@@ -188,15 +189,14 @@ class Demo1 extends Component {
             displayField='{refname}'
             valueField='refpk'
             param={{
-                "refCode": "newdeptUnderOrg_trees",
-                "clientParam":Object.keys(singleClientParam).length===0?'':singleClientParam
-                
+              "refCode": "newdeptUnderOrg_treem",
+              "clientParam": Object.keys(multiClientParam).length === 0 ? '' : multiClientParam
             }}
             lang={this.props.lang}
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择部门',
+                message: '提示：请选择部门_tw',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

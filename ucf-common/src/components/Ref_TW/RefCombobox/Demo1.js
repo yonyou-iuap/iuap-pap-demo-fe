@@ -1,7 +1,7 @@
 /**
  *
- * @title combobox参照组件
- * @description 应用组件描述
+ * @title combobox参照组件_tw
+ * @description 应用组件描述_tw
  *
  */
 
@@ -27,7 +27,7 @@ let code = `
           {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                  message: '提示：请选择',
+                  message: '提示：请选择_tw',
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
           })}
@@ -57,7 +57,7 @@ let code = `
                   console.log(err, values)
               });
           }}>
-          提交
+          提交_tw
   </Button>
 </div>           
 `
@@ -67,7 +67,7 @@ class Demo1 extends Component {
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title="基础示例_tw"
         codeText={code}
       >
         <div className="demoPadding">
@@ -83,7 +83,7 @@ class Demo1 extends Component {
             {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                message: '提示：请选择',
+                message: '提示：请选择_tw',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -113,7 +113,7 @@ class Demo1 extends Component {
                 console.log(err, values)
               });
             }}>
-            提交
+            提交_tw
                 </Button>
         </div>
 

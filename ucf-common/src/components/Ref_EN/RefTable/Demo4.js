@@ -1,7 +1,7 @@
 /**
  *
- * @title ref-tree 参照-树形
- * @description 具有单选多选的树形参照
+ * @title ref-tree 参照_en-树形_en
+ * @description 具有单选多选的树形参照_en
  *
  */
 
@@ -15,9 +15,9 @@ import Card from '../Card'
 let code = 
 `
     <div className="demo-label">
-    <span >角色</span>
+    <span >角色_en</span>
     <RefMultipleTableWithInput
-        title={'角色'}
+        title={'角色_en'}
         param={{
             "refCode": "newrole_grid"
         }}
@@ -37,7 +37,7 @@ let code =
         {...getFieldProps('code', {
             initialValue: '{"refname":"","refpk":""}',
             rules: [{
-                message: '提示：请选择',
+                message: '提示：请选择_en',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
             }]
         })}
@@ -53,9 +53,9 @@ let code =
     </span>
 </div>
 <div className="demo-label">
-    <span >岗位</span>
+    <span >岗位_en</span>
     <RefMultipleTableWithInput
-        title={'岗位'}
+        title={'岗位_en'}
 
         param={{
             "refCode": "newposition_grid"
@@ -78,7 +78,7 @@ let code =
         {...getFieldProps('code1', {
             initialValue: '{"refname":"","refpk":""}',
             rules: [{
-                message: '提示：请选择',
+                message: '提示：请选择_en',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
             }]
         })}
@@ -108,7 +108,7 @@ class Demo4 extends Component {
         const { getFieldProps, getFieldError } = this.props.form;
         return (
                     <Card
-                        title="业务示例"
+                        title="业务示例_en"
                         codeText={code}
 
                         footer={
@@ -121,18 +121,18 @@ class Demo4 extends Component {
                                 onClick={() => {
                                     this.props.form.validateFields((err, values) => {
                                         if(err) return;
-                                        alert(`您选择的是${JSON.stringify(values)}`)
+                                        alert(`您选择的是_en${JSON.stringify(values)}`)
                                     });
                                 }}
                             >
-                                提交
+                                提交_en
                             </Button>
                         }
                     >
                         <div className="demo-label">
-                            <span >角色</span>
+                            <span >角色_en</span>
                             <RefMultipleTableWithInput
-                                title={'角色'}
+                                title={'角色_en'}
                                 param={{
                                     "refCode": "newrole_grid"
                                 }}
@@ -152,7 +152,7 @@ class Demo4 extends Component {
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: '提示：请选择',
+                                        message: '提示：请选择_en',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
@@ -168,9 +168,9 @@ class Demo4 extends Component {
                             </span>
                         </div>
                         <div className="demo-label">
-                            <span >岗位</span>
+                            <span >岗位_en</span>
                             <RefMultipleTableWithInput
-                                title={'岗位'}
+                                title={'岗位_en'}
 
                                 param={{
                                     "refCode": "newposition_grid"
@@ -193,7 +193,7 @@ class Demo4 extends Component {
                                 {...getFieldProps('code1', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: '提示：请选择',
+                                        message: '提示：请选择_en',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
