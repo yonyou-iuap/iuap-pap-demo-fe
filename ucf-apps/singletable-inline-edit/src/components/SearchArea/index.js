@@ -32,7 +32,6 @@ const { Option } = Select;
 const format = "YYYY";
 const { YearPicker } = DatePicker;
 
-
 class SearchAreaForm extends Component {
 
     constructor(props) {
