@@ -6,8 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import RefTreeWithInput from 'ref-tree';
-import "ref-tree/dist/index.css"
+import { RefTreeWithInput }  from 'pap-refer/dist/index.js';
+import "pap-refer/dist/index.css"
 import {Button,Form,Panel} from 'tinper-bee';
 import Card from '../Card'
 let code = 
