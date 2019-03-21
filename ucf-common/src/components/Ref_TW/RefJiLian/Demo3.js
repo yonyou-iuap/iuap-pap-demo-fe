@@ -6,8 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import { RefTreeWithInput }  from 'pap-refer/dist/index.js';
-import "pap-refer/dist/index.css";
+import RefTreeWithInput   from 'pap-refer/lib/ref-tree.js'; import "pap-refer/lib/ref-tree.css";
 // import { Button} from 'tinper-bee';
 // import Form from 'bee-form';
 import {Button,Form} from 'tinper-bee';

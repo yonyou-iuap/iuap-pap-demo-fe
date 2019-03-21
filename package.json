@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "ucf-scripts start --homepage=index.html",
-    "build": "ucf-scripts build"
+    "build": "ucf-scripts build",
+    "dic": "node lanbuild.js 1",
+    "dic2": "node lanbuild.js 2"
   },
   "repository": {
     "type": "git",
