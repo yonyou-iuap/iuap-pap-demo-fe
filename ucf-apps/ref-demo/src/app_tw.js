@@ -40,7 +40,7 @@ import {
   } from 'components/Ref_TW/RefJiLian';
 
   
-  import {RefComboboxDemo1} from 'components/Ref_TW/RefCombobox'
+  import {RefComboboxDemo1,RefComboboxDemo2} from 'components/Ref_TW/RefCombobox'
   import {getCookie} from './util';
   let lang = getCookie('u_locale') || getCookie('i18next') || 'zh_CN';
   
@@ -145,6 +145,9 @@ import {
           <div className="demo-row">
             <div className="demo-col">
               <RefComboboxDemo1 lang={lang}/>
+            </div>
+            <div className="demo-col">
+              <RefComboboxDemo2 lang={lang}/>
             </div>
           </div>
         </div>
