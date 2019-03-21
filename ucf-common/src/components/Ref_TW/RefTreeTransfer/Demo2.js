@@ -38,7 +38,7 @@ let code =
             tableBodyUrlSearch: ''
         }}
         displayField='{refname}-{refcode}'
-        valueField='refcode'
+        valueField='refpk'
         lang={this.props.lang}
         {...getFieldProps('code', {
             initialValue: '{"refname":"","refpk":""}',
@@ -118,7 +118,7 @@ class Demo2 extends Component {
                                     tableBodyUrlSearch: ''
                                 }}
                                 displayField='{refname}-{refcode}'
-                                valueField='refcode'
+                                valueField='refpk'
                                 lang={this.props.lang}
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',
