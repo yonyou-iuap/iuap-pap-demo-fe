@@ -6,11 +6,10 @@
  */
 
 import React, { Component } from 'react';
-import RefTreeWithInput from 'ref-tree';
-import "ref-tree/dist/index.css";
+import RefTreeWithInput   from 'pap-refer/lib/ref-tree.js'; import "pap-refer/lib/ref-tree.css";
 // import { Button} from 'tinper-bee';
 // import Form from 'bee-form';
-import {Button,Form} from 'tinper-bee';
+import {Button,Form,Message} from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
@@ -119,7 +118,8 @@ class Demo3 extends Component {
   }
   canGetData = () =>{
       if(Object.keys(this.state.singleClientParam).length===0){
-          alert('请先选择部门_en')
+          // alert('请先选择部门_en')
+          Message.create({content: '请先选择部门_en', color: 'danger', duration:0.5});
           return false;
       }
       return true;

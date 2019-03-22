@@ -7,8 +7,8 @@
 
 import React, { Component } from 'react';
 
-import RefTreeTableWithInput from 'ref-tree-table';
-import "ref-tree-table/dist/index.css"
+import {RefTreeTableWithInput} from 'pap-refer/dist/index';
+import "pap-refer/dist/index.css"
 import {Button,Form,Panel} from 'tinper-bee';
 import Card from '../Card'
 let code = 

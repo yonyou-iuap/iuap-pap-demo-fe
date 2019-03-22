@@ -1,7 +1,7 @@
 /**
  *
- * @title combobox参照组件
- * @description 应用组件描述
+ * @title combobox参照组件_tw
+ * @description 应用组件描述_tw
  *
  */
 
@@ -27,7 +27,7 @@ let code = `
           {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                  message: '提示：请选择',
+                  message: '提示：请选择_tw',
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
           })}
@@ -57,17 +57,17 @@ let code = `
                   console.log(err, values)
               });
           }}>
-          提交
+          提交_tw
   </Button>
 </div>           
 `
-class Demo1 extends Component {
+class Demo2 extends Component {
   render() {
 
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title="特殊样式示例_tw"
         codeText={code}
       >
         <div className="demoPadding">
@@ -77,16 +77,17 @@ class Demo1 extends Component {
             onClickItem={(record) => {
               console.log(record)
             }}
-
             matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
             filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+            className="ref-walsin-modal"
             {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                message: '提示：请选择',
+                message: '提示：请选择_tw',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
+
           >
             <ComboStore
               ajax={{
@@ -101,6 +102,7 @@ class Demo1 extends Component {
                 return <div > <Icon type="uf-personin-o" style={{ color: 'red' }} /> {record.refname}-{record.refcode}-{record.type}</div>
               }}
               lang={this.props.lang}
+              topPagination={true}
             />
           </RefComboBox>
           <span style={{ color: 'red' }}>
@@ -113,7 +115,7 @@ class Demo1 extends Component {
                 console.log(err, values)
               });
             }}>
-            提交
+            提交_tw
                 </Button>
         </div>
 
@@ -123,4 +125,4 @@ class Demo1 extends Component {
 }
 
 
-export default Form.createForm()(Demo1);
+export default Form.createForm()(Demo2);

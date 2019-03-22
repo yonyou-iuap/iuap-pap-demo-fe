@@ -7,8 +7,8 @@
 
 import React, { Component } from 'react';
 
-import RefTreeTransferWithInput from 'ref-tree-transfer';
-import "ref-tree-transfer/dist/index.css"
+import { RefTreeTransferWithInput }  from 'pap-refer/dist/index.js';
+import "pap-refer/dist/index.css"
 import {Button,Form,Panel} from 'tinper-bee';
 import Card from '../Card'
 let code = 
@@ -30,7 +30,7 @@ let code =
                 tableBodyUrlSearch: ''
             }}
             displayField='{refname}-{refcode}'
-            valueField='refcode'
+            valueField='refpk'
             lang={this.props.lang}
             {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
@@ -102,7 +102,7 @@ class Demo1 extends Component {
                                     tableBodyUrlSearch: ''
                                 }}
                                 displayField='{refname}-{refcode}'
-                                valueField='refcode'
+                                valueField='refpk'
                                 lang={this.props.lang}
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',

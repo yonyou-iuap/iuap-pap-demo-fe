@@ -6,11 +6,10 @@
  */
 
 import React, { Component } from 'react';
-import RefTreeWithInput from 'ref-tree';
-import "ref-tree/dist/index.css";
+import RefTreeWithInput   from 'pap-refer/lib/ref-tree.js'; import "pap-refer/lib/ref-tree.css";
 // import { Button} from 'tinper-bee';
 // import Form from 'bee-form';
-import {Button,Form} from 'tinper-bee';
+import {Button,Form,Message} from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
@@ -100,6 +99,7 @@ class Demo3 extends Component {
       value: '',
       sum:1,
       singleClientParam:{},
+      messageShow:false,
       jiLianValue:{
         refname: "",
         refpk: "",
@@ -119,7 +119,8 @@ class Demo3 extends Component {
   }
   canGetData = () =>{
       if(Object.keys(this.state.singleClientParam).length===0){
-          alert('请先选择部门')
+          // alert('请先选择部门')
+          Message.create({content: '请先选择部门', color: 'danger', duration:0.5});
           return false;
       }
       return true;

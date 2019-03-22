@@ -61,13 +61,13 @@ let code = `
   </Button>
 </div>           
 `
-class Demo1 extends Component {
+class Demo2 extends Component {
   render() {
 
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title="特殊样式示例"
         codeText={code}
       >
         <div className="demoPadding">
@@ -77,9 +77,9 @@ class Demo1 extends Component {
             onClickItem={(record) => {
               console.log(record)
             }}
-
             matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
             filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+            className="ref-walsin-modal"
             {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
@@ -87,6 +87,7 @@ class Demo1 extends Component {
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
+
           >
             <ComboStore
               ajax={{
@@ -101,6 +102,7 @@ class Demo1 extends Component {
                 return <div > <Icon type="uf-personin-o" style={{ color: 'red' }} /> {record.refname}-{record.refcode}-{record.type}</div>
               }}
               lang={this.props.lang}
+              topPagination={true}
             />
           </RefComboBox>
           <span style={{ color: 'red' }}>
@@ -123,4 +125,4 @@ class Demo1 extends Component {
 }
 
 
-export default Form.createForm()(Demo1);
+export default Form.createForm()(Demo2);

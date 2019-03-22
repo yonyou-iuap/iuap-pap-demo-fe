@@ -6,8 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import RefMultipleTableWithInput from 'ref-multiple-table';
-import "ref-multiple-table/dist/index.css"
+import { RefMultipleTableWithInput }  from 'pap-refer/dist/index.js';
+import "pap-refer/dist/index.css"
 // import { Button, Panel } from 'tinper-bee';
 // import Form from 'bee-form';
 import {Button,Form} from 'tinper-bee';
