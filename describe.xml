@@ -2,4 +2,5 @@
 <project>
 	<name>iuap-lightportal-fe</name>
 	<code>iuap-lightportal-fe</code>
+	<packageType>zip</packageType>
 </project>
