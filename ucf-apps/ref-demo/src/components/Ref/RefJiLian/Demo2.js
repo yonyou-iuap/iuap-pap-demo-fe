@@ -6,10 +6,10 @@
  */
 
 import React, { Component } from 'react';
-import { RefTreeWithInput }  from 'pap-refer/dist/index.js';
-import "pap-refer/dist/index.css"
-// import { Button, Panel } from 'tinper-bee';
-// import Form from 'bee-form';
+import PapReferOrg from 'pap-refer/lib/pap-ref-org';
+import 'pap-refer/lib/pap-ref-org.css';
+import PapReferDept from 'pap-refer/lib/pap-ref-dept';
+import 'pap-refer/lib/pap-ref-dept.css';
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
 let code =
@@ -129,7 +129,7 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(`您选择的是${JSON.stringify(values)}`)
+                alert("您选择的是"+JSON.stringify(values))
               });
             }}
           >
@@ -139,16 +139,7 @@ class Demo1 extends Component {
       >
         <div className="demo-label">
           <span >多选（组织）：</span>
-          <RefTreeWithInput
-            title={'组织'}
-            param={{
-              "refCode": "neworganizition_tree"
-            }}
-            refModelUrl={{
-              treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-            }}
-            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+          <PapReferOrg
             multiple={true}
             searchable={true}
             checkStrictly={true}
@@ -175,13 +166,7 @@ class Demo1 extends Component {
         </div>
         <div className="demo-label">
           <span >级联（部门）：</span>
-          <RefTreeWithInput
-            title={'部门'}
-            refModelUrl={{
-              treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-            }}
-            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+          <PapReferDept
             multiple={true}
             searchable={true}
             checkStrictly={true}
