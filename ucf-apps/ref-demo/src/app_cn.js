@@ -16,36 +16,37 @@ import {
     RefTreeDemo4,
     RefTreeDemo5,
     RefTreeDemo6,
-  } from 'components/Ref/RefTree';
+  } from './components/Ref/RefTree';
   
   import {
     RefTableDemo1,
     RefTableDemo2,
     RefTableDemo3,
     RefTableDemo4,
-  } from 'components/Ref/RefTable';
+  } from './components/Ref/RefTable';
   
   import {
     RefTreeTransferDemo1,
     RefTreeTransferDemo2
-  } from 'components/Ref/RefTreeTransfer';
+  } from './components/Ref/RefTreeTransfer';
   import {
     RefTreeTableDemo1,
-  } from 'components/Ref/RefTreeTable';
+  } from './components/Ref/RefTreeTable';
   
   import {
     RefJiLianDemo1,
     RefJiLianDemo2,
     RefJiLianDemo3,
-  } from 'components/Ref/RefJiLian';
+  } from './components/Ref/RefJiLian';
 
   
-  import {RefComboboxDemo1,RefComboboxDemo2} from 'components/Ref/RefCombobox'
+  import {RefComboboxDemo1,RefComboboxDemo2} from './components/Ref/RefCombobox'
   import {getCookie} from './util';
   let lang = getCookie('u_locale') || getCookie('i18next') || 'zh_CN';
   
   // createRefTree(option)
   const entityType = "mainEntity";
+ 
   class App extends Component {
     constructor() {
       super();

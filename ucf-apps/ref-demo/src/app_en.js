@@ -16,31 +16,31 @@ import {
     // RefTreeDemo4,
     RefTreeDemo5,
     RefTreeDemo6,
-  } from 'components/Ref_EN/RefTree';
+  } from './components/Ref_EN/RefTree';
   
   import {
     RefTableDemo1,
     RefTableDemo2,
     RefTableDemo3,
     RefTableDemo4,
-  } from 'components/Ref_EN/RefTable';
+  } from './components/Ref_EN/RefTable';
   
   import {
     RefTreeTransferDemo1,
     RefTreeTransferDemo2
-  } from 'components/Ref_EN/RefTreeTransfer';
+  } from './components/Ref_EN/RefTreeTransfer';
   import {
     RefTreeTableDemo1,
-  } from 'components/Ref_EN/RefTreeTable';
+  } from './components/Ref_EN/RefTreeTable';
   
   import {
     RefJiLianDemo1,
     RefJiLianDemo2,
     RefJiLianDemo3,
-  } from 'components/Ref_EN/RefJiLian';
+  } from './components/Ref_EN/RefJiLian';
 
   
-  import {RefComboboxDemo1,RefComboboxDemo2} from 'components/Ref_EN/RefCombobox'
+  import {RefComboboxDemo1,RefComboboxDemo2} from './components/Ref_EN/RefCombobox'
   import {getCookie} from './util';
   let lang = getCookie('u_locale') || getCookie('i18next') || 'zh_CN';
   
