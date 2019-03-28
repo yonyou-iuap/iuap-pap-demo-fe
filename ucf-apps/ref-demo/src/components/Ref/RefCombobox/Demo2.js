@@ -112,7 +112,11 @@ class Demo2 extends Component {
             colors="primary"
             onClick={() => {
               this.props.form.validateFields((err, values) => {
-                console.log(err, values)
+                if(err){
+                  alert(""+JSON.stringify(err));
+                  return false;
+                }
+                alert(""+JSON.stringify(values))
               });
             }}>
             提交

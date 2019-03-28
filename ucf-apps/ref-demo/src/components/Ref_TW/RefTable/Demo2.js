@@ -6,135 +6,149 @@
  */
 
 import React, { Component } from 'react';
-import { RefMultipleTableWithInput }  from 'pap-refer/dist/index.js';
-import "pap-refer/dist/index.css"
-// import { Button, Panel } from 'tinper-bee';
-// import Form from 'bee-form';
-import {Button,Form} from 'tinper-bee';
+import { Button, Form } from 'tinper-bee';
+import PapRefStaff from 'pap-refer/lib/pap-ref-staff';
+import 'pap-refer/lib/pap-ref-staff.css';
 import Card from '../Card'
-let code = 
+let code =
 `
-<div>
-    <div className="demo-label">
-        <span >多选（人员）：_tw</span>
-        <RefMultipleTableWithInput
-            title={'人员_tw'}
+class Demo2 extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    }
 
-            param={{
-                "refCode": "new_bd_staff"
+  }
+  render() {
+
+    const { getFieldProps, getFieldError } = this.props.form;
+    return (
+      <Card
+        title="多字段查询_tw"
+        codeText={code}
+
+        footer={
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
             }}
-            refModelUrl={{
-                tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
-                refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+            onClick={() => {
+              this.props.form.validateFields((err, values) => {
+                if (err) return;
+                alert("您选择的是_tw"+JSON.stringify(values))
+              });
             }}
-            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+          >
+            提交_tw
+          </Button>
+        }
+      >
+        <div className="demo-label">
+          <span >多选（人员）：_tw</span>
+          <PapRefStaff
             multiple={true}
             searchable={true}
-            checkStrictly= {true}
-            strictMode = {true}
-            
+            checkStrictly={true}
+            strictMode={true}
+            lang={this.props.lang}
+            emptyBut={true}
             miniSearch={false}
             displayField='{refname}'
             valueField='refpk'
 
             {...getFieldProps('code1', {
-                initialValue: '{"refname":"","refpk":""}',
-                rules: [{
-                    message: '提示：请选择_tw',
-                    pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                }]
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
             })}
-        />
+          />
 
-        <span style={{
+          <span style={{
             color: 'red'
-        }}>
+          }}>
             {
-                getFieldError('code1')
+              getFieldError('code1')
             }
-        </span>
-    </div>
-</div>
+          </span>
+        </div>
+      </Card>
+    )
+  }
+};
+
 `
 class Demo2 extends Component {
-    constructor() {
-        super();
-        this.state = {
-            value:''
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    }
+
+  }
+  render() {
+
+    const { getFieldProps, getFieldError } = this.props.form;
+    return (
+      <Card
+        title="多字段查询_tw"
+        codeText={code}
+
+        footer={
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
+            }}
+            onClick={() => {
+              this.props.form.validateFields((err, values) => {
+                if (err) return;
+                alert("您选择的是_tw"+JSON.stringify(values))
+              });
+            }}
+          >
+            提交_tw
+          </Button>
         }
+      >
+        <div className="demo-label">
+          <span >多选（人员）：_tw</span>
+          <PapRefStaff
+            multiple={true}
+            searchable={true}
+            checkStrictly={true}
+            strictMode={true}
+            lang={this.props.lang}
+            emptyBut={true}
+            miniSearch={false}
+            displayField='{refname}'
+            valueField='refpk'
 
-    }
-    render() {
-        
-        const { getFieldProps, getFieldError } = this.props.form;
-        return (
-                    <Card
-                        title="多字段查询_tw"
-                        codeText={code}
+            {...getFieldProps('code1', {
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
+            })}
+          />
 
-                        footer={
-                            <Button colors="primary"
-                                style={{
-                                    margin: 'auto 5px',
-                                    height: '30px',
-                                    padding: '0px'
-                                }}
-                                onClick={() => {
-                                    this.props.form.validateFields((err, values) => {
-                                        if(err) return;
-                                        alert(`您选择的是_tw${JSON.stringify(values)}`)
-                                    });
-                                }}
-                            >
-                                提交_tw
-                            </Button>
-                        }
-                    >
-                        <div className="demo-label">
-                            <span >多选（人员）：_tw</span>
-                            <RefMultipleTableWithInput
-                                title={'人员_tw'}
-
-                                param={{
-                                    "refCode": "new_bd_staff"
-                                }}
-                                refModelUrl={{
-                                    tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
-                                    refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
-                                 }}
-                                matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-                                filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-                                multiple={true}
-                                searchable={true}
-                                checkStrictly= {true}
-                                strictMode = {true}
-                                lang={this.props.lang}  
-                                emptyBut={true}                              
-                                miniSearch={false}
-                                displayField='{refname}'
-                                valueField='refpk'
-
-                                {...getFieldProps('code1', {
-                                    initialValue: '{"refname":"","refpk":""}',
-                                    rules: [{
-                                        message: '提示：请选择_tw',
-                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                                    }]
-                                })}
-                            />
-
-                            <span style={{
-                                color: 'red'
-                            }}>
-                                {
-                                    getFieldError('code1')
-                                }
-                            </span>
-                        </div>
-                    </Card>
-        )
-    }
+          <span style={{
+            color: 'red'
+          }}>
+            {
+              getFieldError('code1')
+            }
+          </span>
+        </div>
+      </Card>
+    )
+  }
 };
 
 export default Form.createForm()(Demo2);

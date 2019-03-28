@@ -6,10 +6,10 @@
  */
 
 import React, { Component } from 'react';
-import { RefTreeWithInput }  from 'pap-refer/dist/index.js';
-import "pap-refer/dist/index.css"
-// import { Button, Panel } from 'tinper-bee';
-// import Form from 'bee-form';
+import PapReferOrg from 'pap-refer/lib/pap-ref-org';
+import 'pap-refer/lib/pap-ref-org.css';
+import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg';
+import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
 let code =
@@ -52,7 +52,7 @@ let code =
 </div>
 <div className="demo-label">
   <span >级联（部门）：_tw</span>
-  <RefTreeWithInput
+  <PapReferDeptUnderOrg
     title={'部门_tw'}
     refModelUrl={{
       treeUrl: '/pap_basedoc/common-ref/blobRefTree',
@@ -129,7 +129,7 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(`您选择的是_tw${JSON.stringify(values)}`)
+                alert("您选择的是_tw"+JSON.stringify(values))
               });
             }}
           >
@@ -139,16 +139,7 @@ class Demo1 extends Component {
       >
         <div className="demo-label">
           <span >多选（组织）：_tw</span>
-          <RefTreeWithInput
-            title={'组织_tw'}
-            param={{
-              "refCode": "neworganizition_tree"
-            }}
-            refModelUrl={{
-              treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-            }}
-            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+          <PapReferOrg
             multiple={true}
             searchable={true}
             checkStrictly={true}
@@ -175,13 +166,7 @@ class Demo1 extends Component {
         </div>
         <div className="demo-label">
           <span >级联（部门）：_tw</span>
-          <RefTreeWithInput
-            title={'部门_tw'}
-            refModelUrl={{
-              treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-            }}
-            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+          <PapReferDeptUnderOrg
             multiple={true}
             searchable={true}
             checkStrictly={true}

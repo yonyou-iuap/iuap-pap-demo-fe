@@ -6,198 +6,184 @@
  */
 
 import React, { Component } from 'react';
-import RefTreeWithInput   from 'pap-refer/lib/ref-tree.js'; import "pap-refer/lib/ref-tree.css";
-import {Button,Form} from 'tinper-bee';
+// import RefTreeWithInput   from 'pap-refer/lib/ref-tree.js'; 
+// import "pap-refer/lib/ref-tree.css";
+import PapReferOrg from 'pap-refer/lib/pap-ref-org';
+import 'pap-refer/lib/pap-ref-org.css';
+import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
-let code = 
-`
-<div>
-    <div className="demo-label">
-        <span >单选（组织）：_tw</span>
-        <RefTreeWithInput
-            title={'组织_tw'}
+let code =
+  `
+class Demo1 extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    }
 
-            param={{
-                "refCode": "neworganizition_tree"
+  }
+  render() {
+
+    const { getFieldProps, getFieldError } = this.props.form;
+    return (
+      <Card
+        title="基础示例_tw"
+        codeText={code}
+        footer={
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
             }}
-            refModelUrl={{
-                treeUrl: '/pap_basedoc/common-ref/blobRefTree',
+            onClick={() => {
+              this.props.form.validateFields((err, values) => {
+                if (err) return;
+                alert("您选择的是_tw"+JSON.stringify(values))
+              });
             }}
-            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+          >
+            提交_tw
+          </Button>
+        }
+      >
+        <div className="demo-label">
+          <span >单选（组织）：_tw</span>
+          <PapReferOrg
             multiple={false}
             searchable={true}
-            checkStrictly= {true}
-            strictMode = {true}
-            displayField='{refname}' nodeDisplay='{refname}'
+            checkStrictly={true}
+            strictMode={true}
+            displayField='{refname}'
+            nodeDisplay='{refname}'
             valueField='refpk'
-
+            lang={this.props.lang}
+            emptyBut={true}
             {...getFieldProps('code', {
-                initialValue: '{"refname":"","refpk":""}',
-                rules: [{
-                    message: '提示：请选择组织_tw',
-                    pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                }]
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择组织_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
             })}
-        />
-        <span style={{
-            color: 'red'
-        }}>
-            {
-                getFieldError('code')
-            }
-        </span>
-    </div>
-    <div className="demo-label">
-        <span >多选（组织）：_tw</span>
-        <RefTreeWithInput
-            title={'组织_tw'}
-
-            param={{
-                "refCode": "neworganizition_tree"
-            }}
-            refModelUrl={{
-                treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-            }}
-            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+          />
+        </div>
+        <div className="demo-label">
+          <span >多选（组织）：_tw</span>
+          <PapReferOrg
             multiple={true}
             searchable={true}
-            checkStrictly= {true}
-            strictMode = {true}
-            displayField='{refname}' nodeDisplay='{refname}'
+            checkStrictly={true}
+            strictMode={true}
+            displayField='{refname}'
+            nodeDisplay='{refname}'
             valueField='refpk'
-
-            {...getFieldProps('code1', {
-                initialValue: '{"refname":"","refpk":""}',
-                rules: [{
-                    message: '提示：请选择组织_tw',
-                    pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                }]
+            lang={this.props.lang} emptyBut={true}
+            {...getFieldProps('code2', {
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择组织_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
             })}
-        />
-
-        <span style={{
-            color: 'red'
-        }}>
-            {
-                getFieldError('code1')
-            }
-        </span>
-    </div>
-</div>
+          />
+        </div>
+      </Card>
+    )
+  }
+};
 `
 class Demo1 extends Component {
-    constructor() {
-        super();
-        this.state = {
-            value:''
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    }
+
+  }
+  render() {
+
+    const { getFieldProps, getFieldError } = this.props.form;
+    return (
+      <Card
+        title="基础示例_tw"
+        codeText={code}
+        footer={
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
+            }}
+            onClick={() => {
+              this.props.form.validateFields((err, values) => {
+                if (err) return;
+                alert("您选择的是_tw"+JSON.stringify(values))
+              });
+            }}
+          >
+            提交_tw
+          </Button>
         }
-
-    }
-    render() {
-        
-        const { getFieldProps, getFieldError } = this.props.form;
-        return (
-                    <Card
-                        title="基础示例_tw"
-                        codeText={code}
-                        footer={
-                            <Button colors="primary"
-                                style={{
-                                    margin: 'auto 5px',
-                                    height: '30px',
-                                    padding: '0px'
-                                }}
-                                onClick={() => {
-                                    this.props.form.validateFields((err, values) => {
-                                        if(err) return;
-                                        alert(`您选择的是_tw${JSON.stringify(values)}`)
-                                    });
-                                }}
-                            >
-                                提交_tw
-                            </Button>
-                        }
-                    >
-                        <div className="demo-label">
-                            <span >单选（组织）：_tw</span>
-                            <RefTreeWithInput
-                                title={'组织_tw'}
-                            
-                                param={{
-                                    "refCode": "neworganizition_tree"
-                                }}
-                                refModelUrl={{
-                                    treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-                                }}
-                                matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-                                filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-                                multiple={false}
-                                searchable={true}
-                                checkStrictly= {true}
-                                strictMode = {true}
-                                displayField='{refname}' nodeDisplay='{refname}'
-                                valueField='refpk'
-                                lang={this.props.lang} emptyBut={true}
-                                emptyBut={true}
-                                {...getFieldProps('code', {
-                                    initialValue: '{"refname":"","refpk":""}',
-                                    rules: [{
-                                        message: '提示：请选择组织_tw',
-                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                                    }]
-                                })}
-                            />
-                            <span style={{
-                                color: 'red'
-                            }}>
-                                {
-                                    getFieldError('code')
-                                }
-                            </span>
-                        </div>
-                        <div className="demo-label">
-                            <span >多选（组织）：_tw</span>
-                            <RefTreeWithInput
-                                title={'组织_tw'}
-                            
-                                param={{
-                                    "refCode": "neworganizition_tree"
-                                }}
-                                refModelUrl={{
-                                    treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-                                }}
-                                matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-                                filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-                                multiple={true}
-                                searchable={true}
-                                checkStrictly= {true}
-                                strictMode = {true}
-                                displayField='{refname}' nodeDisplay='{refname}'
-                                valueField='refpk'
-                                lang={this.props.lang} 
-                                emptyBut={true}
-                                {...getFieldProps('code1', {
-                                    initialValue: '{"refname":"","refpk":""}',
-                                    rules: [{
-                                        message: '提示：请选择组织_tw',
-                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                                    }]
-                                })}
-                            />
-
-                            <span style={{
-                                color: 'red'
-                            }}>
-                                {
-                                    getFieldError('code1')
-                                }
-                            </span>
-                        </div>
-                    </Card>
-        )
-    }
+      >
+        <div className="demo-label">
+          <span >单选（组织）：_tw</span>
+          <PapReferOrg
+            multiple={false}
+            searchable={true}
+            checkStrictly={true}
+            strictMode={true}
+            displayField='{refname}'
+            nodeDisplay='{refname}'
+            valueField='refpk'
+            lang={this.props.lang}
+            emptyBut={true}
+            {...getFieldProps('code', {
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择组织_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
+            })}
+          />
+          <span style={{
+            color: 'red'
+          }}>
+            {
+              getFieldError('code')
+            }
+          </span>
+        </div>
+        <div className="demo-label">
+          <span >多选（组织）：_tw</span>
+          <PapReferOrg
+            multiple={true}
+            searchable={true}
+            checkStrictly={true}
+            strictMode={true}
+            displayField='{refname}'
+            nodeDisplay='{refname}'
+            valueField='refpk'
+            lang={this.props.lang} emptyBut={true}
+            {...getFieldProps('code2', {
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择组织_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
+            })}
+          />
+          <span style={{
+            color: 'red'
+          }}>
+            {
+              getFieldError('code2')
+            }
+          </span>
+        </div>
+      </Card>
+    )
+  }
 };
 
 export default Form.createForm()(Demo1);
