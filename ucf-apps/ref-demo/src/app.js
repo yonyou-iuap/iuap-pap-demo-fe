@@ -41,6 +41,7 @@ let {
 
   
   let {RefComboboxDemo1,RefComboboxDemo2} =  require(`./components/${dir}/RefCombobox`)
+  let {RefMdmDemo1}  = require(`./components/${dir}/RefMdm`)
   class App extends Component {
     constructor() {
       super();
@@ -143,6 +144,12 @@ let {
             </div>
             <div className="demo-col">
               <RefComboboxDemo2 lang={lang}/>
+            </div>
+          </div>
+          <h2>自定义参照</h2>
+          <div className="demo-row">
+            <div className="demo-col">
+              <RefMdmDemo1 lang={lang}/>
             </div>
           </div>
         </div>
