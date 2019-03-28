@@ -8,8 +8,8 @@
 import React, { Component } from 'react';
 import PapReferOrg from 'pap-refer/lib/pap-ref-org';
 import 'pap-refer/lib/pap-ref-org.css';
-import PapReferDept from 'pap-refer/lib/pap-ref-dept';
-import 'pap-refer/lib/pap-ref-dept.css';
+import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg';
+import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
 // import { Button} from 'tinper-bee';
 // import Form from 'bee-form';
 import {Button,Form} from 'tinper-bee';
@@ -91,7 +91,7 @@ class Demo1 extends Component {
         </div>
         <div className="demo-label">
           <span >级联（部门）：</span>
-          <PapReferDept
+          <PapReferDeptUnderOrg
             multiple={true}
             searchable={true}
             checkStrictly={true}
@@ -201,7 +201,7 @@ class Demo1 extends Component {
         </div>
         <div className="demo-label">
           <span >级联（部门）：</span>
-          <PapReferDept
+          <PapReferDeptUnderOrg
             multiple={true}
             searchable={true}
             checkStrictly={true}
