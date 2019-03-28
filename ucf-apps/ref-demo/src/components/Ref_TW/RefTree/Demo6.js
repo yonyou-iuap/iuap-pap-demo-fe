@@ -67,7 +67,7 @@ class Demo6 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(`您选择的是_tw${values}`)
+                alert("您选择的是_tw"+JSON.stringify(values))
               });
             }}
           >
@@ -109,7 +109,21 @@ class Demo6 extends Component {
             refModelUrl={{
               treeUrl: '/pap_basedoc/common-ref/blobRefTree',
             }}
+            {...getFieldProps('code1', {
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
+            })}
           />
+           <span style={{
+            color: 'red'
+          }}>
+            {
+              getFieldError('code1')
+            }
+          </span>
         </div>
       </Card>
     )
