@@ -13,46 +13,64 @@ import 'pap-refer/lib/ref-combobox.css';
 // import Form from "bee-form";
 import { Button, Icon, Form } from 'tinper-bee';
 import Card from '../Card'
-let code = `
-<div className="demoPadding">
-      <RefComboBox
-          displayField={'{refname}-{refcode}'}
-          valueField={'refcode'}
-          onClickItem={(record) => {
-              console.log(record)
-          }}
+let code = 
+`
+import React, { Component } from 'react';
+import RefComboBox,{ ComboStore } from 'pap-refer/lib/ref-combobox';
+import 'pap-refer/lib/ref-combobox.css';
+// import Button from 'bee-button';
+// import Icon from 'bee-icon';
+// import Form from "bee-form";
+import { Button, Icon, Form } from 'tinper-bee';
+import Card from '../Card'
+class Demo1 extends Component {
+  render() {
 
-          matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
-          filterUrl='/pap_basedoc/common-ref/filterRefJSON'
-          {...getFieldProps('combobox', {
+    const { getFieldError, getFieldProps } = this.props.form;
+    return (
+      <Card
+        title="基础示例_en"
+        codeText={code}
+      >
+        <div className="demoPadding">
+          <RefComboBox
+            displayField={'{refname}-{refcode}'}
+            valueField={'refcode'}
+            onClickItem={(record) => {
+              console.log(record)
+            }}
+
+            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
+            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
+            {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                  message: '提示：请选择_en',
-                  pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+                message: '提示：请选择_en',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
-          })}
-      >
-          <ComboStore
+            })}
+          >
+            <ComboStore
               ajax={{
-                  url: '/pap_basedoc/common-ref/blobRefTreeGrid',
-                  params: {
-                      refCode: 'neworganizition_grid'
-                  },
+                url: '/pap_basedoc/common-ref/blobRefTreeGrid',
+                params: {
+                  refCode: 'neworganizition_grid'
+                },
 
               }}
               strictMode={true}
               displayField={(record) => {
-                  return <div > <Icon type="uf-personin-o" style={{ color: 'red' }} /> {record.refname}-{record.refcode}-{record.type}</div>
+                return <div > <Icon type="uf-personin-o" style={{ color: 'red' }} /> {record.refname}-{record.refcode}-{record.type}</div>
               }}
               lang={this.props.lang}
-          />
-      </RefComboBox>
-      <span style={{ color: 'red' }}>
-          {getFieldError('combobox')}
-      </span>
-      <Button
-          colors="primary"
-          onClick={() => {
+            />
+          </RefComboBox>
+          <span style={{ color: 'red' }}>
+            {getFieldError('combobox')}
+          </span>
+          <Button
+            colors="primary"
+            onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if(err){
                   alert(""+JSON.stringify(err));
@@ -60,10 +78,19 @@ let code = `
                 }
                 alert(""+JSON.stringify(values))
               });
-          }}>
-          提交_en
-  </Button>
-</div>           
+            }}>
+            提交_en
+          </Button>
+        </div>
+
+      </Card>
+    )
+  }
+}
+
+
+export default Form.createForm()(Demo1);
+
 `
 class Demo1 extends Component {
   render() {
@@ -122,7 +149,7 @@ class Demo1 extends Component {
               });
             }}>
             提交_en
-                </Button>
+          </Button>
         </div>
 
       </Card>

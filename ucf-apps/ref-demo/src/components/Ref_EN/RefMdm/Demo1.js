@@ -1,7 +1,7 @@
 /**
  *
- * @title refmdm参照组件
- * @description 应用组件描述
+ * @title refmdm参照组件_en
+ * @description 应用组件描述_en
  *
  */
 
@@ -16,11 +16,11 @@ let code = `
 <div className="demoPadding">
   <div style={{ display: 'inline-block' }}>
     <RefMdmComp
-      pk_entityitem='316ffdb4-6fc3-4ec7-904b-6d0388d06900'
-      pk_gd='c8fb715a-f923-467a-95d5-80f96e77a5b8'
+      pk_entityitem='4b72c5cd-c301-48cc-9f77-2d44c36d9651'
+      pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
       {...getFieldProps('refmdm', {
         rules: [{
-          message: '提示：请选择',
+          message: '提示：请选择_en',
           pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
         }]
       })}
@@ -36,7 +36,7 @@ let code = `
         console.log(err, values)
       });
     }}>
-    提交
+    提交_en
         </Button>
 </div>        
 `
@@ -46,17 +46,17 @@ class Demo1 extends Component {
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title="基础示例_en"
         codeText={code}
       >
         <div className="demoPadding">
           <div style={{ display: 'inline-block' }}>
             <RefMdmComp
-              pk_entityitem='316ffdb4-6fc3-4ec7-904b-6d0388d06900'
-              pk_gd='c8fb715a-f923-467a-95d5-80f96e77a5b8'
+              pk_entityitem='4b72c5cd-c301-48cc-9f77-2d44c36d9651'
+              pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
               {...getFieldProps('refmdm', {
                 rules: [{
-                  message: '提示：请选择',
+                  message: '提示：请选择_en',
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
               })}
@@ -77,7 +77,7 @@ class Demo1 extends Component {
                 console.log(err, values)
               });
             }}>
-            提交
+            提交_en
                 </Button>
         </div>
 

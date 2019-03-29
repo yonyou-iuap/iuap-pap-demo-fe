@@ -14,6 +14,13 @@ import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
+import React, { Component } from 'react';
+import PapRefUser from 'pap-refer/lib/pap-ref-user';
+import 'pap-refer/lib/pap-ref-user.css';
+import PapRefStaff from 'pap-refer/lib/pap-ref-staff';
+import 'pap-refer/lib/pap-ref-staff.css';
+import { Button, Form } from 'tinper-bee';
+import Card from '../Card'
 class Demo1 extends Component {
   constructor() {
     super();

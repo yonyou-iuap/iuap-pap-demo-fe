@@ -7,126 +7,171 @@
 
 import React, { Component } from 'react';
 
-import {RefTreeTableWithInput} from 'pap-refer/dist/index';
+import { RefTreeTableWithInput } from 'pap-refer/dist/index';
 import "pap-refer/dist/index.css"
-import {Button,Form,Panel} from 'tinper-bee';
+import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
-let code = 
+let code =
+  `
+import React, { Component } from 'react';
+import { RefTreeTableWithInput } from 'pap-refer/dist/index';
+import "pap-refer/dist/index.css"
+import { Button, Form, Panel } from 'tinper-bee';
+import Card from '../Card'
+class Demo1 extends Component {
+constructor() {
+super();
+this.state = {
+value:''
+}
+
+}
+render() {
+
+const { getFieldProps, getFieldError } = this.props.form;
+return (
+    <Card
+        title="基础示例_tw"
+        codeText={code}
+
+        footer={
+            <Button colors="primary"
+                style={{
+                    margin: 'auto 5px',
+                    height: '30px',
+                    padding: '0px'
+                }}
+                onClick={() => {
+                    this.props.form.validateFields((err, values) => {
+                        if(err) return;
+                        alert("您选择的是_tw"+ JSON.stringify(values))
+                    });
+                }}
+            >
+                提交_tw
+            </Button>
+        }
+    >
+        <div className="demo-label">
+            <span >组织人员：_tw</span>
+            <RefTreeTableWithInput
+                title = '组织部门人员_tw'
+                textOption= {{
+                    menuTitle: '组织_tw',
+                  tableTitle: '人员_tw',
+                }}
+                param = {{//url请求参数
+                    refCode:'neworgdeptstaff_treegrid',
+                }}
+                multiple = {true}
+                refModelUrl = {{
+                    treeUrl: '/pap_basedoc/common-ref/blobRefTree',
+                    refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+                    tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
+                }}
+                matchUrl= '/pap_basedoc/common-ref/matchPKRefJSON'
+                filterUrl= '/pap_basedoc/common-ref/filterRefJSON'
+                displayField='{refname}'
+                valueField='refpk'
+                lang={this.props.lang}
+                {...getFieldProps('code', {
+                    initialValue: '{"refname":"","refpk":""}',
+                    rules: [{
+                        message: '提示：请选择_tw',
+                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+                    }]
+                })}
+            />
+            <span style={{
+                color: 'red'
+            }}>
+                {
+                    getFieldError('code')
+                }
+            </span>
+        </div>
+    </Card>
+    )
+  }
+};
+
+export default Form.createForm()(Demo1);
 `
-<div className="demo-label">
-        <span >组织人员：_tw</span>
-        <RefTreeTableWithInput
-            title = '组织部门人员_tw'
-            textOption= {{
-                menuTitle: '组织_tw',
-                tableTitle: '人员_tw',
+class Demo1 extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    }
+
+  }
+  render() {
+
+    const { getFieldProps, getFieldError } = this.props.form;
+    return (
+      <Card
+        title="基础示例_tw"
+        codeText={code}
+
+        footer={
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
             }}
-            param = {{//url请求参数
-                refCode:'neworgdeptstaff_treegrid',
+            onClick={() => {
+              this.props.form.validateFields((err, values) => {
+                if (err) return;
+                alert(`您选择的是_tw${JSON.stringify(values)}`)
+              });
             }}
-            multiple = {true}
-            refModelUrl = {{
-                treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-                refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
-                tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
+          >
+            提交_tw
+                            </Button>
+        }
+      >
+        <div className="demo-label">
+          <span >组织人员：_tw</span>
+          <RefTreeTableWithInput
+            title='组织部门人员_tw'
+            textOption={{
+              menuTitle: '组织_tw',
+              tableTitle: '人员_tw',
             }}
-            matchUrl= '/pap_basedoc/common-ref/matchPKRefJSON'
-            filterUrl= '/pap_basedoc/common-ref/filterRefJSON'
+            param={{//url请求参数
+              refCode: 'neworgdeptstaff_treegrid',
+            }}
+            multiple={true}
+            refModelUrl={{
+              treeUrl: '/pap_basedoc/common-ref/blobRefTree',
+              refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
+              tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
+            }}
+            matchUrl='/pap_basedoc/common-ref/matchPKRefJSON'
+            filterUrl='/pap_basedoc/common-ref/filterRefJSON'
             displayField='{refname}'
             valueField='refpk'
             lang={this.props.lang}
             {...getFieldProps('code', {
-                initialValue: '{"refname":"","refpk":""}',
-                rules: [{
-                    message: '提示：请选择_tw',
-                    pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                }]
+              initialValue: '{"refname":"","refpk":""}',
+              rules: [{
+                message: '提示：请选择_tw',
+                pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+              }]
             })}
-        />
-        <span style={{
+          />
+          <span style={{
             color: 'red'
-        }}>
+          }}>
             {
-                getFieldError('code')
+              getFieldError('code')
             }
-        </span>
-    </div>
-`
-class Demo1 extends Component {
-    constructor() {
-        super();
-        this.state = {
-            value:''
-        }
-
-    }
-    render() {
-        
-        const { getFieldProps, getFieldError } = this.props.form;
-        return (
-                    <Card
-                        title="基础示例_tw"
-                        codeText={code}
-
-                        footer={
-                            <Button colors="primary"
-                                style={{
-                                    margin: 'auto 5px',
-                                    height: '30px',
-                                    padding: '0px'
-                                }}
-                                onClick={() => {
-                                    this.props.form.validateFields((err, values) => {
-                                        if(err) return;
-                                        alert(`您选择的是_tw${JSON.stringify(values)}`)
-                                    });
-                                }}
-                            >
-                                提交_tw
-                            </Button>
-                        }
-                    >
-                        <div className="demo-label">
-                            <span >组织人员：_tw</span>
-                            <RefTreeTableWithInput
-                                title = '组织部门人员_tw'
-                                textOption= {{
-                                    menuTitle: '组织_tw',
-	                                tableTitle: '人员_tw',
-                                }}
-                                param = {{//url请求参数
-                                    refCode:'neworgdeptstaff_treegrid',
-                                }}
-                                multiple = {true}
-                                refModelUrl = {{
-                                    treeUrl: '/pap_basedoc/common-ref/blobRefTree',
-                                    refInfo: '/pap_basedoc/common-ref/refInfo',//表头请求
-                                    tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',//表体请求
-                                }}
-                                matchUrl= '/pap_basedoc/common-ref/matchPKRefJSON'
-                                filterUrl= '/pap_basedoc/common-ref/filterRefJSON'
-                                displayField='{refname}'
-                                valueField='refpk'
-                                lang={this.props.lang}
-                                {...getFieldProps('code', {
-                                    initialValue: '{"refname":"","refpk":""}',
-                                    rules: [{
-                                        message: '提示：请选择_tw',
-                                        pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-                                    }]
-                                })}
-                            />
-                            <span style={{
-                                color: 'red'
-                            }}>
-                                {
-                                    getFieldError('code')
-                                }
-                            </span>
-                        </div>
-                    </Card>
-        )
-    }
+          </span>
+        </div>
+      </Card>
+    )
+  }
 };
 
 export default Form.createForm()(Demo1);
