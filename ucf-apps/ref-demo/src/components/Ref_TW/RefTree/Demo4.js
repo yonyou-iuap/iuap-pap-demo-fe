@@ -8,8 +8,8 @@
 import React, { Component } from 'react';
 import PapReferOrg from 'pap-refer/lib/pap-ref-org';
 import 'pap-refer/lib/pap-ref-org.css';
-import PapReferDept from 'pap-refer/lib/pap-ref-dept';
-import 'pap-refer/lib/pap-ref-dept.css';
+import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg';
+import 'pap-refer/lib/pap-ref-deptUnderOrg';
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 let code =
@@ -132,12 +132,19 @@ class Demo4 extends Component {
     this.state = {
       value: '',
       singleClientParam: {},
+      jiLianValue: {
+        refname: "",
+        refpk: "",
+      },
+      sum:1,
     }
 
   }
   singleSave = (result) => {
     //组织单选的保存，级联参照
     this.setState({
+      jiLianValue: Object.assign({}, { "refname": "", "refpk": this.state.sum+'' }),//更换完清空级联的数据
+      sum: ++this.state.sum,
       singleClientParam: result.length === 0 ? {} : { 'organization_id': result[0].refpk },
     })
 
@@ -146,10 +153,10 @@ class Demo4 extends Component {
 
     const { getFieldProps, getFieldError } = this.props.form;
 
-    let { singleClientParam } = this.state;
+    let { singleClientParam,jiLianValue } = this.state;
     return (
       <Card
-        title="参照级联_tw"
+        title="参照级联"
         codeText={code}
         footer={
           <Button colors="primary"
@@ -161,16 +168,16 @@ class Demo4 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是_tw$"+JSON.stringify(values))
+                alert("您选择的是$"+JSON.stringify(values))
               });
             }}
           >
-            提交_tw
+            提交
            </Button>
         }
       >
         <div className="demo-label">
-          <span >组织：_tw</span>
+          <span >组织：</span>
           <PapReferOrg
             multiple={false}
             searchable={true}
@@ -208,13 +215,18 @@ class Demo4 extends Component {
             valueField='refpk'
             lang={this.props.lang}
             emptyBut={true}
+            param={{
+                "clientParam":Object.keys(singleClientParam).length===0?'':singleClientParam
+                
+            }}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              initialValue: JSON.stringify(jiLianValue),
               rules: [{
                 message: '提示：请选择_tw',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
+            value={JSON.stringify(jiLianValue)}
           />
 
           <span style={{
