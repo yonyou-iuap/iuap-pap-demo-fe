@@ -77,7 +77,7 @@ module.exports = (env, argv) => {
         buildPlugins: [
             // new BundleAnalyzerPlugin()
         ],
-        open_source_map: true,
+        open_source_map: false,
         res_extra: true
     }
 }
