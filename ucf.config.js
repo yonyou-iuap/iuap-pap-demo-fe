@@ -48,6 +48,7 @@ module.exports = (env, argv) => {
                     '/print_service/',
                     '/iuap-print/',
                     '/pap_basedoc',
+                    '/iuapmdm',
                 ],
                 url: 'http://172.20.52.123'
             }
@@ -77,7 +78,7 @@ module.exports = (env, argv) => {
         buildPlugins: [
             // new BundleAnalyzerPlugin()
         ],
-        open_source_map: true,
+        open_source_map: false,
         res_extra: true
     }
 }
