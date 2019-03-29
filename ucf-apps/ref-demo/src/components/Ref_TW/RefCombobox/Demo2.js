@@ -6,8 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import {RefComboBox, ComboStore } from 'pap-refer/dist/index';
-import 'pap-refer/dist/index.css';
+import RefComboBox,{ ComboStore } from 'pap-refer/lib/ref-combobox';
+import 'pap-refer/lib/ref-combobox.css';
 // import Button from 'bee-button';
 // import Icon from 'bee-icon';
 // import Form from "bee-form";
@@ -17,7 +17,7 @@ let code = `
 <div className="demoPadding">
       <RefComboBox
           displayField={'{refname}-{refcode}'}
-          valueField={'refpk'}
+          valueField={'refcode'}
           onClickItem={(record) => {
               console.log(record)
           }}
@@ -73,7 +73,7 @@ class Demo2 extends Component {
         <div className="demoPadding">
           <RefComboBox
             displayField={'{refname}-{refcode}'}
-            valueField={'refpk'}
+            valueField={'refcode'}
             onClickItem={(record) => {
               console.log(record)
             }}
