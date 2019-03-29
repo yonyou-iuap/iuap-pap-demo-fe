@@ -16,8 +16,8 @@ let code = `
 <div className="demoPadding">
   <div style={{ display: 'inline-block' }}>
     <RefMdmComp
-      pk_entityitem='69a6c7f6-1247-474b-b361-2f100dc5fa98'
-      pk_gd='a6affd99-191a-452f-91ad-bf2d5755e731'
+      pk_entityitem='5169485e-7ebe-4dc2-91ae-b40b7cb111f8'
+      pk_gd='0132758f-d003-4796-8b46-e71052ec3b2d'
       {...getFieldProps('refmdm', {
         rules: [{
           message: '提示：请选择',
@@ -52,8 +52,8 @@ class Demo1 extends Component {
         <div className="demoPadding">
           <div style={{ display: 'inline-block' }}>
             <RefMdmComp
-              pk_entityitem='69a6c7f6-1247-474b-b361-2f100dc5fa98'
-              pk_gd='a6affd99-191a-452f-91ad-bf2d5755e731'
+              pk_entityitem='5169485e-7ebe-4dc2-91ae-b40b7cb111f8'
+              pk_gd='0132758f-d003-4796-8b46-e71052ec3b2d'
               {...getFieldProps('refmdm', {
                 rules: [{
                   message: '提示：请选择',

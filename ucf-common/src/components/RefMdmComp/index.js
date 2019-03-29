@@ -5,15 +5,15 @@
  *
  */
 import React, { Component } from 'react';
-// // import RefWithInput from 'ref-core/lib/refs/refcorewithinput';
-// // import RefTreeBaseUI from 'ref-tree';
-// import {RefTreeWithInput} from 'ref-tree';
-// import request from 'utils/request.js'
-// // import RefMultipleTableBaseUI from 'ref-multiple-table';
-// import {RefMultipleTableWithInput} from 'ref-multiple-table';
-// // import RefTreeTableBaseUI from 'ref-tree-table';
-// import {RefTreeTableWithInput} from 'ref-tree-table';
-// import 'ref-tree-table/dist/index.css';
+// import RefWithInput from 'ref-core/lib/refs/refcorewithinput';
+// import RefTreeBaseUI from 'ref-tree';
+import {RefTreeWithInput} from 'ref-tree';
+import request from 'utils/request.js'
+// import RefMultipleTableBaseUI from 'ref-multiple-table';
+import {RefMultipleTableWithInput} from 'ref-multiple-table';
+// import RefTreeTableBaseUI from 'ref-tree-table';
+import {RefTreeTableWithInput} from 'ref-tree-table';
+import 'ref-tree-table/dist/index.css';
 class MdmRefComp extends Component {
     constructor(props) {
         super(props);
@@ -240,7 +240,6 @@ class MdmRefComp extends Component {
         }
     }
     render() {
-        return  null
         const {title,pkField,writeField,showLoading,columnsData,tableData,treeData} = this.state;
         let type = this.state.type;
         let value = this.props.value;

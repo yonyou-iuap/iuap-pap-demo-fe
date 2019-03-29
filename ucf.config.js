@@ -48,6 +48,7 @@ module.exports = (env, argv) => {
                     '/print_service/',
                     '/iuap-print/',
                     '/pap_basedoc',
+                    '/iuapmdm',
                 ],
                 url: 'http://172.20.52.123'
             }
