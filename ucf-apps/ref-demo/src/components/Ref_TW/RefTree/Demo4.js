@@ -66,7 +66,7 @@ class Demo4 extends Component {
       >
         <div className="demo-label">
           <span >组织：_tw</span>
-          <PapReferDeptUnderOrg
+          <PapReferOrg
             multiple={false}
             searchable={true}
             checkStrictly={true}
@@ -94,7 +94,7 @@ class Demo4 extends Component {
         </div>
         <div className="demo-label">
           <span >部门：_tw</span>
-          <PapReferDept
+          <PapReferDeptUnderOrg
             multiple={false}
             searchable={true}
             checkStrictly={true}
