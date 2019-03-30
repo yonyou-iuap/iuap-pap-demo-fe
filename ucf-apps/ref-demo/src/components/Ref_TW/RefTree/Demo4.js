@@ -156,7 +156,7 @@ class Demo4 extends Component {
     let { singleClientParam,jiLianValue } = this.state;
     return (
       <Card
-        title="参照级联"
+        title="参照级联_tw"
         codeText={code}
         footer={
           <Button colors="primary"
@@ -168,16 +168,16 @@ class Demo4 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是$"+JSON.stringify(values))
+                alert("您选择的是_tw$"+JSON.stringify(values))
               });
             }}
           >
-            提交
+            提交_tw
            </Button>
         }
       >
         <div className="demo-label">
-          <span >组织：</span>
+          <span >组织：_tw</span>
           <PapReferOrg
             multiple={false}
             searchable={true}
@@ -206,7 +206,7 @@ class Demo4 extends Component {
         </div>
         <div className="demo-label">
           <span >部门：_tw</span>
-          <PapReferDept
+          <PapReferDeptUnderOrg
             multiple={false}
             searchable={true}
             checkStrictly={true}
