@@ -4,7 +4,6 @@
 
 import React,{Component} from 'react';
 import { render } from 'mirrorx';
-import 'ucf-common/styles/tinper-bee.css';
 import 'ucf-common/styles/public.less';
 import './app.less';
 import {getCookie} from './util';
