@@ -1,12 +1,35 @@
 @import "../static/font/iconfont.css";
 @import "./theme";
 
+html {
+    overflow: hidden;
+}
+
+@mainBgColor: #DBDEE3;
+
 body {
     margin: 0;
+    background: @mainBgColor;
+    box-sizing: border-box;
+    padding: 16px;
+    overflow: auto;
+    position: absolute;
     * {
         box-sizing: border-box;
     }
 }
+#app {
+    min-height: 100%;
+    position: relative;
+    background:rgba(255,255,255,1);
+    //box-shadow: 0 2px 7px 0 rgba(25,40,66,0.24);
+}
+
+.table-space {
+    height: 10px;
+    background: @mainBgColor;
+}
+
 .u-row {
     margin: 0;
     &>div {
@@ -144,7 +167,3 @@ button::selection {
     color: @brand-primary;
 }
 
-.table-space {
-    height: 16px;
-    background: #EBECF0;
-}

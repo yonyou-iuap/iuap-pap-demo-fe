@@ -275,11 +275,11 @@ class TreeTable extends Component {
 		let clientHeight = Math.max(document.body.clientHeight,document.documentElement.clientHeight),
 			scrollHeight = Math.max(document.body.scrollHeight,document.documentElement.scrollHeight),
 			height = 0,
-			pageHeadHeight = 34,
+			pageHeadHeight = 42,
 			buttonGroupHeight = 58,
 			paginationHeight = 43,
 			tableHeadHeight = 42,
-			paddingHeight = 24;
+			paddingHeight = 32;
 		let showHeight = (clientHeight < scrollHeight ) && clientHeight || scrollHeight;
 
 		height = showHeight - pageHeadHeight - buttonGroupHeight - paginationHeight - tableHeadHeight - paddingHeight;
