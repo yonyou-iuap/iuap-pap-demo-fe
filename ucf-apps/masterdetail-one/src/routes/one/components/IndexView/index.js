@@ -312,7 +312,7 @@ export default class IndexView extends Component {
 
     handleBpmState = (list, selectIndex) => {
         let resObj = {
-            submitForbid : false,
+            submitForbid : true,
             recallForbid : true
         };
         if ( list.length ) {
@@ -375,7 +375,13 @@ export default class IndexView extends Component {
                                confirmFn={() => _this.confirmGoBack(1)}
                                cancelFn={() => _this.confirmGoBack(2)}
                         />
-                        <Button shape="border" key="export" className="ml8" onClick={_this.export}>
+                        <Button
+                          shape="border"
+                          key="export"
+                          className="ml8"
+                          disabled={btnForbid}
+                          onClick={_this.export}
+                        >
                             导出
                         </Button>
                         <BpmButtonSubmit
@@ -401,8 +407,11 @@ export default class IndexView extends Component {
                             onError={_this.bpmEnd('recall', 'error')}
                             onEnd={_this.bpmEnd('recall', 'end')}
                         >
-                            <Button className="ml8" size='sm' colors="primary"
-                                disabled={recallForbid}>收回</Button>
+                            <Button
+                              className="ml8"
+                              size='sm'
+                              colors="primary"
+                              disabled={recallForbid}>收回</Button>
                         </BpmButtonRecall>
                     </ButtonRoleGroup>
                 </div>
