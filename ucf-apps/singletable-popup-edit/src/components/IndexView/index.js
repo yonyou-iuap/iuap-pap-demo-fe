@@ -415,7 +415,7 @@ class IndexView extends Component {
                         }}
                         showHeaderMenu={true}
                         sort={sortObj} //后端排序
-                        loading={{show: showLoading, loadingType: "line"}}
+                        loading={{show: showLoading, }}
                         scroll={{ y: tableHeight }}
                         sheetHeader={{height: 30, ifshow: false}}
                     />

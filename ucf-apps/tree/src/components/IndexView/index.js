@@ -356,7 +356,7 @@ class IndexView extends Component {
               <TreeTable {...this.props} tableWidth={tableWidth}/>
             </div>
           </div>
-          <Loading show={showLoading} loadingType="line" fullScreen/>
+          <Loading show={showLoading}  fullScreen/>
 
         </div>
       </div>

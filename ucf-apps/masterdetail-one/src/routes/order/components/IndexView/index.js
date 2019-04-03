@@ -640,7 +640,7 @@ class IndexView extends Component {
 
         return (
             <div className='purchase-order'>
-                <Loading showBackDrop={true} loadingType="line" show={showLoading} fullScreen={true} />
+                <Loading showBackDrop={true}  show={showLoading} fullScreen={true} />
                 <Alert
                     show={showPopBackVisible}
                     context="数据未保存，确定离开 ?"
@@ -714,7 +714,7 @@ class IndexView extends Component {
                         multiSelect={!rowEditStatus}
                         getSelectedDataFunc={this.getSelectedDataFunc}
                         emptyText={() => <Icon style={{ "fontSize": "60px" }} type="uf-nodata" />}
-                        loading={{ show: (!showLoading && showDetailLoading), loadingType: "line" }}
+                        loading={{ show: (!showLoading && showDetailLoading), }}
                     />
                 </div>
                 <Modal

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {actions} from 'mirrorx';
-import {Loading} from 'tinper-bee';
+import {Loading, Message} from 'tinper-bee';
 import Grid from 'components/Grid';
 import moment from 'moment'
 import Header from 'components/Header';
@@ -457,10 +457,9 @@ export default class IndexView extends Component {
                             onDataNumSelect: (index, value) => _this.onDataNumSelect(index, value, "detailObj"),
                             dataNum: _this.getDataNum(detailObj.pageSize),
                         }}
-                        loading={{show: (!showLoading && showDetailLoading), loadingType: "line"}}
+                        loading={{show: (!showLoading && showDetailLoading)}}
                     />
                     <Loading
-                        loadingType="line"
                         show={showLoading}
                         fullScreen={true}
                     />

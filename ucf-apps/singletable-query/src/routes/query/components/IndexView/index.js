@@ -488,7 +488,7 @@ class IndexView extends Component {
 
         return (
             <div className='single-table-query'>
-                <Loading showBackDrop={true} loadingType="line" show={showLoading} fullScreen={true}/>
+                <Loading showBackDrop={true} show={showLoading} fullScreen={true}/>
                 <Header title='A1单表查询示例'/>
                 <SearchArea
                     queryParam={queryParam}

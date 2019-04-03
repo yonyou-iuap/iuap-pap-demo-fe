@@ -887,7 +887,7 @@ class IndexView extends Component {
                     cancelFn={this.onClickPopCancel}
                 />
 
-                <Loading fullScreen={true} show={showLoading} loadingType="line" />
+                <Loading fullScreen={true} show={showLoading} />
             </div>
         )
     }

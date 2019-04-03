@@ -12,6 +12,7 @@ const defualtPaginationParam = {
     btnType: {
         shape: 'border'
     },
+    noBorder: true,
     confirmBtn: () => null
 };
 const defaultProps = {
