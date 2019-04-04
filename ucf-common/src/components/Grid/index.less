@@ -9,47 +9,7 @@
             table-layout: fixed;
         }
 
-        //修改table的header背景色颜色和body中隔行差色
-        .u-table {
-
-            tr {
-                transition: none;
-                &:nth-child(2n) {
-                    background: #FAFAFA;
-                }
-                &:nth-child(2n + 1) {
-                    background: #ffffff;
-                }
-                &:hover, &.u-table-row-hover {
-                    background: #EBECF0;
-
-                }
-                &.u-table-row {
-                    &.selected, &.ref-multiple-table-row-selected {
-                        background: #E7F2FC;
-                    }
-                }
-
-            }
-            th, td {
-                padding: 10px 8px;
-                height: 40px;
-            }
-            th{
-                overflow: visible;
-                background-clip:padding-box;
-                word-break: keep-all;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                text-align: left;
-            }
-            tr.filterable th {
-                padding: 0 2px;
-                height: 39px;
-            }
-
-        }
-
+        //修改table的header背景色颜色和body中隔行差
 
 
         .table-menu {
@@ -65,5 +25,46 @@
     .u-input-group {
         border-spacing: 0;
     }
+    .u-table {
+
+        tr {
+            transition: none;
+            &:nth-child(2n) {
+                background: #FAFAFA;
+            }
+            &:nth-child(2n + 1) {
+                background: #ffffff;
+            }
+            &:hover, &.u-table-row-hover {
+                background: #EBECF0;
+
+            }
+            &.u-table-row {
+                &.selected, &.ref-multiple-table-row-selected {
+                    background: #FFF7E7;
+                }
+            }
+
+        }
+        th, td {
+            padding: 10px 8px;
+            height: 40px;
+        }
+        th{
+            overflow: visible;
+            background-clip:padding-box;
+            word-break: keep-all;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: left;
+        }
+        tr.filterable th {
+            padding: 0 2px;
+            height: 39px;
+        }
+
+    }
 }
+
+
 
