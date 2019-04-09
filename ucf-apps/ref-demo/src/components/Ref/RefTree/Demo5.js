@@ -80,6 +80,13 @@ class Demo5 extends Component {
               }]
             })}
           />
+          <span style={{
+            color: 'red'
+          }}>
+            {
+              getFieldError('code')
+            }
+          </span>
         </div>
       </Card>
     )
@@ -150,6 +157,13 @@ class Demo5 extends Component {
               }]
             })}
           />
+           <span style={{
+            color: 'red'
+          }}>
+            {
+              getFieldError('code')
+            }
+          </span>
         </div>
       </Card>
     )
