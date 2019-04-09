@@ -6,10 +6,10 @@ import './style.less';
 
 
 const propTypes = {
-    title: PropTypes.string,
+    title: PropTypes.node,
     confirmFn: PropTypes.func,
     cancelFn: PropTypes.func,
-    context: PropTypes.string,
+    context: PropTypes.node,
     show: PropTypes.bool
 };
 

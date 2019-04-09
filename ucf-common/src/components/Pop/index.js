@@ -21,7 +21,7 @@ const defaultProps = {
 };
 
 const propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.node,
   show: PropTypes.bool,
   btns: PropTypes.array,
   close: PropTypes.func,

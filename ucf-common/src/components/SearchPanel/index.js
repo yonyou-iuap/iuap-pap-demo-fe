@@ -16,9 +16,9 @@ const propTypes = {
     searchOpen: PropTypes.bool,//是否默认展开，false默认关闭
     search: PropTypes.func,//查询的回调
     reset: PropTypes.func,//重置的回调
-    resetName: PropTypes.string,//重置的文字
-    searchName: PropTypes.string,//查询的文字
-    title: PropTypes.string
+    resetName: PropTypes.node,//重置的文字
+    searchName: PropTypes.node,//查询的文字
+    title: PropTypes.node
 };
 
 const defaultProps = {
