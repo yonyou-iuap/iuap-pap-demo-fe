@@ -5,6 +5,9 @@ import {actions} from "mirrorx";
 import * as api from "./service";
 // 接口返回数据公共处理方法，根据具体需要
 import {processData, initStateObj, structureObj, Error, getCookie} from "utils";
+import enUS from "../../../ucf-common/src/components/Intl/locales/iuap_en_US";
+import zhCN from "../../../ucf-common/src/components/Intl/locales/iuap_zh_CN";
+import zhTW from "../../../ucf-common/src/components/Intl/locales/iuap_zh_TW";
 
 /**
  *          btnFlag为按钮状态，新增、修改是可编辑，查看详情不可编辑，
@@ -353,12 +356,29 @@ export default {
             if (!res || !res.res_code) {
                 return false;
             }
+            const locale = getCookie('u_locale');
+            let lang = '';
+            switch(locale){
+                case 'en_US':
+                    lang = 'en';
+                    break;
+                case 'zh_CN':
+                    lang = 'cn';
+                    break;
+                case 'zh_TW':
+                    lang = 'tw_cn';
+                    break;
+                default:
+                    lang = 'cn';
+                    break;
+            }
             await api.printDocument({
                 tenantId: getCookie('tenantid'),
                 printcode: res['res_code'],
                 serverUrl: `${GROBAL_HTTP_CTX}/passenger/dataForPrint`,
                 params: encodeURIComponent(JSON.stringify(param.printParams)),
-                sendType: 'post'
+                sendType: 'post',
+                lang: lang
             })
         },
     }

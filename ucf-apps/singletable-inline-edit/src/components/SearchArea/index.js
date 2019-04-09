@@ -146,7 +146,9 @@ class SearchAreaForm extends Component {
                 searchOpen={searchOpen}
                 reset={this.reset}
                 onCallback={onCallback}
-                search={this.search}>
+                search={this.search}
+                intl={this.props.intl}
+            >
 
                 <FormList size="sm">
                     <FormItem

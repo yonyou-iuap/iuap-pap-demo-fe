@@ -42,6 +42,7 @@ class SearchArea extends Component {
             <SearchPanel
                 reset={this.reset}
                 search={this.search}
+                intl={this.props.intl}
             >
 
                 <FormList size="sm">

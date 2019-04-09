@@ -27,9 +27,6 @@ const defaultProps = {
     searchOpen: true,
     search: () => { },
     reset: () => { },
-    title: <FormattedMessage id="js.com.defSea1.0001" defaultMessage="默认筛选" />,
-    resetName: <FormattedMessage id="js.com.defSea1.0002" defaultMessage="清空" />,
-    searchName: <FormattedMessage id="js.com.defSea1.0003" defaultMessage="查询" />,
     bgColor: "#F7F9FB"
 };
 
@@ -57,7 +54,21 @@ class SearchPanel extends Component {
         reset && reset();
     }
     render() {
-        const { children, onCallback, bgColor, search, reset, ...otherProps  } = this.props;
+        const {
+            children,
+            onCallback,
+            bgColor,
+            search,
+            reset,
+            intl,
+            title,
+            resetName,
+            searchName,
+            ...otherProps
+        } = this.props;
+        const _title = title || intl.formatMessage({id:"js.com.defSea1.0001", defaultMessage:"默认筛选"});
+        const _resetName = resetName || intl.formatMessage({id:"js.com.defSea1.0002", defaultMessage:"清空"});
+        const _searchName = searchName || intl.formatMessage({id:"js.com.defSea1.0003", defaultMessage:"查询" });
         return (
             <BeeSearchPanel
                 className="ucf-exam-search-panel"
@@ -65,6 +76,9 @@ class SearchPanel extends Component {
                 onSearch={this.search}
                 onReset={this.reset}
                 onChange={this.open}
+                title={_title}
+                resetName={_resetName}
+                searchName={_searchName}
                 onPanelChangeEnd={status => {
                     const open = status === "visible";
                     onCallback && onCallback(open);
