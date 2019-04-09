@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import { Button, Form } from 'tinper-bee';
 import PapRefStaff from 'pap-refer/lib/pap-ref-staff';
@@ -30,9 +31,9 @@ class Demo2 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="多字段查询"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref13.0001", defaultMessage:"多字段查询"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -43,16 +44,16 @@ class Demo2 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref13.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref13.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >多选（人员）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref13.0004" defaultMessage="多选（人员）：" /></span>
           <PapRefStaff
             multiple={true}
             searchable={true}
@@ -68,7 +69,7 @@ class Demo2 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref13.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -101,9 +102,9 @@ class Demo2 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="多字段查询"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref13.0001", defaultMessage:"多字段查询"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -114,16 +115,16 @@ class Demo2 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref13.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref13.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >多选（人员）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref13.0004" defaultMessage="多选（人员）：" /></span>
           <PapRefStaff
             multiple={true}
             searchable={true}
@@ -139,7 +140,7 @@ class Demo2 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref13.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

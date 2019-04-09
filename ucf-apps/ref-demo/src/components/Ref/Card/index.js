@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, { Component } from 'react';
 
 
@@ -45,7 +46,7 @@ class Card extends Component{
             {
                 this.props.children
             }
-                <Drawer title={'示例源码'} show={this.state.showDrawer} placement={'right'} onClose={this.fCloseDrawer}>
+                <Drawer title={this.props.intl.formatMessage({id:"js.Ref.Car.0001", defaultMessage:"示例源码"})} show={this.state.showDrawer} placement={'right'} onClose={this.fCloseDrawer}>
                     <pre>
                         <code className="hljs javascript">
                             {codeText}     

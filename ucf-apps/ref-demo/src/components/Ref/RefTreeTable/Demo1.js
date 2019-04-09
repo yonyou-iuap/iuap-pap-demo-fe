@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 
 import  RefTreeTableWithInput  from 'pap-refer/lib/ref-tree-table';
@@ -31,9 +32,9 @@ render() {
 const { getFieldProps, getFieldError } = this.props.form;
 return (
     <Card
-        title="基础示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref20.0001", defaultMessage:"基础示例"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
             <Button colors="primary"
                 style={{
@@ -44,21 +45,21 @@ return (
                 onClick={() => {
                     this.props.form.validateFields((err, values) => {
                         if(err) return;
-                        alert("您选择的是"+ JSON.stringify(values))
+                        alert(this.props.intl.formatMessage({id:"js.Ref.Ref20.0009", defaultMessage:"您选择的是"})+JSON.stringify(values))
                     });
                 }}
             >
-                提交
+                <FormattedMessage id="js.Ref.Ref20.0003" defaultMessage="提交" />
             </Button>
         }
     >
         <div className="demo-label">
-            <span >组织人员：</span>
+            <span ><FormattedMessage id="js.Ref.Ref20.0004" defaultMessage="组织人员：" /></span>
             <RefTreeTableWithInput
-                title = '组织部门人员'
+                title = {this.props.intl.formatMessage({id:"js.Ref.Ref20.0005", defaultMessage:"组织部门人员"})}
                 textOption= {{
-                    menuTitle: '组织',
-                  tableTitle: '人员',
+                    menuTitle: <FormattedMessage id="js.Ref.Ref20.0006" defaultMessage="组织" />,
+                  tableTitle: <FormattedMessage id="js.Ref.Ref20.0007" defaultMessage="人员" />,
                 }}
                 param = {{//url请求参数
                     refCode:'neworgdeptstaff_treegrid',
@@ -78,7 +79,7 @@ return (
                 {...getFieldProps('code', {
                     initialValue: '{"refname":"","refpk":""}',
                     rules: [{
-                        message: '提示：请选择',
+                        message: <FormattedMessage id="js.Ref.Ref20.0008" defaultMessage="提示：请选择" />,
                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                     }]
                 })}
@@ -111,9 +112,9 @@ class Demo1 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref20.0001", defaultMessage:"基础示例"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -124,21 +125,21 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(`您选择的是${JSON.stringify(values)}`)
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref20.0009", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref20.0003" defaultMessage="提交" />
                             </Button>
         }
       >
         <div className="demo-label">
-          <span >组织人员：</span>
+          <span ><FormattedMessage id="js.Ref.Ref20.0004" defaultMessage="组织人员：" /></span>
           <RefTreeTableWithInput
-            title='组织部门人员'
+            title={this.props.intl.formatMessage({id:"js.Ref.Ref20.0005", defaultMessage:"组织部门人员"})}
             textOption={{
-              menuTitle: '组织',
-              tableTitle: '人员',
+              menuTitle: <FormattedMessage id="js.Ref.Ref20.0006" defaultMessage="组织" />,
+              tableTitle: <FormattedMessage id="js.Ref.Ref20.0007" defaultMessage="人员" />,
             }}
             param={{//url请求参数
               refCode: 'neworgdeptstaff_treegrid',
@@ -158,7 +159,7 @@ class Demo1 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref20.0008" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import RefMdmComp from "components/RefMdmComp"
 // import Button from 'bee-button';
@@ -20,7 +21,7 @@ let code = `
       pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
       {...getFieldProps('refmdm', {
         rules: [{
-          message: '提示：请选择',
+          message: <FormattedMessage id="js.Ref.Ref24.0001" defaultMessage="提示：请选择" />,
           pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
         }]
       })}
@@ -36,7 +37,7 @@ let code = `
         console.log(err, values)
       });
     }}>
-    提交
+    <FormattedMessage id="js.Ref.Ref24.0002" defaultMessage="提交" />
         </Button>
 </div>        
 `
@@ -46,8 +47,9 @@ class Demo1 extends Component {
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref24.0003", defaultMessage:"基础示例"})}
         codeText={code}
+        intl={this.props.intl}
       >
         <div className="demoPadding">
           <div style={{ display: 'inline-block' }}>
@@ -56,7 +58,7 @@ class Demo1 extends Component {
               pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
               {...getFieldProps('refmdm', {
                 rules: [{
-                  message: '提示：请选择',
+                  message: <FormattedMessage id="js.Ref.Ref24.0001" defaultMessage="提示：请选择" />,
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
               })}
@@ -77,7 +79,7 @@ class Demo1 extends Component {
                 console.log(err, values)
               });
             }}>
-            提交
+            <FormattedMessage id="js.Ref.Ref24.0002" defaultMessage="提交" />
                 </Button>
         </div>
 

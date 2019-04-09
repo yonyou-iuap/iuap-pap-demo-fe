@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapReferOrg from 'pap-refer/lib/pap-ref-org';
 import 'pap-refer/lib/pap-ref-org.css';
@@ -50,7 +51,7 @@ class Demo3 extends Component {
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
       // alert('请先选择部门')
-      Message.create({ content: '请先选择部门', color: 'danger', duration: 0.5 });
+      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择部门" />, color: 'danger', duration: 0.5 });
       return false;
     }
     return true;
@@ -63,8 +64,9 @@ class Demo3 extends Component {
     singleClientParam = Object.assign({}, clientParam, singleClientParam)
     return (
       <Card
-        title="级联参照：组织不选，部门不可选，有提示"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref18.0002", defaultMessage:"级联参照：组织不选，部门不可选，有提示"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -75,16 +77,16 @@ class Demo3 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是" + JSON.stringify(values));
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref18.0003", defaultMessage:"您选择的是"}) + JSON.stringify(values));
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref18.0004" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >单选（组织）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref18.0005" defaultMessage="单选（组织）：" /></span>
           <PapReferOrg
             multiple={false}
             searchable={true}
@@ -97,7 +99,7 @@ class Demo3 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: <FormattedMessage id="js.Ref.Ref18.0006" defaultMessage="提示：请选择组织" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -112,7 +114,7 @@ class Demo3 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >级联（部门）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref18.0007" defaultMessage="级联（部门）：" /></span>
           <PapReferDeptUnderOrg
             multiple={true}
             searchable={true}
@@ -130,7 +132,7 @@ class Demo3 extends Component {
             {...getFieldProps('code1', {
               initialValue: JSON.stringify(jiLianValue),
               rules: [{
-                message: '提示：请选择部门',
+                message: <FormattedMessage id="js.Ref.Ref18.0008" defaultMessage="提示：请选择部门" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -180,7 +182,7 @@ class Demo3 extends Component {
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
       // alert('请先选择部门')
-      Message.create({ content: '请先选择部门', color: 'danger', duration: 0.5 });
+      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择部门" />, color: 'danger', duration: 0.5 });
       return false;
     }
     return true;
@@ -193,8 +195,9 @@ class Demo3 extends Component {
     singleClientParam = Object.assign({}, clientParam, singleClientParam)
     return (
       <Card
-        title="级联参照：组织不选，部门不可选，有提示"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref18.0002", defaultMessage:"级联参照：组织不选，部门不可选，有提示"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -205,16 +208,16 @@ class Demo3 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是" + JSON.stringify(values));
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref18.0003", defaultMessage:"您选择的是"}) + JSON.stringify(values));
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref18.0004" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >单选（组织）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref18.0005" defaultMessage="单选（组织）：" /></span>
           <PapReferOrg
             multiple={false}
             searchable={true}
@@ -227,7 +230,7 @@ class Demo3 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: <FormattedMessage id="js.Ref.Ref18.0006" defaultMessage="提示：请选择组织" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -242,7 +245,7 @@ class Demo3 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >级联（部门）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref18.0007" defaultMessage="级联（部门）：" /></span>
           <PapReferDeptUnderOrg
             multiple={true}
             searchable={true}
@@ -260,7 +263,7 @@ class Demo3 extends Component {
             {...getFieldProps('code1', {
               initialValue: JSON.stringify(jiLianValue),
               rules: [{
-                message: '提示：请选择部门',
+                message: <FormattedMessage id="js.Ref.Ref18.0008" defaultMessage="提示：请选择部门" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

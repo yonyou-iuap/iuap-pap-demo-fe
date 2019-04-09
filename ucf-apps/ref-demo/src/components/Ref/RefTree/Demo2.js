@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapReferOrg from 'pap-refer/lib/pap-ref-org';
 import 'pap-refer/lib/pap-ref-org.css';
@@ -29,8 +30,9 @@ class Demo2 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="懒加载"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref5.0001", defaultMessage:"懒加载"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -41,16 +43,16 @@ class Demo2 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref5.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref5.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >组织：</span>
+          <span ><FormattedMessage id="js.Ref.Ref5.0004" defaultMessage="组织：" /></span>
           <PapReferOrg
             multiple={false}
             searchable={true}
@@ -66,7 +68,7 @@ class Demo2 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: <FormattedMessage id="js.Ref.Ref5.0005" defaultMessage="提示：请选择组织" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -98,8 +100,9 @@ class Demo2 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="懒加载"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref5.0001", defaultMessage:"懒加载"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -110,16 +113,16 @@ class Demo2 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref5.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref5.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >组织：</span>
+          <span ><FormattedMessage id="js.Ref.Ref5.0004" defaultMessage="组织：" /></span>
           <PapReferOrg
             multiple={false}
             searchable={true}
@@ -134,7 +137,7 @@ class Demo2 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: <FormattedMessage id="js.Ref.Ref5.0005" defaultMessage="提示：请选择组织" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
