@@ -72,7 +72,7 @@ class CommonPop extends Component {
                     actions.walsinTree.updateState({
                         showLoading : false,
                     });
-                    Error(<FormattedMessage id="js.com.Com.0004" defaultMessage="请选择树节点" />);
+                    Error(this.props.intl.formatMessage({id:"js.com.Com.0004", defaultMessage:"请选择树节点"}));
                     return ;
                 }
 
@@ -217,4 +217,4 @@ class CommonPop extends Component {
     }
 }
 
-export default FormList.createForm()(CommonPop);
+export default FormList.createForm()(injectIntl(CommonPop));

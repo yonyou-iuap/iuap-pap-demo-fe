@@ -112,7 +112,7 @@ class IndexView extends Component {
                 showHoverContent: false
             });
         } else {
-            Info(<FormattedMessage id="js.com.Ind4.0001" defaultMessage="数据为空，不能删除" />);
+            Info(this.props.intl.formatMessage({id:"js.com.Ind4.0001", defaultMessage:"数据为空，不能删除"}));
         }
     }
 

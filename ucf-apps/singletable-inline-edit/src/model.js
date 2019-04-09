@@ -2,8 +2,6 @@
  * mirrorx定义modal
  */
 
-import React, { Component } from "react";
-import { FormattedMessage} from 'react-intl';
 import { actions } from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
@@ -92,9 +90,12 @@ export default {
          * @param {Array} [param=[]] 数组对象的数据
          * @returns {bool} 操作是否成功
          */
-        async adds(param) {
+        async adds(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.adds(param),<FormattedMessage id="js.sin.src.0001" defaultMessage="保存成功" />);
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.sin.src.0001'] || '保存成功';
+            let { result } = processData(await api.adds(param),msg);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false});
             if (status === 'success') {
@@ -111,7 +112,10 @@ export default {
          */
         async removes(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.removes(param),<FormattedMessage id="js.sin.src.0002" defaultMessage="删除成功" />);
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.sin.src.0002'] || '删除成功';
+            let { result } = processData(await api.removes(param),msg);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
@@ -135,9 +139,12 @@ export default {
          *
          * @param {Array} [param=[]]
          */
-        async updates(param) {
+        async updates(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.updates(param),<FormattedMessage id="js.sin.src.0003" defaultMessage="更新成功" />);
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.sin.src.0003'] || '更新成功';
+            let { result } = processData(await api.updates(param),msg);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {

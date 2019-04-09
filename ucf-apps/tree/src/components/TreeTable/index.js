@@ -125,7 +125,7 @@ class TreeTable extends Component {
 	 */
 	onCommonClick = (btnFlag) => (value) => {
 		let _this = this;
-		let	{comModalParam, paginationParam, tableSelValue} = _this.props,
+		let	{comModalParam, paginationParam, tableSelValue, intl} = _this.props,
 			resultObj = {},
 			len = tableSelValue.length;
 		comModalParam = deepClone(comModalParam);
@@ -135,7 +135,7 @@ class TreeTable extends Component {
 			if (Array.isArray(tableSelValue) && len) {
 
 				if (len > 1) {
-					Warning(<FormattedMessage id="js.com.Tre.0004" defaultMessage="请选择单条表数据" />);
+					Warning(intl.formatMessage({id:"js.com.Tre.0004", defaultMessage:"请选择单条表数据"}));
 					return;
 				}
 
@@ -145,7 +145,7 @@ class TreeTable extends Component {
 					btnFlag
 				})
 			} else {
-				Warning(<FormattedMessage id="js.com.Tre.0005" defaultMessage="请选择表数据" />);
+				Warning(intl.formatMessage({id:"js.com.Tre.0005", defaultMessage:"请选择表数据"}));
 				return ;
 			}
 		} else {
@@ -159,7 +159,7 @@ class TreeTable extends Component {
 					initEditValue : {}
 				}
 			} else {
-				Warning(<FormattedMessage id="js.com.Tre.0006" defaultMessage="请选择表数据所属树节点" />);
+				Warning(intl.formatMessage({id:"js.com.Tre.0006", defaultMessage:"请选择表数据所属树节点"}));
 			}
 
 		}
@@ -170,14 +170,14 @@ class TreeTable extends Component {
 
 	onDelete = async () => {
 		// 删除方法
-		let {tableSelValue} = this.props;
+		let {tableSelValue, intl} = this.props;
 		if	(Array.isArray(tableSelValue) && tableSelValue.length > 0) {
 			await actions.walsinTree.updateState({
 				delModal : true
 			});
 
 		} else {
-			Warning(<FormattedMessage id="js.com.Tre.0007" defaultMessage="请选择数据" />);
+			Warning(intl.formatMessage({id:"js.com.Tre.0007", defaultMessage:"请选择数据"}));
 		}
 	}
 
@@ -366,4 +366,4 @@ class TreeTable extends Component {
 	}
 }
 
-export default TreeTable;
+export default injectIntl(TreeTable);

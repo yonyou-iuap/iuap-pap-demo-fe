@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-import { FormattedMessage } from 'react-intl';
 import { actions } from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
@@ -139,8 +137,12 @@ export default {
          * @param {*} getState
          */
         async delOrder(param, getState) {
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.rou.one2.0001'] || '删除成功';
+
             actions.masterDetailOne.updateState({ showLoading: true });
-            const { result } = processData(await api.delOrder([param]), <FormattedMessage id="js.rou.one2.0001" defaultMessage="删除成功" />);
+            const { result } = processData(await api.delOrder([param]), msg);
             actions.masterDetailOne.updateState({ showLoading: false });
             const { status } = result;
             if (status === 'success') {
