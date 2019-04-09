@@ -9,6 +9,8 @@ import BeeSearchPanel from 'bee-search-panel'
 import 'bee-search-panel/build/SearchPanel.css';
 import "./index.less"
 
+const AdvancedContainer = BeeSearchPanel.AdvancedContainer;
+
 /**
  * 部分不能通过this.props.form.resetFields()清空的组件，需要传reset方法，在reset方法中自行清空
  */
@@ -70,7 +72,9 @@ class SearchPanel extends Component {
                 bgColor={bgColor}
                 {...otherProps}
             >
-                {children}
+                <AdvancedContainer>
+                    {children}
+                </AdvancedContainer>
             </BeeSearchPanel>
 
         )
