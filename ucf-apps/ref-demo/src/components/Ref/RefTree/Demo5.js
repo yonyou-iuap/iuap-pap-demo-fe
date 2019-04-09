@@ -60,7 +60,8 @@ class Demo5 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang} 
+           lang={this.props.lang}
+            theme={this.props.theme} 
             emptyBut={true}
             nodeDisplay={(record) => {
               if (record.entityType === "mainEntity") {
@@ -128,7 +129,8 @@ class Demo5 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang} 
+           lang={this.props.lang}
+            theme={this.props.theme} 
             emptyBut={true}
             nodeDisplay={(record) => {
               if (record.entityType === "mainEntity") {

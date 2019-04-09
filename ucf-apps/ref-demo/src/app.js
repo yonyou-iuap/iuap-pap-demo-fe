@@ -8,39 +8,39 @@ import 'ucf-common/styles/public.less';
 import './app.less';
 import {getCookie} from './util';
 let lang = getCookie('u_locale') || getCookie('i18next') || 'zh_CN';
-let dir = lang.toLocaleLowerCase()==='en_us'?'Ref_EN':(lang.toLocaleLowerCase()==='zh_tw'?'Ref_TW':'Ref');
-let {  
+// let dir = lang.toLocaleLowerCase()==='en_us'?'Ref_EN':(lang.toLocaleLowerCase()==='zh_tw'?'Ref_TW':'Ref');
+import {  
   RefTreeDemo1,
   RefTreeDemo2,
   RefTreeDemo3,
   RefTreeDemo4,
   RefTreeDemo5,
-  RefTreeDemo6,} =  require(`./components/${dir}/RefTree`)
+  RefTreeDemo6,} from "./components/Ref/RefTree"
 
-  let {
+  import {
     RefTableDemo1,
     RefTableDemo2,
     RefTableDemo3,
     RefTableDemo4,
-  } =  require(`./components/${dir}/RefTable`)
+  } from "./components/Ref/RefTable"
   
-  let {
+  import {
     RefTreeTransferDemo1,
     RefTreeTransferDemo2
-  } =  require(`./components/${dir}/RefTreeTransfer`)
-  let {
+  } from "./components/Ref/RefTreeTransfer"
+  import {
     RefTreeTableDemo1,
-  } =  require(`./components/${dir}/RefTreeTable`)
+  } from "./components/Ref/RefTreeTable"
   
-  let {
+  import {
     RefJiLianDemo1,
     RefJiLianDemo2,
     RefJiLianDemo3,
-  } =  require(`./components/${dir}/RefJiLian`)
+  } from "./components/Ref/RefJiLian"
 
   
-  let {RefComboboxDemo1,RefComboboxDemo2} =  require(`./components/${dir}/RefCombobox`)
-  // let {RefMdmDemo1}  = require(`./components/${dir}/RefMdm`)
+  import {RefComboboxDemo1,RefComboboxDemo2} from "./components/Ref/RefCombobox"
+  // import {RefMdmDemo1}  = require"./components/Ref/RefMdm"
   class App extends Component {
     constructor() {
       super();
@@ -50,7 +50,8 @@ let {
         count: [],
         refpk: '',
         refname: '',
-        strictMode: false
+        strictMode: false,
+        theme:'ref-red',//切换主题，默认红色
       }
   
       setTimeout(() => {
@@ -59,96 +60,101 @@ let {
         });
       })
     }
-  
+    changeTheme = () =>{
+      this.setState({
+        theme:this.state.theme === 'ref-red'?'ref-blue':'ref-red'
+      })
+    }
   
     render() {
-      let { strictMode } = this.state;
+      let { strictMode,theme } = this.state;
       return (
         <div>
+          <h2 className="change-theme" onClick={this.changeTheme} >{`切换主题：当前主题是（${theme==='ref-red'?'红色':'蓝色'}）`}</h2>
           <h2>树参照</h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTreeDemo1 lang={lang}/>
+              <RefTreeDemo1 lang={lang} theme={theme} />
             </div>
             <div className="demo-col">
-              <RefTreeDemo2 lang={lang}/>
+              <RefTreeDemo2 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo3 lang={lang}/>
+              <RefTreeDemo3 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo4 lang={lang}/>
+              <RefTreeDemo4 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo5 lang={lang}/>
+              <RefTreeDemo5 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo6 lang={lang}/>
+              <RefTreeDemo6 lang={lang} theme={theme}/>
             </div>
           </div>
           <h2>表格参照</h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTableDemo1 lang={lang}/>
+              <RefTableDemo1 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefTableDemo2 lang={lang}/>
+              <RefTableDemo2 lang={lang} theme={theme}/>
             </div>
           </div>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTableDemo3 lang={lang}
+              <RefTableDemo3 lang={lang} theme={theme}
               />
             </div>
           </div>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTableDemo4 lang={lang}
+              <RefTableDemo4 lang={lang} theme={theme}
               />
             </div>
           </div>
           <h2>级联参照</h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefJiLianDemo1 lang={lang}/>
+              <RefJiLianDemo1 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefJiLianDemo2 lang={lang}/>
+              <RefJiLianDemo2 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefJiLianDemo3 lang={lang}/>
+              <RefJiLianDemo3 lang={lang} theme={theme}/>
             </div>
           </div>
           
           <h2>穿梭参照</h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTreeTransferDemo1 lang={lang}/>
+              <RefTreeTransferDemo1 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefTreeTransferDemo2 lang={lang}/>
+              <RefTreeTransferDemo2 lang={lang} theme={theme}/>
             </div>
           </div>
           <h2>树表参照</h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTreeTableDemo1 lang={lang}
+              <RefTreeTableDemo1 lang={lang} theme={theme}
               />
             </div>
           </div>
           <h2>combobox参照</h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefComboboxDemo1 lang={lang}/>
+              <RefComboboxDemo1 lang={lang} theme={theme}/>
             </div>
             <div className="demo-col">
-              <RefComboboxDemo2 lang={lang}/>
+              <RefComboboxDemo2 lang={lang} theme={theme}/>
             </div>
           </div>
           {/* <h2>自定义参照</h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefMdmDemo1 lang={lang}/>
+              <RefMdmDemo1 lang={lang} theme={theme}/>
             </div>
           </div> */}
         </div>

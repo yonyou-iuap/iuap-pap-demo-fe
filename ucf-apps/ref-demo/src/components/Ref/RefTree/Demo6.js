@@ -60,7 +60,8 @@ class Demo6 extends Component {
             strictMode={true} 
             displayField={'{refname}'} //显示内容的键
             valueField={'refpk'} //真实 value 的键
-            lang={this.props.lang} emptyBut={true}            
+           lang={this.props.lang}
+            theme={this.props.theme} emptyBut={true}            
             value={JSON.stringify({
               refname: "财务处",
               refpk: "95b60f35-ed0b-454e-b948-fb45ae30b911",
@@ -144,7 +145,8 @@ class Demo6 extends Component {
             strictMode={true} 
             displayField={'{refname}'} //显示内容的键
             valueField={'refpk'} //真实 value 的键
-            lang={this.props.lang} emptyBut={true}            
+           lang={this.props.lang}
+            theme={this.props.theme} emptyBut={true}            
             value={JSON.stringify({
               refname: "财务处",
               refpk: "95b60f35-ed0b-454e-b948-fb45ae30b911",

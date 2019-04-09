@@ -61,7 +61,8 @@ class Demo3 extends Component {
                                 displayField='{refname}'
                                 valueField='refpk'
                                 lazyParam = {['entityType', 'type']}
-                                lang={this.props.lang} emptyBut={true}
+                               lang={this.props.lang}
+            theme={this.props.theme} emptyBut={true}
                                 emptyBut={true}
 
                                 nodeDisplay = {(record) => {
@@ -106,7 +107,8 @@ class Demo3 extends Component {
                                         return (<span><i className="uf uf-users" /> {record.refname} </span>);
                                     }
                                 }}
-                                lang={this.props.lang} 
+                               lang={this.props.lang}
+            theme={this.props.theme} 
                                 emptyBut={true}
                                 {...getFieldProps('code1', {
                                     initialValue: '{"refname":"","refpk":""}',
@@ -175,7 +177,8 @@ class Demo3 extends Component {
                                 displayField='{refname}'
                                 valueField='refpk'
                                 lazyParam = {['entityType', 'type']}
-                                lang={this.props.lang} emptyBut={true}
+                               lang={this.props.lang}
+            theme={this.props.theme} emptyBut={true}
                                 emptyBut={true}
 
                                 nodeDisplay = {(record) => {
@@ -220,7 +223,8 @@ class Demo3 extends Component {
                                         return (<span><i className="uf uf-users" /> {record.refname} </span>);
                                     }
                                 }}
-                                lang={this.props.lang} 
+                               lang={this.props.lang}
+            theme={this.props.theme} 
                                 emptyBut={true}
                                 {...getFieldProps('code1', {
                                     initialValue: '{"refname":"","refpk":""}',
