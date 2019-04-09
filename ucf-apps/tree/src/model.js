@@ -1,3 +1,5 @@
+import React, { Component } from "react";
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import {actions} from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
@@ -155,7 +157,7 @@ export default {
          * @description 列表新增添加数据，添加刷新后要保存分页信息
          */
         async addTableData(param, getState) {
-            let {result} = processData(await api.addTableData(param),'添加成功');
+            let {result} = processData(await api.addTableData(param),<FormattedMessage id="js.tre.src3.0001" defaultMessage="添加成功" />);
             const {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
@@ -169,7 +171,7 @@ export default {
          *
          */
         async addEditData(param, getState) {
-            let {result} = processData(await api.addEditData(param),'修改成功');
+            let {result} = processData(await api.addEditData(param),<FormattedMessage id="js.tre.src3.0002" defaultMessage="修改成功" />);
             const {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
@@ -182,7 +184,7 @@ export default {
          * @param {Object}
          */
         async delTableData(param, getState) {
-            let {result} = processData(await api.delTableData(param),'删除成功');
+            let {result} = processData(await api.delTableData(param),<FormattedMessage id="js.tre.src3.0003" defaultMessage="删除成功" />);
             const {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
@@ -244,7 +246,7 @@ export default {
 
                     await actions.walsinTree.updateState(resultObj)
                 } else {
-                    throw new Error('返回content为null');
+                    throw new Error(<FormattedMessage id="js.tre.src3.0004" defaultMessage="返回content为null" />);
                 }
 
             } catch(e) {

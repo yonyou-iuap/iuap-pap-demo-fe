@@ -1,3 +1,5 @@
+import React, { Component } from "react";
+import { FormattedMessage } from 'react-intl';
 import {actions} from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
@@ -162,11 +164,11 @@ export default {
             let status = null;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.savePassenger(param), '添加成功');
+                const {result} = processData(await api.savePassenger(param), <FormattedMessage id="js.mas.src2.0001" defaultMessage="添加成功" />);
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updatePassenger(param), '修改成功');
+                const {result} = processData(await api.updatePassenger(param), <FormattedMessage id="js.mas.src2.0002" defaultMessage="修改成功" />);
                 status = result.status;
             }
 
@@ -192,11 +194,11 @@ export default {
             let status = null;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.saveTraveling(param), '保存成功');
+                const {result} = processData(await api.saveTraveling(param), <FormattedMessage id="js.mas.src2.0003" defaultMessage="保存成功" />);
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updateTraveling(param), '修改成功');
+                const {result} = processData(await api.updateTraveling(param), <FormattedMessage id="js.mas.src2.0002" defaultMessage="修改成功" />);
                 status = result.status;
             }
             if (status === 'success') {
@@ -223,11 +225,11 @@ export default {
             let status = null;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.saveEmergency(param), '保存成功');
+                const {result} = processData(await api.saveEmergency(param), <FormattedMessage id="js.mas.src2.0003" defaultMessage="保存成功" />);
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updateEmergency(param), '修改成功');
+                const {result} = processData(await api.updateEmergency(param), <FormattedMessage id="js.mas.src2.0002" defaultMessage="修改成功" />);
                 status = result.status;
             }
             if (status === 'success') {
@@ -289,7 +291,7 @@ export default {
          */
         async delPassenger(param, getState) {
             const {id} = param;
-            const {result}=processData(await api.delPassenger([{id}]), '删除成功');
+            const {result}=processData(await api.delPassenger([{id}]), <FormattedMessage id="js.mas.src2.0004" defaultMessage="删除成功" />);
             const {status}=result;
             if(status==='success'){
                 // 获取表pageSize;
@@ -308,7 +310,7 @@ export default {
          */
         async delEmergency(param, getState) {
             const {id} = param;
-            const {result}=processData(await api.delEmergency([{id}]), '删除成功');
+            const {result}=processData(await api.delEmergency([{id}]), <FormattedMessage id="js.mas.src2.0004" defaultMessage="删除成功" />);
             const {status}=result;
             if(status==='success'){
                 //获取表pageSize;
@@ -327,7 +329,7 @@ export default {
          */
         async delTraveling(param, getState) {
             const {id} = param;
-            const {result}=processData(await api.delTraveling([{id}]), '删除成功');
+            const {result}=processData(await api.delTraveling([{id}]), <FormattedMessage id="js.mas.src2.0004" defaultMessage="删除成功" />);
             const {status}=result;
             if(status==='success'){
                 // 获取表pageSize;

@@ -3,6 +3,7 @@
  */
 
 //React导入
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, { Component } from 'react';
 import { InputNumber } from 'tinper-bee'
 //类型校验
@@ -38,7 +39,7 @@ const propTypes = {
 const defaultProps = {
     field: '',
     index: '',
-    message: '请输入此字段',
+    message: <FormattedMessage id="js.com.Row5.0001" defaultMessage="请输入此字段" />,
     data: [],
     required: false,
     isFlag: false,

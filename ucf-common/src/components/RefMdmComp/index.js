@@ -4,6 +4,7 @@
  * @description 表格参照带有input
  *
  */
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, { Component } from 'react';
 // import RefWithInput from 'ref-core/lib/refs/refcorewithinput';
 // import RefTreeBaseUI from 'ref-tree';
@@ -54,7 +55,7 @@ class MdmRefComp extends Component {
             let pk_gd = data.params.pk_gd || '';
             let refPkGd = data.params.refPkGd || '';
             let type = data.type;
-            let title = data.title || '参照';
+            let title = data.title || <FormattedMessage id="js.com.Ref2.0001" defaultMessage="参照" />;
             let queryParams = {
                 fullclassname: fullclassname,
                 type: type,

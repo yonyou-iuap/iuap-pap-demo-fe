@@ -1,3 +1,4 @@
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, {Component} from 'react';
 import {actions} from 'mirrorx';
 
@@ -171,7 +172,7 @@ class IndexView extends Component {
     }).then(result => {
       console.log("result", result);
     }).catch(reason => {
-      console.log('失败：' + reason);
+      console.log(<FormattedMessage id="js.com.Ind3.0001" defaultMessage="失败：" /> + reason);
     })
   }
 
@@ -284,12 +285,12 @@ class IndexView extends Component {
     })
     return (
       <div className="tree-example">
-        <Header title="B1左树右表示例"/>
+        <Header title={this.props.intl.formatMessage({id:"js.com.Ind3.0002", defaultMessage:"B1左树右表示例"})}/>
         <div className="tree-body">
           <div className='tree-wrap'>
             <div className='tree'>
               <div className='tree-head'>
-                组织机构
+                <FormattedMessage id="js.com.Ind3.0003" defaultMessage="组织机构" />
               </div>
               <div className='tree-search'>
                 <FormControl
@@ -347,7 +348,7 @@ class IndexView extends Component {
                 </Tree>
               ) : (
                 <div className="no-search-container">
-                  <span className="no-search">未查询到相关数据</span>
+                  <span className="no-search"><FormattedMessage id="js.com.Ind3.0004" defaultMessage="未查询到相关数据" /></span>
                 </div>
               )}
 
@@ -364,4 +365,4 @@ class IndexView extends Component {
   }
 }
 
-export default IndexView;
+export default injectIntl(IndexView);

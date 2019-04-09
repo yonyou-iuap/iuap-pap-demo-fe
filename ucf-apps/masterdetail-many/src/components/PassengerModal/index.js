@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from "react";
 import {actions} from "mirrorx";
 import { FormControl, Switch, Select} from "tinper-bee";
@@ -14,7 +15,7 @@ import './index.less'
 const FormItem = FormList.Item;
 const {Option} = Select;
 const format = "YYYY-MM-DD";
-let titleArr = ["新增", "修改", "详情"];
+let titleArr = [<FormattedMessage id="js.com.Pas.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Pas.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Pas.0003" defaultMessage="详情" />];
 
 class AddEditPassenger extends Component {
     constructor(props) {
@@ -115,12 +116,12 @@ class AddEditPassenger extends Component {
         let btns = [
 
             {
-                label: '取消',
+                label: <FormattedMessage id="js.com.Pas.0004" defaultMessage="取消" />,
                 fun: this.onCloseEdit,
                 shape: 'border'
             },
             {
-                label: '确定',
+                label: <FormattedMessage id="js.com.Pas.0005" defaultMessage="确定" />,
                 fun: _this.onSubmitEdit,
                 colors: 'primary'
             },
@@ -155,7 +156,7 @@ class AddEditPassenger extends Component {
                 className='passenger-modal'
             >
                 <FormList>
-                    <FormItem label="乘客编号">
+                    <FormItem label={<FormattedMessage id="js.com.Pas.0006" defaultMessage="乘客编号" />}>
                         <FormControl disabled
                                      {...getFieldProps('code', {
                                          initialValue: code || '',
@@ -163,13 +164,13 @@ class AddEditPassenger extends Component {
                         />
                     </FormItem>
 
-                    <FormItem required label="乘客姓名">
+                    <FormItem required label={<FormattedMessage id="js.com.Pas.0007" defaultMessage="乘客姓名" />}>
                         <FormControl disabled={isDisabled}
                                      {...getFieldProps('name', {
                                          validateTrigger: 'onBlur',
                                          initialValue: name || '',
                                          rules: [{
-                                             required: true, message: '请输入乘客姓名'
+                                             required: true, message: <FormattedMessage id="js.com.Pas.0008" defaultMessage="请输入乘客姓名" />
 
                                          }],
                                      })}
@@ -177,7 +178,7 @@ class AddEditPassenger extends Component {
                         <FormError errorMsg={getFieldError('name')}/>
                     </FormItem>
 
-                    <FormItem required label="部门">
+                    <FormItem required label={<FormattedMessage id="js.com.Pas.0009" defaultMessage="部门" />}>
                         <RefIuapDept
                             disabled={btnFlag === 2}
                             {...getFieldProps('dept', {
@@ -187,7 +188,7 @@ class AddEditPassenger extends Component {
                                     refname: deptName || "",
                                 }),
                                 rules: [{
-                                    message: '请选择部门',
+                                    message: <FormattedMessage id="js.com.Pas.0010" defaultMessage="请选择部门" />,
                                     pattern: /[^({"refname":"","refpk":""}|{"refpk":"","refname":""})]/,
                                 }],
                             })}
@@ -196,22 +197,22 @@ class AddEditPassenger extends Component {
                         <FormError errorMsg={getFieldError('dept')}/>
                     </FormItem>
 
-                    <FormItem required label="乘客性别">
+                    <FormItem required label={<FormattedMessage id="js.com.Pas.0011" defaultMessage="乘客性别" />}>
                         <Select disabled={isDisabled}
                                 {...getFieldProps('sex', {
                                     initialValue: sex || 1,
                                     rules: [{
-                                        required: true, message: '请选择乘客性别',
+                                        required: true, message: <FormattedMessage id="js.com.Pas.0012" defaultMessage="请选择乘客性别" />,
                                     }],
                                 })}
                         >
-                            <Option value={1}>女</Option>
-                            <Option value={2}>男</Option>
+                            <Option value={1}><FormattedMessage id="js.com.Pas.0013" defaultMessage="女" /></Option>
+                            <Option value={2}><FormattedMessage id="js.com.Pas.0014" defaultMessage="男" /></Option>
                         </Select>
                         <FormError errorMsg={getFieldError('sex')}/>
                     </FormItem>
 
-                    <FormItem required label={"手机号"}>
+                    <FormItem required label={<FormattedMessage id="js.com.Pas.0015" defaultMessage="手机号" />}>
                         <FormControlPhone disabled={isDisabled}
                                           {...getFieldProps('phone', {
                                               validateTrigger: 'onBlur',
@@ -219,7 +220,7 @@ class AddEditPassenger extends Component {
                                               rules: [{
                                                   required: true,
                                                   pattern: /^[1][3,4,5,7,8][0-9]{9}$/,
-                                                  message: '请正确输入手机号',
+                                                  message: <FormattedMessage id="js.com.Pas.0016" defaultMessage="请正确输入手机号" />,
 
                                               }],
                                           })}
@@ -227,12 +228,12 @@ class AddEditPassenger extends Component {
                         <FormError errorMsg={getFieldError('phone')}/>
                     </FormItem>
 
-                    <FormItem label={"是否会员"}>
+                    <FormItem label={<FormattedMessage id="js.com.Pas.0017" defaultMessage="是否会员" />}>
                         <Switch
                             disabled={isDisabled}
                             checked={isVip}
-                            checkedChildren={"是"}
-                            unCheckedChildren={"否"}
+                            checkedChildren={<FormattedMessage id="js.com.Pas.0018" defaultMessage="是" />}
+                            unCheckedChildren={<FormattedMessage id="js.com.Pas.0019" defaultMessage="否" />}
                             onChange={(value) => {
                                 _this.setState({isVip: value});
                             }}
@@ -240,24 +241,24 @@ class AddEditPassenger extends Component {
                     </FormItem>
 
                     {isVip ? (
-                        <FormItem required label={"会员等级"}>
+                        <FormItem required label={<FormattedMessage id="js.com.Pas.0020" defaultMessage="会员等级" />}>
                             <Select disabled={isDisabled}
                                     {...getFieldProps('grade', {
                                         initialValue: grade || 1,
                                         rules: [{
-                                            required: true, message: '请选择会员等级',
+                                            required: true, message: <FormattedMessage id="js.com.Pas.0021" defaultMessage="请选择会员等级" />,
                                         }],
                                     })}
                             >
-                                <Option value={1}>初级会员</Option>
-                                <Option value={2}>中级会员</Option>
-                                <Option value={3}>高级会员</Option>
+                                <Option value={1}><FormattedMessage id="js.com.Pas.0022" defaultMessage="初级会员" /></Option>
+                                <Option value={2}><FormattedMessage id="js.com.Pas.0023" defaultMessage="中级会员" /></Option>
+                                <Option value={3}><FormattedMessage id="js.com.Pas.0024" defaultMessage="高级会员" /></Option>
                             </Select>
                         </FormItem>
                     ) : null}
 
                     {isVip ? (
-                        <FormItem required label={"到期日期"}>
+                        <FormItem required label={<FormattedMessage id="js.com.Pas.0025" defaultMessage="到期日期" />}>
                             <DatePicker className='form-item' format={format} disabled={isDisabled}
                                         locale={zhCN}
                                         getCalendarContainer={() => {
@@ -267,7 +268,7 @@ class AddEditPassenger extends Component {
                                             initialValue: expirationDate ? moment(expirationDate) : moment(),
                                             validateTrigger: 'onBlur',
                                             rules: [{
-                                                required: true, message: '请选择会员到期日期'
+                                                required: true, message: <FormattedMessage id="js.com.Pas.0026" defaultMessage="请选择会员到期日期" />
                                             }],
                                         })}
                             />
@@ -280,4 +281,4 @@ class AddEditPassenger extends Component {
     }
 }
 
-export default FormList.createForm()(AddEditPassenger);
+export default FormList.createForm()(injectIntl(AddEditPassenger));

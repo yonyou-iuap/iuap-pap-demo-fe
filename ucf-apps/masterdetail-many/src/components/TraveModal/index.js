@@ -1,3 +1,4 @@
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, {Component} from "react";
 import {FormControl, InputNumber, Select} from "tinper-bee";
 import {actions} from "mirrorx";
@@ -10,7 +11,7 @@ import FormList from 'components/FormList'
 import './index.less'
 
 const FormItem = FormList.Item;
-let titleArr = ["新增", "修改", "详情"];
+let titleArr = [<FormattedMessage id="js.com.Tra.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Tra.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Tra.0003" defaultMessage="详情" />];
 
 class AddEditBook extends Component {
 
@@ -91,12 +92,12 @@ class AddEditBook extends Component {
         let _this = this;
         let btns = [
             {
-                label: '取消',
+                label: <FormattedMessage id="js.com.Tra.0004" defaultMessage="取消" />,
                 fun: this.onCloseEdit,
                 shape: 'border'
             },
             {
-                label: '确定',
+                label: <FormattedMessage id="js.com.Tra.0005" defaultMessage="确定" />,
                 fun: _this.onSubmitEdit,
                 colors: 'primary'
             },
@@ -129,7 +130,7 @@ class AddEditBook extends Component {
                 className='book-modal'
             >
                 <FormList>
-                    <FormItem required label="乘车路线">
+                    <FormItem required label={<FormattedMessage id="js.com.Tra.0006" defaultMessage="乘车路线" />}>
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('line', {
                                          validateTrigger: 'onBlur',
@@ -138,14 +139,14 @@ class AddEditBook extends Component {
                                              type: 'string',
                                              required: true,
                                              pattern: /\S+/ig,
-                                             message: '请输入乘车路线',
+                                             message: <FormattedMessage id="js.com.Tra.0007" defaultMessage="请输入乘车路线" />,
                                          }],
                                      })}
                         />
                         <FormError errorMsg={getFieldError('line')}/>
                     </FormItem>
 
-                    <FormItem required label="上车站点">
+                    <FormItem required label={<FormattedMessage id="js.com.Tra.0008" defaultMessage="上车站点" />}>
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('stationBegin', {
                                          validateTrigger: 'onBlur',
@@ -154,14 +155,14 @@ class AddEditBook extends Component {
                                              type: 'string',
                                              required: true,
                                              pattern: /\S+/ig,
-                                             message: '请输入上车站点',
+                                             message: <FormattedMessage id="js.com.Tra.0009" defaultMessage="请输入上车站点" />,
                                          }],
                                      })}
                         />
                         <FormError errorMsg={getFieldError('stationBegin')}/>
                     </FormItem>
 
-                    <FormItem required label="下车站点">
+                    <FormItem required label={<FormattedMessage id="js.com.Tra.0010" defaultMessage="下车站点" />}>
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('stationEnd', {
                                          validateTrigger: 'onBlur',
@@ -170,14 +171,14 @@ class AddEditBook extends Component {
                                              type: 'string',
                                              required: true,
                                              pattern: /\S+/ig,
-                                             message: '请输入下车站点',
+                                             message: <FormattedMessage id="js.com.Tra.0011" defaultMessage="请输入下车站点" />,
                                          }],
                                      })}
                         />
                         <FormError errorMsg={getFieldError('stationEnd')}/>
                     </FormItem>
 
-                    <FormItem required label="费用">
+                    <FormItem required label={<FormattedMessage id="js.com.Tra.0012" defaultMessage="费用" />}>
                         <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={999999}
                                      {...getFieldProps('cost', {
                                          initialValue: cost !== undefined ? cost : 1,
@@ -186,22 +187,22 @@ class AddEditBook extends Component {
                         />
                     </FormItem>
 
-                    <FormItem required label="支付状态">
+                    <FormItem required label={<FormattedMessage id="js.com.Tra.0013" defaultMessage="支付状态" />}>
                         <Select disabled={btnFlag === 2}
                                 {...getFieldProps('payStatus', {
                                     initialValue: payStatus || 1,
                                     rules: [{
-                                        required: true, message: '请选择支付状态',
+                                        required: true, message: <FormattedMessage id="js.com.Tra.0014" defaultMessage="请选择支付状态" />,
                                     }],
                                 })}
                         >
-                            <Select.Option value={1}>未支付</Select.Option>
-                            <Select.Option value={2}>已支付</Select.Option>
+                            <Select.Option value={1}><FormattedMessage id="js.com.Tra.0015" defaultMessage="未支付" /></Select.Option>
+                            <Select.Option value={2}><FormattedMessage id="js.com.Tra.0016" defaultMessage="已支付" /></Select.Option>
                         </Select>
                         <FormError errorMsg={getFieldError('payStatus')}/>
                     </FormItem>
 
-                    <FormItem label="备注">
+                    <FormItem label={<FormattedMessage id="js.com.Tra.0017" defaultMessage="备注" />}>
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('remark', {
                                          initialValue: remark || '',

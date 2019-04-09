@@ -2,6 +2,7 @@
  * 面板组件
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BeeSearchPanel from 'bee-search-panel'
@@ -24,9 +25,9 @@ const defaultProps = {
     searchOpen: true,
     search: () => { },
     reset: () => { },
-    title: "默认筛选",
-    resetName: "清空",
-    searchName: "查询",
+    title: <FormattedMessage id="js.com.defSea1.0001" defaultMessage="默认筛选" />,
+    resetName: <FormattedMessage id="js.com.defSea1.0002" defaultMessage="清空" />,
+    searchName: <FormattedMessage id="js.com.defSea1.0003" defaultMessage="查询" />,
     bgColor: "#F7F9FB"
 };
 

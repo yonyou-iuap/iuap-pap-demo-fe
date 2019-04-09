@@ -4,6 +4,7 @@
 
 
 //React所需导入
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, { Component } from 'react';
 
 //文本输入组件
@@ -29,14 +30,14 @@ const renderComponentMap = {
     sex: {//性别
         component: SelectField,
         selectList: [{
-            key: "请选择",
+            key: <FormattedMessage id="js.com.Ind2.0001" defaultMessage="请选择" />,
             value: '',
             disabled: true
         }, {
-            key: "男",
+            key: <FormattedMessage id="js.com.Ind2.0002" defaultMessage="男" />,
             value: 1
         }, {
-            key: "女",
+            key: <FormattedMessage id="js.com.Ind2.0003" defaultMessage="女" />,
             value: 0
         }],
         type: 'select'
@@ -64,44 +65,44 @@ const renderComponentMap = {
     month: {
         component: SelectField,
         selectList: [{//月份
-            key: "请选择",
+            key: <FormattedMessage id="js.com.Ind2.0001" defaultMessage="请选择" />,
             value: "",
             disabled: true
         }, {
-            key: "一月",
+            key: <FormattedMessage id="js.com.Ind2.0004" defaultMessage="一月" />,
             value: 1
         }, {
-            key: "二月",
+            key: <FormattedMessage id="js.com.Ind2.0005" defaultMessage="二月" />,
             value: 2
         }, {
-            key: "三月",
+            key: <FormattedMessage id="js.com.Ind2.0006" defaultMessage="三月" />,
             value: 3
         }, {
-            key: "四月",
+            key: <FormattedMessage id="js.com.Ind2.0007" defaultMessage="四月" />,
             value: 4
         }, {
-            key: "五月",
+            key: <FormattedMessage id="js.com.Ind2.0008" defaultMessage="五月" />,
             value: 5
         }, {
-            key: "六月",
+            key: <FormattedMessage id="js.com.Ind2.0009" defaultMessage="六月" />,
             value: 6
         }, {
-            key: "七月",
+            key: <FormattedMessage id="js.com.Ind2.0010" defaultMessage="七月" />,
             value: 7
         }, {
-            key: "八月",
+            key: <FormattedMessage id="js.com.Ind2.0011" defaultMessage="八月" />,
             value: 8
         }, {
-            key: "九月",
+            key: <FormattedMessage id="js.com.Ind2.0012" defaultMessage="九月" />,
             value: 9
         }, {
-            key: "十月",
+            key: <FormattedMessage id="js.com.Ind2.0013" defaultMessage="十月" />,
             value: 10
         }, {
-            key: "十一月",
+            key: <FormattedMessage id="js.com.Ind2.0014" defaultMessage="十一月" />,
             value: 11
         }, {
-            key: "十二月",
+            key: <FormattedMessage id="js.com.Ind2.0015" defaultMessage="十二月" />,
             value: 12
         }],
         type: 'select'
@@ -109,17 +110,17 @@ const renderComponentMap = {
     allowanceType: {//补助类别
         component: SelectField,
         selectList: [{
-            key: "请选择",
+            key: <FormattedMessage id="js.com.Ind2.0001" defaultMessage="请选择" />,
             value: "",
             disabled: true
         }, {
-            key: "电脑补助",
+            key: <FormattedMessage id="js.com.Ind2.0016" defaultMessage="电脑补助" />,
             value: 1
         }, {
-            key: "住宿补助",
+            key: <FormattedMessage id="js.com.Ind2.0017" defaultMessage="住宿补助" />,
             value: 2
         }, {
-            key: "交通补助",
+            key: <FormattedMessage id="js.com.Ind2.0018" defaultMessage="交通补助" />,
             value: 3
         }],
         type: 'select'
@@ -147,14 +148,14 @@ const renderComponentMap = {
     exdeeds: {//是否超标
         component: SelectField,
         selectList: [{
-            key: "请选择",
+            key: <FormattedMessage id="js.com.Ind2.0001" defaultMessage="请选择" />,
             value: "",
             disabled: true
         }, {
-            key: "未超标",
+            key: <FormattedMessage id="js.com.Ind2.0019" defaultMessage="未超标" />,
             value: 0
         }, {
-            key: "超标",
+            key: <FormattedMessage id="js.com.Ind2.0020" defaultMessage="超标" />,
             value: 1
         }],
         type: 'select'
@@ -162,14 +163,14 @@ const renderComponentMap = {
     pickType: {//领取类别
         component: SelectField,
         selectList: [{
-            key: "请选择",
+            key: <FormattedMessage id="js.com.Ind2.0001" defaultMessage="请选择" />,
             value: "",
             disabled: true
         }, {
-            key: "转账",
+            key: <FormattedMessage id="js.com.Ind2.0021" defaultMessage="转账" />,
             value: 1
         }, {
-            key: "现金",
+            key: <FormattedMessage id="js.com.Ind2.0022" defaultMessage="现金" />,
             value: 2
         }],
         type: 'select'
@@ -249,7 +250,7 @@ class FactoryComp extends Component {
                 )
             )
         } else {
-            return (<div>组件类型错误</div>)
+            return (<div><FormattedMessage id="js.com.Ind2.0023" defaultMessage="组件类型错误" /></div>)
         }
 
 
@@ -261,4 +262,4 @@ class FactoryComp extends Component {
     }
 }
 
-export default FactoryComp;
+export default injectIntl(FactoryComp);

@@ -1,3 +1,4 @@
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, {Component} from "react";
 import moment from "moment";
 import { FormControl, InputNumber, Select} from "tinper-bee";
@@ -27,7 +28,7 @@ class OrderChild extends Component {
         const {getFieldProps, getFieldError} = form;
         return (
             <FormList className='detail-body form-panel order-panel'>
-                <FormItem label="编号" layoutOpt={layoutOpt}>
+                <FormItem label={<FormattedMessage id="js.com.Ord.0001" defaultMessage="编号" />} layoutOpt={layoutOpt}>
                     <FormControl disabled={true}
                                  {...getFieldProps('orderCode', {
                                      initialValue: orderRow.orderCode || ""
@@ -36,21 +37,21 @@ class OrderChild extends Component {
                     <FormError errorMsg={getFieldError('orderCode')}/>
                 </FormItem>
 
-                <FormItem required label={"名称"} layoutOpt={layoutOpt}>
+                <FormItem required label={<FormattedMessage id="js.com.Ord.0002" defaultMessage="名称" />} layoutOpt={layoutOpt}>
                     <FormControl disabled={btnFlag === 2}
                                  {...getFieldProps('orderName', {
                                          validateTrigger: 'onBlur',
                                          initialValue: orderRow.orderName || '',
                                          rules: [{
                                              required: true,
-                                             message: '请输入名称',
+                                             message: <FormattedMessage id="js.com.Ord.0003" defaultMessage="请输入名称" />,
                                          }],
                                      }
                                  )}
                     />
                     <FormError errorMsg={getFieldError('orderName')}/>
                 </FormItem>
-                <FormItem required label={"类型"} layoutOpt={layoutOpt}>
+                <FormItem required label={<FormattedMessage id="js.com.Ord.0004" defaultMessage="类型" />} layoutOpt={layoutOpt}>
                     <Select disabled={btnFlag === 2}
                             {...getFieldProps('orderType', {
                                 initialValue: orderRow.orderType ? orderRow.orderType.toString() : "1",
@@ -59,14 +60,14 @@ class OrderChild extends Component {
                                 }],
                             })}
                     >
-                        <Option value="1">普通采购</Option>
-                        <Option value="2">委托代销</Option>
-                        <Option value="3">直运采购</Option>
+                        <Option value="1"><FormattedMessage id="js.com.Ord.0005" defaultMessage="普通采购" /></Option>
+                        <Option value="2"><FormattedMessage id="js.com.Ord.0006" defaultMessage="委托代销" /></Option>
+                        <Option value="3"><FormattedMessage id="js.com.Ord.0007" defaultMessage="直运采购" /></Option>
                     </Select>
                     <FormError errorMsg={getFieldError('orderType')}/>
                 </FormItem>
 
-                <FormItem required label={"部门"} layoutOpt={layoutOpt}>
+                <FormItem required label={<FormattedMessage id="js.com.Ord.0008" defaultMessage="部门" />} layoutOpt={layoutOpt}>
                     <RefIuapDept
                         disabled={btnFlag === 2}
                         {...getFieldProps('orderDept', {
@@ -75,7 +76,7 @@ class OrderChild extends Component {
                                 refpk: orderRow.orderDept || ''
                             }),
                             rules: [{
-                                message: '请选择部门',
+                                message: <FormattedMessage id="js.com.Ord.0009" defaultMessage="请选择部门" />,
                                 pattern: /[^({"refname":"","refpk":""}|{"refpk":"","refname":""})]/
                             }],
                         })}
@@ -85,7 +86,7 @@ class OrderChild extends Component {
                 </FormItem>
 
 
-                <FormItem required label={"价格"} layoutOpt={layoutOpt}>
+                <FormItem required label={<FormattedMessage id="js.com.Ord.0010" defaultMessage="价格" />} layoutOpt={layoutOpt}>
                     <InputNumber
                         iconStyle="one"
                         precision={2}
@@ -99,7 +100,7 @@ class OrderChild extends Component {
                     />
                 </FormItem>
 
-                <FormItem label={"申请人"} layoutOpt={layoutOpt}>
+                <FormItem label={<FormattedMessage id="js.com.Ord.0011" defaultMessage="申请人" />} layoutOpt={layoutOpt}>
                     <FormControl disabled={true}
                                  {...getFieldProps('createUserName', {
                                      initialValue: orderRow.orderUserName ? orderRow.orderUserName : decodeURIComponent(getCookie("_A_P_userName")),
@@ -107,14 +108,14 @@ class OrderChild extends Component {
                     />
                 </FormItem>
 
-                <FormItem required label={"申请日期"} layoutOpt={layoutOpt}>
+                <FormItem required label={<FormattedMessage id="js.com.Ord.0012" defaultMessage="申请日期" />} layoutOpt={layoutOpt}>
                     <DatePicker className='form-item' disabled={btnFlag === 2}
                                 format={format}
                                 {...getFieldProps('orderDate', {
                                         initialValue: orderRow.orderDate ? moment(orderRow.orderDate) : moment(),
                                         validateTrigger: 'onBlur',
                                         rules: [{
-                                            required: true, message: '请选择申请日期',
+                                            required: true, message: <FormattedMessage id="js.com.Ord.0013" defaultMessage="请选择申请日期" />,
                                         }],
                                     }
                                 )}

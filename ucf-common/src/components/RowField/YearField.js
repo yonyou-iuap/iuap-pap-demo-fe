@@ -3,6 +3,7 @@
  */
 
 //React导入
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, { Component } from 'react';
 //类型校验
 import PropTypes from 'prop-types';
@@ -41,7 +42,7 @@ const propTypes = {
 const defaultProps = {
     field: '',
     index: '',
-    message: '请输入此字段',
+    message: <FormattedMessage id="js.com.Row1.0001" defaultMessage="请输入此字段" />,
     data: [],
     required: false,
     isFlag: false,
@@ -133,7 +134,7 @@ class YearField extends Component {
                     onChange={this.handlerChange}
                     format={'YYYY'}
                     locale={zhCN}
-                    placeholder={"选择年"}
+                    placeholder={this.props.intl.formatMessage({id:"js.com.Row1.0002", defaultMessage:"选择年"})}
                 />
             </FieldWrap>
         );

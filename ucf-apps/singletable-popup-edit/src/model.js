@@ -1,3 +1,5 @@
+import React, { Component } from "react";
+import { FormattedMessage } from 'react-intl';
 import {actions} from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
@@ -88,7 +90,7 @@ export default {
         async removeList(param, getState) {
             actions.popupEdit.updateState({ showLoading: true });
             const {id} = param;
-            const { result } = processData(await api.deleteList([{id}]),'删除成功');
+            const { result } = processData(await api.deleteList([{id}]),<FormattedMessage id="js.sin.src5.0001" defaultMessage="删除成功" />);
             if (result.status === "success") {
                 const state = getState().popupEdit;
                 const { queryParam, list, totalPages } = state;
@@ -111,12 +113,12 @@ export default {
             const {btnFlag} = param;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加
-                let {result} = processData(await api.saveOrder(param), '保存成功');
+                let {result} = processData(await api.saveOrder(param), <FormattedMessage id="js.sin.src5.0002" defaultMessage="保存成功" />);
                 status=result.status;
 
             }
             if (btnFlag === 1) { // 修改
-                let {result} = processData(await api.updateOrder(param), '修改成功');
+                let {result} = processData(await api.updateOrder(param), <FormattedMessage id="js.sin.src5.0003" defaultMessage="修改成功" />);
                 status = result.status;
             }
             if (status==="success") {

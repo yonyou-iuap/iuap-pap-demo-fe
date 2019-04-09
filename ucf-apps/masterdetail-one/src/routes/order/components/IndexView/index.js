@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, { Component } from "react";
 import { actions } from "mirrorx";
 import { Loading, Icon, Modal } from "tinper-bee";
@@ -15,7 +16,7 @@ import FactoryComp from './FactoryComp';
 import { uuid, deepClone, getCookie, Info, getPageParam } from "utils";
 import './index.less'
 
-let titleArr = ["新增", "修改", "详情"];
+let titleArr = [<FormattedMessage id="js.com.Ind7.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Ind7.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Ind7.0003" defaultMessage="详情" />];
 
 class IndexView extends Component {
     constructor(props) {
@@ -103,7 +104,7 @@ class IndexView extends Component {
 
     detailColumn = [
         {
-            title: "物料名称",
+            title: <FormattedMessage id="js.com.Ind7.0004" defaultMessage="物料名称" />,
             dataIndex: "detailName",
             key: "detailName",
             width: 200,
@@ -121,7 +122,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "物料型号",
+            title: <FormattedMessage id="js.com.Ind7.0005" defaultMessage="物料型号" />,
             dataIndex: "detailModel",
             key: "detailModel",
             width: 200,
@@ -140,7 +141,7 @@ class IndexView extends Component {
 
         },
         {
-            title: "物料数量",
+            title: <FormattedMessage id="js.com.Ind7.0006" defaultMessage="物料数量" />,
             dataIndex: "detailCount",
             key: "detailCount",
             width: 200,
@@ -158,7 +159,7 @@ class IndexView extends Component {
                 />
             }
         }, {
-            title: "需求日期",
+            title: <FormattedMessage id="js.com.Ind7.0007" defaultMessage="需求日期" />,
             dataIndex: "detailDate",
             key: "detailDate",
             width: 200,
@@ -257,8 +258,9 @@ class IndexView extends Component {
 
     onClickDel = () => {
         const { selectData } = this.state;
+        const {intl} = this.props;
         if (selectData.length === 0) {
-            Info('请勾选数据后再删除');
+            Info(intl.formatMessage({id: 'js.com.Ind7.0008', defineMessage: '请勾选数据后再删除'}));
         } else {
             this.setState({ showPopAlert: true });
         }
@@ -619,7 +621,7 @@ class IndexView extends Component {
 
     render() {
         const {
-            queryDetailObj, status, showLoading, form, queryParent: orderRow, showDetailLoading, showModalCover
+            queryDetailObj, status, showLoading, form, queryParent: orderRow, showDetailLoading, showModalCover, intl
         } = this.props;
         const { showPopAlert, showPopBackVisible, btnFlag, appType, processDefinitionId, processInstanceId } = this.state;
         if (!orderRow.id && btnFlag > 0) {
@@ -652,9 +654,9 @@ class IndexView extends Component {
                     }} />
                 <Header back title={titleArr[2]}>
                     <div className='head-btn'>
-                        <Button shape="border" className="ml8" onClick={this.onBack}>取消</Button>
+                        <Button shape="border" className="ml8" onClick={this.onBack}><FormattedMessage id="js.com.Ind7.0010" defaultMessage="取消" /></Button>
                         {(btnFlag !== 2) &&
-                        <Button colors="primary" className="ml8" onClick={this.onClickSave}>保存</Button>
+                        <Button colors="primary" className="ml8" onClick={this.onClickSave}><FormattedMessage id="js.com.Ind7.0011" defaultMessage="保存" /></Button>
                         }
                     </div>
 
@@ -671,7 +673,7 @@ class IndexView extends Component {
                         size='sm'
                         colors="primary"
                         onClick={this.handlerNew}>
-                        新增
+                        <FormattedMessage id="js.com.Ind7.0012" defaultMessage="新增" />
                     </Button>
                     <Button
                         shape="border"
@@ -679,7 +681,7 @@ class IndexView extends Component {
                         className="ml8"
                         size='sm'
                         onClick={this.onClickUpdate}>
-                        修改
+                        <FormattedMessage id="js.com.Ind7.0013" defaultMessage="修改" />
                     </Button>
                     <Button
                         shape="border"
@@ -687,11 +689,11 @@ class IndexView extends Component {
                         className="ml8"
                         size='sm'
                         onClick={this.onClickDel}>
-                        删除
+                        <FormattedMessage id="js.com.Ind7.0014" defaultMessage="删除" />
                     </Button>
                     <Alert
                         show={showPopAlert}
-                        context="新增、修改数据未保存将无法生效，确定删除这些记录吗 ?"
+                        context={intl.formatMessage({id: 'js.com.Ind7.0015', defineMessages: '新增、修改数据未保存将无法生效，确定删除这些记录吗 ?'})}
                         confirmFn={() => {
                             this.confirmDel(1)
                         }}
@@ -721,15 +723,15 @@ class IndexView extends Component {
                     show={showModalCover}
                     onHide={this.close} >
                     <Modal.Header>
-                        <Modal.Title>警告</Modal.Title>
+                        <Modal.Title><FormattedMessage id="js.com.Ind7.0016" defaultMessage="警告" /></Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
-                        未获取到单据信息
+                        <FormattedMessage id="js.com.Ind7.0017" defaultMessage="未获取到单据信息" />
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button onClick={this.closeModal}>是</Button>
+                        <Button onClick={this.closeModal}><FormattedMessage id="js.com.Ind7.0018" defaultMessage="是" /></Button>
                     </Modal.Footer>
                 </Modal>
             </div>
@@ -737,5 +739,5 @@ class IndexView extends Component {
     }
 }
 
-export default FormList.createForm()(IndexView);
+export default FormList.createForm()(injectIntl(IndexView));
 

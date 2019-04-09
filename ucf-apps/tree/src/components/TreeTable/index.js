@@ -1,3 +1,4 @@
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, {Component} from 'react';
 import {actions} from 'mirrorx';
 
@@ -24,19 +25,19 @@ class TreeTable extends Component {
 		this.grid = null;
 		this.column = [
 			{
-				title: "姓名",
+				title: <FormattedMessage id="js.com.Tre.0001" defaultMessage="姓名" />,
 				dataIndex: "name",
 				key: "name",
 				width:200,
 			},
 			{
-				title: "性别",
+				title: <FormattedMessage id="js.com.Tre.0002" defaultMessage="性别" />,
 				dataIndex: "sexEnumValue",
 				key: "sexEnumValue",
 				width:200,
 			},
 			{
-				title: "年龄",
+				title: <FormattedMessage id="js.com.Tre.0003" defaultMessage="年龄" />,
 				dataIndex: "age",
 				key: "age",
 				width: 200,
@@ -134,7 +135,7 @@ class TreeTable extends Component {
 			if (Array.isArray(tableSelValue) && len) {
 
 				if (len > 1) {
-					Warning("请选择单条表数据");
+					Warning(<FormattedMessage id="js.com.Tre.0004" defaultMessage="请选择单条表数据" />);
 					return;
 				}
 
@@ -144,7 +145,7 @@ class TreeTable extends Component {
 					btnFlag
 				})
 			} else {
-				Warning("请选择表数据");
+				Warning(<FormattedMessage id="js.com.Tre.0005" defaultMessage="请选择表数据" />);
 				return ;
 			}
 		} else {
@@ -158,7 +159,7 @@ class TreeTable extends Component {
 					initEditValue : {}
 				}
 			} else {
-				Warning("请选择表数据所属树节点");
+				Warning(<FormattedMessage id="js.com.Tre.0006" defaultMessage="请选择表数据所属树节点" />);
 			}
 
 		}
@@ -176,7 +177,7 @@ class TreeTable extends Component {
 			});
 
 		} else {
-			Warning("请选择数据");
+			Warning(<FormattedMessage id="js.com.Tre.0007" defaultMessage="请选择数据" />);
 		}
 	}
 
@@ -313,26 +314,26 @@ class TreeTable extends Component {
 							onClick={ _this.onCommonClick(0)}
 							role = 'add'
 							disabled = {showObj[0]}
-						>新增</Button>
+						><FormattedMessage id="js.com.Tre.0008" defaultMessage="新增" /></Button>
 						<Button style={{"margin" : 8}}
 							onClick={ _this.onCommonClick(1)}
 							role = 'update'
 							shape='border'
 							disabled = {showObj[1]}
-						>修改</Button>
+						><FormattedMessage id="js.com.Tre.0009" defaultMessage="修改" /></Button>
 						<Button
 							style={{"margin" : 8}}
 							shape='border'
 							onClick={ _this.onCommonClick(2)}
 							disabled = {showObj[2]}
-						>详情</Button>
+						><FormattedMessage id="js.com.Tre.0010" defaultMessage="详情" /></Button>
 						<Button
 							style={{"margin" : 8}}
 							onClick={_this.onDelete}
 							role = 'delete'
                             shape='border'
 							disabled = {showObj[3]}
-						>删除</Button>
+						><FormattedMessage id="js.com.Tre.0011" defaultMessage="删除" /></Button>
 					</ButtonRoleGroup>
 					<Button
 						style = {{"margin" : 8}}
@@ -340,7 +341,7 @@ class TreeTable extends Component {
 						onClick = {_this.onExport}
                         shape='border'
 					>
-						导出
+						<FormattedMessage id="js.com.Tre.0012" defaultMessage="导出" />
 					</Button>
 				</div>
 				<Grid

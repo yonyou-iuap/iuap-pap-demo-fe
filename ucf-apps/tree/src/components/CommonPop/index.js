@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from "react";
 import {
 	FormControl, Select, InputNumber
@@ -14,7 +15,7 @@ import './index.less';
 const FormItem = FormList.Item;
 const {Option} = Select;
 
-const titleArr = ["新增", "修改", "详情"];
+const titleArr = [<FormattedMessage id="js.com.Com.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Com.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Com.0003" defaultMessage="详情" />];
 
 class CommonPop extends Component {
     constructor(props) {
@@ -71,7 +72,7 @@ class CommonPop extends Component {
                     actions.walsinTree.updateState({
                         showLoading : false,
                     });
-                    Error('请选择树节点');
+                    Error(<FormattedMessage id="js.com.Com.0004" defaultMessage="请选择树节点" />);
                     return ;
                 }
 
@@ -131,11 +132,11 @@ class CommonPop extends Component {
 
 	defaultBtnConfig = [
         {
-            label: '取消',
+            label: <FormattedMessage id="js.com.Com.0005" defaultMessage="取消" />,
             fun: this.onCloseEdit,
             shape: 'border'
         },{
-            label: '确定',
+            label: <FormattedMessage id="js.com.Com.0006" defaultMessage="确定" />,
             fun: this.onSubmitEdit,
             colors: 'primary'
         }
@@ -159,7 +160,7 @@ class CommonPop extends Component {
 				close={_this.onCloseEdit}
 				>
 				<FormList>
-                    <FormItem required label={"员工姓名"}>
+                    <FormItem required label={<FormattedMessage id="js.com.Com.0007" defaultMessage="员工姓名" />}>
                         <FormControl
                             disabled = {btnFlag == 2}
                             {...getFieldProps('name', {
@@ -169,29 +170,29 @@ class CommonPop extends Component {
                                     type: 'string',
                                     required: true,
                                     pattern: /\S+/ig,
-                                    message: '请输入员工姓名',
+                                    message: <FormattedMessage id="js.com.Com.0008" defaultMessage="请输入员工姓名" />,
                                 }],
                             })}
                         />
                         <span className='error'>{getFieldError('name')}</span>
                     </FormItem>
 
-                    <FormItem required label={"员工性别"}>
+                    <FormItem required label={<FormattedMessage id="js.com.Com.0009" defaultMessage="员工性别" />}>
                         <Select
                             disabled = {btnFlag == 2}
                             {...getFieldProps('sex', {
                                 initialValue: sex || 1,
                                 rules: [{
-                                    required: true, message: '请选择员工性别',
+                                    required: true, message: <FormattedMessage id="js.com.Com.0010" defaultMessage="请选择员工性别" />,
                                 }],
                             })}
                         >
-                            <Option value={1}>女</Option>
-                            <Option value={2}>男</Option>
+                            <Option value={1}><FormattedMessage id="js.com.Com.0011" defaultMessage="女" /></Option>
+                            <Option value={2}><FormattedMessage id="js.com.Com.0012" defaultMessage="男" /></Option>
                         </Select>
                         <span className='error'>{getFieldError('sex')}</span>
                     </FormItem>
-                    <FormItem required label={"年龄"}>
+                    <FormItem required label={<FormattedMessage id="js.com.Com.0013" defaultMessage="年龄" />}>
                         <InputNumber iconStyle="one" min={1} step={1}  max={99}
                                      disabled = {btnFlag == 2}
                                      {...getFieldProps('age', {
@@ -204,7 +205,7 @@ class CommonPop extends Component {
                                            },
                                            pattern: /^[0-9]+$/,
                                            required: true,
-                                           message: "年龄需小于100"
+                                           message: <FormattedMessage id="js.com.Com.0014" defaultMessage="年龄需小于100" />
                                          }],
                                      })}
                         />

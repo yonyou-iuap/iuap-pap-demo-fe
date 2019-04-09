@@ -1,11 +1,13 @@
 
+import { FormattedMessage } from 'react-intl';
 import React from 'react';
 import {RefMultipleTableWithInput, RefMultipleTable } from 'pap-refer/dist/index';
 
 import {RefTreeWithInput,  RefTree } from 'pap-refer/dist/index';
 
 // import RefComboBox, {ComboStore} from 'ref-combobox';
-
+import {getCookie} from "utils";
+const uLocale = getCookie('u_locale');
 
 import './index.less'
 
@@ -16,9 +18,10 @@ export function RefIuapDept(props){
         <RefTreeWithInput
             style={{
             }}
-            title={'部门'}
+            title={<FormattedMessage id="js.com.Ref2.0001" defaultMessage="部门"/>}
             searchable= {true}
             strictMode={true}
+            lang={uLocale}
             param= {
                 {"refCode":"newdept"}
             }
@@ -41,9 +44,10 @@ export function RefIuapDept(props){
 export function RefWalsinLevel(props){
     return (
         <RefMultipleTableWithInput
-            title= '职级'
+            title={<FormattedMessage id="js.com.Ref2.0002" defaultMessage="职级" />}
             strictMode={true}
             backdrop = {false}
+            lang={uLocale}
             param = {{//url请求参数
                 refCode:'post_level',//test_common||test_grid||test_tree||test_treeTable
             }}

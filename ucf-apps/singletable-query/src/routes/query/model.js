@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import {actions} from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";

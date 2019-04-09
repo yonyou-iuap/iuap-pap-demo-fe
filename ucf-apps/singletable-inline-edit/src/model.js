@@ -2,6 +2,8 @@
  * mirrorx定义modal
  */
 
+import React, { Component } from "react";
+import { FormattedMessage} from 'react-intl';
 import { actions } from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
@@ -92,7 +94,7 @@ export default {
          */
         async adds(param) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.adds(param),'保存成功');
+            let { result } = processData(await api.adds(param),<FormattedMessage id="js.sin.src.0001" defaultMessage="保存成功" />);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false});
             if (status === 'success') {
@@ -109,7 +111,7 @@ export default {
          */
         async removes(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.removes(param),'删除成功');
+            let { result } = processData(await api.removes(param),<FormattedMessage id="js.sin.src.0002" defaultMessage="删除成功" />);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
@@ -135,7 +137,7 @@ export default {
          */
         async updates(param) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.updates(param),'更新成功');
+            let { result } = processData(await api.updates(param),<FormattedMessage id="js.sin.src.0003" defaultMessage="更新成功" />);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {

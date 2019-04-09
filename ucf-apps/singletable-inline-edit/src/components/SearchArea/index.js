@@ -3,6 +3,7 @@
  */
 
 //React所需
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, { Component } from 'react';
 //状态管理
 import { actions } from "mirrorx";
@@ -149,47 +150,47 @@ class SearchAreaForm extends Component {
 
                 <FormList size="sm">
                     <FormItem
-                        label="员工编号"
+                        label={<FormattedMessage id="js.com.Sea2.0001" defaultMessage="员工编号" />}
                     >
-                        <FormControl placeholder="精确查询" {...getFieldProps('code', { initialValue: '' })} />
+                        <FormControl placeholder={this.props.intl.formatMessage({id:"js.com.Sea2.0002", defaultMessage:"精确查询"})} {...getFieldProps('code', { initialValue: '' })} />
                     </FormItem>
 
                     <FormItem
-                        label="员工姓名"
+                        label={<FormattedMessage id="js.com.Sea2.0003" defaultMessage="员工姓名" />}
                     >
-                        <FormControl placeholder="模糊查询" {...getFieldProps('name', { initialValue: '' })} />
+                        <FormControl placeholder={this.props.intl.formatMessage({id:"js.com.Sea2.0004", defaultMessage:"模糊查询"})} {...getFieldProps('name', { initialValue: '' })} />
                     </FormItem>
 
                     <FormItem
-                        label="部门"
+                        label={<FormattedMessage id="js.com.Sea2.0005" defaultMessage="部门" />}
                     >
                         <RefIuapDept {...getFieldProps('dept', { initialValue: '' })} />
                     </FormItem>
 
                     <FormItem
-                        label="年份"
+                        label={<FormattedMessage id="js.com.Sea2.0006" defaultMessage="年份" />}
                     >
                         <YearPicker
                             {...getFieldProps('year', { initialValue: null })}
                             format={format}
                             locale={zhCN}
-                            placeholder="选择年"
+                            placeholder={this.props.intl.formatMessage({id:"js.com.Sea2.0007", defaultMessage:"选择年"})}
                         />
                     </FormItem>
 
                     <FormItem
-                        label="月份"
+                        label={<FormattedMessage id="js.com.Sea2.0008" defaultMessage="月份" />}
                     >
                         <SelectMonth  {...getFieldProps('month', { initialValue: '' })} />
                     </FormItem>
 
                     <FormItem
-                        label="是否超标"
+                        label={<FormattedMessage id="js.com.Sea2.0009" defaultMessage="是否超标" />}
                     >
                         <Select {...getFieldProps('exdeeds', { initialValue: '' })}>
-                            <Option value="">请选择</Option>
-                            <Option value="0">未超标</Option>
-                            <Option value="1">超标</Option>
+                            <Option value=""><FormattedMessage id="js.com.Sea2.0010" defaultMessage="请选择" /></Option>
+                            <Option value="0"><FormattedMessage id="js.com.Sea2.0011" defaultMessage="未超标" /></Option>
+                            <Option value="1"><FormattedMessage id="js.com.Sea2.0012" defaultMessage="超标" /></Option>
                         </Select>
                     </FormItem>
                 </FormList>
@@ -200,4 +201,4 @@ class SearchAreaForm extends Component {
     }
 }
 
-export default FormList.createForm()(SearchAreaForm)
+export default FormList.createForm()(injectIntl(SearchAreaForm))

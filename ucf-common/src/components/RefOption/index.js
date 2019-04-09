@@ -21,7 +21,7 @@ let option = {
         TableBarUrl:'/newref/rest/iref_ctr/refInfo',//表头请求ref/rest/iref_ctr/refInfo
     },
     filterRefUrl:'/newref/rest/iref_ctr/matchPKRefJSON',//get
-    buttonText:{ok:"确定",cancel:"取消"},
+    buttonText:{ok:<FormattedMessage id="js.com.Ref2.0001" defaultMessage="确定" />,cancel:<FormattedMessage id="js.com.Ref2.0002" defaultMessage="取消" />},
     // keyList:['123'],//选中的key
 
     // checkedArray: [],
@@ -30,11 +30,11 @@ let option = {
     },
     // filterKey: [{ title: '人员名称人员名称人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }, { title: '人员名称', key: 'peoname' }],
     textOption: {
-        modalTitle: '选择品类',
-        leftTitle: '分类',
-        rightTitle: '列表',
-        leftTransferText: '待选',
-        rightTransferText: '已选',
+        modalTitle: <FormattedMessage id="js.com.Ref2.0003" defaultMessage="选择品类" />,
+        leftTitle: <FormattedMessage id="js.com.Ref2.0004" defaultMessage="分类" />,
+        rightTitle: <FormattedMessage id="js.com.Ref2.0005" defaultMessage="列表" />,
+        leftTransferText: <FormattedMessage id="js.com.Ref2.0006" defaultMessage="待选" />,
+        rightTransferText: <FormattedMessage id="js.com.Ref2.0007" defaultMessage="已选" />,
         // leftInfo: [{ text: '流水号', key: 'peoname' }, { text: '品类编码', key: 'institid' }, { text: '品类描述', key: 'refname' }],
         // rightInfo: [{ text: '流水号', key: 'id' }, { text: '品类编码', key: 'id' }, { text: '品类描述', key: 'peocode' }],
     }

@@ -1,4 +1,5 @@
 
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, { Component } from 'react';
 import TextField from 'components/RowField/TextField';
 import NumberField from 'components/RowField/NumberField';
@@ -51,7 +52,7 @@ class FactoryComp extends Component {
                         /> : <div>{value ? moment(value).format("YYYY-MM-DD") : ""}</div>}
                 </div>);
             default:
-                return (<div>组件类型错误</div>)
+                return (<div><FormattedMessage id="js.com.Ind8.0001" defaultMessage="组件类型错误" /></div>)
         }
     }
     render() {
@@ -61,4 +62,4 @@ class FactoryComp extends Component {
     }
 }
 
-export default FactoryComp;
+export default injectIntl(FactoryComp);
