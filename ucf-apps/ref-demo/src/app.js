@@ -116,7 +116,7 @@ import {
             </div>
           </div>
           <h2><FormattedMessage id="js.ref.src.0003" defaultMessage="级联参照" /></h2>
-          <div className="demo-row">
+          <div className={`demo-row ${theme}`}>
             <div className="demo-col">
               <RefJiLianDemo1 lang={lang} theme={theme} {...this.props}/>
             </div>
