@@ -74,7 +74,8 @@ class Demo4 extends Component {
             displayField='{refname}'
             valueField='refpk'
             onSave={this.singleSave}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
@@ -101,7 +102,8 @@ class Demo4 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
@@ -186,7 +188,8 @@ class Demo4 extends Component {
             displayField='{refname}'
             valueField='refpk'
             onSave={this.singleSave}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
@@ -213,7 +216,8 @@ class Demo4 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             param={{
                 "clientParam":Object.keys(singleClientParam).length===0?'':singleClientParam

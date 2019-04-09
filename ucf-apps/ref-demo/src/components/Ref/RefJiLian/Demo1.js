@@ -80,7 +80,8 @@ class Demo1 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -112,7 +113,8 @@ class Demo1 extends Component {
                 "clientParam":Object.keys(singleClientParam).length===0?'':singleClientParam
                 
             }}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -190,7 +192,8 @@ class Demo1 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -222,7 +225,8 @@ class Demo1 extends Component {
                 "clientParam":Object.keys(singleClientParam).length===0?'':singleClientParam
                 
             }}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{

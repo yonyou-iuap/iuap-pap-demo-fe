@@ -7,15 +7,15 @@
 
 import React, { Component } from 'react';
 
-import { RefTreeTableWithInput } from 'pap-refer/dist/index';
-import "pap-refer/dist/index.css"
+import  RefTreeTableWithInput  from 'pap-refer/lib/ref-tree-table';
+import "pap-refer/lib/ref-tree-table.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 let code =
   `
 import React, { Component } from 'react';
-import { RefTreeTableWithInput } from 'pap-refer/dist/index';
-import "pap-refer/dist/index.css"
+import { RefTreeTableWithInput } from 'pap-refer/lib/ref-tree-table';
+import "pap-refer/lib/ref-tree-table.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 class Demo1 extends Component {
@@ -73,7 +73,8 @@ return (
                 filterUrl= '/pap_basedoc/common-ref/filterRefJSON'
                 displayField='{refname}'
                 valueField='refpk'
-                lang={this.props.lang}
+               lang={this.props.lang}
+            theme={this.props.theme}
                 {...getFieldProps('code', {
                     initialValue: '{"refname":"","refpk":""}',
                     rules: [{
@@ -152,7 +153,8 @@ class Demo1 extends Component {
             filterUrl='/pap_basedoc/common-ref/filterRefJSON'
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{

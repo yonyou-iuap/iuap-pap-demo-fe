@@ -61,7 +61,8 @@ class Demo1 extends Component {
             displayField='{refname}'
             nodeDisplay='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
@@ -82,7 +83,8 @@ class Demo1 extends Component {
             displayField='{refname}'
             nodeDisplay='{refname}'
             valueField='refpk'
-            lang={this.props.lang} emptyBut={true}
+           lang={this.props.lang}
+            theme={this.props.theme} emptyBut={true}
             {...getFieldProps('code2', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -140,7 +142,8 @@ class Demo1 extends Component {
             displayField='{refname}'
             nodeDisplay='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
@@ -168,7 +171,9 @@ class Demo1 extends Component {
             displayField='{refname}'
             nodeDisplay='{refname}'
             valueField='refpk'
-            lang={this.props.lang} emptyBut={true}
+           lang={this.props.lang}
+            theme={this.props.theme} 
+            emptyBut={true}
             {...getFieldProps('code2', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -176,6 +181,7 @@ class Demo1 extends Component {
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
+            
           />
           <span style={{
             color: 'red'

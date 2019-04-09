@@ -58,7 +58,8 @@ class Demo2 extends Component {
             searchable={true}
             checkStrictly={true}
             strictMode={true}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             miniSearch={false}
             displayField='{refname}'
@@ -128,7 +129,8 @@ class Demo2 extends Component {
             searchable={true}
             checkStrictly={true}
             strictMode={true}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
             miniSearch={false}
             displayField='{refname}'

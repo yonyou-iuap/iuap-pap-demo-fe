@@ -58,7 +58,8 @@ class Demo2 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             lazyModal={true}
             emptyBut={true}
 
@@ -126,10 +127,10 @@ class Demo2 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             lazyModal={true}
             emptyBut={true}
-
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{

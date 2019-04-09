@@ -70,7 +70,8 @@ import Card from '../Card'
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
 
             {...getFieldProps('code1', {
@@ -185,7 +186,8 @@ class Demo3 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             emptyBut={true}
 
             {...getFieldProps('code1', {

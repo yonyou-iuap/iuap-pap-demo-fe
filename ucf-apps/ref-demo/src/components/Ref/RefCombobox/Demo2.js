@@ -63,7 +63,8 @@ class Demo2 extends Component {
               displayField={(record) => {
                 return <div > <Icon type="uf-personin-o" style={{ color: 'red' }} /> {record.refname}-{record.refcode}-{record.type}</div>
               }}
-              lang={this.props.lang}
+             lang={this.props.lang}
+            theme={this.props.theme}
               topPagination={true}
             />
           </RefComboBox>
@@ -133,7 +134,8 @@ class Demo2 extends Component {
               displayField={(record) => {
                 return <div > <Icon type="uf-personin-o" style={{ color: 'red' }} /> {record.refname}-{record.refcode}-{record.type}</div>
               }}
-              lang={this.props.lang}
+             lang={this.props.lang}
+            theme={this.props.theme}
               topPagination={true}
             />
           </RefComboBox>

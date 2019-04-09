@@ -71,7 +71,8 @@ class Demo1 extends Component {
             }}
             displayField='{refname}-{refcode}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -149,7 +150,8 @@ export default Form.createForm()(Demo1);
               }}
               displayField='{refname}-{refcode}'
               valueField='refpk'
-              lang={this.props.lang}
+             lang={this.props.lang}
+            theme={this.props.theme}
               {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{

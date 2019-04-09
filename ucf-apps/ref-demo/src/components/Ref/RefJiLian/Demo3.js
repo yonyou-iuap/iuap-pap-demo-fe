@@ -92,7 +92,8 @@ class Demo3 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -124,7 +125,8 @@ class Demo3 extends Component {
               "clientParam": Object.keys(singleClientParam).length === 0 ? '' : singleClientParam
 
             }}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code1', {
               initialValue: JSON.stringify(jiLianValue),
               rules: [{
@@ -220,7 +222,8 @@ class Demo3 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -252,7 +255,8 @@ class Demo3 extends Component {
               "clientParam": Object.keys(singleClientParam).length === 0 ? '' : singleClientParam
 
             }}
-            lang={this.props.lang}
+           lang={this.props.lang}
+            theme={this.props.theme}
             {...getFieldProps('code1', {
               initialValue: JSON.stringify(jiLianValue),
               rules: [{
