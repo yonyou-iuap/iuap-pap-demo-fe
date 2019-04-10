@@ -662,7 +662,7 @@ export default class IndexView extends Component {
                                 />
                             </div>
                         </TabPane>
-                        <TabPane tab='附件管理' key="uploadFill">
+                        {/*<TabPane tab='附件管理' key="uploadFill">
                             <div className='table-header-child'>
                                 <AcAttachment
                                     className="upload-box"
@@ -692,7 +692,7 @@ export default class IndexView extends Component {
                                     >删除</Button>
                                 </AcAttachment>
                             </div>
-                        </TabPane>
+                        </TabPane>*/}
                     </Tabs>
                 </div>
 
