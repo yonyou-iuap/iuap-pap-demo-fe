@@ -468,14 +468,14 @@ export default class IndexView extends Component {
                           shape='border'
                           onClick={() => _this.export("passenger")}
                         >导出</Button>
-                        <Button
+                        {/*<Button
                           className="ml8"
                           shape='border'
                           disabled={passengerForbid}
                           onClick={_this.onPrint}
                         >
                             打印
-                        </Button>
+                        </Button>*/}
                     </ButtonRoleGroup>
                 </div>
                 <Grid
