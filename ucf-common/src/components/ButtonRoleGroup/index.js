@@ -45,17 +45,17 @@ class ButtonRoleGroup extends Component {
      */
     async componentWillMount() {
         let { onComplete, onError } = this.props;
-        let { data } = await request(this.props.url, this.options);
-        if (Array.isArray(data)) {
-            this.setState({
-                // role: ['check', 'delete']
-                role: data
-            }, () => {
-                onComplete && onComplete();
-            });
-        } else {
-            onError && onError();
-        }
+        // let { data } = await request(this.props.url, this.options);
+        // if (Array.isArray(data)) {
+        //     this.setState({
+        //         // role: ['check', 'delete']
+        //         role: data
+        //     }, () => {
+        //         onComplete && onComplete();
+        //     });
+        // } else {
+        //     onError && onError();
+        // }
 
     }
     /**
@@ -92,22 +92,23 @@ class ButtonRoleGroup extends Component {
                             disabled: false
                         }
                         let attrNormal = {
-                            authority: false,
+                            authority: true,
                             disabled: false
                         }
-                        switch (this.hasRoleComp(Comp)) {
-                            case 'yes':
-                                attr.disabled = Comp.props.disabled
-                                return <Comp.type key={key} {...Comp.props} {...attr} />
-                            case 'no':
-                                attr.disabled = true;
-                                return <Comp.type key={key} {...Comp.props} {...attr} />
-                            case 'normal':
-                                attrNormal.disabled = Comp.props.disabled
-                                return <Comp.type key={key} {...Comp.props} {...attrNormal} />
-                            default:
-                                return <div>error</div>
-                        }
+                        return <Comp.type key={key} {...Comp.props} {...attrNormal} />
+                        // switch (this.hasRoleComp(Comp)) {
+                        //     case 'yes':
+                        //         attr.disabled = Comp.props.disabled
+                        //         return <Comp.type key={key} {...Comp.props} {...attr} />
+                        //     case 'no':
+                        //         attr.disabled = true;
+                        //         return <Comp.type key={key} {...Comp.props} {...attr} />
+                        //     case 'normal':
+                        //         attrNormal.disabled = Comp.props.disabled
+                        //         return <Comp.type key={key} {...Comp.props} {...attrNormal} />
+                        //     default:
+                        //         return <div>error</div>
+                        // }
                     })
                 }
             </span>
