@@ -35,7 +35,7 @@ module.exports = (env, argv) => {
             {
                 enable: true,
                 headers: {
-                    "Referer": "http://172.20.52.123"
+                    "Referer": "http://172.20.53.249:8088"
                 },
                 //要代理访问的对方路由
                 router: [
@@ -50,7 +50,7 @@ module.exports = (env, argv) => {
                     '/pap_basedoc',
                     '/iuapmdm',
                 ],
-                url: 'http://172.20.52.123'
+                url: 'http://172.20.53.249:8088'
             }
         ],
         // 全局环境变量
