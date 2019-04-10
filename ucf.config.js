@@ -5,7 +5,7 @@ require('@babel/polyfill');
 const path = require('path');
 
 module.exports = (env, argv) => {
-
+    const isBuild = argv[0] === 'build';
     // let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
     return {
         context: 'iuap-pap-demo-fe',
@@ -78,7 +78,7 @@ module.exports = (env, argv) => {
         buildPlugins: [
             // new BundleAnalyzerPlugin()
         ],
-        open_source_map: false,
-        res_extra: true
+        open_source_map: isBuild,
+        res_extra: isBuild
     }
 }
