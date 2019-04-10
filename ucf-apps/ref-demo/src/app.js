@@ -40,7 +40,7 @@ import {
 
   
   import {RefComboboxDemo1,RefComboboxDemo2} from "./components/Ref/RefCombobox"
-  // import {RefMdmDemo1}  = require"./components/Ref/RefMdm"
+  import {RefMdmDemo1} from "./components/Ref/RefMdm"
   class App extends Component {
     constructor() {
       super();
@@ -151,12 +151,12 @@ import {
               <RefComboboxDemo2 lang={lang} theme={theme}/>
             </div>
           </div>
-          {/* <h2>自定义参照</h2>
+          <h2>自定义参照</h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
               <RefMdmDemo1 lang={lang} theme={theme}/>
             </div>
-          </div> */}
+          </div>
         </div>
       )
     }
