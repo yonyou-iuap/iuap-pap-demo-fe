@@ -177,7 +177,7 @@ class AddEditPassenger extends Component {
                         <FormError errorMsg={getFieldError('name')}/>
                     </FormItem>
 
-                    {/*<FormItem required label="部门">
+                    <FormItem required label="部门">
                         <RefIuapDept
                             disabled={btnFlag === 2}
                             {...getFieldProps('dept', {
@@ -194,7 +194,7 @@ class AddEditPassenger extends Component {
                         />
 
                         <FormError errorMsg={getFieldError('dept')}/>
-                    </FormItem>*/}
+                    </FormItem>
 
                     <FormItem required label="乘客性别">
                         <Select disabled={isDisabled}

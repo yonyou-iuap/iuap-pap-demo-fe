@@ -260,12 +260,12 @@ export default class IndexView extends Component {
             width: 120,
 
         },
-        // {
-        //     title: "所属部门",
-        //     dataIndex: "deptName",
-        //     key: "deptName",
-        //     width: 120,
-        // },
+        {
+            title: "所属部门",
+            dataIndex: "deptName",
+            key: "deptName",
+            width: 120,
+        },
         {
             title: "手机号",
             dataIndex: "phone",

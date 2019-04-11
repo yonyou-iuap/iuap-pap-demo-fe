@@ -20,7 +20,7 @@ export function RefIuapDept(props){
             searchable= {true}
             strictMode={true}
             param= {
-                {"refCode":"newdept"}
+                {"refCode":"deptLevel"}
             }
             multiple={false}
             checkStrictly={true}
@@ -28,10 +28,10 @@ export function RefIuapDept(props){
             displayField='{refname}'
             valueField='refpk'
             refModelUrl= {{
-                treeUrl: '/newref/rest/iref_ctr/blobRefTree', //树请求
+                treeUrl: '/iuap-pap-demo-be/common/blobRefTree', //树请求
             }}
-            matchUrl='/newref/rest/iref_ctr/matchPKRefJSON'
-            filterUrl='/newref/rest/iref_ctr/filterRefJSON'
+            matchUrl='/iuap-pap-demo-be/common/matchPKRefJSON'
+            filterUrl='/iuap-pap-demo-be/common/filterRefJSON'
             {...props}
         >
             <RefTree />
