@@ -6,8 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import PapReferOrg from 'pap-refer/lib/pap-ref-org';
-import 'pap-refer/lib/pap-ref-org.css';
+import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
+// import 'pap-refer/lib/pap-ref-org.css';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 let code =

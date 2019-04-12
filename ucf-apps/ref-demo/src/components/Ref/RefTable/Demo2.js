@@ -7,8 +7,8 @@
 
 import React, { Component } from 'react';
 import { Button, Form } from 'tinper-bee';
-import PapRefStaff from 'pap-refer/lib/pap-ref-staff';
-import 'pap-refer/lib/pap-ref-staff.css';
+import PapRefStaff from 'pap-refer/lib/pap-ref-staff/src/index';
+// import 'pap-refer/lib/pap-ref-staff.css';
 import Card from '../Card'
 let code =
 `

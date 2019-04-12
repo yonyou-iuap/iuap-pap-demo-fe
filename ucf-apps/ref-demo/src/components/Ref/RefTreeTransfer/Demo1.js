@@ -7,15 +7,15 @@
 
 import React, { Component } from 'react';
 
-import { RefTreeTransferWithInput } from 'pap-refer/dist/index.js';
-import "pap-refer/dist/index.css"
+import RefTreeTransferWithInput  from 'pap-refer/lib/ref-tree-transfer/src/index.js';
+// import "pap-refer/dist/index.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
 import React, { Component } from 'react';
 
-import { RefTreeTransferWithInput } from 'pap-refer/dist/index.js';
+import  RefTreeTransferWithInput  from 'pap-refer/lib/ref-tree-transfer/src/index.js';
 import "pap-refer/dist/index.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'

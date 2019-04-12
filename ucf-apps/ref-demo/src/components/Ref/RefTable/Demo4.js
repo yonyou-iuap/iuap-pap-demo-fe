@@ -6,10 +6,10 @@
  */
 
 import React, { Component } from 'react';
-import PapRefRole from 'pap-refer/lib/pap-ref-role';
-import 'pap-refer/lib/pap-ref-role.css';
-import PapRefPosition from 'pap-refer/lib/pap-ref-position';
-import 'pap-refer/lib/pap-ref-position.css';
+import PapRefRole from 'pap-refer/lib/pap-ref-role/src/index';
+// import 'pap-refer/lib/pap-ref-role.css';
+import PapRefPosition from 'pap-refer/lib/pap-ref-position/src/index';
+// import 'pap-refer/lib/pap-ref-position.css';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 let code =

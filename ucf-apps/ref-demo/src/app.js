@@ -15,8 +15,8 @@ import {
   RefTreeDemo3,
   RefTreeDemo4,
   RefTreeDemo5,
-  RefTreeDemo6,} from "./components/Ref/RefTree"
-
+  RefTreeDemo6,
+} from "./components/Ref/RefTree"
   import {
     RefTableDemo1,
     RefTableDemo2,
@@ -28,6 +28,7 @@ import {
     RefTreeTransferDemo1,
     RefTreeTransferDemo2
   } from "./components/Ref/RefTreeTransfer"
+
   import {
     RefTreeTableDemo1,
   } from "./components/Ref/RefTreeTable"
@@ -41,6 +42,11 @@ import {
   
   import {RefComboboxDemo1,RefComboboxDemo2} from "./components/Ref/RefCombobox"
   import {RefMdmDemo1} from "./components/Ref/RefMdm"
+  import 'pap-refer/lib/ref-tree-transfer/src/index.css';
+  import 'pap-refer/lib/ref-tree/src/index.css'
+  import 'pap-refer/lib/ref-multiple-table/src/index.css'
+  import 'pap-refer/lib/ref-tree-table/src/index.css'
+  import 'pap-refer/lib/ref-combobox/src/index.css'
   class App extends Component {
     constructor() {
       super();
