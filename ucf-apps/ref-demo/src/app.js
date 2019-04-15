@@ -1,7 +1,7 @@
 /**
  * 入口、导入组件样式、渲染
  */
-
+import  "babel-polyfill"
 import React,{Component} from 'react';
 import { render } from 'mirrorx';
 import 'ucf-common/styles/public.less';
