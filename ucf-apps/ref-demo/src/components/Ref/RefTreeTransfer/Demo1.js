@@ -73,6 +73,8 @@ class Demo1 extends Component {
             valueField='refpk'
            lang={this.props.lang}
             theme={this.props.theme}
+            searchPlaceholder={'搜索'}
+              notFoundContent={'暂无数据'}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -150,8 +152,10 @@ export default Form.createForm()(Demo1);
               }}
               displayField='{refname}-{refcode}'
               valueField='refpk'
-             lang={this.props.lang}
-            theme={this.props.theme}
+              lang={this.props.lang}
+              theme={this.props.theme}
+              searchPlaceholder={'搜索'}
+              notFoundContent={'暂无数据'}
               {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{

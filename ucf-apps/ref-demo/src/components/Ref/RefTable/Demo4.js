@@ -74,6 +74,7 @@ class Demo4 extends Component {
 							}]
 						})}
 						emptyBut={true}
+						searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
 
 					/>
 					<span style={{
@@ -95,6 +96,7 @@ class Demo4 extends Component {
 						valueField='refpk'
 						lang={this.props.lang}
 						emptyBut={true}
+						searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
 
 						{...getFieldProps('code1', {
 							initialValue: '{"refname":"","refpk":""}',
@@ -171,6 +173,7 @@ class Demo4 extends Component {
 							}]
 						})}
 						emptyBut={true}
+						searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
 
 					/>
 					<span style={{

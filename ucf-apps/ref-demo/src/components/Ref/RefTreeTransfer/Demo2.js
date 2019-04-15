@@ -80,6 +80,8 @@ import Card from '../Card'
               valueField='refpk'
              lang={this.props.lang}
             theme={this.props.theme}
+            searchPlaceholder={'搜索'}
+              notFoundContent={'暂无数据'}
               {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
@@ -166,8 +168,10 @@ class Demo2 extends Component {
             }}
             displayField='{refname}-{refcode}'
             valueField='refpk'
-           lang={this.props.lang}
+            lang={this.props.lang}
             theme={this.props.theme}
+            searchPlaceholder={'搜索'}
+            notFoundContent={'暂无数据'}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
