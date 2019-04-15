@@ -192,21 +192,21 @@ class Demo1 extends Component {
         }
       >
         <div className="demo-label">
-          <span >字段编码：</span>
-          <FormControl
-            style={{
-              width: 200
-            }}
-            onChange={this.onEntityItemCodeChange}
-          />
-        </div>
-        <div className="demo-label">
           <span >实体编码：</span>
           <FormControl
             style={{
               width: 200
             }}
             onChange={this.onEntityCodeChange}
+          />
+        </div>
+        <div className="demo-label">
+          <span >字段编码：</span>
+          <FormControl
+            style={{
+              width: 200
+            }}
+            onChange={this.onEntityItemCodeChange}
           />
         </div>
 
