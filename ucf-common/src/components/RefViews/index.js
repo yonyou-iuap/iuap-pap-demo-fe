@@ -1,8 +1,8 @@
 
 import React from 'react';
-import RefMultipleTableWithInput, { RefMultipleTable } from 'pap-refer/lib/ref-multiple-table';
+import RefMultipleTableWithInput, { RefMultipleTable } from 'pap-refer/lib/ref-multiple-table/src/index';
 
-import RefTreeWithInput, { RefTree } from 'pap-refer/lib/ref-tree';
+import RefTreeWithInput, { RefTree } from 'pap-refer/lib/ref-tree/src/index';
 
 // import RefComboBox, {ComboStore} from 'ref-combobox';
 
