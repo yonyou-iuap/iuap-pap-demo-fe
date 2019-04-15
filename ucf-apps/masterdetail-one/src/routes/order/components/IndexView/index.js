@@ -209,9 +209,11 @@ class IndexView extends Component {
         list.unshift(tmp);//插入到最前
         //禁用其他checked
         for (let i = 0; i < list.length; i++) {
+            const item = list[i];
             if (!list[i]['_isNew']) {
                 list[i]['_checked'] = false;
                 list[i]['_status'] = 'new';
+
             }
         }
         //同步状态数据
@@ -238,9 +240,12 @@ class IndexView extends Component {
         }
         //当前行数据设置编辑态
         for (const index in list) {
-            list[index]['_checked'] = false;
-            list[index]['_status'] = 'edit';
-            list[index]['_edit'] = true;
+            const item = list[index];
+
+            item['_checked'] = false;
+            item['_status'] = 'edit';
+            item['_edit'] = true;
+            item['_disable']  = true;
         }
         //同步状态数据
         this.oldData = deepClone(list);
@@ -513,8 +518,34 @@ class IndexView extends Component {
      *
      * @param {*} selectData 点击多选框回调函数
      */
-    getSelectedDataFunc = (selectData) => {
+    getSelectedDataFunc = (selectData, record, index) => {
         this.setState({ selectData });
+        const { queryDetailObj } = this.props;
+        let _list = deepClone(queryDetailObj.list);
+        //当第一次没有同步数据
+        // if (this.oldData.length == 0) {
+        //     this.oldData = deepClone(list);
+        // }
+        //同步list数据状态
+        if (index != undefined) {
+            _list[index]['_checked'] = !_list[index]['_checked'];
+        } else {//点击了全选
+            if (selectData.length > 0) {//全选
+                _list.map(item => {
+                    if (!item['_disabled']) {
+                        item['_checked'] = true
+                    }
+                });
+            } else {//反选
+                _list.map(item => {
+                    if (!item['_disabled']) {
+                        item['_checked'] = false
+                    }
+                });
+            }
+        }
+        queryDetailObj.list = _list;
+        actions.masterDetailOrder.updateState({ queryDetailObj });
     }
 
     /**

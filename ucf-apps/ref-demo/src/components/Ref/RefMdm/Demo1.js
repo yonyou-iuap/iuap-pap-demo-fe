@@ -7,53 +7,107 @@
 
 import React, { Component } from 'react';
 import RefMdmComp from "components/RefMdmComp"
-// import Button from 'bee-button';
-// import Icon from 'bee-icon';
-// import Form from "bee-form";
-import { Button, Form } from 'tinper-bee';
+import { Button, Form, FormControl} from 'tinper-bee';
 import Card from '../Card'
 let code = `
-<div className="demoPadding">
-  <div style={{ display: 'inline-block' }}>
-    <RefMdmComp
-      pk_entityitem='4b72c5cd-c301-48cc-9f77-2d44c36d9651'
-      pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
-      {...getFieldProps('refmdm', {
-        rules: [{
-          message: '提示：请选择',
-          pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
-        }]
-      })}
-    />
-  </div>
-  <span style={{ color: 'red' }}>
-    {getFieldError('refmdm')}
-  </span>
-  <Button
-    colors="primary"
-    onClick={() => {
-      this.props.form.validateFields((err, values) => {
-        console.log(err, values)
-      });
-    }}>
-    提交
-        </Button>
-</div>        
-`
+import React, { Component } from 'react';
+import RefMdmComp from "components/RefMdmComp"
+import { Button, Form, FormControl} from 'tinper-bee';
+import Card from '../Card'
 class Demo1 extends Component {
-  render() {
+  constructor() {
+    super();
+    this.state = {
+      entityItemCode: '',
+      entityCode: '',
+      refEntityItemCode: '',
+      refEntityCode: ''
+    }
+  }
 
+  onEntityItemCodeChange = (value) => {
+    this.setState({entityItemCode: value});
+  }
+  onEntityCodeChange = (value) => {
+    this.setState({entityCode: value});
+  }
+
+  render() {
     const { getFieldError, getFieldProps } = this.props.form;
+    let {
+      entityItemCode,
+      entityCode,
+      refEntityItemCode,
+      refEntityCode
+    } = this.state;
     return (
       <Card
         title="基础示例"
         codeText={code}
+        footer={
+          <div>
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
+            }}
+            onClick={() => {
+              this.setState({
+                refEntityItemCode:entityItemCode,
+                refEntityCode:entityCode
+              })
+              this.forceUpdate()
+            }}
+          >
+            确定
+                            </Button>
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
+            }}
+            onClick={() => {
+              this.props.form.validateFields((err, values) => {
+                if (err) return;
+                alert("您选择的是"+JSON.stringify(values))
+              });
+            }}
+          >
+            提交
+                            </Button>
+          </div>
+        }
       >
-        <div className="demoPadding">
-          <div style={{ display: 'inline-block' }}>
+        <div className="demo-label">
+          <span >字段编码：</span>
+          <FormControl
+            style={{
+              width: 200
+            }}
+            onChange={this.onEntityItemCodeChange}
+          />
+        </div>
+        <div className="demo-label">
+          <span >实体编码：</span>
+          <FormControl
+            style={{
+              width: 200
+            }}
+            onChange={this.onEntityCodeChange}
+          />
+        </div>
+
+        <div className="demo-label">
+          <span >自定义参照：</span>
+          <div style={{
+              width: 200,
+              display: 'inline-block'
+            }}>
             <RefMdmComp
-              pk_entityitem='4b72c5cd-c301-48cc-9f77-2d44c36d9651'
-              pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
+              entityItemCode={refEntityItemCode}
+              entityCode={refEntityCode}
               {...getFieldProps('refmdm', {
                 rules: [{
                   message: '提示：请选择',
@@ -65,22 +119,120 @@ class Demo1 extends Component {
           <span style={{ color: 'red' }}>
             {getFieldError('refmdm')}
           </span>
-          <Button
-            colors="primary"
+        </div>
+      </Card>
+    )
+  }
+}
+`
+class Demo1 extends Component {
+  constructor() {
+    super();
+    this.state = {
+      entityItemCode: '',
+      entityCode: '',
+      refEntityItemCode: '',
+      refEntityCode: ''
+    }
+  }
+
+  onEntityItemCodeChange = (value) => {
+    this.setState({entityItemCode: value});
+  }
+  onEntityCodeChange = (value) => {
+    this.setState({entityCode: value});
+  }
+
+  render() {
+    const { getFieldError, getFieldProps } = this.props.form;
+    let {
+      entityItemCode,
+      entityCode,
+      refEntityItemCode,
+      refEntityCode
+    } = this.state;
+    return (
+      <Card
+        title="基础示例"
+        codeText={code}
+        footer={
+          <div>
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
+            }}
+            onClick={() => {
+              this.setState({
+                refEntityItemCode:entityItemCode,
+                refEntityCode:entityCode
+              })
+              this.forceUpdate()
+            }}
+          >
+            确定
+                            </Button>
+          <Button colors="primary"
+            style={{
+              margin: 'auto 5px',
+              height: '30px',
+              padding: '0px'
+            }}
             onClick={() => {
               this.props.form.validateFields((err, values) => {
-                if(err){
-                  alert(""+JSON.stringify(err));
-                  return false;
-                }
-                alert(""+JSON.stringify(values))
-                console.log(err, values)
+                if (err) return;
+                alert("您选择的是"+JSON.stringify(values))
               });
-            }}>
+            }}
+          >
             提交
-                </Button>
+                            </Button>
+          </div>
+        }
+      >
+        <div className="demo-label">
+          <span >字段编码：</span>
+          <FormControl
+            style={{
+              width: 200
+            }}
+            onChange={this.onEntityItemCodeChange}
+          />
+        </div>
+        <div className="demo-label">
+          <span >实体编码：</span>
+          <FormControl
+            style={{
+              width: 200
+            }}
+            onChange={this.onEntityCodeChange}
+          />
         </div>
 
+        <div className="demo-label">
+          <span >自定义参照：</span>
+          <div style={{
+              width: 200,
+              display: 'inline-block'
+            }}>
+            <RefMdmComp
+              // pk_entityitem='4b72c5cd-c301-48cc-9f77-2d44c36d9651'
+              // pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
+              entityItemCode={refEntityItemCode}
+              entityCode={refEntityCode}
+              {...getFieldProps('refmdm', {
+                rules: [{
+                  message: '提示：请选择',
+                  pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
+                }]
+              })}
+            />
+          </div>
+          <span style={{ color: 'red' }}>
+            {getFieldError('refmdm')}
+          </span>
+        </div>
       </Card>
     )
   }
