@@ -28,10 +28,10 @@ export function RefIuapDept(props){
             displayField='{refname}'
             valueField='refpk'
             refModelUrl= {{
-                treeUrl: '/iuap-pap-demo-be/common/blobRefTree', //树请求
+                treeUrl: `/${GROBAL_HTTP_CTX}/common-ref/blobRefTree`, //树请求
             }}
-            matchUrl='/iuap-pap-demo-be/common/matchPKRefJSON'
-            filterUrl='/iuap-pap-demo-be/common/filterRefJSON'
+            matchUrl={`/${GROBAL_HTTP_CTX}/common-ref/matchPKRefJSON`}
+            filterUrl={`/${GROBAL_HTTP_CTX}/common-ref/filterRefJSON`}
             {...props}
         >
             <RefTree />
