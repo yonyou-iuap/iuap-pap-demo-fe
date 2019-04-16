@@ -159,7 +159,7 @@ import {
               <RefComboboxDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
-          <h2>自定义参照</h2>
+          <h2><FormattedMessage id="js.Ref.Ref224.0004" defaultMessage="自定义参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
               <RefMdmDemo1 lang={lang} theme={theme} {...this.props}/>

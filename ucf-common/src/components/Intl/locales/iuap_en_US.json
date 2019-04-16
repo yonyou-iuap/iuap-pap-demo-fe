@@ -824,5 +824,9 @@
   "js.com.Ale.0001": "温馨提示EN",
   "js.com.Ale.0002": "确认要删除吗 ?EN",
   "js.com.Ale.0003": "取消EN",
-  "js.com.Ale.0004": "确定EN"
+  "js.com.Ale.0004": "确定EN",
+  "js.Ref.Ref224.0004": "Custom Reference",
+  "js.Ref.Ref224.0005": "Entity code：",
+  "js.Ref.Ref224.0006": "Field code：",
+  "js.Ref.Ref224.0007": "Custom Reference："
 }
