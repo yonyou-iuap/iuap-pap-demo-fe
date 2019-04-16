@@ -7,8 +7,8 @@
 
 import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
-import RefComboBox,{ComboStore } from 'pap-refer/lib/ref-combobox';
-import 'pap-refer/lib/ref-combobox.css';
+import RefComboBox,{ComboStore } from 'pap-refer/lib/ref-combobox/src/index';
+// import 'pap-refer/lib/ref-combobox.css';
 // import Button from 'bee-button';
 // import Icon from 'bee-icon';
 // import Form from "bee-form";
@@ -17,8 +17,8 @@ import Card from '../Card'
 let code = 
 `
 import React, { Component } from 'react';
-import RefComboBox,{ComboStore } from 'pap-refer/lib/ref-combobox';
-import 'pap-refer/lib/ref-combobox.css';
+import RefComboBox,{ComboStore } from 'pap-refer/lib/ref-combobox/src/index';
+// import 'pap-refer/lib/ref-combobox.css';
 // import Button from 'bee-button';
 // import Icon from 'bee-icon';
 // import Form from "bee-form";

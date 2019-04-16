@@ -7,10 +7,10 @@
 
 import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
-import PapReferOrg from 'pap-refer/lib/pap-ref-org';
-import 'pap-refer/lib/pap-ref-org.css';
-import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg';
-import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
+import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
+// import 'pap-refer/lib/pap-ref-org.css';
+import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg/src/index';
+// import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
 // import { Button} from 'tinper-bee';
 // import Form from 'bee-form';
 import {Button,Form} from 'tinper-bee';
@@ -18,10 +18,10 @@ import Card from '../Card'
 let code = 
 `
 import React, { Component } from 'react';
-import PapReferOrg from 'pap-refer/lib/pap-ref-org';
-import 'pap-refer/lib/pap-ref-org.css';
-import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg';
-import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
+import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
+// import 'pap-refer/lib/pap-ref-org.css';
+import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg/src/index';
+// import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
 // import { Button} from 'tinper-bee';
 // import Form from 'bee-form';
 import {Button,Form} from 'tinper-bee';

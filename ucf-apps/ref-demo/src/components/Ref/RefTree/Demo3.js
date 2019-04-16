@@ -7,8 +7,8 @@
 
 import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
-import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept';
-import 'pap-refer/lib/pap-ref-orgDept.css'
+import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
+// import 'pap-refer/lib/pap-ref-orgDept.css'
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
 let code =

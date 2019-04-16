@@ -64,11 +64,31 @@ class TreeTable extends Component {
 	 * @param {Object} value 行数据
 	 * @returns null
 	 */
-	getSelectedDataFunc = (value) => {
+	getSelectedDataFunc = (selectData, record, index) => {
+		const { tableData } = this.props;
+		let _tableData = deepClone(tableData);
+		if (index != undefined) {
+			_tableData[index]['_checked'] = !_tableData[index]['_checked'];
+		} else {//点击了全选
+			if (selectData.length > 0) {//全选
+				_tableData.map(item => {
+					if (!item['_disabled']) {
+						item['_checked'] = true
+					}
+				});
+			} else {//反选
+				_tableData.map(item => {
+					if (!item['_disabled']) {
+						item['_checked'] = false
+					}
+				});
+			}
+		}
 		// 获取选中数据
-		console.log("selvalue",value);
+		console.log("selvalue",selectData);
 		actions.walsinTree.updateState({
-			tableSelValue : value
+			tableSelValue : selectData,
+			tableData: _tableData
 		})
 	}
 

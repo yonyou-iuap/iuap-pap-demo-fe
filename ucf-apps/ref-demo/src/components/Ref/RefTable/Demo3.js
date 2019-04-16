@@ -7,8 +7,8 @@
 
 import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
-import PapRefStaff from 'pap-refer/lib/pap-ref-staff';
-import 'pap-refer/lib/pap-ref-staff.css';
+import PapRefStaff from 'pap-refer/lib/pap-ref-staff/src/index';
+// import 'pap-refer/lib/pap-ref-staff.css';
 import { Button, Form, FormControl } from 'tinper-bee';
 import Card from '../Card'
 let code =
@@ -74,6 +74,7 @@ import Card from '../Card'
            lang={this.props.lang}
             theme={this.props.theme}
             emptyBut={true}
+            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
 
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
@@ -190,6 +191,7 @@ class Demo3 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             emptyBut={true}
+            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
 
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',

@@ -14,6 +14,8 @@ import request from 'utils/request.js'
 import {RefMultipleTableWithInput} from 'ref-multiple-table';
 // import RefTreeTableBaseUI from 'ref-tree-table';
 import {RefTreeTableWithInput} from 'ref-tree-table';
+import Message from 'bee-message';
+
 import 'ref-tree-table/dist/index.css';
 class MdmRefComp extends Component {
     constructor(props) {
@@ -40,41 +42,84 @@ class MdmRefComp extends Component {
         this.initComponent();
     }
 
-    initComponent = () => {
-        request(`/iuapmdm/modeling/mdmshow/card/reference`,{
-            method: "GET",
-            param: {
-                pk_entityitem: this.props.pk_entityitem,
-                pk_gd: this.props.pk_gd,
-                rid: new Date().getTime()
+    shouldComponentUpdate(nextProps){
+        if(nextProps.pk_entityitem && nextProps.pk_gd){
+            if(nextProps.pk_entityitem === this.props.pk_entityitem && nextProps.pk_gd === this.props.pk_gd){
+                return false;
             }
-        }).then(( resp ) =>{
+            this.initComponent(nextProps)
+            return true;
+        }
+        if(nextProps.entityItemCode && nextProps.entityCode){
+            if(nextProps.entityItemCode === this.props.entityItemCode && nextProps.entityCode === this.props.entityCode){
+                return false;
+            }
+            this.initComponent(nextProps)
+            return true;
+        }
+        return false;
+    }
+
+    initComponent = (nextProps) => {
+        let propsObj = nextProps || this.props;
+        let requestFun = ( resp ) =>{
             let data = resp.data;
-            let fullclassname = data.fullclassname || '';
-            let pk_entityitem = data.params.pk_entityitem || '';
-            let pk_gd = data.params.pk_gd || '';
-            let refPkGd = data.params.refPkGd || '';
-            let type = data.type;
-            let title = data.title || <FormattedMessage id="js.com.Ref2.0001" defaultMessage="参照" />;
-            let queryParams = {
-                fullclassname: fullclassname,
-                type: type,
-                pk_gd: pk_gd,
-                pk_entityitem: pk_entityitem,
-                refPkGd: refPkGd,
-                '_': new Date().getTime()
+            if(data.flag){
+                let fullclassname = data.fullclassname || '';
+                let pk_entityitem = data.params.pk_entityitem || '';
+                let pk_gd = data.params.pk_gd || '';
+                let refPkGd = data.params.refPkGd || '';
+                let type = data.type;
+                let title = data.title || <FormattedMessage id="js.com.Ref2.0001" defaultMessage="参照" />;
+                let queryParams = {
+                    fullclassname: fullclassname,
+                    type: type,
+                    pk_gd: pk_gd,
+                    pk_entityitem: pk_entityitem,
+                    refPkGd: refPkGd,
+                    '_': new Date().getTime()
+                }
+                this.setState({
+                    title: title,
+                    fullclassname: fullclassname,
+                    pk_gd: pk_gd,
+                    type: type,
+                    pk_entityitem: pk_entityitem,
+                    refPkGd: refPkGd,
+                    queryParams: queryParams
+                })
+                this.forceUpdate();
+            }else{
+                Message.create({ content: data.msg, color : 'danger'});
             }
-            this.setState({
-                title: title,
-                fullclassname: fullclassname,
-                pk_gd: pk_gd,
-                type: type,
-                pk_entityitem: pk_entityitem,
-                refPkGd: refPkGd,
-                queryParams: queryParams
-            })
-        }).catch(() =>{
-        });
+            
+        }
+        if(propsObj.pk_entityitem && propsObj.pk_gd){
+            request(`/iuapmdm/modeling/mdmshow/card/reference`,{
+                method: "GET",
+                param: {
+                    pk_entityitem: propsObj.pk_entityitem,
+                    pk_gd: propsObj.pk_gd,
+                    rid: new Date().getTime()
+                }
+            }).then(( resp ) =>{
+                requestFun(resp);
+            }).catch(() =>{
+            });
+        }else if(propsObj.entityItemCode && propsObj.entityCode){
+            request(`/iuapmdm/modeling/mdmshow/card/reference/archives`,{
+                method: "GET",
+                param: {
+                    entityItemCode: propsObj.entityItemCode,
+                    entityCode: propsObj.entityCode,
+                    rid: new Date().getTime()
+                }
+            }).then(( resp ) =>{
+                requestFun(resp);
+            }).catch(() =>{
+            });
+        }
+        
     }
 
     getData = (key, treeNodePk) => {
@@ -186,6 +231,7 @@ class MdmRefComp extends Component {
                 treeData: treeData,
                 showLoading: false
             })
+            this.forceUpdate()
         }).catch(() =>{
             this.setState({
                 columnsData: [],

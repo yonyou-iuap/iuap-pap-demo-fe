@@ -8,16 +8,16 @@
 import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 
-import { RefTreeTransferWithInput } from 'pap-refer/dist/index.js';
-import "pap-refer/dist/index.css"
+import RefTreeTransferWithInput from 'pap-refer/lib/ref-tree-transfer/src/index.js';
+// import "pap-refer/dist/index.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 let code =
   `
   import React, { Component } from 'react';
 
-import { RefTreeTransferWithInput } from 'pap-refer/dist/index.js';
-import "pap-refer/dist/index.css"
+  import RefTreeTransferWithInput from 'pap-refer/lib/ref-tree-transfer/src/index.js';
+  // import "pap-refer/dist/index.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
   class Demo2 extends Component {
@@ -82,6 +82,8 @@ import Card from '../Card'
               valueField='refpk'
              lang={this.props.lang}
             theme={this.props.theme}
+            searchPlaceholder={'搜索'}
+              notFoundContent={'暂无数据'}
               {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
@@ -169,8 +171,10 @@ class Demo2 extends Component {
             }}
             displayField='{refname}-{refcode}'
             valueField='refpk'
-           lang={this.props.lang}
+            lang={this.props.lang}
             theme={this.props.theme}
+            searchPlaceholder={'搜索'}
+            notFoundContent={'暂无数据'}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
