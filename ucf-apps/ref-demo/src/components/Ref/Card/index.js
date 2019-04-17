@@ -40,7 +40,7 @@ class Card extends Component{
         return (
             <Panel
                 className="card"//<Icon type="uf-pencil-s" />
-                header={<div><span className="card-title">{title} </span><span onClick={this.showCode} className="card-check-code">查看源码</span></div>}
+                header={<div><span className="card-title">{title} </span><span onClick={this.showCode} className="card-check-code"><FormattedMessage id="js.Ref.Car.0002" defaultMessage="查看源码" /></span></div>}
                 {...opt}
             >
             {
