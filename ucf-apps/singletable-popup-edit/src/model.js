@@ -94,7 +94,7 @@ export default {
                 const { queryParam, list, totalPages } = state;
                 // 调用 getList 请求数据
                 const { pageParams: { pageIndex } } = queryParam;
-                if ( pageIndex + 1 === totalPages && list.length === 1) {
+                if ( pageIndex > 0 && pageIndex + 1 === totalPages && list.length === 1) {
                     queryParam.pageParams.pageIndex = pageIndex - 1;
                 }
 

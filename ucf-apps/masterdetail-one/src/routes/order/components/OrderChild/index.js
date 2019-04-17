@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import moment from "moment";
-import { FormControl, InputNumber,} from "tinper-bee";
+import { FormControl, InputNumber, Select} from "tinper-bee";
 import {RefIuapDept} from 'components/RefViews';
 import DatePicker from 'bee-datepicker';
 import FormList from 'components/FormList';
-import Select from 'bee-select';
 import FormError from 'components/FormError';
 
 import {getCookie} from "utils";

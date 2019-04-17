@@ -21,7 +21,7 @@ class IndexView extends Component {
     constructor(props) {
         super(props);
         const searchObj = queryString.parse(props.location.search);
-        let { btnFlag: flag, search_id: searchId, from } = searchObj;
+        let { btnFlag: flag, search_id: searchId, from, ...oterSearch } = searchObj;
         const btnFlag = Number(flag);
 
         this.state = {
@@ -30,18 +30,32 @@ class IndexView extends Component {
             searchId: searchId || "",
             btnFlag: btnFlag,
             selectData: [],
+            ...oterSearch
         }
+        this.validateKeys = [
+            "detailCount",
+            "detailDate",
+            "detailModel",
+            "detailName"
+        ]
     }
 
     //缓存数据
     oldData = []
 
     componentDidMount() {
-
-        // if (btnFlag && btnFlag > 0) {
-        //     const param = { search_id: searchId, search_from: from };
-        //     actions.masterDetailOne.queryParent(param); // 获取主表
-        // }
+        const searchObj = queryString.parse(this.props.location.search);
+        let {btnFlag: flag, search_id: searchId, from} = searchObj;
+        const { queryParent } = this.props;
+        //非新增状态 当 没有提前设置主数据时 根据 search_id 向后台请求主表数据
+        if (!queryParent.id && flag > 0) {
+            const btnFlag = Number(flag);
+            this.setState({btnFlag, searchId});
+            if (btnFlag && btnFlag > 0) {
+                const param = {search_id: searchId, search_from: from};
+                actions.masterDetailOrder.getQueryParent(param); // 获取主表
+            }
+        }
     }
 
     componentWillUnmount() {
@@ -184,7 +198,7 @@ class IndexView extends Component {
             _checked: false,
             detailName: '',
             detailModel: '',
-            detailCount: 0,
+            detailCount: 1,
             detailDate: moment(),
             _detailNameValidate: false, // detailName默认验证没有通过
             _detailModelValidate: false,
@@ -195,9 +209,11 @@ class IndexView extends Component {
         list.unshift(tmp);//插入到最前
         //禁用其他checked
         for (let i = 0; i < list.length; i++) {
+            const item = list[i];
             if (!list[i]['_isNew']) {
                 list[i]['_checked'] = false;
                 list[i]['_status'] = 'new';
+
             }
         }
         //同步状态数据
@@ -224,9 +240,12 @@ class IndexView extends Component {
         }
         //当前行数据设置编辑态
         for (const index in list) {
-            list[index]['_checked'] = false;
-            list[index]['_status'] = 'edit';
-            list[index]['_edit'] = true;
+            const item = list[index];
+
+            item['_checked'] = false;
+            item['_status'] = 'edit';
+            item['_edit'] = true;
+            item['_disable']  = true;
         }
         //同步状态数据
         this.oldData = deepClone(list);
@@ -322,6 +341,7 @@ class IndexView extends Component {
         const { btnFlag } = this.state;
         if (btnFlag === 2) { //判断是否为详情态
             const searchObj = queryString.parse(this.props.location.search);
+            console.log(searchObj)
             let { from } = searchObj;
             switch (from) {
                 case undefined:
@@ -329,7 +349,7 @@ class IndexView extends Component {
                     actions.routing.replace({ pathname: '/' });
                     break;
                 default:
-                    actions.routing.goBack()
+                    window.history.go(-1);
             }
 
         } else {
@@ -350,6 +370,27 @@ class IndexView extends Component {
             detailItem.detailDate = moment(detailDate).format("YYYY-MM-DD");
             data[index] = detailItem;
         }
+        return data;
+    }
+
+    /**
+     * 处理验证后的状态
+     *
+     * @param {string} field 校验字段
+     * @param {Object} flag 是否有错误
+     * @param {Number} index 位置
+     */
+    validateChild = (data) => {
+        data.forEach(item => {
+            this.validateKeys.forEach(key => {
+                if (item[key] !== "") {
+                    item[`_${key}Validate`] = true;
+                }else {
+                    item[`_${key}Validate`] = false;
+                }
+            })
+        })
+
         return data;
     }
 
@@ -439,24 +480,7 @@ class IndexView extends Component {
     }
 
 
-    /**
-     * 处理验证后的状态
-     *
-     * @param {string} field 校验字段
-     * @param {Object} flag 是否有错误
-     * @param {Number} index 位置
-     */
-    validateChild = (data) => {
-        for (const [index, ele] of data.entries()) {
-            for (const field in ele) {
-                if (data[index][field] && data[index][`_${field}Validate`] !== undefined) {
-                    data[index][`_${field}Validate`] = true;
-                }
-            }
 
-        }
-        return data;
-    }
 
 
     /**
@@ -494,8 +518,34 @@ class IndexView extends Component {
      *
      * @param {*} selectData 点击多选框回调函数
      */
-    getSelectedDataFunc = (selectData) => {
+    getSelectedDataFunc = (selectData, record, index) => {
         this.setState({ selectData });
+        const { queryDetailObj } = this.props;
+        let _list = deepClone(queryDetailObj.list);
+        //当第一次没有同步数据
+        // if (this.oldData.length == 0) {
+        //     this.oldData = deepClone(list);
+        // }
+        //同步list数据状态
+        if (index != undefined) {
+            _list[index]['_checked'] = !_list[index]['_checked'];
+        } else {//点击了全选
+            if (selectData.length > 0) {//全选
+                _list.map(item => {
+                    if (!item['_disabled']) {
+                        item['_checked'] = true
+                    }
+                });
+            } else {//反选
+                _list.map(item => {
+                    if (!item['_disabled']) {
+                        item['_checked'] = false
+                    }
+                });
+            }
+        }
+        queryDetailObj.list = _list;
+        actions.masterDetailOrder.updateState({ queryDetailObj });
     }
 
     /**
@@ -516,7 +566,6 @@ class IndexView extends Component {
             return (
                 <div>
                     {appType == 1 && <BpmTaskApprovalWrap
-                        className={123}
                         id={rowData.id}
                         onBpmFlowClick={() => {
                             this.onClickToBPM(rowData)
@@ -528,7 +577,7 @@ class IndexView extends Component {
                         onEnd={_this.onBpmEnd('end')}
                     />}
                     {appType == 2 && <BpmTaskApprovalWrap
-                        id={rowData.id}
+                        id={this.state.id}
                         processDefinitionId={processDefinitionId}
                         processInstanceId={processInstanceId}
                         onBpmFlowClick={() => {
@@ -600,21 +649,19 @@ class IndexView extends Component {
     }
 
     render() {
-        const _this = this;
         const {
-            queryDetailObj, status, showLoading, form, queryParent: orderRow,
-            appType, processDefinitionId, processInstanceId, showDetailLoading, showModalCover
-        } = _this.props;
-
-        const { showPopAlert, showPopBackVisible, btnFlag: flag } = _this.state;
-        const btnFlag = Number(flag);
-
+            queryDetailObj, status, showLoading, form, queryParent: orderRow, showDetailLoading, showModalCover
+        } = this.props;
+        const { showPopAlert, showPopBackVisible, btnFlag, appType, processDefinitionId, processInstanceId } = this.state;
+        if (!orderRow.id && btnFlag > 0) {
+            return null
+        }
         const paginationObj = {   // 分页
             activePage: queryDetailObj.pageIndex,//当前页
             total: queryDetailObj.total,//总条数
             items: queryDetailObj.totalPages,
-            freshData: _this.freshData,
-            onDataNumSelect: _this.onDataNumSelect,
+            freshData: this.freshData,
+            onDataNumSelect: this.onDataNumSelect,
             dataNum: 1,
             disabled: status !== "view"
         }
@@ -624,27 +671,27 @@ class IndexView extends Component {
 
         return (
             <div className='purchase-order'>
-                <Loading showBackDrop={true} loadingType="line" show={showLoading} fullScreen={true} />
+                <Loading showBackDrop={true}  show={showLoading} fullScreen={true} />
                 <Alert
                     show={showPopBackVisible}
                     context="数据未保存，确定离开 ?"
                     confirmFn={() => {
-                        _this.confirmGoBack(1)
+                        this.confirmGoBack(1)
                     }}
                     cancelFn={() => {
-                        _this.confirmGoBack(2)
+                        this.confirmGoBack(2)
                     }} />
-                <Header back title={titleArr[btnFlag]}>
+                <Header back title={titleArr[2]}>
                     <div className='head-btn'>
-                        <Button shape="border" className="ml8" onClick={_this.onBack}>取消</Button>
+                        <Button shape="border" className="ml8" onClick={this.onBack}>取消</Button>
                         {(btnFlag !== 2) &&
-                        <Button colors="primary" className="ml8" onClick={_this.onClickSave}>保存</Button>
+                        <Button colors="primary" className="ml8" onClick={this.onClickSave}>保存</Button>
                         }
                     </div>
 
                 </Header>
                 {
-                    _this.showBpmComponent(btnFlag, appType ? appType : "1", processDefinitionId, processInstanceId, orderRow)
+                    this.showBpmComponent(btnFlag, appType ? appType : "1", processDefinitionId, processInstanceId, orderRow)
                 }
                 <Child orderRow={orderRow} btnFlag={btnFlag} form={form}/>
                 {/*<ButtonRoleGroup funcCode="singletable-popupedit"></ButtonRoleGroup>*/}
@@ -677,10 +724,10 @@ class IndexView extends Component {
                         show={showPopAlert}
                         context="新增、修改数据未保存将无法生效，确定删除这些记录吗 ?"
                         confirmFn={() => {
-                            _this.confirmDel(1)
+                            this.confirmDel(1)
                         }}
                         cancelFn={() => {
-                            _this.confirmDel(2)
+                            this.confirmDel(2)
                         }} />
                 </div>
                 <div className='grid-parent'>
@@ -698,7 +745,7 @@ class IndexView extends Component {
                         multiSelect={!rowEditStatus}
                         getSelectedDataFunc={this.getSelectedDataFunc}
                         emptyText={() => <Icon style={{ "fontSize": "60px" }} type="uf-nodata" />}
-                        loading={{ show: (!showLoading && showDetailLoading), loadingType: "line" }}
+                        loading={{ show: (!showLoading && showDetailLoading), }}
                     />
                 </div>
                 <Modal

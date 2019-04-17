@@ -7,11 +7,9 @@ import React, { Component } from 'react';
 //状态管理
 import { actions } from "mirrorx";
 //Tinper-bee组件库
-import { FormControl } from "tinper-bee";
+import { FormControl, Select } from "tinper-bee";
 //表单
 import FormList from 'components/FormList';
-//下拉
-import Select from 'bee-select';
 //日期
 import DatePicker from "tinper-bee/lib/Datepicker";
 //日期本地化
@@ -33,7 +31,6 @@ const FormItem = FormList.Item;
 const { Option } = Select;
 const format = "YYYY";
 const { YearPicker } = DatePicker;
-
 
 class SearchAreaForm extends Component {
 
@@ -145,7 +142,6 @@ class SearchAreaForm extends Component {
         const { form: { getFieldProps }, searchOpen, onCallback } = this.props;
         return (
             <SearchPanel
-                className='edlin-form'
                 searchOpen={searchOpen}
                 reset={this.reset}
                 onCallback={onCallback}

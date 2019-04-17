@@ -2,7 +2,7 @@ import {actions} from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
 // 接口返回数据公共处理方法，根据具体需要
-import {processData, initStateObj, structureObj, Error} from "utils";
+import {processData, initStateObj, structureObj, Error, getCookie} from "utils";
 
 /**
  *          btnFlag为按钮状态，新增、修改是可编辑，查看详情不可编辑，
@@ -352,7 +352,7 @@ export default {
                 return false;
             }
             await api.printDocument({
-                tenantId: 'tenant',
+                tenantId: getCookie('tenantid'),
                 printcode: res['res_code'],
                 serverUrl: `${GROBAL_HTTP_CTX}/passenger/dataForPrint`,
                 params: encodeURIComponent(JSON.stringify(param.printParams)),

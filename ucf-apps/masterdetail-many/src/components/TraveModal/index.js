@@ -1,8 +1,7 @@
 import React, {Component} from "react";
-import {FormControl, InputNumber} from "tinper-bee";
+import {FormControl, InputNumber, Select} from "tinper-bee";
 import {actions} from "mirrorx";
 
-import Select from 'bee-select';
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
 

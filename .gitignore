@@ -11,6 +11,8 @@ pids
 *.seed
 *.pid.lock
 
+*.iml
+.idea
 # Directory for cache
 
 .cache

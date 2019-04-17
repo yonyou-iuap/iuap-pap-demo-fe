@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
-import {FormControl} from "tinper-bee";
-import Select from 'bee-select';
+import {FormControl, Select} from "tinper-bee";
 import DatePicker from "tinper-bee/lib/Datepicker";
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
@@ -93,19 +92,12 @@ class SearchAreaForm extends Component {
 
         return (
             <SearchPanel
-                className='search-area-form'
                 form={form}
                 reset={this.reset}
                 onCallback={onCallback}
                 search={this.search}>
 
                 <FormList size="sm">
-                    <FormItem
-                        label="员工编号"
-                    >
-                        <FormControl placeholder="精确查询" {...getFieldProps('code', { initialValue: '' })} />
-                    </FormItem>
-
                     <FormItem
                         label="员工编号"
                     >

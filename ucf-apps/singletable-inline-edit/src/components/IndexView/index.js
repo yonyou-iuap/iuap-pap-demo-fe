@@ -633,6 +633,7 @@ class IndexView extends Component {
         let {status, list} = this.props;
         let filterResult = null;
         let ajaxFun = null;
+        let msg = "请勾选数据后再新增";
         switch (status) {
             case 'new':
                 filterResult = this.filterList(this.oldData, list, 'key');
@@ -641,6 +642,7 @@ class IndexView extends Component {
             case 'edit':
                 filterResult = this.filterList(this.oldData, list, 'id');
                 ajaxFun = actions.inlineEdit.updates;
+                msg = '请勾选数据后再更新';
                 break;
             default:
                 break;
@@ -660,7 +662,7 @@ class IndexView extends Component {
                 Info('数据填写不完整')
             }
         } else {
-            Info('请勾选数据后再新增');
+            Info(msg);
         }
     }
     /**
@@ -885,7 +887,7 @@ class IndexView extends Component {
                     cancelFn={this.onClickPopCancel}
                 />
 
-                <Loading fullScreen={true} show={showLoading} loadingType="line" />
+                <Loading fullScreen={true} show={showLoading} />
             </div>
         )
     }

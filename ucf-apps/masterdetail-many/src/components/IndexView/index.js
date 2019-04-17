@@ -438,77 +438,79 @@ export default class IndexView extends Component {
                 <div className='table-header'>
                     <ButtonRoleGroup funcCode="masterdetail-many">
                         <Button
-                            className="ml8"
-                            role="add"
-                            colors="primary"
-                            onClick={() => this.onShowModal('passenger', 0)}
+                          className="ml8"
+                          role="add"
+                          colors="primary"
+                          onClick={() => this.onShowModal('passenger', 0)}
                         >新增</Button>
                         <Button
-                            className="ml8"
-                            role="update"
-                            shape='border'
-                            disabled={passengerForbid}
-                            onClick={() => _this.onShowModal("passenger", 1)}
+                          className="ml8"
+                          role="update"
+                          shape='border'
+                          disabled={passengerForbid}
+                          onClick={() => _this.onShowModal("passenger", 1)}
                         >修改</Button>
                         <Button
-                            className="ml8"
-                            shape='border'
-                            disabled={passengerForbid}
-                            onClick={() => _this.onShowModal("passenger", 2)}
+                          className="ml8"
+                          shape='border'
+                          disabled={passengerForbid}
+                          onClick={() => _this.onShowModal("passenger", 2)}
                         >详情</Button>
                         <Button
-                            className="ml8"
-                            role="delete"
-                            shape='border'
-                            disabled={passengerForbid}
-                            onClick={() => _this.onClickDel("passenger")}
+                          className="ml8"
+                          role="delete"
+                          shape='border'
+                          disabled={passengerForbid}
+                          onClick={() => _this.onClickDel("passenger")}
                         >删除</Button>
                         <Button
-                            className="ml8"
-                            shape='border'
-                            onClick={() => _this.export("passenger")}
+                          className="ml8"
+                          shape='border'
+                          onClick={() => _this.export("passenger")}
                         >导出</Button>
                         <Button
-                            className="ml8"
-                            shape='border'
-                            disabled={passengerForbid}
-                            onClick={_this.onPrint}
+                          className="ml8"
+                          shape='border'
+                          disabled={passengerForbid}
+                          onClick={_this.onPrint}
                         >
                             打印
                         </Button>
                     </ButtonRoleGroup>
                 </div>
                 <Grid
-                    ref="passenger"
-                    data={passengerObj.list}
-                    rowKey={(r, i) => i}
-                    columns={_this.passengerColumn}
-                    getSelectedDataFunc={this.getSelectedDataFunc}
-                    showHeaderMenu={true}
-                    draggable={true}
-                    multiSelect={false}
-                    onRowClick={(record, index) => {
-                        actions.masterDetailMany.updateState({passengerIndex: index});
-                        actions.masterDetailMany.loadSubList();
-                    }}
-                    rowClassName={(record, index, indent) => { //判断是否选中当前行
-                        return passengerIndex === index ? "selected" : "";
-                    }}
-                    paginationObj={{
-                        ...this.getBasicPage(passengerObj),
-                        freshData: (pageSize) => {
-                            _this.freshData(pageSize, "passengerObj");
-                        },
-                        onDataNumSelect: (index, value) => {
-                            _this.onDataNumSelect(index, value, "passengerObj");
-                        },
-                        dataNum: 0,
-                    }}
+                  ref="passenger"
+                  data={passengerObj.list}
+                  rowKey={(r, i) => i}
+                  columns={_this.passengerColumn}
+                  getSelectedDataFunc={this.getSelectedDataFunc}
+                  showHeaderMenu={true}
+                  draggable={true}
+                  multiSelect={false}
+                  onRowClick={(record, index) => {
+                      actions.masterDetailMany.updateState({passengerIndex: index});
+                      actions.masterDetailMany.loadSubList();
+                  }}
+                  rowClassName={(record, index, indent) => { //判断是否选中当前行
+                      return passengerIndex === index ? "selected" : "";
+                  }}
+                  paginationObj={{
+                      ...this.getBasicPage(passengerObj),
+                      freshData: (pageSize) => {
+                          _this.freshData(pageSize, "passengerObj");
+                      },
+                      onDataNumSelect: (index, value) => {
+                          _this.onDataNumSelect(index, value, "passengerObj");
+                      },
+                      dataNum: 0,
+                  }}
                 />
-                <div className="table-space"> </div>
+
                 <div className={passengerForbid? "tabel-header-wrap-hide":"tabel-header-wrap"} >
+                    <div className="table-space"> </div>
                     <Tabs
                         defaultActiveKey={tabKey}
+                        tabBarStyle="upborder"
                         onChange={this.onChangeTab}
                     >
                         <TabPane tab='紧急联系人' key="emergency">
@@ -583,7 +585,6 @@ export default class IndexView extends Component {
                                     }}
                                     loading={{
                                         show: (showEmergencyLoading && showLoading === false),
-                                        loadingType: "line"
                                     }}
                                 />
                             </div>
@@ -656,7 +657,6 @@ export default class IndexView extends Component {
                                     }}
                                     loading={{
                                         show: (showTravelingLoading && showLoading === false),
-                                        loadingType: "line"
                                     }}
 
                                 />
@@ -732,7 +732,6 @@ export default class IndexView extends Component {
 
                 />
                 <Loading
-                    loadingType="line"
                     show={showLoading}
                     fullScreen={true}
                 />

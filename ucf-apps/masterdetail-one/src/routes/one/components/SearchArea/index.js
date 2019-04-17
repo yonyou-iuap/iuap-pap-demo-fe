@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
-import {FormControl} from "tinper-bee";
+import {FormControl, Select} from "tinper-bee";
 import FormList from 'components/FormList';
-import Select from 'bee-select';
 import SearchPanel from 'components/SearchPanel';
 
 import './index.less'

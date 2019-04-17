@@ -38,7 +38,7 @@ class Header extends Component {
                     {back ? (
                         <span onClick={backFn} className="back-icon">
                             <i className={classnames({ 'uf uf-arrow-left pull-left': true, 'hide': !back })} />
-                            返回
+                            {/*返回*/}
                         </span>
                     ) : null}
                     <span className="main-title">

@@ -3,8 +3,7 @@
  * */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Label, Row, Col } from 'tinper-bee'
-import Form from 'bee-form'
+import { Label, Row, Col, Form } from 'tinper-bee'
 import './index.less'
 const FormItem = Form.FormItem;
 
@@ -49,7 +48,7 @@ class FormListItem extends Component{
             <Col {...wrapLayoutOpt}>
                 <FormItem className="u-form-item">
                     <Col md={3}  sm={4} xs={4}>
-                        <Label className={required ? "mast" : ''} style={{width: "100%"}}>{label}</Label>
+                        <Label className={required ? "required" : ''} style={{width: "100%"}}>{label}</Label>
                     </Col>
                     <Col md={9} sm={8} xs={8} className="form-input-wrap">
                         {children}

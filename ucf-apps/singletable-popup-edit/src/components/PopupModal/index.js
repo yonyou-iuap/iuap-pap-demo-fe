@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import {actions} from "mirrorx";
-import {FormControl} from "tinper-bee";
+import {FormControl, Select, InputNumber} from "tinper-bee";
 import FormList from 'components/FormList';
-import Select from 'bee-select';
+
 import moment from "moment";
-import InputNumber from "bee-input-number";
 import DatePicker from "tinper-bee/lib/Datepicker";
 import SelectMonth from 'components/SelectMonth';
 import PopDialog from 'components/Pop';
@@ -157,13 +156,17 @@ class PopupModal extends Component {
 
         return (
 
-            <PopDialog show={editModelVisible}
-                       title={titleArr[btnFlag]}
-                       size='lg'
-                       btns={btns}
-                       autoFocus={false}
-                       enforceFocus={false}
-                       close={this.onCloseEdit}>
+            <PopDialog
+                show={editModelVisible}
+                title={titleArr[btnFlag]}
+                size='lg'
+                btns={btns}
+                autoFocus={false}
+                enforceFocus={false}
+                close={this.onCloseEdit}
+                className="single-table-pop-model"
+            >
+
 
                 <FormList>
                     <FormItem
@@ -292,6 +295,9 @@ class PopupModal extends Component {
                                         validateTrigger: 'onBlur',
                                         rules: [{required: true, message: '请选择申请时间'}],
                                     })}
+                                    getCalendarContainer={() => {
+                                        return document.querySelector('.single-table-pop-model')
+                                    }}
                                     format={formatYYYY}
                                     locale={zhCN}
                                     placeholder="选择年"

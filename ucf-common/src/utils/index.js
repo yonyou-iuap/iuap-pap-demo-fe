@@ -151,9 +151,9 @@ export const getCookie = (name) => {
         }
     }
     // 按照总设部规范，调整为下划线
-    if (typeof cookieValue != 'undefined' && cookieValue != null) {
-        cookieValue = cookieValue.replace(/-/, "_");
-    }
+    // if (typeof cookieValue != 'undefined' && cookieValue != null) {
+    //     cookieValue = cookieValue.replace(/-/, "_");
+    // }
     return cookieValue;
 }
 

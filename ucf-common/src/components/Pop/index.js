@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom'
 import PropTypes from "prop-types";
 import { Modal, Icon } from 'tinper-bee'
 import Button from 'components/Button';
@@ -37,8 +38,8 @@ class PopDialog extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-
+  componentDidUpdate() {
+      this.modalEle = findDOMNode(this.modalNode);
   }
 
   close = () => {
@@ -76,7 +77,13 @@ class PopDialog extends Component {
         <span className="alert-modal-title" onClick={this.props.close}>
           {btnRender}
         </span>
-        <Modal enforceFocus={false} className={(this.props.className ? this.props.className : "") + " pop_dialog "} size={this.props.size ? this.props.size : "lg"} backdrop={this.props.backdrop ? true : 'static'} show={this.props.show} onHide={this.props.close}  >
+        <Modal
+            ref={node => this.modalNode = node}
+            enforceFocus={false}
+            className={(this.props.className ? this.props.className : "") + " pop_dialog "}
+            size={this.props.size ? this.props.size : "lg"} backdrop={this.props.backdrop ? true : 'static'}
+            show={this.props.show} onHide={this.props.close}
+        >
           <Modal.Header closeButton={true}>
             <Modal.Title>
               {titleIcon ? <Icon type={titleIcon} /> : null}

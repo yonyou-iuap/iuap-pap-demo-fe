@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {actions} from 'mirrorx';
-import {Loading} from 'tinper-bee';
+import {Loading, Message} from 'tinper-bee';
 import Grid from 'components/Grid';
 import moment from 'moment'
 import Header from 'components/Header';
@@ -312,7 +312,7 @@ export default class IndexView extends Component {
 
     handleBpmState = (list, selectIndex) => {
         let resObj = {
-            submitForbid : false,
+            submitForbid : true,
             recallForbid : true
         };
         if ( list.length ) {
@@ -375,7 +375,13 @@ export default class IndexView extends Component {
                                confirmFn={() => _this.confirmGoBack(1)}
                                cancelFn={() => _this.confirmGoBack(2)}
                         />
-                        <Button shape="border" key="export" className="ml8" onClick={_this.export}>
+                        <Button
+                          shape="border"
+                          key="export"
+                          className="ml8"
+                          disabled={btnForbid}
+                          onClick={_this.export}
+                        >
                             导出
                         </Button>
                         <BpmButtonSubmit
@@ -401,8 +407,11 @@ export default class IndexView extends Component {
                             onError={_this.bpmEnd('recall', 'error')}
                             onEnd={_this.bpmEnd('recall', 'end')}
                         >
-                            <Button className="ml8" size='sm' colors="primary"
-                                disabled={recallForbid}>收回</Button>
+                            <Button
+                              className="ml8"
+                              size='sm'
+                              colors="primary"
+                              disabled={recallForbid}>收回</Button>
                         </BpmButtonRecall>
                     </ButtonRoleGroup>
                 </div>
@@ -448,10 +457,9 @@ export default class IndexView extends Component {
                             onDataNumSelect: (index, value) => _this.onDataNumSelect(index, value, "detailObj"),
                             dataNum: _this.getDataNum(detailObj.pageSize),
                         }}
-                        loading={{show: (!showLoading && showDetailLoading), loadingType: "line"}}
+                        loading={{show: (!showLoading && showDetailLoading)}}
                     />
                     <Loading
-                        loadingType="line"
                         show={showLoading}
                         fullScreen={true}
                     />

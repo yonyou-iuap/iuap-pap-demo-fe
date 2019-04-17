@@ -1,36 +1,37 @@
 .tree-example {
     background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     .title-develop {
-        margin-bottom: 2px;
+        background: #F7F9FB;
     }
 
     .tree-body {
-        // padding: 15px;
         background: #fff;
         .tree-wrap {
             position: absolute;
             width: 100%;
             background: #fff;
-            top: 34px;
+            top: 42px;
             bottom: 0;
             .table-wrap {
                 display: inline-block;
                 position: absolute;
                 height: 100%;
                 right: 0;
-                left: 250px;
+                left: 240px;
             }
         }
         .tree {
-            // padding: 8px 8px 0 8px;
-            width: 250px;
+            width: 240px;
             height: 100%;
-            min-height: 92vh;
-            box-shadow: 0px 0px 0px 1px rgba(9, 30, 66, 0.08);
-            border-right: 8px solid #EBECF0;
             overflow: auto;
             display: inline-block;
-            background: #fff;
+            background: #F7F9FB;
+            border-right: 1px solid #C1C7D0;
             .tree-head {
                 padding: 0 0 0 24px;
                 text-align: left;
@@ -91,6 +92,7 @@
 
         .tree-table {
             height: 100%;
+            margin: 0;
             // position: absolute;
             .table-header {
                 margin: 0;
@@ -111,7 +113,6 @@
 
         .u-tree {
             padding: 16px;
-            font-size: 14px;
             overflow-y: auto;
             /* .u-tree-checkbox-inner {
                 background-color : #004898;

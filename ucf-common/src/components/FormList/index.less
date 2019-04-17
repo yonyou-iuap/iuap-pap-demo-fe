@@ -45,8 +45,11 @@
             width: 100%;
             display: inline-block;
         }
-        .mast:after {
+        .required:after {
             content: "*";
+        }
+        .datepicker-container {
+            width: 100%;
         }
         .datepicker-input-group {
             .u-form-control {
@@ -58,10 +61,6 @@
         }
         .u-switch {
             width: 44px;
-        }
-        .u-switch.is-checked {
-            border-color: @brand-primary;
-            background-color: @brand-primary;
         }
         .u-select {
             width: 100%;
@@ -126,7 +125,7 @@
         width: 100% !important;
     }
 
-    .ref-input-wrap .u-input-group.simple .u-input-group-btn {
+    .u-input-group.simple .u-input-group-btn {
         top: 0;
     }
 
@@ -168,13 +167,8 @@
                 //    width: 100% !important;
                 //}
             }
-            .mast:after {
+            .required:after {
                 content: "*";
-            }
-            .datepicker-input-group {
-                .u-input-group-btn {
-                    top: 0px;
-                }
             }
             .u-select {
                 .u-select-selection {
