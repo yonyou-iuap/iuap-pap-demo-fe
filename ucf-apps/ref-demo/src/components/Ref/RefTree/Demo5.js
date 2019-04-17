@@ -72,6 +72,11 @@ class Demo5 extends Component {
                 return (<span><i className="uf uf-users" /> {record.refname} </span>);
               }
             }}
+            param={{
+              "refCode": "newdeptUnderOrg_trees",
+              "clientParam":{"isUseDataPower":"true"}
+                
+            }}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -139,7 +144,7 @@ class Demo5 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-           lang={this.props.lang}
+            lang={this.props.lang}
             theme={this.props.theme} 
             emptyBut={true}
             nodeDisplay={(record) => {
@@ -148,6 +153,11 @@ class Demo5 extends Component {
               } else if (record.entityType === "subEntity") {
                 return (<span><i className="uf uf-users" /> {record.refname} </span>);
               }
+            }}
+            param={{
+              "refCode": "newdeptUnderOrg_trees",
+              "clientParam":{"isUseDataPower":"true"}
+                
             }}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',

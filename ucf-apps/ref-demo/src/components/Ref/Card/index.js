@@ -38,6 +38,13 @@ class Card extends Component{
             opt.footer = footer;
         }
         return (
+            <div>
+                 {
+                        this.props.children
+                    }
+            </div>
+        )
+        return (
             <Panel
                 className="card"//<Icon type="uf-pencil-s" />
                 header={<div><span className="card-title">{title} </span><span onClick={this.showCode} className="card-check-code">查看源码</span></div>}
