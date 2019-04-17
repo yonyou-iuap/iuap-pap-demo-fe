@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from 'react'
 import {actions} from 'mirrorx';
 import {Tabs, Loading} from 'tinper-bee';
@@ -22,7 +23,7 @@ import './index.less'
 const {TabPane} = Tabs;
 const format = "YYYY-MM-DD";
 
-export default class IndexView extends Component {
+class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -167,10 +168,10 @@ export default class IndexView extends Component {
      *
      */
     onPrint = () => {
-        const {passengerIndex, passengerObj} = this.props;
+        const {passengerIndex, passengerObj, intl} = this.props;
         const {list} = passengerObj;
         if (list.length === 0) {
-            Warning('请选择需打印的数据');
+            Warning(intl.formatMessage({id:"js.com.Ind.0001", defaultMessage:"请选择需打印的数据"}));
             return;
         }
         const {id} = list[passengerIndex];
@@ -241,55 +242,55 @@ export default class IndexView extends Component {
 
     passengerColumn = [
         {
-            title: "乘客编号",
+            title: <FormattedMessage id="js.com.Ind.0002" defaultMessage="乘客编号" />,
             dataIndex: "code",
             key: "code",
             // fixed: "left",
             width: 180,
         },
         {
-            title: "乘客姓名",
+            title: <FormattedMessage id="js.com.Ind.0003" defaultMessage="乘客姓名" />,
             dataIndex: "name",
             key: "name",
             width: 120,
         },
         {
-            title: "乘客性别",
+            title: <FormattedMessage id="js.com.Ind.0004" defaultMessage="乘客性别" />,
             dataIndex: "sexEnumValue",
             key: "sexEnumValue",
             width: 120,
 
         },
         {
-            title: "所属部门",
+            title: <FormattedMessage id="js.com.Ind.0005" defaultMessage="所属部门" />,
             dataIndex: "deptName",
             key: "deptName",
             width: 120,
         },
         {
-            title: "手机号",
+            title: <FormattedMessage id="js.com.Ind.0006" defaultMessage="手机号" />,
             dataIndex: "phone",
             key: "phone",
             width: 120,
         },
         {
-            title: "是否会员",
+            title: <FormattedMessage id="js.com.Ind.0007" defaultMessage="是否会员" />,
             dataIndex: "isVip",
             key: "isVip",
             width: 120,
             render(text, record, index) {
-                return text ? "是" : "否";
+                return text ? <FormattedMessage id="js.com.Ind.0008" defaultMessage="是" /> : <FormattedMessage id="js.com.Ind.0009" defaultMessage="否" />;
             }
 
         },
         {
-            title: "会员等级",
+            title: <FormattedMessage id="js.com.Ind.0010" defaultMessage="会员等级" />,
             dataIndex: "gradeEnumValue",
             key: "gradeEnumValue",
             width: 120,
         },
         {
-            title: "会员到期日期",
+            title: <FormattedMessage id="js.com.Ind.0011" defaultMessage="会员到期日期" />,
             dataIndex: "expirationDate",
             key: "expirationDate",
             render: (text, record, index) => {
@@ -303,25 +304,25 @@ export default class IndexView extends Component {
 
     emergencyColumn = [
         {
-            title: "联系人姓名",
+            title: <FormattedMessage id="js.com.Ind.0012" defaultMessage="联系人姓名" />,
             dataIndex: "contactName",
             key: "contactName",
             width: 180,
         },
         {
-            title: "联系人电话",
+            title: <FormattedMessage id="js.com.Ind.0013" defaultMessage="联系人电话" />,
             dataIndex: "contactPhone",
             key: "contactPhone",
             width: 180,
         },
         {
-            title: "与乘客关系",
+            title: <FormattedMessage id="js.com.Ind.0014" defaultMessage="与乘客关系" />,
             dataIndex: "contactRelation",
             key: "contactRelation",
             width: 180,
         },
         {
-            title: "备注",
+            title: <FormattedMessage id="js.com.Ind.0015" defaultMessage="备注" />,
             dataIndex: "remark",
             key: "remark",
             width: 120,
@@ -330,25 +331,25 @@ export default class IndexView extends Component {
 
     travelingColumn = [
         {
-            title: "乘车路线",
+            title: <FormattedMessage id="js.com.Ind.0016" defaultMessage="乘车路线" />,
             dataIndex: "line",
             key: "line",
             width: 120,
         },
         {
-            title: "上车站点",
+            title: <FormattedMessage id="js.com.Ind.0017" defaultMessage="上车站点" />,
             dataIndex: "stationBegin",
             key: "stationBegin",
             width: 120,
         },
         {
-            title: "下车站点",
+            title: <FormattedMessage id="js.com.Ind.0018" defaultMessage="下车站点" />,
             dataIndex: "stationEnd",
             key: "stationEnd",
             width: 120,
         },
         {
-            title: "费用",
+            title: <FormattedMessage id="js.com.Ind.0019" defaultMessage="费用" />,
             dataIndex: "cost",
             key: "cost",
             width: 120,
@@ -358,12 +359,12 @@ export default class IndexView extends Component {
             }
         },
         {
-            title: "支付状态",
+            title: <FormattedMessage id="js.com.Ind.0020" defaultMessage="支付状态" />,
             dataIndex: "payStatusEnumValue",
             key: "payStatusEnumValue",
             width: 120,
         }, {
-            title: "备注",
+            title: <FormattedMessage id="js.com.Ind.0015" defaultMessage="备注" />,
             dataIndex: "remark",
             key: "remark",
             width: 120,
@@ -433,7 +434,7 @@ export default class IndexView extends Component {
         const travelingForbid = travelingObj.list.length > 0 ? false : true;
         return (
             <div className='master-detail-many'>
-                <Header title='B3 一主多子示例'/>
+              <Header title={this.props.intl.formatMessage({id:"js.com.Ind.0021", defaultMessage:"B3 一主多子示例"})}/>
                 <SearchArea passengerObj={passengerObj} onRef={this.onRef}/>
                 <div className='table-header'>
                     <ButtonRoleGroup funcCode="masterdetail-many">
@@ -442,39 +443,39 @@ export default class IndexView extends Component {
                           role="add"
                           colors="primary"
                           onClick={() => this.onShowModal('passenger', 0)}
-                        >新增</Button>
+                      ><FormattedMessage id="js.com.Ind.0022" defaultMessage="新增" /></Button>
                         <Button
                           className="ml8"
                           role="update"
                           shape='border'
                           disabled={passengerForbid}
                           onClick={() => _this.onShowModal("passenger", 1)}
-                        >修改</Button>
+                      ><FormattedMessage id="js.com.Ind.0023" defaultMessage="修改" /></Button>
                         <Button
                           className="ml8"
                           shape='border'
                           disabled={passengerForbid}
                           onClick={() => _this.onShowModal("passenger", 2)}
-                        >详情</Button>
+                      ><FormattedMessage id="js.com.Ind.0024" defaultMessage="详情" /></Button>
                         <Button
                           className="ml8"
                           role="delete"
                           shape='border'
                           disabled={passengerForbid}
                           onClick={() => _this.onClickDel("passenger")}
-                        >删除</Button>
+                      ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
                         <Button
                           className="ml8"
                           shape='border'
                           onClick={() => _this.export("passenger")}
-                        >导出</Button>
+                      ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                         <Button
                           className="ml8"
                           shape='border'
                           disabled={passengerForbid}
                           onClick={_this.onPrint}
                         >
-                            打印
+                          <FormattedMessage id="js.com.Ind.0027" defaultMessage="打印" />
                         </Button>
                     </ButtonRoleGroup>
                 </div>
@@ -513,7 +514,7 @@ export default class IndexView extends Component {
                         tabBarStyle="upborder"
                         onChange={this.onChangeTab}
                     >
-                        <TabPane tab='紧急联系人' key="emergency">
+                      <TabPane tab={<FormattedMessage id="js.com.Ind.0028" defaultMessage="紧急联系人" />} key="emergency">
                             <div className='table-header-child'>
                                 <ButtonRoleGroup funcCode="masterdetail-many">
                                     <Button
@@ -522,7 +523,7 @@ export default class IndexView extends Component {
                                         colors="primary"
                                         disabled={passengerForbid}
                                         onClick={() => _this.onShowModal('emergency', 0)}
-                                    >新增</Button>
+                                  ><FormattedMessage id="js.com.Ind.0022" defaultMessage="新增" /></Button>
                                     <Button
                                         className="ml8"
                                         role="update_em"
@@ -531,25 +532,25 @@ export default class IndexView extends Component {
                                         onClick={() => {
                                             _this.onShowModal("emergency", 1);
                                         }}
-                                    >修改</Button>
+                                  ><FormattedMessage id="js.com.Ind.0023" defaultMessage="修改" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
                                         disabled={emergencyForbid}
                                         onClick={() => _this.onShowModal("emergency", 2)}
-                                    >详情</Button>
+                                  ><FormattedMessage id="js.com.Ind.0024" defaultMessage="详情" /></Button>
                                     <Button
                                         className="ml8"
                                         role="delete_em"
                                         shape="border"
                                         disabled={emergencyForbid}
                                         onClick={() => _this.onClickDel("emergency")}
-                                    >删除</Button>
+                                  ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
                                         onClick={() => _this.export("emergency")}
-                                    >导出</Button>
+                                  ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                                 </ButtonRoleGroup>
                             </div>
                             <div style={{marginBottom: 24}}>
@@ -589,7 +590,7 @@ export default class IndexView extends Component {
                                 />
                             </div>
                         </TabPane>
-                        <TabPane tab='订票信息' key="traveling">
+                      <TabPane tab={<FormattedMessage id="js.com.Ind.0029" defaultMessage="订票信息" />} key="traveling">
                             <div className='table-header-child'>
                                 <ButtonRoleGroup funcCode="masterdetail-many">
                                     <Button
@@ -598,34 +599,34 @@ export default class IndexView extends Component {
                                         colors="primary"
                                         disabled={passengerForbid}
                                         onClick={() => this.onShowModal('traveling', 0)}
-                                    >新增</Button>
+                                  ><FormattedMessage id="js.com.Ind.0022" defaultMessage="新增" /></Button>
                                     <Button
                                         className="ml8"
                                         role="update_tr"
                                         shape="border"
                                         disabled={travelingForbid}
                                         onClick={() => _this.onShowModal("traveling", 1)}
-                                    >修改</Button>
+                                  ><FormattedMessage id="js.com.Ind.0023" defaultMessage="修改" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
                                         disabled={travelingForbid}
                                         onClick={() => _this.onShowModal("traveling", 2)}
-                                    >详情</Button>
+                                  ><FormattedMessage id="js.com.Ind.0024" defaultMessage="详情" /></Button>
                                     <Button
                                         className="ml8" role="delete_tr"
                                         shape="border"
                                         disabled={travelingForbid}
                                         onClick={() => _this.onClickDel("traveling")}
-                                    >删除</Button>
+                                  ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
                                         onClick={() => _this.export("traveling")}
-                                    >导出</Button>
+                                  ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                                 </ButtonRoleGroup>
                             </div>
-                            <div className="total">费用小计：{_this.getTotalCost(travelingObj.list)}元</div>
+                          <div className="total"><FormattedMessage id="js.com.Ind.0030" defaultMessage="费用小计:" />{_this.getTotalCost(travelingObj.list)}</div>
                             <div style={{marginBottom: 24}}>
                                 <Grid
                                     ref="traveling"
@@ -662,7 +663,7 @@ export default class IndexView extends Component {
                                 />
                             </div>
                         </TabPane>
-                        <TabPane tab='附件管理' key="uploadFill">
+                      <TabPane tab={<FormattedMessage id="js.com.Ind.0031" defaultMessage="附件管理" />} key="uploadFill">
                             <div className='table-header-child'>
                                 <AcAttachment
                                     className="upload-box"
@@ -678,18 +679,18 @@ export default class IndexView extends Component {
                                         data-btn="upload"
                                         className="ml8"
                                         colors="primary" size='sm'
-                                    >上传</Button>
+                                  ><FormattedMessage id="js.com.Ind.0032" defaultMessage="上传" /></Button>
                                     <Button
                                         data-btn="download"
                                         className="ml8"
                                         shape="border"
-                                        size='sm'>下载</Button>
+                                    size='sm'><FormattedMessage id="js.com.Ind.0033" defaultMessage="下载" /></Button>
                                     <Button
                                         data-btn="delete"
                                         className="ml8"
                                         shape="border"
                                         size='sm'
-                                    >删除</Button>
+                                  ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
                                 </AcAttachment>
                             </div>
                         </TabPane>
@@ -752,3 +753,4 @@ export default class IndexView extends Component {
 
     }
 }
+export default injectIntl(IndexView)

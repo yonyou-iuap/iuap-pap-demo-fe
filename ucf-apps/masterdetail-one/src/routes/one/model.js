@@ -137,8 +137,12 @@ export default {
          * @param {*} getState
          */
         async delOrder(param, getState) {
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.rou.one2.0001'] || '删除成功';
+
             actions.masterDetailOne.updateState({ showLoading: true });
-            const { result } = processData(await api.delOrder([param]), '删除成功');
+            const { result } = processData(await api.delOrder([param]), msg);
             actions.masterDetailOne.updateState({ showLoading: false });
             const { status } = result;
             if (status === 'success') {

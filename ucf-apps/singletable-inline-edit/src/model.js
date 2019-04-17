@@ -90,9 +90,12 @@ export default {
          * @param {Array} [param=[]] 数组对象的数据
          * @returns {bool} 操作是否成功
          */
-        async adds(param) {
+        async adds(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.adds(param),'保存成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.sin.src.0001'] || '保存成功';
+            let { result } = processData(await api.adds(param),msg);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false});
             if (status === 'success') {
@@ -109,7 +112,10 @@ export default {
          */
         async removes(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.removes(param),'删除成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.sin.src.0002'] || '删除成功';
+            let { result } = processData(await api.removes(param),msg);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
@@ -133,9 +139,12 @@ export default {
          *
          * @param {Array} [param=[]]
          */
-        async updates(param) {
+        async updates(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            let { result } = processData(await api.updates(param),'更新成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.sin.src.0003'] || '更新成功';
+            let { result } = processData(await api.updates(param),msg);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {

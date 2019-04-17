@@ -1,3 +1,4 @@
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, {Component} from "react";
 import {actions} from "mirrorx";
 import {FormControl} from "tinper-bee";
@@ -8,7 +9,7 @@ import FormList from 'components/FormList';
 import './index.less'
 
 const FormItem = FormList.Item;
-let titleArr = ["新增", "修改", "详情"];
+let titleArr = [<FormattedMessage id="js.com.Eme.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Eme.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Eme.0003" defaultMessage="详情" />];
 
 class AddEditEmergency extends Component {
 
@@ -92,12 +93,12 @@ class AddEditEmergency extends Component {
         let btns = [
 
             {
-                label: '取消',
+                label: <FormattedMessage id="js.com.Eme.0004" defaultMessage="取消" />,
                 fun: this.onCloseEdit,
                 shape: 'border'
             },
             {
-                label: '确定',
+                label: <FormattedMessage id="js.com.Eme.0005" defaultMessage="确定" />,
                 fun: _this.onSubmitEdit,
                 colors: 'primary'
             },
@@ -112,7 +113,7 @@ class AddEditEmergency extends Component {
     // 通过search_id查询数据
     render() {
         let _this = this;
-        const {form, modalVisible} = _this.props;
+        const {form, modalVisible, intl} = _this.props;
         const {getFieldProps, getFieldError} = form;
         const {rowData, btnFlag} = _this.state;
         const {contactRelation, contactName, contactPhone, remark} = rowData;
@@ -129,7 +130,7 @@ class AddEditEmergency extends Component {
             >
 
                 <FormList>
-                    <FormItem required label="联系人姓名">
+                    <FormItem required label={<FormattedMessage id="js.com.Eme.0006" defaultMessage="联系人姓名" />}>
                         <FormControl disabled={btnFlag > 0}
                                      {...getFieldProps('contactName', {
                                          validateTrigger: 'onBlur',
@@ -138,7 +139,7 @@ class AddEditEmergency extends Component {
                                              type: 'string',
                                              required: true,
                                              pattern: /\S+/ig,
-                                             message: '请输入联系人姓名',
+                                             message: <FormattedMessage id="js.com.Eme.0007" defaultMessage="请输入联系人姓名" />,
                                          }],
                                      })}
                         />
@@ -146,7 +147,7 @@ class AddEditEmergency extends Component {
                     </FormItem>
 
 
-                    <FormItem required label="联系人电话">
+                    <FormItem required label={<FormattedMessage id="js.com.Eme.0008" defaultMessage="联系人电话" />}>
                         <FormControlPhone disabled={btnFlag === 2}
                                           {...getFieldProps('contactPhone', {
                                               validateTrigger: 'onBlur',
@@ -155,14 +156,14 @@ class AddEditEmergency extends Component {
                                                   type: 'string',
                                                   required: true,
                                                   pattern: /^[1][3,4,5,7,8][0-9]{9}$/,
-                                                  message: '请输入联系人电话',
+                                                  message: <FormattedMessage id="js.com.Eme.0009" defaultMessage="请输入联系人电话" />,
                                               }],
                                           })}
                         />
                         <FormError errorMsg={getFieldError('contactPhone')}/>
                     </FormItem>
 
-                    <FormItem required label="与乘客关系">
+                    <FormItem required label={<FormattedMessage id="js.com.Eme.0010" defaultMessage="与乘客关系" />}>
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('contactRelation', {
                                          validateTrigger: 'onBlur',
@@ -171,14 +172,14 @@ class AddEditEmergency extends Component {
                                              type: 'string',
                                              required: true,
                                              pattern: /\S+/ig,
-                                             message: '请输入与乘客关系',
+                                             message: <FormattedMessage id="js.com.Eme.0011" defaultMessage="请输入与乘客关系" />,
                                          }],
                                      })}
                         />
                         <FormError errorMsg={getFieldError('contactRelation')}/>
                     </FormItem>
 
-                    <FormItem label="备注">
+                    <FormItem label={<FormattedMessage id="js.com.Eme.0012" defaultMessage="备注" />}>
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('remark', {
                                          initialValue: remark || '',
@@ -192,4 +193,4 @@ class AddEditEmergency extends Component {
     }
 }
 
-export default FormList.createForm()(AddEditEmergency);
+export default FormList.createForm()(injectIntl(AddEditEmergency));

@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapRefRole from 'pap-refer/lib/pap-ref-role/src/index';
 // import 'pap-refer/lib/pap-ref-role.css';
@@ -35,9 +36,9 @@ class Demo4 extends Component {
 		const { getFieldProps, getFieldError } = this.props.form;
 		return (
 			<Card
-				title="业务示例"
+				title={this.props.intl.formatMessage({id:"js.Ref.Ref10.0001", defaultMessage:"业务示例"})}
 				codeText={code}
-
+				intl={this.props.intl}
 				footer={
 					<Button colors="primary"
 						style={{
@@ -48,16 +49,16 @@ class Demo4 extends Component {
 						onClick={() => {
 							this.props.form.validateFields((err, values) => {
 								if (err) return;
-								alert("您选择的是"+JSON.stringify(values))
+								alert(this.props.intl.formatMessage({id:"js.Ref.Ref10.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
 							});
 						}}
 					>
-						提交
+						<FormattedMessage id="js.Ref.Ref10.0003" defaultMessage="提交" />
                             </Button>
 				}
 			>
 				<div className="demo-label">
-					<span >角色</span>
+					<span ><FormattedMessage id="js.Ref.Ref10.0004" defaultMessage="角色" /></span>
 					<PapRefRole
 						multiple={false}
 						searchable={true}
@@ -69,7 +70,7 @@ class Demo4 extends Component {
 						{...getFieldProps('code', {
 							initialValue: '{"refname":"","refpk":""}',
 							rules: [{
-								message: '提示：请选择',
+								message: <FormattedMessage id="js.Ref.Ref10.0005" defaultMessage="提示：请选择" />,
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
 							}]
 						})}
@@ -86,7 +87,7 @@ class Demo4 extends Component {
 					</span>
 				</div>
 				<div className="demo-label">
-					<span >岗位</span>
+					<span ><FormattedMessage id="js.Ref.Ref10.0006" defaultMessage="岗位" /></span>
 					<PapRefPosition 
 						multiple={false}
 						searchable={true}
@@ -101,7 +102,7 @@ class Demo4 extends Component {
 						{...getFieldProps('code1', {
 							initialValue: '{"refname":"","refpk":""}',
 							rules: [{
-								message: '提示：请选择',
+								message: <FormattedMessage id="js.Ref.Ref10.0005" defaultMessage="提示：请选择" />,
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
 							}]
 						})}
@@ -134,9 +135,9 @@ class Demo4 extends Component {
 		const { getFieldProps, getFieldError } = this.props.form;
 		return (
 			<Card
-				title="业务示例"
+				title={this.props.intl.formatMessage({id:"js.Ref.Ref10.0001", defaultMessage:"业务示例"})}
 				codeText={code}
-
+				intl={this.props.intl}
 				footer={
 					<Button colors="primary"
 						style={{
@@ -147,16 +148,16 @@ class Demo4 extends Component {
 						onClick={() => {
 							this.props.form.validateFields((err, values) => {
 								if (err) return;
-								alert("您选择的是"+JSON.stringify(values))
+								alert(this.props.intl.formatMessage({id:"js.Ref.Ref10.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
 							});
 						}}
 					>
-						提交
+						<FormattedMessage id="js.Ref.Ref10.0003" defaultMessage="提交" />
                             </Button>
 				}
 			>
 				<div className="demo-label">
-					<span >角色</span>
+					<span ><FormattedMessage id="js.Ref.Ref10.0004" defaultMessage="角色" /></span>
 					<PapRefRole
 						multiple={false}
 						searchable={true}
@@ -168,7 +169,7 @@ class Demo4 extends Component {
 						{...getFieldProps('code', {
 							initialValue: '{"refname":"","refpk":""}',
 							rules: [{
-								message: '提示：请选择',
+								message: <FormattedMessage id="js.Ref.Ref10.0005" defaultMessage="提示：请选择" />,
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
 							}]
 						})}
@@ -185,7 +186,7 @@ class Demo4 extends Component {
 					</span>
 				</div>
 				<div className="demo-label">
-					<span >岗位</span>
+					<span ><FormattedMessage id="js.Ref.Ref10.0006" defaultMessage="岗位" /></span>
 					<PapRefPosition 
 						multiple={false}
 						searchable={true}
@@ -199,7 +200,7 @@ class Demo4 extends Component {
 						{...getFieldProps('code1', {
 							initialValue: '{"refname":"","refpk":""}',
 							rules: [{
-								message: '提示：请选择',
+								message: <FormattedMessage id="js.Ref.Ref10.0005" defaultMessage="提示：请选择" />,
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
 							}]
 						})}

@@ -1,3 +1,4 @@
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, { Component } from 'react';
 import { Modal } from 'tinper-bee';
 import PropTypes from 'prop-types';
@@ -21,16 +22,16 @@ const propTypes = {
 };
 
 const defaultProps = {
-    modalTitle: '警告',
-    modalContent: '确认要删除么？',
+    modalTitle: <FormattedMessage id="js.com.Del1.0001" defaultMessage="警告" />,
+    modalContent: <FormattedMessage id="js.com.Del1.0002" defaultMessage="确认要删除么？" />,
     confirmFn: () => {
 
     },
     cancelFn: () => {
 
     },
-    confirmName: '确定',
-    cancelFnName: '取消',
+    confirmName: <FormattedMessage id="js.com.Del1.0003" defaultMessage="确定" />,
+    cancelFnName: <FormattedMessage id="js.com.Del1.0004" defaultMessage="取消" />,
     showFooter: true,
     showTitle: true,
     onShow: () => {

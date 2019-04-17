@@ -2,12 +2,14 @@
  * 入口、导入组件样式、渲染
  */
 import  "babel-polyfill"
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React,{Component} from 'react';
 import { render } from 'mirrorx';
 import 'ucf-common/styles/public.less';
 import './app.less';
 import {getCookie} from './util';
 let lang = getCookie('u_locale') || getCookie('i18next') || 'zh_CN';
+import Intl from 'components/Intl'
 // let dir = lang.toLocaleLowerCase()==='en_us'?'Ref_EN':(lang.toLocaleLowerCase()==='zh_tw'?'Ref_TW':'Ref');
 import {  
   RefTreeDemo1,
@@ -77,95 +79,101 @@ import {
       return (
         <div>
           <h2 className="change-theme" onClick={this.changeTheme} >{`切换主题：当前主题是（${theme==='ref-red'?'红色':'蓝色'}）`}</h2>
-          <h2>树参照</h2>
+          <h2><FormattedMessage id="js.ref.src.0001" defaultMessage="树参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTreeDemo1 lang={lang} theme={theme} />
+              <RefTreeDemo1 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo2 lang={lang} theme={theme}/>
+              <RefTreeDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo3 lang={lang} theme={theme}/>
+              <RefTreeDemo3 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo4 lang={lang} theme={theme}/>
+              <RefTreeDemo4 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo5 lang={lang} theme={theme}/>
+              <RefTreeDemo5 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefTreeDemo6 lang={lang} theme={theme}/>
+              <RefTreeDemo6 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
-          <h2>表格参照</h2>
+          <h2><FormattedMessage id="js.ref.src.0002" defaultMessage="表格参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTableDemo1 lang={lang} theme={theme}/>
+              <RefTableDemo1 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefTableDemo2 lang={lang} theme={theme}/>
+              <RefTableDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTableDemo3 lang={lang} theme={theme}
+              <RefTableDemo3 lang={lang} theme={theme} {...this.props}
               />
             </div>
           </div>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTableDemo4 lang={lang} theme={theme}
+              <RefTableDemo4 lang={lang} theme={theme} {...this.props}
               />
             </div>
           </div>
-          <h2>级联参照</h2>
+          <h2><FormattedMessage id="js.ref.src.0003" defaultMessage="级联参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefJiLianDemo1 lang={lang} theme={theme}/>
+              <RefJiLianDemo1 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefJiLianDemo2 lang={lang} theme={theme}/>
+              <RefJiLianDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefJiLianDemo3 lang={lang} theme={theme}/>
+              <RefJiLianDemo3 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
           
-          <h2>穿梭参照</h2>
+          <h2><FormattedMessage id="js.ref.src.0004" defaultMessage="穿梭参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTreeTransferDemo1 lang={lang} theme={theme}/>
+              <RefTreeTransferDemo1 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefTreeTransferDemo2 lang={lang} theme={theme}/>
+              <RefTreeTransferDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
-          <h2>树表参照</h2>
+          <h2><FormattedMessage id="js.ref.src.0005" defaultMessage="树表参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefTreeTableDemo1 lang={lang} theme={theme}
+              <RefTreeTableDemo1 lang={lang} theme={theme} {...this.props}
               />
             </div>
           </div>
-          <h2>combobox参照</h2>
+          <h2><FormattedMessage id="js.ref.src.0006" defaultMessage="combobox参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefComboboxDemo1 lang={lang} theme={theme}/>
+              <RefComboboxDemo1 lang={lang} theme={theme} {...this.props}/>
             </div>
             <div className="demo-col">
-              <RefComboboxDemo2 lang={lang} theme={theme}/>
+              <RefComboboxDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
-          <h2>自定义参照</h2>
+          <h2><FormattedMessage id="js.Ref.Ref224.0004" defaultMessage="自定义参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
-              <RefMdmDemo1 lang={lang} theme={theme}/>
+              <RefMdmDemo1 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
         </div>
       )
     }
   };
-  
-render(<App/>, document.querySelector("#app"));
+
+const IntlApp = injectIntl(App);
+
+render(
+  <Intl>
+    <IntlApp/>
+  </Intl>
+  , document.querySelector("#app"));

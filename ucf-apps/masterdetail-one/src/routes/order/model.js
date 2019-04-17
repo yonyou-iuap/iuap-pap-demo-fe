@@ -140,8 +140,11 @@ export default {
          * @returns {Promise<void>}
          */
         async adds(param, getState) {
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.rou.ord1.0001'] || '保存成功';
             actions.masterDetailOrder.updateState({ showLoading: true });
-            const { result } = processData(await api.saveAsso(param), '保存成功');
+            const { result } = processData(await api.saveAsso(param), msg);
             const { data: res } = result;
             actions.masterDetailOrder.updateState({ showLoading: false, status: 'view' });
             if (res) {
@@ -157,8 +160,11 @@ export default {
          * @param {*} getState
          */
         async delOrderDetail(param, getState) {
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.rou.ord1.0002'] || '删除成功';
             actions.masterDetailOrder.updateState({ showLoading: true });
-            const { result } = processData(await api.delOrderDetail(param), '删除成功');
+            const { result } = processData(await api.delOrderDetail(param), msg);
             actions.masterDetailOrder.updateState({ showLoading: false });
             return result;
 

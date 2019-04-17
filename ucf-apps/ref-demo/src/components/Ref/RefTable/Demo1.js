@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapRefUser from 'pap-refer/lib/pap-ref-user/src/index';
 // import 'pap-refer/lib/pap-ref-user.css';
@@ -34,9 +35,9 @@ class Demo1 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref14.0001", defaultMessage:"基础示例"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -47,16 +48,16 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是" + JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref14.0002", defaultMessage:"您选择的是"}) + JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref14.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >单选（用户）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref14.0004" defaultMessage="单选（用户）：" /></span>
           <PapRefUser
             multiple={false}
             searchable={true}
@@ -71,7 +72,7 @@ class Demo1 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref14.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -87,7 +88,7 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >多选（人员）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref14.0006" defaultMessage="多选（人员）：" /></span>
           <PapRefStaff
             multiple={true}
             searchable={true}
@@ -102,7 +103,7 @@ class Demo1 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref14.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -134,9 +135,9 @@ class Demo1 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="基础示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref14.0001", defaultMessage:"基础示例"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -147,16 +148,16 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是" + JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref14.0002", defaultMessage:"您选择的是"}) + JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref14.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >单选（用户）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref14.0004" defaultMessage="单选（用户）：" /></span>
           <PapRefUser
             multiple={false}
             searchable={true}
@@ -170,7 +171,7 @@ class Demo1 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref14.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -186,7 +187,7 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >多选（人员）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref14.0006" defaultMessage="多选（人员）：" /></span>
           <PapRefStaff
             multiple={true}
             searchable={true}
@@ -201,7 +202,7 @@ class Demo1 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref14.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

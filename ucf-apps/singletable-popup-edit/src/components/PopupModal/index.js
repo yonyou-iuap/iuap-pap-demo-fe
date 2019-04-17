@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from "react";
 import {actions} from "mirrorx";
 import {FormControl, Select, InputNumber} from "tinper-bee";
@@ -18,7 +19,7 @@ const {Option} = Select;
 const {YearPicker} = DatePicker;
 const format = "YYYY-MM-DD HH:mm:ss";
 const formatYYYY = "YYYY";
-let titleArr = ["新增", "修改", "详情"];
+let titleArr = [<FormattedMessage id="js.com.Pop.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Pop.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Pop.0003" defaultMessage="详情" />];
 
 class PopupModal extends Component {
     constructor(props) {
@@ -119,12 +120,12 @@ class PopupModal extends Component {
         let btns = [
 
             {
-                label: '取消',
+                label: <FormattedMessage id="js.com.Pop.0004" defaultMessage="取消" />,
                 fun: this.onCloseEdit,
                 shape: 'border'
             },
             {
-                label: '确定',
+                label: <FormattedMessage id="js.com.Pop.0005" defaultMessage="确定" />,
                 fun: _this.onSubmitEdit,
                 colors: 'primary'
             },
@@ -170,7 +171,7 @@ class PopupModal extends Component {
 
                 <FormList>
                     <FormItem
-                        label="员工编号"
+                        label={<FormattedMessage id="js.com.Pop.0006" defaultMessage="员工编号" />}
                     >
                         <FormControl disabled={true}
                                      {...getFieldProps('code', {
@@ -180,7 +181,7 @@ class PopupModal extends Component {
                     </FormItem>
                     <FormItem
                         required
-                        label="员工姓名"
+                        label={<FormattedMessage id="js.com.Pop.0007" defaultMessage="员工姓名" />}
                     >
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('name', {
@@ -190,7 +191,7 @@ class PopupModal extends Component {
                                              type: 'string',
                                              required: true,
                                              pattern: /\S+/ig,
-                                             message: '请输入员工姓名',
+                                             message: <FormattedMessage id="js.com.Pop.0008" defaultMessage="请输入员工姓名" />,
                                          }],
                                      })}
                         />
@@ -199,36 +200,36 @@ class PopupModal extends Component {
 
                     <FormItem
                         required
-                        label="员工性别"
+                        label={<FormattedMessage id="js.com.Pop.0009" defaultMessage="员工性别" />}
                     >
                         <Select disabled={btnFlag === 2}
                                 {...getFieldProps('sex', {
                                     initialValue: typeof sex !== 'undefined' ? sex : 0,
                                     rules: [{
-                                        required: true, message: '请选择员工性别',
+                                        required: true, message: <FormattedMessage id="js.com.Pop.0010" defaultMessage="请选择员工性别" />,
                                     }],
                                 })}
                         >
-                            <Option value={0}>女</Option>
-                            <Option value={1}>男</Option>
+                            <Option value={0}><FormattedMessage id="js.com.Pop.0011" defaultMessage="女" /></Option>
+                            <Option value={1}><FormattedMessage id="js.com.Pop.0012" defaultMessage="男" /></Option>
                         </Select>
                         <FormError errorMsg={getFieldError('sex')}/>
                     </FormItem>
 
                     <FormItem
                         required
-                        label="部门"
+                        label={<FormattedMessage id="js.com.Pop.0013" defaultMessage="部门" />}
                     >
                         <RefIuapDept
                             disabled={btnFlag === 2}
-                            placeholder="请选择部门"
+                            placeholder={this.props.intl.formatMessage({id:"js.com.Pop.0014", defaultMessage:"请选择部门"})}
                             {...getFieldProps('dept', {
                                 initialValue: JSON.stringify({
                                     refname: deptName || '',
                                     refpk: dept || ''
                                 }),
                                 rules: [{
-                                    message: '请选择部门',
+                                    message: <FormattedMessage id="js.com.Pop.0015" defaultMessage="请选择部门" />,
                                     pattern: /[^({"refname":"","refpk":""}|{"refpk":"","refname":""})]/
                                 }],
                             })}
@@ -239,18 +240,18 @@ class PopupModal extends Component {
 
                     <FormItem
                         required
-                        label="职级"
+                        label={<FormattedMessage id="js.com.Pop.0016" defaultMessage="职级" />}
                     >
                         <RefWalsinLevel
                             disabled={btnFlag === 2}
-                            placeholder="请选择职级"
+                            placeholder={this.props.intl.formatMessage({id:"js.com.Pop.0017", defaultMessage:"请选择职级"})}
                             {...getFieldProps('postLevel', {
                                 initialValue: JSON.stringify({
                                     refpk: postLevel ? postLevel.toString() : "",
                                     refname: levelName ? levelName.toString() : ""
                                 }),
                                 rules: [{
-                                    message: '请选择职级',
+                                    message: <FormattedMessage id="js.com.Pop.0018" defaultMessage="请选择职级" />,
                                     pattern: /[^({"refname":"","refpk":""}|{"refpk":"","refname":""})]/
                                 }]
                             })}
@@ -261,7 +262,7 @@ class PopupModal extends Component {
                     <FormItem
                         className="time"
                         required
-                        label="工龄"
+                        label={<FormattedMessage id="js.com.Pop.0019" defaultMessage="工龄" />}
                     >
                         <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}
                                      {...getFieldProps('serviceYears', {
@@ -274,7 +275,7 @@ class PopupModal extends Component {
                     <FormItem
                         className="time"
                         required
-                        label="司龄"
+                        label={<FormattedMessage id="js.com.Pop.0020" defaultMessage="司龄" />}
                     >
                         <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}
                                      {...getFieldProps('serviceYearsCompany', {
@@ -287,32 +288,32 @@ class PopupModal extends Component {
                     <FormItem
                         className="time"
                         required
-                        label="年份"
+                        label={<FormattedMessage id="js.com.Pop.0021" defaultMessage="年份" />}
                     >
                         <DatePicker disabled={btnFlag == 2}
                                     {...getFieldProps('year', {
                                         initialValue: year ? moment(year) : moment(),
                                         validateTrigger: 'onBlur',
-                                        rules: [{required: true, message: '请选择申请时间'}],
+                                        rules: [{required: true, message: <FormattedMessage id="js.com.Pop.0022" defaultMessage="请选择申请时间" />}],
                                     })}
                                     getCalendarContainer={() => {
                                         return document.querySelector('.single-table-pop-model')
                                     }}
                                     format={formatYYYY}
                                     locale={zhCN}
-                                    placeholder="选择年"
+                                    placeholder={this.props.intl.formatMessage({id:"js.com.Pop.0023", defaultMessage:"选择年"})}
                         />
                     </FormItem>
 
                     <FormItem
                         required
-                        label="月份"
+                        label={<FormattedMessage id="js.com.Pop.0024" defaultMessage="月份" />}
                     >
                         <SelectMonth disabled={btnFlag === 2}
                                      {...getFieldProps('month', {
                                          initialValue: month ? month : 1,
                                          rules: [{
-                                             required: true, message: '请选择月份',
+                                             required: true, message: <FormattedMessage id="js.com.Pop.0025" defaultMessage="请选择月份" />,
                                          }],
                                      })} />
                         <FormError errorMsg={getFieldError('month')}/>
@@ -320,19 +321,19 @@ class PopupModal extends Component {
 
                     <FormItem
                         required
-                        label="补贴类别"
+                        label={<FormattedMessage id="js.com.Pop.0026" defaultMessage="补贴类别" />}
                     >
                         <Select disabled={btnFlag === 2}
                                 {...getFieldProps('allowanceType', {
                                     initialValue: allowanceType ? allowanceType.toString() : '1',
                                     rules: [{
-                                        required: true, message: '请选择补贴类别',
+                                        required: true, message: <FormattedMessage id="js.com.Pop.0027" defaultMessage="请选择补贴类别" />,
                                     }],
                                 })}
                         >
-                            <Option value="1">电脑补助</Option>
-                            <Option value="2">住宿补助</Option>
-                            <Option value="3">交通补助</Option>
+                            <Option value="1"><FormattedMessage id="js.com.Pop.0028" defaultMessage="电脑补助" /></Option>
+                            <Option value="2"><FormattedMessage id="js.com.Pop.0029" defaultMessage="住宿补助" /></Option>
+                            <Option value="3"><FormattedMessage id="js.com.Pop.0030" defaultMessage="交通补助" /></Option>
                         </Select>
                         <FormError errorMsg={getFieldError('allowanceType')}/>
                     </FormItem>
@@ -340,7 +341,7 @@ class PopupModal extends Component {
                     <FormItem
                         className="time"
                         required
-                        label="补贴标准"
+                        label={<FormattedMessage id="js.com.Pop.0031" defaultMessage="补贴标准" />}
                     >
                         <InputNumber iconStyle="one" precision={2} min={0} max={9999} disabled={btnFlag === 2}
                                      {...getFieldProps('allowanceStandard', {
@@ -352,7 +353,7 @@ class PopupModal extends Component {
                     <FormItem
                         className="time"
                         required
-                        label="实际补贴"
+                        label={<FormattedMessage id="js.com.Pop.0032" defaultMessage="实际补贴" />}
                     >
                         <InputNumber iconStyle="one" precision={2} min={0} max={9999} disabled={btnFlag === 2}
                                      {...getFieldProps('allowanceActual', {
@@ -363,16 +364,16 @@ class PopupModal extends Component {
 
                     <FormItem
                         required
-                        label="是否超标"
+                        label={<FormattedMessage id="js.com.Pop.0033" defaultMessage="是否超标" />}
                     >
                         <Select disabled={btnFlag === 2}
                                 {...getFieldProps('exdeeds', {
                                     initialValue: exdeeds ? exdeeds.toString() : '0',
-                                    rules: [{required: true, message: '请选择是否超标'}],
+                                    rules: [{required: true, message: <FormattedMessage id="js.com.Pop.0034" defaultMessage="请选择是否超标" />}],
                                 })}
                         >
-                            <Option value="0">未超标</Option>
-                            <Option value="1">超标</Option>
+                            <Option value="0"><FormattedMessage id="js.com.Pop.0035" defaultMessage="未超标" /></Option>
+                            <Option value="1"><FormattedMessage id="js.com.Pop.0036" defaultMessage="超标" /></Option>
                         </Select>
                         <FormError errorMsg={getFieldError('exdeeds')}/>
                     </FormItem>
@@ -381,13 +382,13 @@ class PopupModal extends Component {
                         <FormItem
                             className="time"
                             required
-                            label="申请时间"
+                            label={<FormattedMessage id="js.com.Pop.0037" defaultMessage="申请时间" />}
                         >
                             <DatePicker className='form-item' format={format} disabled={btnFlag === 2}
                                         {...getFieldProps('applyTime', {
                                             initialValue: applyTime ? moment(applyTime) : moment(),
                                             validateTrigger: 'onBlur',
-                                            rules: [{required: true, message: '请选择申请时间'}],
+                                            rules: [{required: true, message: <FormattedMessage id="js.com.Pop.0022" defaultMessage="请选择申请时间" />}],
                                         })}
                             />
                         </FormItem>
@@ -395,16 +396,16 @@ class PopupModal extends Component {
 
                     <FormItem
                         required
-                        label="领取方式"
+                        label={<FormattedMessage id="js.com.Pop.0038" defaultMessage="领取方式" />}
                     >
                         <Select disabled={btnFlag === 2}
                                 {...getFieldProps('pickType', {
                                     initialValue: pickType ? pickType.toString() : '1',
-                                    rules: [{required: true, message: '请选择领取方式'}],
+                                    rules: [{required: true, message: <FormattedMessage id="js.com.Pop.0039" defaultMessage="请选择领取方式" />}],
                                 })}
                         >
-                            <Option value="1">转账</Option>
-                            <Option value="2">现金</Option>
+                            <Option value="1"><FormattedMessage id="js.com.Pop.0040" defaultMessage="转账" /></Option>
+                            <Option value="2"><FormattedMessage id="js.com.Pop.0041" defaultMessage="现金" /></Option>
                         </Select>
                         <FormError errorMsg={getFieldError('pickType')}/>
                     </FormItem>
@@ -412,20 +413,20 @@ class PopupModal extends Component {
                     {btnFlag >= 2 ? (
                         <FormItem
                             className="time"
-                            label="领取时间"
+                            label={<FormattedMessage id="js.com.Pop.0042" defaultMessage="领取时间" />}
                         >
                             <DatePicker className='form-item' format={format} disabled={btnFlag === 2}
                                         {...getFieldProps('pickTime', {
                                             initialValue: pickTime && moment(pickTime) || '',
                                             validateTrigger: 'onBlur',
-                                            rules: [{required: false, message: '请选择领取时间',}],
+                                            rules: [{required: false, message: <FormattedMessage id="js.com.Pop.0043" defaultMessage="请选择领取时间" />,}],
                                         })}
                             />
                         </FormItem>
                     ) : null}
 
                     <FormItem
-                        label="备注"
+                        label={<FormattedMessage id="js.com.Pop.0044" defaultMessage="备注" />}
                     >
                         <FormControl disabled={btnFlag === 2}
                                      {...getFieldProps('remark', {
@@ -441,4 +442,4 @@ class PopupModal extends Component {
     }
 }
 
-export default FormList.createForm()(PopupModal);
+export default FormList.createForm()(injectIntl(PopupModal));

@@ -161,12 +161,16 @@ export default {
             const {btnFlag} = param;
             let status = null;
             delete param.btnFlag; //删除标识字段
+            const mirState = getState();
+            const { localeData } = mirState.intl;
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.savePassenger(param), '添加成功');
+                const msg = localeData['js.mas.src2.0001'] || '添加成功';
+                const {result} = processData(await api.savePassenger(param), msg);
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updatePassenger(param), '修改成功');
+                const msg = localeData['js.mas.src2.0002'] || '修改成功';
+                const {result} = processData(await api.updatePassenger(param), msg);
                 status = result.status;
             }
 
@@ -191,12 +195,16 @@ export default {
             const {btnFlag} = param;
             let status = null;
             delete param.btnFlag; //删除标识字段
+            const mirState = getState();
+            const { localeData } = mirState.intl;
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.saveTraveling(param), '保存成功');
+                const msg = localeData['js.mas.src2.0003'] || '保存成功';
+                const {result} = processData(await api.saveTraveling(param), msg);
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updateTraveling(param), '修改成功');
+                const msg = localeData['js.mas.src2.0002'] || '修改成功';
+                const {result} = processData(await api.updateTraveling(param), msg);
                 status = result.status;
             }
             if (status === 'success') {
@@ -222,12 +230,16 @@ export default {
             const {btnFlag} = param;
             let status = null;
             delete param.btnFlag; //删除标识字段
+            const mirState = getState();
+            const { localeData } = mirState.intl;
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.saveEmergency(param), '保存成功');
+                const msg = localeData['js.mas.src2.0003'] || '保存成功';
+                const {result} = processData(await api.saveEmergency(param), msg);
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updateEmergency(param), '修改成功');
+                const msg = localeData['js.mas.src2.0002'] || '修改成功';
+                const {result} = processData(await api.updateEmergency(param), msg);
                 status = result.status;
             }
             if (status === 'success') {
@@ -289,7 +301,10 @@ export default {
          */
         async delPassenger(param, getState) {
             const {id} = param;
-            const {result}=processData(await api.delPassenger([{id}]), '删除成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.mas.src2.0004'] || '删除成功';
+            const {result}=processData(await api.delPassenger([{id}]), msg);
             const {status}=result;
             if(status==='success'){
                 // 获取表pageSize;
@@ -308,7 +323,10 @@ export default {
          */
         async delEmergency(param, getState) {
             const {id} = param;
-            const {result}=processData(await api.delEmergency([{id}]), '删除成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.mas.src2.0004'] || '删除成功';
+            const {result}=processData(await api.delEmergency([{id}]), msg);
             const {status}=result;
             if(status==='success'){
                 //获取表pageSize;
@@ -327,7 +345,10 @@ export default {
          */
         async delTraveling(param, getState) {
             const {id} = param;
-            const {result}=processData(await api.delTraveling([{id}]), '删除成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.mas.src2.0004'] || '删除成功';
+            const {result}=processData(await api.delTraveling([{id}]), msg);
             const {status}=result;
             if(status==='success'){
                 // 获取表pageSize;
@@ -351,12 +372,29 @@ export default {
             if (!res || !res.res_code) {
                 return false;
             }
+            const locale = getCookie('u_locale');
+            let lang = '';
+            switch(locale){
+                case 'en_US':
+                    lang = 'en';
+                    break;
+                case 'zh_CN':
+                    lang = 'cn';
+                    break;
+                case 'zh_TW':
+                    lang = 'tw_cn';
+                    break;
+                default:
+                    lang = 'cn';
+                    break;
+            }
             await api.printDocument({
                 tenantId: getCookie('tenantid'),
                 printcode: res['res_code'],
                 serverUrl: `${GROBAL_HTTP_CTX}/passenger/dataForPrint`,
                 params: encodeURIComponent(JSON.stringify(param.printParams)),
-                sendType: 'post'
+                sendType: 'post',
+                lang: lang
             })
         },
     }

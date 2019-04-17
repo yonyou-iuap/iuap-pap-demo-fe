@@ -88,7 +88,10 @@ export default {
         async removeList(param, getState) {
             actions.popupEdit.updateState({ showLoading: true });
             const {id} = param;
-            const { result } = processData(await api.deleteList([{id}]),'删除成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.sin.src5.0001'] || '删除成功';
+            const { result } = processData(await api.deleteList([{id}]),msg);
             if (result.status === "success") {
                 const state = getState().popupEdit;
                 const { queryParam, list, totalPages } = state;
@@ -110,13 +113,17 @@ export default {
             let status = null;
             const {btnFlag} = param;
             delete param.btnFlag; //删除标识字段
+            const mirState = getState();
+            const { localeData } = mirState.intl;
             if (btnFlag === 0) { // 添加
-                let {result} = processData(await api.saveOrder(param), '保存成功');
+                const msg = localeData['js.sin.src5.0002'] || '保存成功';
+                let {result} = processData(await api.saveOrder(param), msg);
                 status=result.status;
 
             }
             if (btnFlag === 1) { // 修改
-                let {result} = processData(await api.updateOrder(param), '修改成功');
+                const msg = localeData['js.sin.src5.0003'] || '修改成功';
+                let {result} = processData(await api.updateOrder(param), msg);
                 status = result.status;
             }
             if (status==="success") {

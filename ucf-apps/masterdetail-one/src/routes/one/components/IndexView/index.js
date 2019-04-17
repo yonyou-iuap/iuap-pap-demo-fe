@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from 'react'
 import {actions} from 'mirrorx';
 import {Loading, Message} from 'tinper-bee';
@@ -16,7 +17,7 @@ import './index.less';
 
 const format = "YYYY-MM-DD";
 
-export default class IndexView extends Component {
+class IndexView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -149,7 +150,7 @@ export default class IndexView extends Component {
 
     orderColumn = [
         {
-            title: "编号",
+            title: <FormattedMessage id="js.com.Ind6.0001" defaultMessage="编号" />,
             dataIndex: "orderCode",
             key: "orderCode",
             width: 250,
@@ -165,20 +166,20 @@ export default class IndexView extends Component {
             }
         },
         {
-            title: "名称",
+            title: <FormattedMessage id="js.com.Ind6.0002" defaultMessage="名称" />,
             dataIndex: "orderName",
             key: "orderName",
             width: 100,
         },
         {
-            title: "类型",
+            title: <FormattedMessage id="js.com.Ind6.0003" defaultMessage="类型" />,
             dataIndex: "orderTypeEnumValue",
             key: "orderTypeEnumValue",
             width: 100,
 
         },
         {
-            title: "价格",
+            title: <FormattedMessage id="js.com.Ind6.0004" defaultMessage="价格" />,
             dataIndex: "orderPrice",
             key: "orderPrice",
             width: 80,
@@ -188,19 +189,19 @@ export default class IndexView extends Component {
             }
         },
         {
-            title: "申请人",
+            title: <FormattedMessage id="js.com.Ind6.0005" defaultMessage="申请人" />,
             dataIndex: "orderUserName",
             key: "orderUserName",
             width: 200,
         },
         {
-            title: "申请部门",
+            title: <FormattedMessage id="js.com.Ind6.0006" defaultMessage="申请部门" />,
             dataIndex: "orderDeptName",
             key: "orderDeptName",
             width: 150,
         },
         {
-            title: "申请日期",
+            title: <FormattedMessage id="js.com.Ind6.0007" defaultMessage="申请日期" />,
             dataIndex: "orderDate",
             key: "orderDate",
             width: 150,
@@ -209,7 +210,7 @@ export default class IndexView extends Component {
             }
         },
         {
-            title: "流程状态",
+            title: <FormattedMessage id="js.com.Ind6.0008" defaultMessage="流程状态" />,
             dataIndex: "bpmStateEnumValue",
             key: "bpmStateEnumValue",
             width: 150,
@@ -218,27 +219,27 @@ export default class IndexView extends Component {
 
     detailColumn = [
         {
-            title: "物料名称",
+            title: <FormattedMessage id="js.com.Ind6.0009" defaultMessage="物料名称" />,
             dataIndex: "detailName",
             key: "detailName",
             width: 200,
             fixed: 'left',
         },
         {
-            title: "物料型号",
+            title: <FormattedMessage id="js.com.Ind6.0010" defaultMessage="物料型号" />,
             dataIndex: "detailModel",
             key: "detailModel",
             width: 200,
         },
         {
-            title: "物料数量",
+            title: <FormattedMessage id="js.com.Ind6.0011" defaultMessage="物料数量" />,
             dataIndex: "detailCount",
             key: "detailCount",
             width: 200,
             className: 'column-number-right ', // 靠右对齐
         },
         {
-            title: "需求日期",
+            title: <FormattedMessage id="js.com.Ind6.0012" defaultMessage="需求日期" />,
             dataIndex: "detailDate",
             key: "detailDate",
             width: 200,
@@ -273,12 +274,13 @@ export default class IndexView extends Component {
      * @param {string, string} operation为submit recall type 为start、success
      */
     bpmStart = (operation, type) => async () => {
+        const { intl } = this.props;
         if (type == 'start') {
             await actions.masterDetailOne.updateState({
                 showLoading: true
             })
         } else {
-            let msg = operation == 'submit' && '单据提交成功' || '单据撤回成功';
+            let msg = operation == 'submit' && intl.formatMessage({id:"js.com.Ind6.0013", defaultMessage:"单据提交成功"}) || intl.formatMessage({id:"js.com.Ind6.0014", defaultMessage:"单据撤回成功"});
             success(msg);
             const searchParam = deepClone(this.props.searchParam); // 深拷贝查询条件从action里
             this.loadPage(searchParam);
@@ -341,7 +343,7 @@ export default class IndexView extends Component {
         const btnForbid = list.length === 0;
         return (
             <div className="master-detail-one">
-                <Header title='B2 一主一子示例 '/>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind6.0015", defaultMessage:"B2 一主一子示例"})}/>
                 <SearchArea orderObj={orderObj}/>
                 <div className='table-header'>
                     <ButtonRoleGroup funcCode="masterdetail-one">
@@ -350,27 +352,27 @@ export default class IndexView extends Component {
                             className="ml8"
                             role="add"
                             onClick={() => _this.onClickAddEditView(0)}
-                        >新增</Button>
+                        ><FormattedMessage id="js.com.Ind6.0016" defaultMessage="新增" /></Button>
                         <Button
                             shape="border"
                             className="ml8"
                             role="update"
                             disabled={submitForbid || btnForbid }
                             onClick={() => _this.onClickAddEditView(1)}
-                        >修改</Button>
+                        ><FormattedMessage id="js.com.Ind6.0017" defaultMessage="修改" /></Button>
                         <Button
                             shape="border"
                             className="ml8"
                             disabled={btnForbid}
                             onClick={() => _this.onClickAddEditView(2)}
-                        >详情</Button>
+                        ><FormattedMessage id="js.com.Ind6.0018" defaultMessage="详情" /></Button>
                         <Button
                             role="delete"
                             shape="border"
                             className="ml8"
                             disabled={submitForbid || btnForbid}
                             onClick={_this.onClickDel}
-                        >删除</Button>
+                        ><FormattedMessage id="js.com.Ind6.0019" defaultMessage="删除" /></Button>
                         <Alert show={delModalVisible} context="是否要删除 ?"
                                confirmFn={() => _this.confirmGoBack(1)}
                                cancelFn={() => _this.confirmGoBack(2)}
@@ -382,7 +384,7 @@ export default class IndexView extends Component {
                           disabled={btnForbid}
                           onClick={_this.export}
                         >
-                            导出
+                            <FormattedMessage id="js.com.Ind6.0021" defaultMessage="导出" />
                         </Button>
                         <BpmButtonSubmit
                             className="ml8"
@@ -397,7 +399,7 @@ export default class IndexView extends Component {
                             onEnd={_this.bpmEnd('submit', 'end')}
                         >
                             <Button className="ml8"  size='sm' colors="primary"
-                                disabled={submitForbid}>提交</Button>
+                                disabled={submitForbid}><FormattedMessage id="js.com.Ind6.0022" defaultMessage="提交" /></Button>
                         </BpmButtonSubmit>
                         <BpmButtonRecall
                             checkedArray={[orderObj['list'][selectIndex]]}
@@ -411,7 +413,7 @@ export default class IndexView extends Component {
                               className="ml8"
                               size='sm'
                               colors="primary"
-                              disabled={recallForbid}>收回</Button>
+                              disabled={recallForbid}><FormattedMessage id="js.com.Ind6.0023" defaultMessage="收回" /></Button>
                         </BpmButtonRecall>
                     </ButtonRoleGroup>
                 </div>
@@ -470,3 +472,4 @@ export default class IndexView extends Component {
 
     }
 }
+export default injectIntl(IndexView)

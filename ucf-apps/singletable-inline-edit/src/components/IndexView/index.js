@@ -3,6 +3,7 @@
  */
 
 //React组件
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, { Component } from 'react';
 //状态管理
 import { actions } from 'mirrorx';
@@ -56,13 +57,13 @@ class IndexView extends Component {
     //定义Grid的Column
     column = [
         {
-            title: "员工编号",
+            title: <FormattedMessage id="js.com.Ind1.0001" defaultMessage="员工编号" />,
             dataIndex: "code",
             key: "code",
             width: 150
         },
         {
-            title: "员工姓名",
+            title: <FormattedMessage id="js.com.Ind1.0002" defaultMessage="员工姓名" />,
             dataIndex: "name",
             key: "name",
             width: 120,
@@ -80,7 +81,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "员工性别",
+            title: <FormattedMessage id="js.com.Ind1.0003" defaultMessage="员工性别" />,
             dataIndex: "sexEnumValue",
             key: "sexEnumValue",
             width: 120,
@@ -98,7 +99,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "所属部门",
+            title: <FormattedMessage id="js.com.Ind1.0004" defaultMessage="所属部门" />,
             dataIndex: "deptName",
             key: "deptName",
             width: 120,
@@ -115,7 +116,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "职级",
+            title: <FormattedMessage id="js.com.Ind1.0005" defaultMessage="职级" />,
             dataIndex: "levelName",
             key: "levelName",
             width: 120,
@@ -132,7 +133,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "工龄",
+            title: <FormattedMessage id="js.com.Ind1.0006" defaultMessage="工龄" />,
             dataIndex: "serviceYears",
             key: "serviceYears",
             width: 130,
@@ -151,7 +152,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "司龄",
+            title: <FormattedMessage id="js.com.Ind1.0007" defaultMessage="司龄" />,
             dataIndex: "serviceYearsCompany",
             key: "serviceYearsCompany",
             width: 130,
@@ -170,7 +171,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "年份",
+            title: <FormattedMessage id="js.com.Ind1.0008" defaultMessage="年份" />,
             dataIndex: "year",
             key: "year",
             width: 100,
@@ -188,7 +189,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "月份",
+            title: <FormattedMessage id="js.com.Ind1.0009" defaultMessage="月份" />,
             dataIndex: "monthEnumValue",
             key: "monthEnumValue",
             width: 120,
@@ -206,7 +207,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "补贴类别",
+            title: <FormattedMessage id="js.com.Ind1.0010" defaultMessage="补贴类别" />,
             dataIndex: "allowanceTypeEnumValue",
             key: "allowanceTypeEnumValue",
             width: 120,
@@ -224,7 +225,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "补贴标准",
+            title: <FormattedMessage id="js.com.Ind1.0011" defaultMessage="补贴标准" />,
             dataIndex: "allowanceStandard",
             key: "allowanceStandard",
             width: 120,
@@ -243,7 +244,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "实际补贴",
+            title: <FormattedMessage id="js.com.Ind1.0012" defaultMessage="实际补贴" />,
             dataIndex: "allowanceActual",
             key: "allowanceActual",
             width: 120,
@@ -262,7 +263,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "是否超标",
+            title: <FormattedMessage id="js.com.Ind1.0013" defaultMessage="是否超标" />,
             dataIndex: "exdeedsEnumValue",
             key: "exdeedsEnumValue",
             width: 120,
@@ -280,7 +281,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "申请时间",
+            title: <FormattedMessage id="js.com.Ind1.0014" defaultMessage="申请时间" />,
             dataIndex: "applyTime",
             key: "applyTime",
             width: 200,
@@ -293,7 +294,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "领取方式",
+            title: <FormattedMessage id="js.com.Ind1.0015" defaultMessage="领取方式" />,
             dataIndex: "pickTypeEnumValue",
             key: "pickTypeEnumValue",
             width: 120,
@@ -311,7 +312,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "领取时间",
+            title: <FormattedMessage id="js.com.Ind1.0016" defaultMessage="领取时间" />,
             dataIndex: "pickTime",
             key: "pickTime",
             width: 200,
@@ -324,7 +325,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "备注",
+            title: <FormattedMessage id="js.com.Ind1.0017" defaultMessage="备注" />,
             dataIndex: "remark",
             key: "remark",
             width: 100,
@@ -630,10 +631,10 @@ class IndexView extends Component {
      * 保存
      */
     onClickSave = async () => {
-        let {status, list} = this.props;
+        let {status, list, intl} = this.props;
         let filterResult = null;
         let ajaxFun = null;
-        let msg = "请勾选数据后再新增";
+        let msg = intl.formatMessage({id:"js.com.Ind1.0018", defaultMessage:"请勾选数据后再新增"});
         switch (status) {
             case 'new':
                 filterResult = this.filterList(this.oldData, list, 'key');
@@ -642,7 +643,7 @@ class IndexView extends Component {
             case 'edit':
                 filterResult = this.filterList(this.oldData, list, 'id');
                 ajaxFun = actions.inlineEdit.updates;
-                msg = '请勾选数据后再更新';
+                msg = intl.formatMessage({id:"js.com.Ind1.0019", defaultMessage:"请勾选数据后再更新" });
                 break;
             default:
                 break;
@@ -659,7 +660,7 @@ class IndexView extends Component {
                     this.oldData = [];
                 }
             } else {
-                Info('数据填写不完整')
+                Info(intl.formatMessage({id:"js.com.Ind1.0020", defaultMessage:"数据填写不完整"}))
             }
         } else {
             Info(msg);
@@ -670,13 +671,13 @@ class IndexView extends Component {
      *
      */
     onClickDelConfirm = () => {
-        let { selectData } = this.props;
+        let { selectData, intl } = this.props;
         if (selectData.length > 0) {
             this.setState({
                 showPop: true
             });
         } else {
-            Info('请勾选数据后再删除');
+            Info(intl.formatMessage({id:"js.com.Ind1.0021", defaultMessage:"请勾选数据后再删除"}));
         }
     }
     /**
@@ -777,7 +778,7 @@ class IndexView extends Component {
         }
         return (
             <div className='inline-edit'>
-                <Header title='A2单表行内编辑示例' />
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind1.0022", defaultMessage:"A2单表行内编辑示例"})} />
                 <SearchAreaForm
                     queryParam={queryParam}
                     status={status}
@@ -788,7 +789,6 @@ class IndexView extends Component {
                 <div className='table-header'>
                     <ButtonRoleGroup
                         funcCode="singletable-inlineEdit"
-                        onComplete={() => console.log('按钮权限加载完成')}
                     >
                         <Button role="add"
                             disabled={getButtonStatus('add', status)}
@@ -796,7 +796,7 @@ class IndexView extends Component {
                             colors="primary"
                             onClick={this.handlerNew}
                         >
-                            新增
+                            <FormattedMessage id="js.com.Ind1.0024" defaultMessage="新增" />
                         </Button>
                         <Button
                             role="update"
@@ -805,7 +805,7 @@ class IndexView extends Component {
                             className="ml8"
                             onClick={this.onClickUpdate}
                         >
-                            修改
+                            <FormattedMessage id="js.com.Ind1.0025" defaultMessage="修改" />
                         </Button>
                         <Button
                             role="delete"
@@ -814,7 +814,7 @@ class IndexView extends Component {
                             className="ml8"
                             onClick={this.onClickDelConfirm}
                         >
-                            删除
+                            <FormattedMessage id="js.com.Ind1.0026" defaultMessage="删除" />
                           </Button>
                         {/*<Button*/}
                             {/*shape="border"*/}
@@ -837,7 +837,7 @@ class IndexView extends Component {
                             className="ml8"
                             onClick={this.onClickExport}
                         >
-                            导出
+                            <FormattedMessage id="js.com.Ind1.0027" defaultMessage="导出" />
                         </Button>
                         <Button
                             shape="border"
@@ -845,7 +845,7 @@ class IndexView extends Component {
                             className="ml8"
                             onClick={this.onClickSave}
                         >
-                            保存
+                            <FormattedMessage id="js.com.Ind1.0028" defaultMessage="保存" />
                         </Button>
                         <Button
                             shape="border"
@@ -853,11 +853,11 @@ class IndexView extends Component {
                             className="ml8"
                             onClick={this.onClickCancel}
                         >
-                            取消
+                            <FormattedMessage id="js.com.Ind1.0029" defaultMessage="取消" />
                         </Button>
                         <Alert
                             show={showPopCancel}
-                            context="数据未保存，确定离开 ?"
+                            context={<FormattedMessage id="js.com.Ind1.0030" defaultMessage="数据未保存，确定离开 ?" />}
                             confirmFn={this.onClickPopUnSaveOK}
                             cancelFn={this.onClickPopUnSaveCancel}
                         />
@@ -882,7 +882,7 @@ class IndexView extends Component {
 
                 <Alert
                     show={showPop}
-                    context="是否要删除 ?"
+                    context={<FormattedMessage id="js.com.Ind1.0031" defaultMessage="是否要删除?" />}
                     confirmFn={this.onClickDel}
                     cancelFn={this.onClickPopCancel}
                 />
@@ -893,4 +893,4 @@ class IndexView extends Component {
     }
 }
 
-export default IndexView;
+export default injectIntl(IndexView);

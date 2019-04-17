@@ -6,7 +6,7 @@ import  "babel-polyfill"
 import React from "react";
 import mirror, {render, Router} from "mirrorx";
 import Routes from './routes'
-
+import Intl from 'components/Intl'
 import "./app.less"
 
 const MiddlewareConfig = [];
@@ -18,6 +18,10 @@ mirror.defaults({
 });
 
 
-render(<Router>
+render(
+  <Intl>
+      <Router>
     <Routes/>
-</Router>, document.querySelector("#app"));
+      </Router>
+  </Intl>
+  , document.querySelector("#app"));

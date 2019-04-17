@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import RefComboBox,{ComboStore } from 'pap-refer/lib/ref-combobox/src/index';
 // import 'pap-refer/lib/ref-combobox.css';
@@ -29,8 +30,9 @@ class Demo2 extends Component {
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title="特殊样式示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref8.0001", defaultMessage:"特殊样式示例"})}
         codeText={code}
+        intl={this.props.intl}
       >
         <div className="demoPadding">
           <RefComboBox
@@ -45,7 +47,7 @@ class Demo2 extends Component {
             {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref8.0002" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -82,7 +84,7 @@ class Demo2 extends Component {
                 alert(""+JSON.stringify(values))
               });
             }}>
-            提交
+            <FormattedMessage id="js.Ref.Ref8.0003" defaultMessage="提交" />
                 </Button>
         </div>
 
@@ -100,8 +102,9 @@ class Demo2 extends Component {
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title="特殊样式示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref8.0001", defaultMessage:"特殊样式示例"})}
         codeText={code}
+        intl={this.props.intl}
       >
         <div className="demoPadding">
           <RefComboBox
@@ -116,7 +119,7 @@ class Demo2 extends Component {
             {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref8.0002" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -153,7 +156,7 @@ class Demo2 extends Component {
                 alert(""+JSON.stringify(values))
               });
             }}>
-            提交
+            <FormattedMessage id="js.Ref.Ref8.0003" defaultMessage="提交" />
                 </Button>
         </div>
 

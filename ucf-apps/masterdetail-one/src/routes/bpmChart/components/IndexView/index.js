@@ -1,3 +1,4 @@
+import { injectIntl } from 'react-intl';
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import { BpmWrap } from 'yyuap-bpm';
@@ -27,7 +28,7 @@ class IndexView extends Component {
         let { id, processDefinitionId, processInstanceId } = queryString.parse(this.props.location.search);
         return (
             <div className="bpm-chart">
-                <Header title='流程图' back={true}/>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind5.0001", defaultMessage:"流程图"})} back={true}/>
                 <BpmWrap
 
                     id={id}
@@ -39,4 +40,4 @@ class IndexView extends Component {
     }
 }
 
-export default IndexView;
+export default injectIntl(IndexView);

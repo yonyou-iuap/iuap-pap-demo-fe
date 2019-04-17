@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import PopDialog from 'components/Pop';
@@ -5,15 +6,15 @@ import './style.less';
 
 
 const propTypes = {
-    title: PropTypes.string,
+    title: PropTypes.node,
     confirmFn: PropTypes.func,
     cancelFn: PropTypes.func,
-    context: PropTypes.string,
+    context: PropTypes.node,
     show: PropTypes.bool
 };
 
 const defaultProps = {
-    title: "温馨提示",
+    title: <FormattedMessage id="js.com.Ale.0001" defaultMessage="温馨提示" />,
     confirmFn: PropTypes.func,
     context: "确认要删除吗 ?",
     show: false
@@ -57,12 +58,12 @@ class AlertDialog extends Component {
 
     dialogBtnConfig = [
         {
-            label: '取消',
+            label: <FormattedMessage id="js.com.Ale.0003" defaultMessage="取消" />,
             fun: this.cancelFn,
             shape: 'border'
         },
         {
-            label: '确定',
+            label: <FormattedMessage id="js.com.Ale.0004" defaultMessage="确定" />,
             fun: this.confirmFn,
             colors: 'primary'
         },

@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
 import {FormControl} from "tinper-bee";
@@ -49,41 +50,43 @@ class SearchArea extends Component {
         return (
             <SearchPanel
                 reset={this.reset}
-                search={this.search}>
+                search={this.search}
+                intl={this.props.intl}
+            >
 
                 <FormList size="sm">
                     <FormItem
-                        label='乘客编号'
+                        label={<FormattedMessage id="js.com.Sea1.0001" defaultMessage="乘客编号" />}
                     >
                         <FormControl
-                            placeholder="模糊查询"
+                            placeholder={this.props.intl.formatMessage({id:"js.com.Sea1.0002", defaultMessage:"模糊查询"})}
                             {...getFieldProps('search_code', {initialValue: '',})}
                         />
                     </FormItem>
 
                     <FormItem
-                        label='乘客姓名'
+                        label={<FormattedMessage id="js.com.Sea1.0003" defaultMessage="乘客姓名" />}
                     >
                         <FormControl
-                            placeholder="模糊查询"
+                            placeholder={this.props.intl.formatMessage({id:"js.com.Sea1.0002", defaultMessage:"模糊查询"})}
                             {...getFieldProps('search_name', {initialValue: '',})}
                         />
                     </FormItem>
 
                     <FormItem
-                        label='手机号'
+                        label={<FormattedMessage id="js.com.Sea1.0004" defaultMessage="手机号" />}
                     >
                         <FormControlPhone
-                            placeholder="模糊查询"
+                            placeholder={this.props.intl.formatMessage({id:"js.com.Sea1.0002", defaultMessage:"模糊查询"})}
                             {...getFieldProps('search_phone', {initialValue: "",})}
                         />
                     </FormItem>
 
                     <FormItem
-                        label='联系人姓名'
+                        label={<FormattedMessage id="js.com.Sea1.0005" defaultMessage="联系人姓名" />}
                     >
                         <FormControl
-                            placeholder="精确查询"
+                            placeholder={this.props.intl.formatMessage({id:"js.com.Sea1.0006", defaultMessage:"精确查询"})}
                             {...getFieldProps('search_contactName', {initialValue: '',})}
                         />
                     </FormItem>
@@ -94,4 +97,4 @@ class SearchArea extends Component {
     }
 }
 
-export default FormList.createForm()(SearchArea)
+export default FormList.createForm()(injectIntl(SearchArea))

@@ -1,3 +1,4 @@
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, {Component} from 'react';
 import {actions} from 'mirrorx';
 import moment from 'moment'
@@ -111,19 +112,19 @@ class IndexView extends Component {
                 showHoverContent: false
             });
         } else {
-            Info("数据为空，不能删除");
+            Info(this.props.intl.formatMessage({id:"js.com.Ind4.0001", defaultMessage:"数据为空，不能删除"}));
         }
     }
 
     column = [
         {
-            title: "员工编号",
+            title: <FormattedMessage id="js.com.Ind4.0002" defaultMessage="员工编号" />,
             dataIndex: "code",
             key: "code",
             width: 150,
         },
         {
-            title: "员工姓名",
+            title: <FormattedMessage id="js.com.Ind4.0003" defaultMessage="员工姓名" />,
             dataIndex: "name",
             key: "name",
             width: 120,
@@ -138,39 +139,39 @@ class IndexView extends Component {
             }
         },
         {
-            title: "员工性别",
+            title: <FormattedMessage id="js.com.Ind4.0004" defaultMessage="员工性别" />,
             dataIndex: "sexEnumValue",
             key: "sexEnumValue",
             width: 150,
         },
         {
-            title: "所属部门",
+            title: <FormattedMessage id="js.com.Ind4.0005" defaultMessage="所属部门" />,
             dataIndex: "deptName",
             key: "deptName",
             width: 120,
         },
         {
-            title: "职级",
+            title: <FormattedMessage id="js.com.Ind4.0006" defaultMessage="职级" />,
             dataIndex: "levelName",
             key: "levelName",
             width: 140,
         },
         {
-            title: "工龄",
+            title: <FormattedMessage id="js.com.Ind4.0007" defaultMessage="工龄" />,
             dataIndex: "serviceYears",
             key: "serviceYears",
             width: 130,
             className: 'column-number-right ', // 靠右对齐
         },
         {
-            title: "司龄",
+            title: <FormattedMessage id="js.com.Ind4.0008" defaultMessage="司龄" />,
             dataIndex: "serviceYearsCompany",
             key: "serviceYearsCompany",
             width: 130,
             className: 'column-number-right ', // 靠右对齐
         },
         {
-            title: "年份",
+            title: <FormattedMessage id="js.com.Ind4.0009" defaultMessage="年份" />,
             dataIndex: "year",
             key: "year",
             width: 100,
@@ -181,19 +182,19 @@ class IndexView extends Component {
             }
         },
         {
-            title: "月份",
+            title: <FormattedMessage id="js.com.Ind4.0010" defaultMessage="月份" />,
             dataIndex: "monthEnumValue",
             key: "monthEnumValue",
             width: 100,
         },
         {
-            title: "补贴类别",
+            title: <FormattedMessage id="js.com.Ind4.0011" defaultMessage="补贴类别" />,
             dataIndex: "allowanceTypeEnumValue",
             key: "allowanceTypeEnumValue",
             width: 120,
         },
         {
-            title: "补贴标准",
+            title: <FormattedMessage id="js.com.Ind4.0012" defaultMessage="补贴标准" />,
             dataIndex: "allowanceStandard",
             key: "allowanceStandard",
             width: 120,
@@ -203,7 +204,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "实际补贴",
+            title: <FormattedMessage id="js.com.Ind4.0013" defaultMessage="实际补贴" />,
             dataIndex: "allowanceActual",
             key: "allowanceActual",
             width: 120,
@@ -213,13 +214,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: "是否超标",
+            title: <FormattedMessage id="js.com.Ind4.0014" defaultMessage="是否超标" />,
             dataIndex: "exdeedsEnumValue",
             key: "exdeedsEnumValue",
             width: 120,
         },
         {
-            title: "申请时间",
+            title: <FormattedMessage id="js.com.Ind4.0015" defaultMessage="申请时间" />,
             dataIndex: "applyTime",
             key: "applyTime",
             width: 150,
@@ -231,13 +232,13 @@ class IndexView extends Component {
 
         },
         {
-            title: "领取方式",
+            title: <FormattedMessage id="js.com.Ind4.0016" defaultMessage="领取方式" />,
             dataIndex: "pickTypeEnumValue",
             key: "pickTypeEnumValue",
             width: 120,
         },
         {
-            title: "领取时间",
+            title: <FormattedMessage id="js.com.Ind4.0017" defaultMessage="领取时间" />,
             dataIndex: "pickTime",
             key: "pickTime",
             width: 150,
@@ -248,7 +249,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "备注",
+            title: <FormattedMessage id="js.com.Ind4.0018" defaultMessage="备注" />,
             dataIndex: "remark",
             key: "remark",
             width: 100,
@@ -299,7 +300,7 @@ class IndexView extends Component {
 
         return (
             <div className='single-table-popup'>
-                <Header title='A3 单表弹框编辑示例'/>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind4.0019", defaultMessage:"A3 单表弹框编辑示例"})}/>
                 <SearchArea
                     {...this.props}
                     onCloseEdit={this.onCloseEdit}
@@ -314,7 +315,7 @@ class IndexView extends Component {
                                 onClick={() => {
                                     _this.onClickShowModel(0);
                                 }}
-                            >新增</Button>
+                            ><FormattedMessage id="js.com.Ind4.0020" defaultMessage="新增" /></Button>
                             {/*<Button*/}
                                 {/*role="update"*/}
                                 {/*shape="border"*/}
@@ -339,11 +340,12 @@ class IndexView extends Component {
                                 {/*disabled={btnForbid}*/}
                                 {/*onClick={_this.onClickDel}>删除</Button>*/}
                         <Button shape="border" className="ml8" onClick={_this.export}>
-                            导出
+                            <FormattedMessage id="js.com.Ind4.0021" defaultMessage="导出" />
                         </Button>
                     </ButtonRoleGroup>
 
-                    <Alert show={delModalVisible} context="是否要删除 ?"
+                    <Alert show={delModalVisible}
+                           context={<FormattedMessage id='js.com.Ind4.0022' defaultMessage={'是否要删除 ?'}/>}
                            confirmFn={() => {
                                _this.confirmGoBack(1);
                            }}
@@ -385,7 +387,7 @@ class IndexView extends Component {
                                                 this.setState({showHoverContent: false});
                                                 _this.onClickShowModel(1);
                                             }}
-                                        >修改</Button>
+                                        ><FormattedMessage id="js.com.Ind4.0023" defaultMessage="修改" /></Button>
                                         <Button
                                             isAction
                                             className="ml8"
@@ -394,14 +396,14 @@ class IndexView extends Component {
                                                 this.setState({showHoverContent: false});
                                                 _this.onClickShowModel(2);
                                             }}
-                                        >详情</Button>
+                                        ><FormattedMessage id="js.com.Ind4.0024" defaultMessage="详情" /></Button>
                                         <Button
                                             isAction
                                             role="delete"
                                             className="ml8"
                                             disabled={btnForbid}
                                             onClick={_this.onClickDel}
-                                        >删除</Button>
+                                        ><FormattedMessage id="js.com.Ind4.0025" defaultMessage="删除" /></Button>
                                     </ButtonRoleGroup>
                                 )
                             }
@@ -434,6 +436,6 @@ class IndexView extends Component {
     }
 }
 
-export default IndexView;
+export default injectIntl(IndexView);
 
 

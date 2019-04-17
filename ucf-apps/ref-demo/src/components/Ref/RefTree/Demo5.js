@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
 // import 'pap-refer/lib/pap-ref-orgDept.css'
@@ -30,8 +31,9 @@ class Demo5 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="数据权限"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref1.0001", defaultMessage:"数据权限"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -42,12 +44,12 @@ class Demo5 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref1.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
                 console.log(values)
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref1.0003" defaultMessage="提交" />
           </Button>
         }
       >
@@ -73,7 +75,7 @@ class Demo5 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref1.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -106,8 +108,9 @@ class Demo5 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title="数据权限"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref1.0001", defaultMessage:"数据权限"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -118,17 +121,17 @@ class Demo5 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref1.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
                 console.log(values)
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref1.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >组织部门：</span>
+          <span ><FormattedMessage id="js.Ref.Ref1.0004" defaultMessage="组织部门：" /></span>
           <PapRefOrgDept
             multiple={false}
             searchable={true}
@@ -149,7 +152,7 @@ class Demo5 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref1.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

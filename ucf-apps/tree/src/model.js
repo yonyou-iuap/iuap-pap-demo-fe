@@ -155,7 +155,10 @@ export default {
          * @description 列表新增添加数据，添加刷新后要保存分页信息
          */
         async addTableData(param, getState) {
-            let {result} = processData(await api.addTableData(param),'添加成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.tre.src3.0001'] || '添加成功';
+            let {result} = processData(await api.addTableData(param),msg);
             const {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
@@ -169,7 +172,10 @@ export default {
          *
          */
         async addEditData(param, getState) {
-            let {result} = processData(await api.addEditData(param),'修改成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.tre.src3.0002'] || '修改成功';
+            let {result} = processData(await api.addEditData(param),msg);
             const {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
@@ -182,7 +188,10 @@ export default {
          * @param {Object}
          */
         async delTableData(param, getState) {
-            let {result} = processData(await api.delTableData(param),'删除成功');
+            const mirState = getState();
+            const { localeData } = mirState.intl;
+            const msg = localeData['js.tre.src3.0003'] || '删除成功';
+            let {result} = processData(await api.delTableData(param),msg);
             const {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
@@ -205,7 +214,8 @@ export default {
             })
 
             let {searchValue} = param;
-            let {paginationParam} = getState().walsinTree;
+            const mirState = getState();
+            let {paginationParam} = mirState.walsinTree;
                     paginationParam = deepClone(paginationParam);
                     let {reqParam, reqParam: {title, hierarchy}} = paginationParam;
 
@@ -244,7 +254,9 @@ export default {
 
                     await actions.walsinTree.updateState(resultObj)
                 } else {
-                    throw new Error('返回content为null');
+                    const { localeData } = mirState.intl;
+                    const msg = localeData['js.tre.src3.0004'] || '返回content为null';
+                    throw new Error(msg);
                 }
 
             } catch(e) {

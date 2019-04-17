@@ -1,3 +1,4 @@
+import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from 'react';
 import {actions} from 'mirrorx';
 import {Tooltip, Menu, Icon, Loading} from 'tinper-bee';
@@ -255,7 +256,7 @@ class IndexView extends Component {
 
     gridColumn = [
         {
-            title: "数据",
+            title: <FormattedMessage id="js.com.Ind9.0001" defaultMessage="数据" />,
             width: 80,
             dataIndex: "k",
             key: "k",
@@ -268,9 +269,9 @@ class IndexView extends Component {
                 const menu = (
                     <Menu
                         onClick={e => this.onRelevance(record, e.key)}>
-                        <Item key='code'>模态弹出</Item>
-                        <Item key='year'>链接跳转</Item>
-                        <Item key='name'>打开新页</Item>
+                        <Item key='code'><FormattedMessage id="js.com.Ind9.0002" defaultMessage='模态弹出' /></Item>
+                        <Item key='year'><FormattedMessage id="js.com.Ind9.0003" defaultMessage="链接跳转" /></Item>
+                        <Item key='name'><FormattedMessage id="js.com.Ind9.0004" defaultMessage="打开新页" /></Item>
                     </Menu>
                 );
                 return (
@@ -287,13 +288,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: "员工编号",
+            title: <FormattedMessage id="js.com.Ind9.0005" defaultMessage="员工编号" />,
             dataIndex: "code",
             key: "code",
             width: 160,
         },
         {
-            title: "员工姓名",
+            title: <FormattedMessage id="js.com.Ind9.0006" defaultMessage="员工姓名" />,
             dataIndex: "name",
             key: "name",
             width: 120,
@@ -310,7 +311,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "员工性别",
+            title: <FormattedMessage id="js.com.Ind9.0007" defaultMessage="员工性别" />,
             dataIndex: "sex",
             key: "sex",
             exportKey: 'sexEnumValue',
@@ -318,14 +319,14 @@ class IndexView extends Component {
             filterType: "dropdown",
             filterDropdown: "hide", //条件的下拉是否显示（string，number）
             filterDropdownAuto: "manual", //是否自动和手动设置 filterDropdownData 属性
-            filterDropdownData: [{key: "男", value: "1"}, {key: "女", value: "0"}],
+            filterDropdownData: [{key: <FormattedMessage id="js.com.Ind9.0008" defaultMessage="男" />, value: "1"}, {key: <FormattedMessage id="js.com.Ind9.0009" defaultMessage="女" />, value: "0"}],
             render: (text, record, index) => {
                 return (<span>{record.sexEnumValue}</span>)
             }
 
         },
         {
-            title: "部门",
+            title: <FormattedMessage id="js.com.Ind9.0010" defaultMessage="部门" />,
             dataIndex: "dept",
             key: "dept",
             exportKey: "deptName",
@@ -348,13 +349,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: "职级",
+            title: <FormattedMessage id="js.com.Ind9.0011" defaultMessage="职级" />,
             dataIndex: "levelName",
             key: "levelName",
             width: 120,
         },
         {
-            title: "工龄",
+            title: <FormattedMessage id="js.com.Ind9.0012" defaultMessage="工龄" />,
             dataIndex: "serviceYears",
             key: "serviceYears",
             width: 180,
@@ -371,7 +372,7 @@ class IndexView extends Component {
             sorter: true
         },
         {
-            title: "司龄",
+            title: <FormattedMessage id="js.com.Ind9.0013" defaultMessage="司龄" />,
             dataIndex: "serviceYearsCompany",
             key: "serviceYearsCompany",
             width: 130,
@@ -379,7 +380,7 @@ class IndexView extends Component {
             sorter: true
         },
         {
-            title: "年份",
+            title: <FormattedMessage id="js.com.Ind9.0014" defaultMessage="年份" />,
             dataIndex: "year",
             key: "year",
             width: 100,
@@ -388,7 +389,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "月份",
+            title: <FormattedMessage id="js.com.Ind9.0015" defaultMessage="月份" />,
             dataIndex: "monthEnumValue",
             key: "monthEnumValue",
             width: 100,
@@ -396,13 +397,13 @@ class IndexView extends Component {
             sorter: true
         },
         {
-            title: "补贴类别",
+            title: <FormattedMessage id="js.com.Ind9.0016" defaultMessage="补贴类别" />,
             dataIndex: "allowanceTypeEnumValue",
             key: "allowanceTypeEnumValue",
             width: 120,
         },
         {
-            title: "补贴标准",
+            title: <FormattedMessage id="js.com.Ind9.0017" defaultMessage="补贴标准" />,
             dataIndex: "allowanceStandard",
             key: "allowanceStandard",
             width: 120,
@@ -413,7 +414,7 @@ class IndexView extends Component {
 
         },
         {
-            title: "实际补贴",
+            title: <FormattedMessage id="js.com.Ind9.0018" defaultMessage="实际补贴" />,
             dataIndex: "allowanceActual",
             key: "allowanceActual",
             width: 120,
@@ -424,13 +425,13 @@ class IndexView extends Component {
 
         },
         {
-            title: "是否超标",
+            title: <FormattedMessage id="js.com.Ind9.0019" defaultMessage="是否超标" />,
             dataIndex: "exdeedsEnumValue",
             key: "exdeedsEnumValue",
             width: 120,
         },
         {
-            title: "申请时间",
+            title: <FormattedMessage id="js.com.Ind9.0020" defaultMessage="申请时间" />,
             dataIndex: "applyTime",
             key: "applyTime",
             width: 300,
@@ -443,13 +444,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: "领取方式",
+            title: <FormattedMessage id="js.com.Ind9.0021" defaultMessage="领取方式" />,
             dataIndex: "pickTypeEnumValue",
             key: "pickTypeEnumValue",
             width: 120,
         },
         {
-            title: "领取时间",
+            title: <FormattedMessage id="js.com.Ind9.0022" defaultMessage="领取时间" />,
             dataIndex: "pickTime",
             key: "pickTime",
             width: 150,
@@ -458,7 +459,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: "备注",
+            title: <FormattedMessage id="js.com.Ind9.0023" defaultMessage="备注" />,
             dataIndex: "remark",
             key: "remark",
             width: 100,
@@ -489,7 +490,7 @@ class IndexView extends Component {
         return (
             <div className='single-table-query'>
                 <Loading showBackDrop={true} show={showLoading} fullScreen={true}/>
-                <Header title='A1单表查询示例'/>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind9.0024", defaultMessage:"A1单表查询示例"})}/>
                 <SearchArea
                     queryParam={queryParam}
                     clearRowFilter={this.clearRowFilter}
@@ -500,7 +501,7 @@ class IndexView extends Component {
                         className="ml8"
                         colors="primary"
                         onClick={_this.export}
-                    >导出</Button>
+                    ><FormattedMessage id="js.com.Ind9.0025" defaultMessage="导出" /></Button>
                 </div>
                 <div className="gird-parent">
                     <Grid
@@ -523,24 +524,24 @@ class IndexView extends Component {
 
                 <PopDialog
                     show={this.state.showModal}
-                    title={"模态弹出"}
+                    title={this.props.intl.formatMessage({id:"js.com.Ind9.0026", defaultMessage:"模态弹出"})}
                     close={this.close}
                     btns={[]}
                 >
                     <div>
-                        <span>员工编号：</span>
+                        <span><FormattedMessage id="js.com.Ind9.0027" defaultMessage="员工编号：" /></span>
                         <span>{record.code}</span>
                     </div>
                     <div>
-                        <span>员工姓名：</span>
+                        <span><FormattedMessage id="js.com.Ind9.0028" defaultMessage="员工姓名：" /></span>
                         <span>{record.name}</span>
                     </div>
                     <div>
-                        <span>员工性别：</span>
+                        <span><FormattedMessage id="js.com.Ind9.0029" defaultMessage="员工性别：" /></span>
                         <span>{record.sexEnumValue}</span>
                     </div>
                     <div>
-                        <span>职级：</span>
+                        <span><FormattedMessage id="js.com.Ind9.0030" defaultMessage="职级：" /></span>
                         <span>{record.levelName}</span>
                     </div>
                 </PopDialog>
@@ -549,4 +550,4 @@ class IndexView extends Component {
     }
 }
 
-export default IndexView;
+export default injectIntl(IndexView);
