@@ -256,8 +256,7 @@ source_map | 构建资源生产环境的时候产出sourceMap | false | true,fal
 
 ## 10. 分支管理
   - master 此分支用来维护工程源代码，进行新功能添加，debug等工作，修改完此分支后请自行向相关分支合并
-  - develop 用途待定 维持和master分支代码保持一致
-  - locale 应用平台多语分支，由master分支向此分支合并代码，然后进行多语功能的添加
+  - develop 应用平台多语分支，由master分支向此分支合并代码，然后进行多语功能的添添加，此分支不允许向master合并
   - iuap5 开发平台分支
 
 
