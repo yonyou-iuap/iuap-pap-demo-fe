@@ -67,8 +67,12 @@ class Demo1 extends Component {
             valueField='refpk'
             lang={this.props.lang}
             theme={this.props.theme}
-            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-
+            searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+            'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+            'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+            'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+            'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+          }}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -99,8 +103,12 @@ class Demo1 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             emptyBut={true}
-            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-            {...getFieldProps('code1', {
+            searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+            'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+            'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+            'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+            'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+          }}            {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: <FormattedMessage id="js.Ref.Ref14.0005" defaultMessage="提示：请选择" />,
@@ -167,7 +175,12 @@ class Demo1 extends Component {
             valueField='refpk'
            lang={this.props.lang}
             theme={this.props.theme}
-            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
+            searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+            'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+            'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+            'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+            'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+          }}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
@@ -198,8 +211,12 @@ class Demo1 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             emptyBut={true}
-            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-            {...getFieldProps('code1', {
+            searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+            'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+            'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+            'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+            'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+          }}            {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: <FormattedMessage id="js.Ref.Ref14.0005" defaultMessage="提示：请选择" />,

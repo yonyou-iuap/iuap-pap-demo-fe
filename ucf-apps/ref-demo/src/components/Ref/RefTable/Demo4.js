@@ -75,8 +75,12 @@ class Demo4 extends Component {
 							}]
 						})}
 						emptyBut={true}
-						searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-
+						searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+						'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+						'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+						'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+						'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+					  }}
 					/>
 					<span style={{
 						color: 'red'
@@ -97,8 +101,12 @@ class Demo4 extends Component {
 						valueField='refpk'
 						lang={this.props.lang}
 						emptyBut={true}
-						searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-
+						searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+						'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+						'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+						'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+						'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+					  }}
 						{...getFieldProps('code1', {
 							initialValue: '{"refname":"","refpk":""}',
 							rules: [{
@@ -174,8 +182,12 @@ class Demo4 extends Component {
 							}]
 						})}
 						emptyBut={true}
-						searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-
+						searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+						'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+						'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+						'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+						'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+					  }}
 					/>
 					<span style={{
 						color: 'red'

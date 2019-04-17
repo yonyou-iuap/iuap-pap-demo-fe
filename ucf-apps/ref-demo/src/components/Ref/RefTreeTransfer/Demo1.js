@@ -155,8 +155,8 @@ export default Form.createForm()(Demo1);
               valueField='refpk'
               lang={this.props.lang}
               theme={this.props.theme}
-              searchPlaceholder={'搜索'}
-              notFoundContent={'暂无数据'}
+              searchPlaceholder={this.props.intl.formatMessage({id:"js.Ref.Ref224.0013", defaultMessage:"搜索"})}
+              notFoundContent={this.props.intl.formatMessage({id:"js.Ref.Ref224.0014", defaultMessage:"暂无数据"})}
               {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
