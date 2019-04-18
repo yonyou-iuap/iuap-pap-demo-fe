@@ -16,13 +16,13 @@ import Emergency from '../EmergencyModal';
 import Traveling from '../TraveModal';
 
 
-import {deepClone, Warning, getPageParam} from "utils";
+import {deepClone, Warning, getPageParam, getCookie} from "utils";
 import 'ac-attachment/dist/ac-attachment.css';
 import './index.less'
 
 const {TabPane} = Tabs;
 const format = "YYYY-MM-DD";
-
+const U_LOCALE = getCookie('u_locale');
 class IndexView extends Component {
     constructor(props) {
         super(props);
@@ -670,6 +670,7 @@ class IndexView extends Component {
                                     disabled={passengerForbid}
                                     recordId={selectRow['id']}
                                     groupname='abc'
+                                    locale={U_LOCALE}
                                     onDelete={(attach) => {
                                         _this.setState({delPicModalVisible: true});
                                         _this.attach = attach;
@@ -679,18 +680,18 @@ class IndexView extends Component {
                                         data-btn="upload"
                                         className="ml8"
                                         colors="primary" size='sm'
-                                  ><FormattedMessage id="js.com.Ind.0032" defaultMessage="上传" /></Button>
+                                  >{this.props.intl.formatMessage({id:"js.com.Ind.0032", defaultMessage:"上传" })}</Button>
                                     <Button
                                         data-btn="download"
                                         className="ml8"
                                         shape="border"
-                                    size='sm'><FormattedMessage id="js.com.Ind.0033" defaultMessage="下载" /></Button>
+                                    size='sm'>{this.props.intl.formatMessage({id:"js.com.Ind.0033", defaultMessage:"下载" })}</Button>
                                     <Button
                                         data-btn="delete"
                                         className="ml8"
                                         shape="border"
                                         size='sm'
-                                  ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
+                                  >{this.props.intl.formatMessage({id:"js.com.Ind.0025", defaultMessage:"删除" })}</Button>
                                 </AcAttachment>
                             </div>
                         </TabPane>
