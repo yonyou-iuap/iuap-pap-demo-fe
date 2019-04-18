@@ -5,7 +5,7 @@
  *
  */
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, } from 'react-intl';
 import React, { Component } from 'react';
 import RefMdmComp from "components/RefMdmComp"
 import { Button, Form, FormControl} from 'tinper-bee';
@@ -202,8 +202,10 @@ class Demo1 extends Component {
         }
       >
         <div className="demo-label-require">
-          <span className='label'><FormattedMessage id="js.Ref.Ref224.0005" defaultMessage="实体编码：" /></span>
-          <span className='mast'>*</span>
+          <div className="labelDiv">
+      <span className='label' title={this.props.intl.formatMessage({id: 'js.Ref.Ref224.0005',defaultMessage:"实体编码："})}><FormattedMessage id="js.Ref.Ref224.0005" defaultMessage="实体编码：" /></span>
+            <span className='mast'>*</span>
+          </div>
           <FormControl
             style={{
               width: 200
@@ -222,8 +224,10 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label-require">
-          <span className='label'><FormattedMessage id="js.Ref.Ref224.0006" defaultMessage="字段编码：" /></span>
-          <span className='mast'>*</span>
+          <div className="labelDiv">
+            <span className='label' title={this.props.intl.formatMessage({id: 'js.Ref.Ref224.0006',defaultMessage:"字段编码："})}><FormattedMessage id="js.Ref.Ref224.0006" defaultMessage="字段编码：" /></span>
+            <span className='mast'>*</span>
+          </div>
           <FormControl
             style={{
               width: 200
