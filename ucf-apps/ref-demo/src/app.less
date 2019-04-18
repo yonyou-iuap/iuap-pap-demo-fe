@@ -37,6 +37,36 @@
         }
 
     }
+    &-label-require{ 
+        vertical-align: top;
+        width: 350px;
+        height: 50px;
+        position: relative;
+        &>.label{
+            display: inline-block;
+            // width: 150px;
+            text-align: left;
+        }
+        &>.mast{
+            width: 76px;
+            display: inline-block;
+            min-width: auto;
+            margin-right: 5px;
+            color: red;
+            margin-left: 4px;
+        }
+        &>.error{
+            position: absolute;
+            left: 150px;
+            top: 30px;
+            margin-left: 0;
+            font-size: 12px;
+            color: red;
+        }
+        .ref-input-wrap .u-input-group.simple .u-input-group-btn {
+            min-width: 20px;
+        }
+    }
 }
 
 .ref-core-tree-node>a>span>div>span> i {
