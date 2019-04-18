@@ -836,5 +836,7 @@
   "js.Ref.Ref224.0012": "close",
   "js.Ref.Ref224.0013": "search",
   "js.Ref.Ref224.0014": "no data",
-  "js.Ref.Car.0002": "Show code"
+  "js.Ref.Car.0002": "Show code",
+  "js.Ref.Cus.0001": "Please enter entity code",
+  "js.Ref.Cus.0002": "Please enter field code"
 }
