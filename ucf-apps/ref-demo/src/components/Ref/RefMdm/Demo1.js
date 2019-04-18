@@ -197,8 +197,10 @@ class Demo1 extends Component {
         }
       >
         <div className="demo-label-require">
-          <span className='label'>实体编码：</span>
-          <span className='mast'>*</span>
+          <div className="labelDiv">
+            <span className='label'>实体编码：</span>
+            <span className='mast'>*</span>
+          </div>
           <FormControl
             style={{
               width: 200
@@ -217,8 +219,10 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label-require">
-          <span className='label'>字段编码：</span>
-          <span className='mast'>*</span>
+          <div className="labelDiv">
+            <span className='label'>字段编码：</span>
+            <span className='mast'>*</span>
+          </div>
           <FormControl
             style={{
               width: 200

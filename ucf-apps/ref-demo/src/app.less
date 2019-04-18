@@ -46,18 +46,26 @@
         width: 350px;
         height: 50px;
         position: relative;
-        &>.label{
+        &>.labelDiv{
+            width: 150px;
+            position: relative;
             display: inline-block;
-            // width: 150px;
-            text-align: left;
-        }
-        &>.mast{
-            width: 76px;
-            display: inline-block;
-            min-width: auto;
-            margin-right: 5px;
-            color: red;
-            margin-left: 4px;
+            &>.label{
+                display: inline-block;
+                max-width: 135px;
+                text-align: left;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            &>.mast{
+                width: 5px;
+                display: inline-block;
+                min-width: auto;
+                margin-right: 5px;
+                color: red;
+                margin-left: 4px;
+            }
         }
         &>.error{
             position: absolute;
