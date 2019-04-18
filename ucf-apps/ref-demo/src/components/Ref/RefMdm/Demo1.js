@@ -164,11 +164,16 @@ class Demo1 extends Component {
               padding: '0px'
             }}
             onClick={() => {
-              this.setState({
-                refEntityItemCode:entityItemCode,
-                refEntityCode:entityCode
-              })
-              this.forceUpdate()
+              this.props.form.validateFields(async (err, values) => {
+                if(err) {
+                  return
+                }
+                this.setState({
+                  refEntityItemCode:values.entityItemCode,
+                  refEntityCode:values.entityCode
+                })
+                this.forceUpdate()
+              });
             }}
           >
             确定
@@ -191,23 +196,45 @@ class Demo1 extends Component {
           </div>
         }
       >
-        <div className="demo-label">
-          <span >实体编码：</span>
+        <div className="demo-label-require">
+          <span className='label'>实体编码：</span>
+          <span className='mast'>*</span>
           <FormControl
             style={{
               width: 200
             }}
             onChange={this.onEntityCodeChange}
+            {...getFieldProps('entityCode', {
+              validateTrigger: 'onBlur',
+              rules: [{
+                  required: true,
+                  message: "请输入实体编码",
+              }],
+          }) }
           />
+          <span className='error'>
+            {getFieldError('entityCode')}
+          </span>
         </div>
-        <div className="demo-label">
-          <span >字段编码：</span>
+        <div className="demo-label-require">
+          <span className='label'>字段编码：</span>
+          <span className='mast'>*</span>
           <FormControl
             style={{
               width: 200
             }}
             onChange={this.onEntityItemCodeChange}
+            {...getFieldProps('entityItemCode', {
+              validateTrigger: 'onBlur',
+              rules: [{
+                  required: true,
+                  message: "请输入字段编码",
+              }],
+          }) }
           />
+          <span className='error'>
+            {getFieldError('entityItemCode')}
+          </span>
         </div>
 
         <div className="demo-label">
