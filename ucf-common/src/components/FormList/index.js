@@ -47,10 +47,10 @@ class FormListItem extends Component{
         return (
             <Col {...wrapLayoutOpt}>
                 <FormItem className="u-form-item">
-                    <Col md={3}  sm={4} xs={4}>
+                    <Col md={4}  sm={4} xs={4}>
                         <Label className={required ? "required" : ''} style={{width: "100%"}}>{label}</Label>
                     </Col>
-                    <Col md={9} sm={8} xs={8} className="form-input-wrap">
+                    <Col md={8} sm={8} xs={8} className="form-input-wrap">
                         {children}
                     </Col>
                 </FormItem>
