@@ -676,7 +676,7 @@ class IndexView extends Component {
                 <Loading showBackDrop={true}  show={showLoading} fullScreen={true} />
                 <Alert
                     show={showPopBackVisible}
-                    context="数据未保存，确定离开 ?"
+                    context={<FormattedMessage id="js.com.Ind1.0030" defaultMessage="数据未保存，确定离开 ?" />}
                     confirmFn={() => {
                         this.confirmGoBack(1)
                     }}
