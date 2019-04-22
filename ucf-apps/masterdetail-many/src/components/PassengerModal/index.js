@@ -133,6 +133,10 @@ class AddEditPassenger extends Component {
         return btns;
     }
 
+    isVipOnChange = (value) => {
+        this.setState({isVip: value})
+    }
+
 
     render() {
         let _this = this;
@@ -144,7 +148,7 @@ class AddEditPassenger extends Component {
         const {code, phone, sex, grade, name, dept, deptName, expirationDate} = rowData;
 
         let btns = _this.onHandleBtns(btnFlag),
-            isDisabled = btnFlag > 1 ? true : false;
+            isDisabled = btnFlag > 1;
         return (
             <PopDialog
                 ref={node => this.dialogNode = node}
@@ -206,8 +210,8 @@ class AddEditPassenger extends Component {
                                     }],
                                 })}
                         >
-                            <Option value={1}><FormattedMessage id="js.com.Pas.0013" defaultMessage="女" /></Option>
-                            <Option value={2}><FormattedMessage id="js.com.Pas.0014" defaultMessage="男" /></Option>
+                            <Option value={0}><FormattedMessage id="js.com.Pas.0013" defaultMessage="女" /></Option>
+                            <Option value={1}><FormattedMessage id="js.com.Pas.0014" defaultMessage="男" /></Option>
                         </Select>
                         <FormError errorMsg={getFieldError('sex')}/>
                     </FormItem>
@@ -234,9 +238,7 @@ class AddEditPassenger extends Component {
                             checked={isVip}
                             checkedChildren={<FormattedMessage id="js.com.Pas.0018" defaultMessage="是" />}
                             unCheckedChildren={<FormattedMessage id="js.com.Pas.0019" defaultMessage="否" />}
-                            onChange={(value) => {
-                                _this.setState({isVip: value});
-                            }}
+                            onChange={this.isVipOnChange}
                         />
                     </FormItem>
 

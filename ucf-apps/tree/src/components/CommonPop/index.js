@@ -187,8 +187,8 @@ class CommonPop extends Component {
                                 }],
                             })}
                         >
-                            <Option value={1}><FormattedMessage id="js.com.Com.0011" defaultMessage="女" /></Option>
-                            <Option value={2}><FormattedMessage id="js.com.Com.0012" defaultMessage="男" /></Option>
+                            <Option value={0}><FormattedMessage id="js.com.Com.0011" defaultMessage="女" /></Option>
+                            <Option value={1}><FormattedMessage id="js.com.Com.0012" defaultMessage="男" /></Option>
                         </Select>
                         <span className='error'>{getFieldError('sex')}</span>
                     </FormItem>
