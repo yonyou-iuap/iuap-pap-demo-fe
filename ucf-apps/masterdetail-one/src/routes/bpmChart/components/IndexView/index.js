@@ -14,14 +14,15 @@ class IndexView extends Component {
         };
     }
     onBack = ()=>{
-        let { id } = queryString.parse(this.props.location.search);
-        actions.routing.push(
-            {
-                pathname: '/order',
-                editFlag: false,
-                search: `?id=${id}&btnFlag=${2}`
-            }
-        )
+        // let { id } = queryString.parse(this.props.location.search);
+        // actions.routing.push(
+        //     {
+        //         pathname: '/order',
+        //         editFlag: false,
+        //         search: `?id=${id}&btnFlag=${2}`
+        //     }
+        // )
+        actions.routing.goBack()
     }
     render() {
         let { id, processDefinitionId, processInstanceId } = queryString.parse(this.props.location.search);

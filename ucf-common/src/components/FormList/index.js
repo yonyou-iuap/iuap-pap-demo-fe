@@ -82,10 +82,10 @@ class FormList extends Component {
                 className={cls}
             >
                 <Row>
-                    {children.map((child) => {
+                    {children.map((child, index) => {
                         if (child ) {
                             return (
-                              <Col {...this.wrapLayoutOpt}>
+                              <Col key={index} {...this.wrapLayoutOpt}>
                                   {child}
                               </Col>
                             )

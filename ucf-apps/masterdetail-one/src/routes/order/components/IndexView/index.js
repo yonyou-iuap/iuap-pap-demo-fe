@@ -681,7 +681,7 @@ class IndexView extends Component {
                     cancelFn={() => {
                         this.confirmGoBack(2)
                     }} />
-                <Header back title={titleArr[2]}>
+                <Header backFn={this.onBack} back title={titleArr[2]}>
                     <div className='head-btn'>
                         <Button shape="border" className="ml8" onClick={this.onBack}>取消</Button>
                         {(btnFlag !== 2) &&
