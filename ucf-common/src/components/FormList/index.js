@@ -8,7 +8,7 @@ import './index.less'
 const FormItem = Form.FormItem;
 
 class FormListItem extends Component{
-    constructor(props) {
+    constructor(props ) {
         super(props)
     }
     static defaultProps = {
@@ -19,6 +19,40 @@ class FormListItem extends Component{
         required: PropTypes.bool,
         label: PropTypes.node
     }
+
+
+    render() {
+        const { children, label, required } = this.props;
+        return (
+          <FormItem className="u-form-item">
+              <Col md={3}  sm={4} xs={4}>
+                  <Label className={required ? "required" : ''} style={{width: "100%"}}>{label}</Label>
+              </Col>
+              <Col md={9} sm={8} xs={8} className="form-input-wrap">
+                  {children}
+              </Col>
+          </FormItem>
+
+        )
+    }
+}
+
+class FormList extends Component {
+    constructor(props) {
+        super(props)
+        this.wrapLayoutOpt = this.getLayoutOption();
+    }
+    static defaultProps = {
+        size: '',
+        className: ''
+    }
+    static propTypes = {
+        size: PropTypes.string,
+    }
+
+    static Item = FormListItem;
+    static createForm = Form.createForm;
+
     getLayoutOption = () => {
         const {size, layoutOpt} = this.props;
         if (layoutOpt) {
@@ -40,40 +74,6 @@ class FormListItem extends Component{
 
     }
 
-
-    render() {
-        const { children, label, required } = this.props;
-        const wrapLayoutOpt = this.getLayoutOption();
-        return (
-            <Col {...wrapLayoutOpt}>
-                <FormItem className="u-form-item">
-                    <Col md={3}  sm={4} xs={4}>
-                        <Label className={required ? "required" : ''} style={{width: "100%"}}>{label}</Label>
-                    </Col>
-                    <Col md={9} sm={8} xs={8} className="form-input-wrap">
-                        {children}
-                    </Col>
-                </FormItem>
-            </Col>
-        )
-    }
-}
-
-class FormList extends Component {
-    constructor(props) {
-        super(props)
-    }
-    static defaultProps = {
-        size: '',
-        className: ''
-    }
-    static propTypes = {
-        size: PropTypes.string,
-    }
-
-    static Item = FormListItem;
-    static createForm = Form.createForm;
-
     render() {
         const { className, size, children} = this.props;
         const cls = `ucf-exam-form ${size} ${className || ""}`;
@@ -82,10 +82,12 @@ class FormList extends Component {
                 className={cls}
             >
                 <Row>
-                    {children.map((child, ind) => {
-                        if (child) {
+                    {children.map((child) => {
+                        if (child ) {
                             return (
-                                React.cloneElement(child, {size: size, key: ind})
+                              <Col {...this.wrapLayoutOpt}>
+                                  {child}
+                              </Col>
                             )
                         }
                     })}

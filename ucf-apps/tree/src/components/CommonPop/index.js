@@ -186,8 +186,8 @@ class CommonPop extends Component {
                                 }],
                             })}
                         >
-                            <Option value={1}>女</Option>
-                            <Option value={2}>男</Option>
+                            <Option value={0}>女</Option>
+                            <Option value={1}>男</Option>
                         </Select>
                         <span className='error'>{getFieldError('sex')}</span>
                     </FormItem>
