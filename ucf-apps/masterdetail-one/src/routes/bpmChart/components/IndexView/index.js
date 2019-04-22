@@ -4,7 +4,8 @@ import queryString from 'query-string';
 import { BpmWrap } from 'yyuap-bpm';
 import {actions} from 'mirrorx';
 import Header from 'components/Header';
-
+import { getCookie } from 'utils'
+const U_LOCALE = getCookie('u_locale');
 import './index.less';
 
 class IndexView extends Component {
@@ -31,7 +32,7 @@ class IndexView extends Component {
             <div className="bpm-chart">
                 <Header title={this.props.intl.formatMessage({id:"js.com.Ind5.0001", defaultMessage:"流程图"})} back={true}/>
                 <BpmWrap
-
+                    locale={U_LOCALE}
                     id={id}
                     processDefinitionId={processDefinitionId}
                     processInstanceId={processInstanceId}

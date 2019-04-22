@@ -626,7 +626,7 @@ class IndexView extends Component {
                                   ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                                 </ButtonRoleGroup>
                             </div>
-                          <div className="total"><FormattedMessage id="js.com.Ind.0030" defaultMessage="费用小计:" />{_this.getTotalCost(travelingObj.list)}</div>
+                          <div className="total"><FormattedMessage id="js.com.Ind.0030" defaultMessage="费用小计:" />{_this.getTotalCost(travelingObj.list)}<FormattedMessage id="js.com.Ind.0036" defaultMessage="元" /></div>
                             <div style={{marginBottom: 24}}>
                                 <Grid
                                     ref="traveling"
