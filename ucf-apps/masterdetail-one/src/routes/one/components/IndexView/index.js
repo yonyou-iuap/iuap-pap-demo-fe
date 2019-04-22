@@ -69,7 +69,7 @@ class IndexView extends Component {
         actions.routing.push(
             {
                 pathname: 'order',
-                search: `?search_id=${orderInfo ? orderInfo.id : ""}&btnFlag=${btnFlag}`
+                search: `?search_id=${orderInfo ? orderInfo.id : ""}&btnFlag=${btnFlag}&t=${Math.random()}`
             }
         )
     }
