@@ -15,7 +15,6 @@ import Passenger from '../PassengerModal';
 import Emergency from '../EmergencyModal';
 import Traveling from '../TraveModal';
 
-
 import {deepClone, Warning, getPageParam, getCookie} from "utils";
 import 'ac-attachment/dist/ac-attachment.css';
 import './index.less'
@@ -34,6 +33,7 @@ class IndexView extends Component {
             flag: -1, //按钮状态
             emergencyIndex: 0,
             travelingIndex: 0,
+            switchStatus: false
         }
 
     }
@@ -707,6 +707,7 @@ class IndexView extends Component {
                     onCloseModal={this.onCloseModal}
                     currentIndex={passengerIndex}
                     checkTable={checkTable}
+                    intl={this.props.intl}
                 />
                 {/*添加紧急联系人信息modal*/}
                 <Emergency
@@ -739,13 +740,13 @@ class IndexView extends Component {
                 />
                 <Alert
                     show={delModalVisible}
-                    context="确定删除这条记录吗 ?"
+                    context={this.props.intl.formatMessage({id: 'js.com.Ind.0034', defaultMessage: '确定删除这条记录吗 ?'})}
                     confirmFn={() => _this.confirmGoBack(1)}
                     cancelFn={() => _this.confirmGoBack(2)}/>
 
                 <Alert
                     show={delPicModalVisible}
-                    context="确定删除文件吗 ?"
+                    context={this.props.intl.formatMessage({id: 'js.com.Ind.0035', defaultMessage: '确定删除文件吗 ?'})}
                     confirmFn={() => _this.confirmDelPic(1)}
                     cancelFn={() => _this.confirmDelPic(2)}/>
             </div>
