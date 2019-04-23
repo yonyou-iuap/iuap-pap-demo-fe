@@ -17,6 +17,7 @@ const {Option} = Select;
 const format = "YYYY-MM-DD";
 let titleArr = [<FormattedMessage id="js.com.Pas.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Pas.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Pas.0003" defaultMessage="详情" />];
 
+
 class AddEditPassenger extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +25,10 @@ class AddEditPassenger extends Component {
             rowData: {},
             btnFlag: 0,
             isVip: false
+        }
+        this.switchChildren = {
+            yes: props.intl.formatMessage({id:"js.com.Pas.0018", defaultMessage:"是"}),
+            no: props.intl.formatMessage({id:"js.com.Pas.0019", defaultMessage:"否"})
         }
     }
 
@@ -133,6 +138,10 @@ class AddEditPassenger extends Component {
         return btns;
     }
 
+    isVipOnChange = (value) => {
+        this.setState({isVip: value})
+    }
+
 
     render() {
         let _this = this;
@@ -144,7 +153,7 @@ class AddEditPassenger extends Component {
         const {code, phone, sex, grade, name, dept, deptName, expirationDate} = rowData;
 
         let btns = _this.onHandleBtns(btnFlag),
-            isDisabled = btnFlag > 1 ? true : false;
+            isDisabled = btnFlag > 1;
         return (
             <PopDialog
                 ref={node => this.dialogNode = node}
@@ -206,8 +215,8 @@ class AddEditPassenger extends Component {
                                     }],
                                 })}
                         >
-                            <Option value={1}><FormattedMessage id="js.com.Pas.0013" defaultMessage="女" /></Option>
-                            <Option value={2}><FormattedMessage id="js.com.Pas.0014" defaultMessage="男" /></Option>
+                            <Option value={0}><FormattedMessage id="js.com.Pas.0013" defaultMessage="女" /></Option>
+                            <Option value={1}><FormattedMessage id="js.com.Pas.0014" defaultMessage="男" /></Option>
                         </Select>
                         <FormError errorMsg={getFieldError('sex')}/>
                     </FormItem>
@@ -232,11 +241,9 @@ class AddEditPassenger extends Component {
                         <Switch
                             disabled={isDisabled}
                             checked={isVip}
-                            checkedChildren={<FormattedMessage id="js.com.Pas.0018" defaultMessage="是" />}
-                            unCheckedChildren={<FormattedMessage id="js.com.Pas.0019" defaultMessage="否" />}
-                            onChange={(value) => {
-                                _this.setState({isVip: value});
-                            }}
+                            checkedChildren={this.switchChildren.yes}
+                            unCheckedChildren={this.switchChildren.no}
+                            onChange={this.isVipOnChange}
                         />
                     </FormItem>
 
@@ -281,4 +288,4 @@ class AddEditPassenger extends Component {
     }
 }
 
-export default FormList.createForm()(injectIntl(AddEditPassenger));
+export default FormList.createForm()(AddEditPassenger);

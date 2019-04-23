@@ -53,6 +53,11 @@ class SearchPanel extends Component {
         const { reset } = this.props;
         reset && reset();
     }
+
+    _locale = {
+        down: this.props.intl.formatMessage({id: 'js.com.defSea1.0004', defaultMessage: '展开'}),
+        up: this.props.intl.formatMessage({id: 'js.com.defSea1.0005', defaultMessage: '收起'})
+    }
     render() {
         const {
             children,
@@ -69,6 +74,7 @@ class SearchPanel extends Component {
         const _title = title || intl.formatMessage({id:"js.com.defSea1.0001", defaultMessage:"默认筛选"});
         const _resetName = resetName || intl.formatMessage({id:"js.com.defSea1.0002", defaultMessage:"清空"});
         const _searchName = searchName || intl.formatMessage({id:"js.com.defSea1.0003", defaultMessage:"查询" });
+
         return (
             <BeeSearchPanel
                 className="ucf-exam-search-panel"
@@ -83,6 +89,7 @@ class SearchPanel extends Component {
                     const open = status === "visible";
                     onCallback && onCallback(open);
                 }}
+                locale={this._locale}
                 bgColor={bgColor}
                 {...otherProps}
             >

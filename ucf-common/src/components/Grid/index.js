@@ -1,8 +1,17 @@
 import React, {Component} from "react";
+import { FormattedMessage, injectIntl } from 'react-intl';
 import BeeGrid from "bee-complex-grid";
 import Icon from "bee-icon";
 import './index.less'
 
+const NoData = () => {
+    return (
+      <p className="no-data">
+          <Icon type="uf-list-s-o"/>
+          <p><FormattedMessage id="js.Ref.Ref224.0014" defaultMessage="暂无数据"/></p>
+      </p>
+    )
+}
 
 const defualtPaginationParam = {
     dataNumSelect: ["5", "10", "15", "20", "25", "50", "All"],
@@ -62,7 +71,7 @@ class Grid extends Component {
                     exportData={_exportData}
                     paginationObj={_paginationObj}
                     ref={el => this.grid = el}
-                    emptyText={() => <Icon style={{fontSize: "60px"}} type="uf-nodata"/>}
+                    emptyText={NoData}
                 />
             </div>
         );

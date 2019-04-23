@@ -1,27 +1,28 @@
 @import "../static/font/iconfont.css";
 @import "./theme";
 
+@mainBgColor: #DBDEE3;
+
 html {
     overflow: hidden;
 }
-
-@mainBgColor: #DBDEE3;
 
 body {
     margin: 0;
     background: @mainBgColor;
     box-sizing: border-box;
-    padding: 16px;
-    overflow: auto;
-    position: absolute;
+    padding: 16px 8px 16px 16px;
+    overflow-x: hidden;
+    overflow-y: scroll;
     * {
         box-sizing: border-box;
     }
 }
+
 #app {
     min-height: 100%;
     position: relative;
-    background:rgba(255,255,255,1);
+    background: rgba(255, 255, 255, 1);
     //box-shadow: 0 2px 7px 0 rgba(25,40,66,0.24);
 }
 
@@ -32,10 +33,12 @@ body {
 
 .u-row {
     margin: 0;
-    &>div {
+
+    & > div {
         padding: 0 0;
     }
 }
+
 .u-message {
     left: 0;
 }
@@ -46,11 +49,12 @@ body {
 
 
 .form-panel-textarea {
-    >div {
+    > div {
         margin-bottom: 4px;
         min-height: 48px;
         height: 48px;
         padding: 0;
+
         .u-label {
             width: 100%;
             display: inline-block;
@@ -60,9 +64,11 @@ body {
             line-height: 32px;
             padding-right: 8px;
         }
+
         .u-label.time {
             bottom: 10px;
         }
+
         .u-label:after {
             display: inline-block;
             margin-right: 4px;
@@ -73,9 +79,11 @@ body {
             font-family: monospace;
             width: 5px;
         }
+
         .mast:after {
             content: "*";
         }
+
         .error {
             color: red;
             display: block;
@@ -83,15 +91,18 @@ body {
             margin-top: 2px;
             line-height: 12px;
         }
+
         textarea {
             width: 100%;
             resize: none;
             min-height: 80px;
         }
+
         .calendar-picker,
         .u-select {
             width: 100%;
         }
+
         .u-form-control[readonly="readonly"] {
             background: #eee;
             border-color: #e0e0e0;
@@ -102,8 +113,6 @@ body {
 }
 
 
-
-
 .table-header {
     /*   margin-top: 15px;
   margin-left: 8px; */
@@ -111,8 +120,8 @@ body {
     background: #fff;
 }
 
-.grid-parent{
-    padding-bottom:30px;
+.grid-parent {
+    padding-bottom: 30px;
 }
 
 .head-btn {
@@ -126,23 +135,24 @@ body {
 }
 
 
-
 // 手机号输入，去掉type='number'的选择样式
 .u-form-control::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-input[type="number"]{
+
+input[type="number"] {
     -moz-appearance: textfield;
 }
+
 button::selection {
     text-shadow: none;
     background: none !important;
 }
 
 //上传代码导致Table里的checkbox错位
-.u-popover-content{
-    .u-checkbox{
-        top:auto;
+.u-popover-content {
+    .u-checkbox {
+        top: auto;
     }
 }
 
@@ -150,23 +160,21 @@ button::selection {
 .filter-wrap .calendar-picker {
     width: auto !important;
 }
-.u-message-notice-description-icon{
+
+.u-message-notice-description-icon {
     display: none;
 }
-.u-message-notice-description-content{
+
+.u-message-notice-description-content {
     margin-left: 10px;
 }
-
-
-
-
 
 
 //表格中 渲染 code 样式
 .demo-table-code {
     //text-decoration: underline;
     color: @color-text-brand;
-    cursor:pointer
+    cursor: pointer
 }
 
 .ref-core-tree-node .uf {

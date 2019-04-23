@@ -15,14 +15,13 @@ import Passenger from '../PassengerModal';
 import Emergency from '../EmergencyModal';
 import Traveling from '../TraveModal';
 
-
-import {deepClone, Warning, getPageParam} from "utils";
+import {deepClone, Warning, getPageParam, getCookie} from "utils";
 import 'ac-attachment/dist/ac-attachment.css';
 import './index.less'
 
 const {TabPane} = Tabs;
 const format = "YYYY-MM-DD";
-
+const U_LOCALE = getCookie('u_locale');
 class IndexView extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +33,7 @@ class IndexView extends Component {
             flag: -1, //按钮状态
             emergencyIndex: 0,
             travelingIndex: 0,
+            switchStatus: false
         }
 
     }
@@ -626,7 +626,7 @@ class IndexView extends Component {
                                   ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                                 </ButtonRoleGroup>
                             </div>
-                          <div className="total"><FormattedMessage id="js.com.Ind.0030" defaultMessage="费用小计:" />{_this.getTotalCost(travelingObj.list)}</div>
+                          <div className="total"><FormattedMessage id="js.com.Ind.0030" defaultMessage="费用小计:" />{_this.getTotalCost(travelingObj.list)}<FormattedMessage id="js.com.Ind.0036" defaultMessage="元" /></div>
                             <div style={{marginBottom: 24}}>
                                 <Grid
                                     ref="traveling"
@@ -670,6 +670,7 @@ class IndexView extends Component {
                                     disabled={passengerForbid}
                                     recordId={selectRow['id']}
                                     groupname='abc'
+                                    locale={U_LOCALE}
                                     onDelete={(attach) => {
                                         _this.setState({delPicModalVisible: true});
                                         _this.attach = attach;
@@ -679,18 +680,18 @@ class IndexView extends Component {
                                         data-btn="upload"
                                         className="ml8"
                                         colors="primary" size='sm'
-                                  ><FormattedMessage id="js.com.Ind.0032" defaultMessage="上传" /></Button>
+                                  >{this.props.intl.formatMessage({id:"js.com.Ind.0032", defaultMessage:"上传" })}</Button>
                                     <Button
                                         data-btn="download"
                                         className="ml8"
                                         shape="border"
-                                    size='sm'><FormattedMessage id="js.com.Ind.0033" defaultMessage="下载" /></Button>
+                                    size='sm'>{this.props.intl.formatMessage({id:"js.com.Ind.0033", defaultMessage:"下载" })}</Button>
                                     <Button
                                         data-btn="delete"
                                         className="ml8"
                                         shape="border"
                                         size='sm'
-                                  ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
+                                  >{this.props.intl.formatMessage({id:"js.com.Ind.0025", defaultMessage:"删除" })}</Button>
                                 </AcAttachment>
                             </div>
                         </TabPane>
@@ -706,6 +707,7 @@ class IndexView extends Component {
                     onCloseModal={this.onCloseModal}
                     currentIndex={passengerIndex}
                     checkTable={checkTable}
+                    intl={this.props.intl}
                 />
                 {/*添加紧急联系人信息modal*/}
                 <Emergency
@@ -738,13 +740,13 @@ class IndexView extends Component {
                 />
                 <Alert
                     show={delModalVisible}
-                    context="确定删除这条记录吗 ?"
+                    context={this.props.intl.formatMessage({id: 'js.com.Ind.0034', defaultMessage: '确定删除这条记录吗 ?'})}
                     confirmFn={() => _this.confirmGoBack(1)}
                     cancelFn={() => _this.confirmGoBack(2)}/>
 
                 <Alert
                     show={delPicModalVisible}
-                    context="确定删除文件吗 ?"
+                    context={this.props.intl.formatMessage({id: 'js.com.Ind.0035', defaultMessage: '确定删除文件吗 ?'})}
                     confirmFn={() => _this.confirmDelPic(1)}
                     cancelFn={() => _this.confirmDelPic(2)}/>
             </div>

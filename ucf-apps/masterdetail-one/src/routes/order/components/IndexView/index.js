@@ -676,14 +676,14 @@ class IndexView extends Component {
                 <Loading showBackDrop={true}  show={showLoading} fullScreen={true} />
                 <Alert
                     show={showPopBackVisible}
-                    context="数据未保存，确定离开 ?"
+                    context={<FormattedMessage id="js.com.Ind1.0030" defaultMessage="数据未保存，确定离开 ?" />}
                     confirmFn={() => {
                         this.confirmGoBack(1)
                     }}
                     cancelFn={() => {
                         this.confirmGoBack(2)
                     }} />
-                <Header back title={titleArr[2]}>
+                <Header backFn={this.onBack} back title={titleArr[2]}>
                     <div className='head-btn'>
                         <Button shape="border" className="ml8" onClick={this.onBack}><FormattedMessage id="js.com.Ind7.0010" defaultMessage="取消" /></Button>
                         {(btnFlag !== 2) &&

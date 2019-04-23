@@ -446,12 +446,13 @@
   "js.com.Ind.0027": "打印",
   "js.com.Ind.0028": "紧急联系人",
   "js.com.Ind.0029": "订票信息",
-  "js.com.Ind.0030": "费用小计：{_this.getTotalCost(travelingObj.list)}元",
+  "js.com.Ind.0030": "费用小计：",
   "js.com.Ind.0031": "附件管理",
   "js.com.Ind.0032": "上传",
   "js.com.Ind.0033": "下载",
   "js.com.Ind.0034": "确定删除这条记录吗 ?",
   "js.com.Ind.0035": "确定删除文件吗 ?",
+  "js.com.Ind.0036": "元",
   "js.com.Sea1.0001": "乘客编号",
   "js.com.Sea1.0002": "模糊查询",
   "js.com.Sea1.0003": "乘客姓名",
@@ -814,6 +815,8 @@
   "js.com.defSea1.0001": "默认筛选",
   "js.com.defSea1.0002": "清空",
   "js.com.defSea1.0003": "查询",
+  "js.com.defSea1.0004": "展开",
+  "js.com.defSea1.0005": "收起",
   "js.com.Ref2.0001": "参照",
   "js.com.Ref2.0002": "职级",
   "js.com.Ref2.0003": "选择品类",
@@ -836,5 +839,7 @@
   "js.Ref.Ref224.0012": "关闭",
   "js.Ref.Ref224.0013": "搜索",
   "js.Ref.Ref224.0014": "暂无数据",
-  "js.Ref.Car.0002": "查看源码"
+  "js.Ref.Car.0002": "查看源码",
+  "js.Ref.Cus.0001": "请输入实体编码",
+  "js.Ref.Cus.0002": "请输入字段编码"
 }
