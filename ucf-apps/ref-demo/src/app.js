@@ -78,7 +78,7 @@ import {
       let { strictMode,theme } = this.state;
       return (
         <div>
-          <h2 className="change-theme" onClick={this.changeTheme} >{`切换主题：当前主题是（${theme==='ref-red'?'红色':'蓝色'}）`}</h2>
+          {/* <h2 className="change-theme" onClick={this.changeTheme} >{`切换主题：当前主题是（${theme==='ref-red'?'红色':'蓝色'}）`}</h2> */}
           <h2><FormattedMessage id="js.ref.src.0001" defaultMessage="树参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
