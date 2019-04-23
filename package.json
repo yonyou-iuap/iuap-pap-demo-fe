@@ -35,6 +35,7 @@
     "bee-datepicker": "^2.0.2",
     "bee-label": "^1.0.0",
     "bee-modal": "^2.0.5",
+    "bee-locale": "^0.0.13",
     "bee-radio": "^2.0.7",
     "bee-search-panel": "2.0.13",
     "bee-table": "^2.0.10",
