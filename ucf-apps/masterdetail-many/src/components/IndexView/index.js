@@ -242,55 +242,52 @@ class IndexView extends Component {
 
     passengerColumn = [
         {
-            title: <FormattedMessage id="js.com.Ind.0002" defaultMessage="乘客编号" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0002", defaultMessage:"乘客编号" }),
             dataIndex: "code",
             key: "code",
             // fixed: "left",
             width: 180,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0003" defaultMessage="乘客姓名" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0003", defaultMessage:"乘客姓名"}),
             dataIndex: "name",
             key: "name",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0004" defaultMessage="乘客性别" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0004", defaultMessage:"乘客性别" }),
             dataIndex: "sexEnumValue",
             key: "sexEnumValue",
             width: 120,
 
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0005" defaultMessage="所属部门" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0005", defaultMessage:"所属部门" }),
             dataIndex: "deptName",
             key: "deptName",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0006" defaultMessage="手机号" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0006", defaultMessage:"手机号"}),
             dataIndex: "phone",
             key: "phone",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0007" defaultMessage="是否会员" />,
-            dataIndex: "isVip",
-            key: "isVip",
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0007", defaultMessage:"是否会员"}),
+            dataIndex: "isVipEnumValue",
+            key: "isVipEnumValue",
             width: 120,
-            render(text, record, index) {
-                return text ? <FormattedMessage id="js.com.Ind.0008" defaultMessage="是" /> : <FormattedMessage id="js.com.Ind.0009" defaultMessage="否" />;
-            }
 
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0010" defaultMessage="会员等级" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0010", defaultMessage:"会员等级" }),
             dataIndex: "gradeEnumValue",
             key: "gradeEnumValue",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0011" defaultMessage="会员到期日期" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0011", defaultMessage:"会员到期日期" }),
             dataIndex: "expirationDate",
             key: "expirationDate",
             render: (text, record, index) => {
@@ -304,25 +301,25 @@ class IndexView extends Component {
 
     emergencyColumn = [
         {
-            title: <FormattedMessage id="js.com.Ind.0012" defaultMessage="联系人姓名" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0012", defaultMessage:"联系人姓名"}),
             dataIndex: "contactName",
             key: "contactName",
             width: 180,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0013" defaultMessage="联系人电话" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0013", defaultMessage:"联系人电话" }),
             dataIndex: "contactPhone",
             key: "contactPhone",
             width: 180,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0014" defaultMessage="与乘客关系" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0014", defaultMessage:"与乘客关系" }),
             dataIndex: "contactRelation",
             key: "contactRelation",
             width: 180,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0015" defaultMessage="备注" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0015", defaultMessage:"备注" }),
             dataIndex: "remark",
             key: "remark",
             width: 120,
@@ -331,25 +328,25 @@ class IndexView extends Component {
 
     travelingColumn = [
         {
-            title: <FormattedMessage id="js.com.Ind.0016" defaultMessage="乘车路线" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0016", defaultMessage:"乘车路线"}),
             dataIndex: "line",
             key: "line",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0017" defaultMessage="上车站点" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0017", defaultMessage:"上车站点" }),
             dataIndex: "stationBegin",
             key: "stationBegin",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0018" defaultMessage="下车站点" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0018", defaultMessage:"下车站点" }),
             dataIndex: "stationEnd",
             key: "stationEnd",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0019" defaultMessage="费用" />,
+            title: this.props.intl.formatMessage({ id:"js.com.Ind.0019", defaultMessage:"费用"}),
             dataIndex: "cost",
             key: "cost",
             width: 120,
@@ -359,12 +356,12 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind.0020" defaultMessage="支付状态" />,
+            title:this.props.intl.formatMessage({id:"js.com.Ind.0020", defaultMessage:"支付状态" }),
             dataIndex: "payStatusEnumValue",
             key: "payStatusEnumValue",
             width: 120,
         }, {
-            title: <FormattedMessage id="js.com.Ind.0015" defaultMessage="备注" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind.0015", defaultMessage:"备注" }),
             dataIndex: "remark",
             key: "remark",
             width: 120,

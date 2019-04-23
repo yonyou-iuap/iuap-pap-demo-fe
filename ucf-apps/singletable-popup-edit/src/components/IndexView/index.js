@@ -116,15 +116,17 @@ class IndexView extends Component {
         }
     }
 
+    formatMessage = this.props.intl.formatMessage;
+
     column = [
         {
-            title: <FormattedMessage id="js.com.Ind4.0002" defaultMessage="员工编号" />,
+            title: this.formatMessage({id:"js.com.Ind4.0002", defaultMessage:"员工编号"}),
             dataIndex: "code",
             key: "code",
             width: 150,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0003" defaultMessage="员工姓名" />,
+            title: this.formatMessage({id:"js.com.Ind4.0003", defaultMessage:"员工姓名"}),
             dataIndex: "name",
             key: "name",
             width: 120,
@@ -139,39 +141,39 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0004" defaultMessage="员工性别" />,
+            title: this.formatMessage({id:"js.com.Ind4.0004", defaultMessage:"员工性别"}),
             dataIndex: "sexEnumValue",
             key: "sexEnumValue",
             width: 150,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0005" defaultMessage="所属部门" />,
+            title: this.formatMessage({id:"js.com.Ind4.0005", defaultMessage:"所属部门" }),
             dataIndex: "deptName",
             key: "deptName",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0006" defaultMessage="职级" />,
+            title: this.formatMessage({id:"js.com.Ind4.0006", defaultMessage:"职级"}),
             dataIndex: "levelName",
             key: "levelName",
             width: 140,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0007" defaultMessage="工龄" />,
+            title: this.formatMessage({id:"js.com.Ind4.0007", defaultMessage:"工龄"}),
             dataIndex: "serviceYears",
             key: "serviceYears",
             width: 130,
             className: 'column-number-right ', // 靠右对齐
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0008" defaultMessage="司龄" />,
+            title: this.formatMessage({id:"js.com.Ind4.0008", defaultMessage:"司龄" }),
             dataIndex: "serviceYearsCompany",
             key: "serviceYearsCompany",
             width: 130,
             className: 'column-number-right ', // 靠右对齐
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0009" defaultMessage="年份" />,
+            title: this.formatMessage({id:"js.com.Ind4.0009", defaultMessage:"年份"}),
             dataIndex: "year",
             key: "year",
             width: 100,
@@ -182,19 +184,19 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0010" defaultMessage="月份" />,
+            title: this.formatMessage({id:"js.com.Ind4.0010", defaultMessage:"月份"}),
             dataIndex: "monthEnumValue",
             key: "monthEnumValue",
             width: 100,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0011" defaultMessage="补贴类别" />,
+            title: this.formatMessage({id:"js.com.Ind4.0011", defaultMessage:"补贴类别"}),
             dataIndex: "allowanceTypeEnumValue",
             key: "allowanceTypeEnumValue",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0012" defaultMessage="补贴标准" />,
+            title: this.formatMessage({id:"js.com.Ind4.0012", defaultMessage:"补贴标准"}),
             dataIndex: "allowanceStandard",
             key: "allowanceStandard",
             width: 120,
@@ -204,7 +206,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0013" defaultMessage="实际补贴" />,
+            title: this.formatMessage({id:"js.com.Ind4.0013", defaultMessage:"实际补贴" }),
             dataIndex: "allowanceActual",
             key: "allowanceActual",
             width: 120,
@@ -214,13 +216,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0014" defaultMessage="是否超标" />,
+            title: this.formatMessage({id:"js.com.Ind4.0014", defaultMessage:"是否超标"}),
             dataIndex: "exdeedsEnumValue",
             key: "exdeedsEnumValue",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0015" defaultMessage="申请时间" />,
+            title: this.formatMessage({id:"js.com.Ind4.0015", defaultMessage:"申请时间" }),
             dataIndex: "applyTime",
             key: "applyTime",
             width: 150,
@@ -232,13 +234,13 @@ class IndexView extends Component {
 
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0016" defaultMessage="领取方式" />,
+            title: this.formatMessage({id:"js.com.Ind4.0016", defaultMessage:"领取方式" }),
             dataIndex: "pickTypeEnumValue",
             key: "pickTypeEnumValue",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0017" defaultMessage="领取时间" />,
+            title: this.formatMessage({id:"js.com.Ind4.0017", defaultMessage:"领取时间"}),
             dataIndex: "pickTime",
             key: "pickTime",
             width: 150,
@@ -249,7 +251,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind4.0018" defaultMessage="备注" />,
+            title: this.formatMessage({id:"js.com.Ind4.0018", defaultMessage:"备注" }),
             dataIndex: "remark",
             key: "remark",
             width: 100,

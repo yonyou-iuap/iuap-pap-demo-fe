@@ -23,21 +23,22 @@ class TreeTable extends Component {
 			tableHeight : 500
 		};
 		this.grid = null;
+		let formatMessage = props.intl.formatMessage;
 		this.column = [
 			{
-				title: <FormattedMessage id="js.com.Tre.0001" defaultMessage="姓名" />,
+				title: formatMessage({id:"js.com.Tre.0001", defaultMessage:"姓名" }),
 				dataIndex: "name",
 				key: "name",
 				width:200,
 			},
 			{
-				title: <FormattedMessage id="js.com.Tre.0002" defaultMessage="性别" />,
+				title: formatMessage({id:"js.com.Tre.0002", defaultMessage:"性别" }),
 				dataIndex: "sexEnumValue",
 				key: "sexEnumValue",
 				width:200,
 			},
 			{
-				title: <FormattedMessage id="js.com.Tre.0003" defaultMessage="年龄" />,
+				title: formatMessage({id:"js.com.Tre.0003", defaultMessage:"年龄" }),
 				dataIndex: "age",
 				key: "age",
 				width: 200,

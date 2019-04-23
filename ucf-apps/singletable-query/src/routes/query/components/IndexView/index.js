@@ -254,9 +254,11 @@ class IndexView extends Component {
         this.setState({ tableHeight });
     }
 
+    formatMessage = this.props.intl.formatMessage;
+
     gridColumn = [
         {
-            title: <FormattedMessage id="js.com.Ind9.0001" defaultMessage="数据" />,
+            title: this.formatMessage({id:"js.com.Ind9.0001", defaultMessage:"数据" }),
             width: 80,
             dataIndex: "k",
             key: "k",
@@ -288,13 +290,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0005" defaultMessage="员工编号" />,
+            title: this.formatMessage({id:"js.com.Ind9.0005", defaultMessage:"员工编号"}),
             dataIndex: "code",
             key: "code",
             width: 160,
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0006" defaultMessage="员工姓名" />,
+            title: this.formatMessage({id:"js.com.Ind9.0006", defaultMessage:"员工姓名" }),
             dataIndex: "name",
             key: "name",
             width: 120,
@@ -311,7 +313,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0007" defaultMessage="员工性别" />,
+            title: this.formatMessage({id:"js.com.Ind9.0007", defaultMessage:"员工性别"}),
             dataIndex: "sex",
             key: "sex",
             exportKey: 'sexEnumValue',
@@ -326,7 +328,7 @@ class IndexView extends Component {
 
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0010" defaultMessage="部门" />,
+            title: this.formatMessage({id:"js.com.Ind9.0010", defaultMessage:"部门"}),
             dataIndex: "dept",
             key: "dept",
             exportKey: "deptName",
@@ -349,13 +351,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0011" defaultMessage="职级" />,
+            title: this.formatMessage({id:"js.com.Ind9.0011", defaultMessage:"职级"}),
             dataIndex: "levelName",
             key: "levelName",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0012" defaultMessage="工龄" />,
+            title: this.formatMessage({id:"js.com.Ind9.0012", defaultMessage:"工龄"}),
             dataIndex: "serviceYears",
             key: "serviceYears",
             width: 180,
@@ -372,7 +374,7 @@ class IndexView extends Component {
             sorter: true
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0013" defaultMessage="司龄" />,
+            title: this.formatMessage({id:"js.com.Ind9.0013", defaultMessage:"司龄"}),
             dataIndex: "serviceYearsCompany",
             key: "serviceYearsCompany",
             width: 130,
@@ -380,7 +382,7 @@ class IndexView extends Component {
             sorter: true
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0014" defaultMessage="年份" />,
+            title: this.formatMessage({id:"js.com.Ind9.0014", defaultMessage:"年份"}),
             dataIndex: "year",
             key: "year",
             width: 100,
@@ -389,7 +391,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0015" defaultMessage="月份" />,
+            title: this.formatMessage({id:"js.com.Ind9.0015", defaultMessage:"月份"}),
             dataIndex: "monthEnumValue",
             key: "monthEnumValue",
             width: 100,
@@ -397,13 +399,13 @@ class IndexView extends Component {
             sorter: true
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0016" defaultMessage="补贴类别" />,
+            title: this.formatMessage({id:"js.com.Ind9.0016", defaultMessage:"补贴类别" }),
             dataIndex: "allowanceTypeEnumValue",
             key: "allowanceTypeEnumValue",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0017" defaultMessage="补贴标准" />,
+            title: this.formatMessage({id:"js.com.Ind9.0017", defaultMessage:"补贴标准"}),
             dataIndex: "allowanceStandard",
             key: "allowanceStandard",
             width: 120,
@@ -414,7 +416,7 @@ class IndexView extends Component {
 
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0018" defaultMessage="实际补贴" />,
+            title: this.formatMessage({id:"js.com.Ind9.0018", defaultMessage:"实际补贴"}),
             dataIndex: "allowanceActual",
             key: "allowanceActual",
             width: 120,
@@ -425,13 +427,13 @@ class IndexView extends Component {
 
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0019" defaultMessage="是否超标" />,
+            title: this.formatMessage({id:"js.com.Ind9.0019", defaultMessage:"是否超标"}),
             dataIndex: "exdeedsEnumValue",
             key: "exdeedsEnumValue",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0020" defaultMessage="申请时间" />,
+            title: this.formatMessage({id:"js.com.Ind9.0020", defaultMessage:"申请时间"}),
             dataIndex: "applyTime",
             key: "applyTime",
             width: 300,
@@ -444,13 +446,13 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0021" defaultMessage="领取方式" />,
+            title: this.formatMessage({id:"js.com.Ind9.0021", defaultMessage:"领取方式" }),
             dataIndex: "pickTypeEnumValue",
             key: "pickTypeEnumValue",
             width: 120,
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0022" defaultMessage="领取时间" />,
+            title: this.formatMessage({id:"js.com.Ind9.0022", defaultMessage:"领取时间"}),
             dataIndex: "pickTime",
             key: "pickTime",
             width: 150,
@@ -459,7 +461,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind9.0023" defaultMessage="备注" />,
+            title: this.formatMessage({id:"js.com.Ind9.0023", defaultMessage:"备注" }),
             dataIndex: "remark",
             key: "remark",
             width: 100,

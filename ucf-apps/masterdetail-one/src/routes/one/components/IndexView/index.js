@@ -150,7 +150,7 @@ class IndexView extends Component {
 
     orderColumn = [
         {
-            title: <FormattedMessage id="js.com.Ind6.0001" defaultMessage="编号" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0001", defaultMessage:"编号"}),
             dataIndex: "orderCode",
             key: "orderCode",
             width: 250,
@@ -166,20 +166,20 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind6.0002" defaultMessage="名称" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0002", defaultMessage:"名称" }),
             dataIndex: "orderName",
             key: "orderName",
             width: 100,
         },
         {
-            title: <FormattedMessage id="js.com.Ind6.0003" defaultMessage="类型" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0003", defaultMessage:"类型"}),
             dataIndex: "orderTypeEnumValue",
             key: "orderTypeEnumValue",
             width: 100,
 
         },
         {
-            title: <FormattedMessage id="js.com.Ind6.0004" defaultMessage="价格" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0004", defaultMessage:"价格"}),
             dataIndex: "orderPrice",
             key: "orderPrice",
             width: 80,
@@ -189,19 +189,19 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind6.0005" defaultMessage="申请人" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0005", defaultMessage:"申请人" }),
             dataIndex: "orderUserName",
             key: "orderUserName",
             width: 200,
         },
         {
-            title: <FormattedMessage id="js.com.Ind6.0006" defaultMessage="申请部门" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0006", defaultMessage:"申请部门"}),
             dataIndex: "orderDeptName",
             key: "orderDeptName",
             width: 150,
         },
         {
-            title: <FormattedMessage id="js.com.Ind6.0007" defaultMessage="申请日期" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0007", defaultMessage:"申请日期"}),
             dataIndex: "orderDate",
             key: "orderDate",
             width: 150,
@@ -210,7 +210,7 @@ class IndexView extends Component {
             }
         },
         {
-            title: <FormattedMessage id="js.com.Ind6.0008" defaultMessage="流程状态" />,
+            title: this.props.intl.formatMessage({id:"js.com.Ind6.0008", defaultMessage:"流程状态"}),
             dataIndex: "bpmStateEnumValue",
             key: "bpmStateEnumValue",
             width: 150,
