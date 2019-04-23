@@ -73,7 +73,11 @@ export default {
             if(cacheContent.length === 0) {
                 handledContent = deepClone(content);
             } else {
-                handledContent = addChild(cacheContent, content);
+                if (content.length > 0) {
+                  handledContent = addChild(cacheContent, content);
+                }else {
+                    handledContent = cacheContent
+                }
             }
             actions.walsinTree.updateState({
                 content : handledContent,
