@@ -8,7 +8,7 @@ import {RefIuapDept} from 'components/RefViews';
 import PopDialog from 'components/Pop';
 import FormControlPhone from 'components/FormControlPhone';
 import FormError from 'components/FormError';
-import zhCN from "rc-calendar/lib/locale/zh_CN";
+import { dateLocal } from 'components/Intl'
 import FormList from 'components/FormList'
 import './index.less'
 
@@ -267,7 +267,7 @@ class AddEditPassenger extends Component {
                     {isVip ? (
                         <FormItem required label={<FormattedMessage id="js.com.Pas.0025" defaultMessage="到期日期" />}>
                             <DatePicker className='form-item' format={format} disabled={isDisabled}
-                                        locale={zhCN}
+                                        locale={dateLocal}
                                         getCalendarContainer={() => {
                                             return document.querySelector('.passenger-modal')
                                         }}

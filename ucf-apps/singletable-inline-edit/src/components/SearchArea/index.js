@@ -14,7 +14,7 @@ import FormList from 'components/FormList';
 //日期
 import DatePicker from "tinper-bee/lib/Datepicker";
 //日期本地化
-import zhCN from "rc-calendar/lib/locale/zh_CN";
+import { dateLocal } from 'components/Intl'
 
 //加载工具类
 import { deepClone } from "utils";
@@ -175,7 +175,7 @@ class SearchAreaForm extends Component {
                         <YearPicker
                             {...getFieldProps('year', { initialValue: null })}
                             format={format}
-                            locale={zhCN}
+                            locale={dateLocal}
                             placeholder={this.props.intl.formatMessage({id:"js.com.Sea2.0007", defaultMessage:"选择年"})}
                         />
                     </FormItem>

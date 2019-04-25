@@ -6,7 +6,7 @@ import {RefIuapDept} from 'components/RefViews';
 import DatePicker from 'bee-datepicker';
 import FormList from 'components/FormList';
 import FormError from 'components/FormError';
-
+import { dateLocal } from 'components/Intl'
 import {getCookie} from "utils";
 
 import './index.less';
@@ -111,6 +111,7 @@ class OrderChild extends Component {
                 <FormItem required label={<FormattedMessage id="js.com.Ord.0012" defaultMessage="申请日期" />} layoutOpt={layoutOpt}>
                     <DatePicker className='form-item' disabled={btnFlag === 2}
                                 format={format}
+                                locale={dateLocal}
                                 {...getFieldProps('orderDate', {
                                         initialValue: orderRow.orderDate ? moment(orderRow.orderDate) : moment(),
                                         validateTrigger: 'onBlur',

@@ -11,12 +11,12 @@ import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
 import {RefWalsinLevel, RefIuapDept} from 'components/RefViews'
 
-import zhCN from "rc-calendar/lib/locale/zh_CN";
+import { dateLocal } from 'components/Intl'
 import './index.less'
 
 const FormItem = FormList.Item;
 const {Option} = Select;
-const {YearPicker} = DatePicker;
+
 const format = "YYYY-MM-DD HH:mm:ss";
 const formatYYYY = "YYYY";
 let titleArr = [<FormattedMessage id="js.com.Pop.0001" defaultMessage="新增" />, <FormattedMessage id="js.com.Pop.0002" defaultMessage="修改" />, <FormattedMessage id="js.com.Pop.0003" defaultMessage="详情" />];
@@ -300,7 +300,7 @@ class PopupModal extends Component {
                                         return document.querySelector('.single-table-pop-model')
                                     }}
                                     format={formatYYYY}
-                                    locale={zhCN}
+                                    locale={dateLocal}
                                     placeholder={this.props.intl.formatMessage({id:"js.com.Pop.0023", defaultMessage:"选择年"})}
                         />
                     </FormItem>
@@ -384,7 +384,7 @@ class PopupModal extends Component {
                             required
                             label={<FormattedMessage id="js.com.Pop.0037" defaultMessage="申请时间" />}
                         >
-                            <DatePicker className='form-item' format={format} disabled={btnFlag === 2}
+                            <DatePicker className='form-item' format={format} disabled={btnFlag === 2} locale={dateLocal}
                                         {...getFieldProps('applyTime', {
                                             initialValue: applyTime ? moment(applyTime) : moment(),
                                             validateTrigger: 'onBlur',
@@ -415,7 +415,7 @@ class PopupModal extends Component {
                             className="time"
                             label={<FormattedMessage id="js.com.Pop.0042" defaultMessage="领取时间" />}
                         >
-                            <DatePicker className='form-item' format={format} disabled={btnFlag === 2}
+                            <DatePicker className='form-item' format={format} disabled={btnFlag === 2} locale={dateLocal}
                                         {...getFieldProps('pickTime', {
                                             initialValue: pickTime && moment(pickTime) || '',
                                             validateTrigger: 'onBlur',

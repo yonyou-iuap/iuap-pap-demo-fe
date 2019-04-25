@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addLocaleData, IntlProvider,injectIntl } from 'react-intl';
+import { addLocaleData, IntlProvider } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
 import mirror, { connect,withRouter } from 'mirrorx';
@@ -11,8 +11,11 @@ import zhTW from './locales/iuap_zh_TW';
   
 import tinperZh from 'bee-locale/build/zh_CN';    
 import tinperTw from 'bee-locale/build/zh_TW';    
-import tinperEn from 'bee-locale/build/en_US'; 
+import tinperEn from 'bee-locale/build/en_US';
 
+import zhCN_Date from "rc-calendar/lib/locale/zh_CN";
+import zhTW_Date from 'rc-calendar/lib/locale/zh_TW';
+import enUS_Date from 'rc-calendar/lib/locale/en_US';
 
 addLocaleData([...en, ...zh]);
 
@@ -21,28 +24,28 @@ function chooseLocale(locale){
 
     switch(locale){
         case 'en_US':
-            return {tinper:tinperEn,pap:enUS};
+            return {tinper:tinperEn,pap:enUS, date: enUS_Date};
             break;
         case 'zh_CN':
-            return {tinper:tinperZh,pap:zhCN};
+            return {tinper:tinperZh,pap:zhCN, date: zhCN_Date};
             break;
         case 'zh_TW':
-            return {tinper:tinperTw,pap:zhTW};
+            return {tinper:tinperTw,pap:zhTW, date: zhTW_Date};
             break;
         default:
-            return {tinper:tinperEn,pap:enUS};
+            return {tinper:tinperEn,pap:enUS, date: zhCN_Date};
             break;
     }
 }
 
 let locale =  (getCookie('u_locale')||navigator.language.split('_')[0].replace(/-/,'_')||"en_US")
-// let locale = 'zh_TW';
+const localeMap = chooseLocale(locale);
 let intlModel = {
     name: "intl",
     initialState: {
         locale: locale,
-        localeData:chooseLocale(locale).pap,
-        tinperData:chooseLocale(locale).tinper
+        localeData: localeMap.pap,
+        tinperData: localeMap.tinper
     },
     reducers: {
         updateState(state, data) {
@@ -75,5 +78,5 @@ class Inter extends Component {
 
 let Intl = connect(state => state.intl)(Inter);
 
-
+export const dateLocal = localeMap.date;
 export default Intl;
