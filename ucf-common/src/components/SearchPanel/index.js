@@ -27,7 +27,7 @@ const defaultProps = {
     searchOpen: true,
     search: () => { },
     reset: () => { },
-    bgColor: "#F7F9FB"
+    bgColor: "#fff"
 };
 
 
