@@ -19,7 +19,7 @@ const {YearPicker} = DatePicker;
 const format = "YYYY-MM-DD HH:mm:ss";
 const formatYYYY = "YYYY";
 let titleArr = ["新增", "修改", "详情"];
-import Form from 'bee-form'
+
 class PopupModal extends Component {
     constructor(props) {
         super(props);
@@ -441,4 +441,4 @@ class PopupModal extends Component {
     }
 }
 
-export default Form.createForm()(PopupModal);
+export default FormList.createForm()(PopupModal);
