@@ -5,7 +5,7 @@ import {FormControl, Select, InputNumber} from "tinper-bee";
 import FormList from 'components/FormList';
 
 import moment from "moment";
-import DatePicker from "tinper-bee/lib/Datepicker";
+import DatePicker from "bee-datepicker";
 import SelectMonth from 'components/SelectMonth';
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
@@ -290,7 +290,7 @@ class PopupModal extends Component {
                         required
                         label={<FormattedMessage id="js.com.Pop.0021" defaultMessage="年份" />}
                     >
-                        <DatePicker disabled={btnFlag == 2}
+                        <YearPicker disabled={btnFlag == 2}
                                     {...getFieldProps('year', {
                                         initialValue: year ? moment(year) : moment(),
                                         validateTrigger: 'onBlur',

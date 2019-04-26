@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {actions} from "mirrorx";
 import { FormControl, Select, InputNumber} from "tinper-bee";
 import FormList from 'components/FormList';
-import DatePicker from "tinper-bee/lib/Datepicker";
+import DatePicker from "bee-datepicker";
 import {RefIuapDept} from 'components/RefViews';
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';

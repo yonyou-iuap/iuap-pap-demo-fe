@@ -36,6 +36,7 @@ export function RefIuapDept(props){
             matchUrl='/newref/rest/iref_ctr/matchPKRefJSON'
             filterUrl='/newref/rest/iref_ctr/filterRefJSON'
             {...props}
+            emptyBut
         >
             <RefTree />
         </RefTreeWithInput>
@@ -60,6 +61,7 @@ export function RefWalsinLevel(props){
             valueField="refpk"
             displayField="{refcode}"
             {...props}
+            emptyBut
         >
             <RefMultipleTable />
         </RefMultipleTableWithInput>
