@@ -29,7 +29,7 @@ const defaultProps = {
     title: "默认筛选",
     resetName: "清空",
     searchName: "查询",
-    bgColor: "#F7F9FB"
+    bgColor: "#fff"
 };
 
 
