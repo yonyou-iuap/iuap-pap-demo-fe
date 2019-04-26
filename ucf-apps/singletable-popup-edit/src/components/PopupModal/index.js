@@ -5,7 +5,7 @@ import {FormControl, Select, InputNumber} from "tinper-bee";
 import FormList from 'components/FormList';
 
 import moment from "moment";
-import DatePicker from "tinper-bee/lib/Datepicker";
+import DatePicker from "bee-datepicker";
 import SelectMonth from 'components/SelectMonth';
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';

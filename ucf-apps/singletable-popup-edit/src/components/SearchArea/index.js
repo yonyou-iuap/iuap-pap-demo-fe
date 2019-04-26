@@ -2,7 +2,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
 import {FormControl, Select} from "tinper-bee";
-import DatePicker from "tinper-bee/lib/Datepicker";
+import DatePicker from "bee-datepicker";
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
 import { RefIuapDept } from 'components/RefViews';
