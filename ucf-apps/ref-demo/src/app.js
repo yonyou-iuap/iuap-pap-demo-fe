@@ -44,11 +44,8 @@ import {
   
   import {RefComboboxDemo1,RefComboboxDemo2} from "./components/Ref/RefCombobox"
   import {RefMdmDemo1} from "./components/Ref/RefMdm"
-  import 'pap-refer/lib/ref-tree/src/index.css'
-  import 'pap-refer/lib/ref-multiple-table/src/index.css'
-  import 'pap-refer/lib/ref-tree-table/src/index.css'
-  import 'pap-refer/lib/ref-combobox/src/index.css'
-  import 'pap-refer/lib/ref-tree-transfer/src/index.css';
+  // import 'pap-refer/lib/ref-combobox/src/index.css'
+  // import 'pap-refer/lib/ref-tree-transfer/src/index.css';
   class App extends Component {
     constructor() {
       super();
@@ -143,6 +140,7 @@ import {
               <RefTreeTransferDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
+     
           <h2><FormattedMessage id="js.ref.src.0005" defaultMessage="树表参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
