@@ -290,7 +290,7 @@ class PopupModal extends Component {
                         required
                         label={<FormattedMessage id="js.com.Pop.0021" defaultMessage="年份" />}
                     >
-                        <DatePicker disabled={btnFlag == 2}
+                        <YearPicker disabled={btnFlag == 2}
                                     {...getFieldProps('year', {
                                         initialValue: year ? moment(year) : moment(),
                                         validateTrigger: 'onBlur',
