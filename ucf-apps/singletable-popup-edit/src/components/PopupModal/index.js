@@ -13,7 +13,7 @@ import {RefWalsinLevel, RefIuapDept} from 'components/RefViews'
 
 import { dateLocal } from 'components/Intl'
 import './index.less'
-
+const {YearPicker} = DatePicker;
 const FormItem = FormList.Item;
 const {Option} = Select;
 
