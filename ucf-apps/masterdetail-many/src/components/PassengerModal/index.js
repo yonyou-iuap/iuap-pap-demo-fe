@@ -30,6 +30,8 @@ class AddEditPassenger extends Component {
             yes: props.intl.formatMessage({id:"js.com.Pas.0018", defaultMessage:"是"}),
             no: props.intl.formatMessage({id:"js.com.Pas.0019", defaultMessage:"否"})
         }
+        this.btns = null;
+
     }
 
     async componentWillReceiveProps(nextProps) {
@@ -37,6 +39,7 @@ class AddEditPassenger extends Component {
         const {btnFlag: nextBtnFlag, currentIndex: nextCurrentIndex, passengerObj, checkTable, modalVisible} = nextProps;
         if (btnFlag !== nextBtnFlag || currentIndex !== nextCurrentIndex) { // 弹框默认值的条件
             // 防止网络阻塞造成btnFlag显示不正常
+            this.btns = this.onHandleBtns(nextProps);
             this.setState({btnFlag: nextBtnFlag});
             let rowData = {};
             let isVip = false;
@@ -152,7 +155,7 @@ class AddEditPassenger extends Component {
 
         const {code, phone, sex, grade, name, dept, deptName, expirationDate} = rowData;
 
-        let btns = _this.onHandleBtns(btnFlag),
+        let btns = this.btns,
             isDisabled = btnFlag > 1;
         return (
             <PopDialog
@@ -268,9 +271,9 @@ class AddEditPassenger extends Component {
                         <FormItem required label={<FormattedMessage id="js.com.Pas.0025" defaultMessage="到期日期" />}>
                             <DatePicker className='form-item' format={format} disabled={isDisabled}
                                         locale={dateLocal}
-                                        getCalendarContainer={() => {
-                                            return document.querySelector('.passenger-modal')
-                                        }}
+                                        // getCalendarContainer={() => {
+                                        //     return document.querySelector('.passenger-modal')
+                                        // }}
                                         {...getFieldProps('expirationDate', {
                                             initialValue: expirationDate ? moment(expirationDate) : moment(),
                                             validateTrigger: 'onBlur',
