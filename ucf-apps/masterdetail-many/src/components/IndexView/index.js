@@ -428,9 +428,9 @@ export default class IndexView extends Component {
 
         let selectRow = passengerObj['list'][passengerIndex] || {};
         // 主表数据为空
-        const passengerForbid = passengerObj.list.length > 0 ? false : true;
-        const emergencyForbid = emergencyObj.list.length > 0 ? false : true;
-        const travelingForbid = travelingObj.list.length > 0 ? false : true;
+        const passengerForbid = passengerObj.list.length <= 0;
+        const emergencyForbid = emergencyObj.list.length <= 0;
+        const travelingForbid = travelingObj.list.length <= 0;
         return (
             <div className='master-detail-many'>
                 <Header title='B3 一主多子示例'/>

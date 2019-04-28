@@ -80,14 +80,16 @@ class AlertDialog extends Component {
                     {children}
                 </span>
                 <PopDialog
-                    className="alert_dialog_modal" // 设置弹框样式
+                    className="alert_dialog_modal u-modal-confirm" // 设置弹框样式
                     show={this.state.show} //默认是否显示
                     close={this.cancelFn}
-                    title={this.props.title}
+                    title={<span className="modal_conf_title">{this.props.title}</span>}
                     size="sm"
-                    titleIcon="uf-exc-t-o"
+                    titleIcon="uf-qm-c"
+                    backdrop={false}
+                    closeButton={false}
                     btns={this.dialogBtnConfig}>
-                    <span>{context}</span>
+                    <span className="alert-modal-cont">{context}</span>
                 </PopDialog>
             </span>
         )
