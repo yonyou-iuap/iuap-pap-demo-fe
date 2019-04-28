@@ -10,6 +10,7 @@ import './app.less';
 import {getCookie} from './util';
 let lang = getCookie('u_locale') || getCookie('i18next') || 'zh_CN';
 import Intl from 'components/Intl'
+// import 'pap-refer/lib/theme-blue.css'
 // let dir = lang.toLocaleLowerCase()==='en_us'?'Ref_EN':(lang.toLocaleLowerCase()==='zh_tw'?'Ref_TW':'Ref');
 import {  
   RefTreeDemo1,
