@@ -54,7 +54,7 @@ class PopDialog extends Component {
   }
 
   render() {
-    let { titleIcon, btnRender } = this.props;
+    let { titleIcon, btnRender, closeButton=true } = this.props;
     let _btns = [], btn = 'btn';
     if (this.props.btns) {
       this.props.btns.map((da, i) => {
@@ -84,7 +84,7 @@ class PopDialog extends Component {
             size={this.props.size ? this.props.size : "lg"} backdrop={this.props.backdrop ? true : 'static'}
             show={this.props.show} onHide={this.props.close}
         >
-          <Modal.Header closeButton={true}>
+          <Modal.Header closeButton={closeButton}>
             <Modal.Title>
               {titleIcon ? <Icon type={titleIcon} /> : null}
               {this.props.title}
