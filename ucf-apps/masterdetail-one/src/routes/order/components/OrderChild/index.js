@@ -27,7 +27,8 @@ class OrderChild extends Component {
         let {orderRow, btnFlag, form} = _this.props;
         const {getFieldProps, getFieldError} = form;
         return (
-            <FormList className='detail-body form-panel order-panel'>
+
+            <FormList className='detail-body form-panel order-panel'  layoutOpt={layoutOpt}>
                 <FormItem label={<FormattedMessage id="js.com.Ord.0001" defaultMessage="编号" />} layoutOpt={layoutOpt}>
                     <FormControl disabled={true}
                                  {...getFieldProps('orderCode', {

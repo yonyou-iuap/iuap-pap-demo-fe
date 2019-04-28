@@ -74,14 +74,15 @@ class FormList extends Component {
     }
 
     render() {
-        const { className, size, children} = this.props;
+        const { className, size, children = []} = this.props;
         const cls = `ucf-exam-form ${size} ${className || ""}`;
+        const _childern = Array.isArray(children) ? children : [ children ];
         return (
             <Form
                 className={cls}
             >
                 <Row>
-                    {children.map((child, index) => {
+                    {_childern.map((child, index) => {
                         if (child ) {
                             return (
                               <Col key={index}  {...this.wrapLayoutOpt}>

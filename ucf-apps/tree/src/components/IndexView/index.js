@@ -295,7 +295,7 @@ class IndexView extends Component {
               <div className='tree-search'>
                 <FormControl
                   className="search-box"
-                  placeholder="Search"
+                  placeholder={this.props.intl.formatMessage({id: 'js.Ref.Ref224.0013', defineMessages: '搜索'})}
                   onChange={_this.onChange}
                   onSearch={_this.onSearch}
                   value={searchValue}
