@@ -45,8 +45,8 @@ import {
   
   import {RefComboboxDemo1,RefComboboxDemo2} from "./components/Ref/RefCombobox"
   import {RefMdmDemo1} from "./components/Ref/RefMdm"
-  // import 'pap-refer/lib/ref-combobox/src/index.css'
-  // import 'pap-refer/lib/ref-tree-transfer/src/index.css';
+  // import 'pap-refer/lib/pap-common-comboboxsrc/index.css'
+  // import 'pap-refer/lib/pap-common-treeTransfer/src/index.css';
   class App extends Component {
     constructor() {
       super();
