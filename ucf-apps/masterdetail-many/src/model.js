@@ -65,12 +65,12 @@ export default {
          * @param {*} state
          * @param {*} data
          */
-        initState(state, data) { //更新state
-            const assignState = deepAssign(state, data);
-            return {
-                ...assignState,
-            };
-        },
+        // initState(state, data) { //更新state
+        //     const assignState = deepAssign(state, data);
+        //     return (
+        //       assignState
+        //     );
+        // },
 
     },
     effects: {
@@ -188,15 +188,15 @@ export default {
          */
         async saveTraveling(param, getState) {
             actions.masterDetailMany.updateState({showLoading: true});
-            const {btnFlag} = param;
-            let status = null;
+            let {btnFlag} = param;
+            let status;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.saveTraveling(param), '保存成功');
+                let {result} = processData(await api.saveTraveling(param), '保存成功');
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updateTraveling(param), '修改成功');
+                let {result} = processData(await api.updateTraveling(param), '修改成功');
                 status = result.status;
             }
             if (status === 'success') {
@@ -219,15 +219,15 @@ export default {
         async saveEmergency(param, getState) {
 
             actions.masterDetailMany.updateState({showLoading: true});
-            const {btnFlag} = param;
-            let status = null;
+            let {btnFlag} = param;
+            let status;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.saveEmergency(param), '保存成功');
+                let {result} = processData(await api.saveEmergency(param), '保存成功');
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updateEmergency(param), '修改成功');
+                let {result} = processData(await api.updateEmergency(param), '修改成功');
                 status = result.status;
             }
             if (status === 'success') {
@@ -288,9 +288,9 @@ export default {
          * @param {*} getState
          */
         async delPassenger(param, getState) {
-            const {id} = param;
-            const {result}=processData(await api.delPassenger([{id}]), '删除成功');
-            const {status}=result;
+            let {id} = param;
+            let {result}=processData(await api.delPassenger([{id}]), '删除成功');
+            let {status}=result;
             if(status==='success'){
                 // 获取表pageSize;
                 const {passengerObj} = getState().masterDetailMany;
@@ -307,9 +307,9 @@ export default {
          * @param {*} getState
          */
         async delEmergency(param, getState) {
-            const {id} = param;
-            const {result}=processData(await api.delEmergency([{id}]), '删除成功');
-            const {status}=result;
+            let {id} = param;
+            let {result}=processData(await api.delEmergency([{id}]), '删除成功');
+            let {status}=result;
             if(status==='success'){
                 //获取表pageSize;
                 // const {emergencyObj} = getState().masterDetailMany;
@@ -326,9 +326,9 @@ export default {
          * @param {*} getState
          */
         async delTraveling(param, getState) {
-            const {id} = param;
-            const {result}=processData(await api.delTraveling([{id}]), '删除成功');
-            const {status}=result;
+            let {id} = param;
+            let {result}=processData(await api.delTraveling([{id}]), '删除成功');
+            let {status}=result;
             if(status==='success'){
                 // 获取表pageSize;
                 // const {travelingObj} = getState().masterDetailMany;
@@ -347,7 +347,7 @@ export default {
         async printDocument(param) {
 
             let {result} = processData(await api.queryPrintTemplateAllocate(param.queryParams), '');
-            const {data:res}=result;
+            let {data:res}=result;
             if (!res || !res.res_code) {
                 return false;
             }
