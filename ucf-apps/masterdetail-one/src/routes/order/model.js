@@ -4,7 +4,7 @@ import * as api from "./service";
 import * as oneApi from '../one/service'
 import * as commonApi from '../common/service'
 // 接口返回数据公共处理方法，根据具体需要
-import { processData, deepAssign, structureObj, initStateObj, Error } from "utils";
+import { processData, deepAssign, structureObj, initStateObj, Error ,deepClone} from "utils";
 
 /**
  *          btnFlag为按钮状态，新增、修改是可编辑，查看详情不可编辑，
@@ -46,7 +46,7 @@ export default {
         updateState(state, data) { //更新state
             return {
                 ...state,
-                ...data
+                ...deepClone(data)
             };
         },
 

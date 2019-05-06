@@ -3,7 +3,7 @@ import {actions} from "mirrorx";
 import * as api from "./service";
 // 接口返回数据公共处理方法，根据具体需要
 
-import {processData, structureObj, initStateObj} from "utils";
+import {processData, structureObj, initStateObj,deepClone} from "utils";
 
 
 export default {
@@ -39,7 +39,7 @@ export default {
         updateState(state, data) { //更新state
             return {
                 ...state,
-                ...data
+                ...deepClone(data)
             };
         }
     },

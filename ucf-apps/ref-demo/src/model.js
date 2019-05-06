@@ -4,6 +4,7 @@
 
 import { actions } from "mirrorx";
 import * as api from "./service";
+import { deepClone} from "utils";
 
 export default {
     // 确定 Store 中的数据模型作用域
@@ -21,7 +22,7 @@ export default {
         updateState(state, data) { //更新state
             return {
                 ...state,
-                ...data
+                ...deepClone(data)
             };
         }
     },

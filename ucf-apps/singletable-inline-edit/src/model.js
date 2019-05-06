@@ -6,7 +6,7 @@ import { actions } from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
 // 接口返回数据公共处理方法，根据具体需要
-import { processData, success, Error } from "utils";
+import { processData, success, Error ,deepClone} from "utils";
 
 
 export default {
@@ -41,7 +41,7 @@ export default {
         updateState(state, data) { //更新state
             return {
                 ...state,
-                ...data
+                ...deepClone(data)
             };
         }
     },
