@@ -64,7 +64,7 @@ class IndexView extends Component {
      */
     onPageSelect = (value, type) => {
         let queryParam = deepClone(this.props.queryParam);
-        const {pageIndex, pageSize} = getPageParam(value, type,queryParam.pageParams);
+        let {pageIndex, pageSize} = getPageParam(value, type,queryParam.pageParams);
         queryParam['pageParams'] = {pageIndex, pageSize};
         this.setState({selectedIndex: 0}); //默认选中第一行
         actions.popupEdit.loadList(queryParam);
@@ -104,7 +104,7 @@ class IndexView extends Component {
      * 删除modal 显示
      */
     onClickDel = () => {
-        const {list} = this.props;
+        let {list} = this.props;
         if (list.length > 0) {
             this.setState({
                 delModalVisible: true,
@@ -279,23 +279,23 @@ class IndexView extends Component {
     }
 
     render() {
-        const _this = this;
-        let {list, showLoading, pageIndex, totalPages, total} = _this.props;
-        let {editModelVisible, selectedIndex, btnFlag, delModalVisible,tableHeight, showHoverContent} = _this.state;
-        const paginationObj = {   // 分页
+
+        let {list, showLoading, pageIndex, totalPages, total} = this.props;
+        let {editModelVisible, selectedIndex, btnFlag, delModalVisible,tableHeight, showHoverContent} = this.state;
+        let paginationObj = {   // 分页
             activePage: pageIndex,//当前页
             total: total,//总条数
             items: totalPages,
-            freshData: _this.freshData,
-            onDataNumSelect: _this.onDataNumSelect,
+            freshData: this.freshData,
+            onDataNumSelect: this.onDataNumSelect,
         }
 
-        const sortObj = {
+        let sortObj = {
             mode: 'multiple',
             backSource: true
         }
 
-        const btnForbid = list.length > 0 ? false : true;
+        let btnForbid = list.length <= 0;
 
         return (
             <div className='single-table-popup'>
@@ -312,7 +312,7 @@ class IndexView extends Component {
                                 colors="primary"
                                 className="ml8"
                                 onClick={() => {
-                                    _this.onClickShowModel(0);
+                                    this.onClickShowModel(0);
                                 }}
                             >新增</Button>
                             {/*<Button*/}
@@ -321,7 +321,7 @@ class IndexView extends Component {
                                 {/*className="ml8"*/}
                                 {/*disabled={btnForbid}*/}
                                 {/*onClick={() => {*/}
-                                    {/*_this.onClickShowModel(1);*/}
+                                    {/*this.onClickShowModel(1);*/}
                                 {/*}}*/}
                             {/*>修改</Button>*/}
                             {/*<Button*/}
@@ -329,7 +329,7 @@ class IndexView extends Component {
                                 {/*className="ml8"*/}
                                 {/*disabled={btnForbid}*/}
                                 {/*onClick={() => {*/}
-                                    {/*_this.onClickShowModel(2);*/}
+                                    {/*this.onClickShowModel(2);*/}
                                 {/*}}*/}
                             {/*>详情</Button>*/}
                             {/*<Button*/}
@@ -337,18 +337,18 @@ class IndexView extends Component {
                                 {/*shape="border"*/}
                                 {/*className="ml8"*/}
                                 {/*disabled={btnForbid}*/}
-                                {/*onClick={_this.onClickDel}>删除</Button>*/}
-                        <Button shape="border" className="ml8" onClick={_this.export}>
+                                {/*onClick={this.onClickDel}>删除</Button>*/}
+                        <Button shape="border" className="ml8" onClick={this.export}>
                             导出
                         </Button>
                     </ButtonRoleGroup>
 
                     <Alert show={delModalVisible} context="是否要删除 ?"
                            confirmFn={() => {
-                               _this.confirmGoBack(1);
+                               this.confirmGoBack(1);
                            }}
                            cancelFn={() => {
-                               _this.confirmGoBack(2);
+                               this.confirmGoBack(2);
                            }}
                     />
 
@@ -363,10 +363,10 @@ class IndexView extends Component {
                         selectedRow={this.selectedRow}
                         multiSelect={false}
                         // onRowClick={(record, index) => {
-                        //     _this.setState({selectedIndex: index, editModelVisible: false});
+                        //     this.setState({selectedIndex: index, editModelVisible: false});
                         // }}
                         // rowClassName={(record, index, indent) => {
-                        //     if (_this.state.selectedIndex === index) {
+                        //     if (this.state.selectedIndex === index) {
                         //         return 'selected';
                         //     } else {
                         //         return '';
@@ -383,7 +383,7 @@ class IndexView extends Component {
                                             disabled={btnForbid}
                                             onClick={() => {
                                                 this.setState({showHoverContent: false});
-                                                _this.onClickShowModel(1);
+                                                this.onClickShowModel(1);
                                             }}
                                         >修改</Button>
                                         <Button
@@ -392,7 +392,7 @@ class IndexView extends Component {
                                             disabled={btnForbid}
                                             onClick={() => {
                                                 this.setState({showHoverContent: false});
-                                                _this.onClickShowModel(2);
+                                                this.onClickShowModel(2);
                                             }}
                                         >详情</Button>
                                         <Button
@@ -400,7 +400,7 @@ class IndexView extends Component {
                                             role="delete"
                                             className="ml8"
                                             disabled={btnForbid}
-                                            onClick={_this.onClickDel}
+                                            onClick={this.onClickDel}
                                         >删除</Button>
                                     </ButtonRoleGroup>
                                 )
@@ -411,7 +411,7 @@ class IndexView extends Component {
 
                         }}
                         onRowHover={(index) => {
-                            _this.setState({selectedIndex: index,  showHoverContent: true});
+                            this.setState({selectedIndex: index,  showHoverContent: true});
                         }}
                         showHeaderMenu={true}
                         sort={sortObj} //后端排序

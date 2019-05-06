@@ -451,7 +451,7 @@ class IndexView extends Component {
      */
     onPageSelect = (value, type) => {
         let queryParam = deepClone(this.props.queryParam); // 深拷贝查询条件从action里
-        const { pageIndex, pageSize } = getPageParam(value, type, queryParam.pageParams);
+        let { pageIndex, pageSize } = getPageParam(value, type, queryParam.pageParams);
         queryParam['pageParams'] = { pageIndex, pageSize };
         actions.inlineEdit.updateState(queryParam); // 更新action queryParam
         actions.inlineEdit.loadList(queryParam);
@@ -767,7 +767,7 @@ class IndexView extends Component {
         let { showPop, showPopCancel, tableHeight } = _this.state;
         let { list, showLoading, pageIndex, pageSize, totalPages, total, status, rowEditStatus, queryParam } = _this.props;
         //分页条数据
-        const paginationObj = {
+        let paginationObj = {
             activePage: pageIndex,//当前页
             total: total,//总条数
             items: totalPages,

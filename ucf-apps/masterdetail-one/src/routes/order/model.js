@@ -75,34 +75,34 @@ export default {
         setQueryParent(orderInfo) {
             if (orderInfo) {
                 actions.masterDetailOrder.updateState({ queryParent: orderInfo });
-                const paramObj = { pageSize: 10, pageIndex: 0, search_orderId: orderInfo.id };
+                let paramObj = { pageSize: 10, pageIndex: 0, search_orderId: orderInfo.id };
                 actions.masterDetailOrder.queryChild(paramObj);
             }
         },
 
         async getQueryParent(param, getState) {
             actions.masterDetailOrder.updateState({ showLoading: true });   // 正在加载数据，显示加载 Loading 图标
-            const { result } = processData(await oneApi.getList(param));  // 调用 getList 请求数据
+            let { result } = processData(await oneApi.getList(param));  // 调用 getList 请求数据
             actions.masterDetailOrder.updateState({ showLoading: false });
-            const { data: res, status } = result;
+            let { data: res, status } = result;
 
             // 跳转消息中心
-            const { search_from } = param;
+            // let { search_from } = param;
             // if (status !== 'success' && search_from) {
             //     window.history.go(-1);
             // }
 
-            const { content = [] } = res || {};
-            const queryParent = content[0] ? content[0] : {};
+            let { content = [] } = res || {};
+            let queryParent = content[0] ? content[0] : {};
             actions.masterDetailOrder.updateState({ queryParent });
             if (content.length > 0) { // 获取子表数据
-                const { search_id: search_orderId } = param;
+                let { search_id: search_orderId } = param;
                 // const {pageSize} = getState().masterDetailOne.queryDetailObj;
-                const paramObj = { pageSize: 10, pageIndex: 0, search_orderId };
+                let paramObj = { pageSize: 10, pageIndex: 0, search_orderId };
                 actions.masterDetailOrder.queryChild(paramObj);
             } else {
                 // 如果请求出错,数据初始化
-                const { queryDetailObj } = getState().masterDetailOrder;
+                let { queryDetailObj } = getState().masterDetailOrder;
                 actions.masterDetailOne.updateState({
                     queryDetailObj: initStateObj(queryDetailObj),
                     showModalCover: true,
@@ -119,15 +119,15 @@ export default {
         async queryChild(param, getState) {
 
             actions.masterDetailOrder.updateState({ showDetailLoading: true });
-            const { result } = processData(await commonApi.getOrderDetail(param));  // 调用 getList 请求数据
+            let { result } = processData(await commonApi.getOrderDetail(param));  // 调用 getList 请求数据
             actions.masterDetailOrder.updateState({ showDetailLoading: false });
-            const { data: res } = result;
+            let { data: res } = result;
             if (res) {
-                const queryDetailObj = structureObj(res, param);
+                let queryDetailObj = structureObj(res, param);
                 actions.masterDetailOrder.updateState({ queryDetailObj }); // 更新 子表
             } else {
                 // 如果请求出错,数据初始化
-                const { queryDetailObj } = getState().masterDetailOrder;
+                let { queryDetailObj } = getState().masterDetailOrder;
                 actions.masterDetailOrder.updateState({ queryDetailObj: initStateObj(queryDetailObj) });
             }
 
@@ -141,8 +141,8 @@ export default {
          */
         async adds(param, getState) {
             actions.masterDetailOrder.updateState({ showLoading: true });
-            const { result } = processData(await api.saveAsso(param), '保存成功');
-            const { data: res } = result;
+            let { result } = processData(await api.saveAsso(param), '保存成功');
+            let { data: res } = result;
             actions.masterDetailOrder.updateState({ showLoading: false, status: 'view' });
             if (res) {
                 actions.routing.push({ pathname: '/' });
@@ -158,7 +158,7 @@ export default {
          */
         async delOrderDetail(param, getState) {
             actions.masterDetailOrder.updateState({ showLoading: true });
-            const { result } = processData(await api.delOrderDetail(param), '删除成功');
+            let { result } = processData(await api.delOrderDetail(param), '删除成功');
             actions.masterDetailOrder.updateState({ showLoading: false });
             return result;
 

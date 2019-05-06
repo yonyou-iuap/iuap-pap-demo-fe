@@ -29,7 +29,7 @@ class SearchAreaForm extends Component {
             if (values.year) {
                 values.year = values.year.format('YYYY');
             }
-            const {dept} = values;
+            let {dept} = values;
             if (dept) {
                 const {refpk} = JSON.parse(dept);
                 values.dept = refpk;
@@ -53,12 +53,12 @@ class SearchAreaForm extends Component {
      * @param {Number} type 1位清空操作，0位查询操作
      */
     getQuery = (values, type) => {
-        const queryParam = deepClone(this.props.queryParam);
+        let queryParam = deepClone(this.props.queryParam);
         let {pageParams, whereParams} = queryParam;
         whereParams = deepClone(whereParams);
         pageParams.pageIndex = 0;
         for (let key in values) {
-            for (const [index, elem] of whereParams.entries()) {
+            for (let [index, elem] of whereParams.entries()) {
                 if (key === elem.key) {
                     whereParams.splice(index, 1);
                     break;
@@ -68,7 +68,7 @@ class SearchAreaForm extends Component {
             if ((values[key] || values[key] === 0) && type === 0) {
                 let condition = "LIKE";
                 // 这里通过根据项目自己优化
-                const equalArray = ["code", "month"];
+                let equalArray = ["code", "month"];
                 if (equalArray.includes(key)) { // 等于
                     condition = "EQ";
                 }
@@ -87,8 +87,8 @@ class SearchAreaForm extends Component {
 
 
     render() {
-        const {form,onCallback} = this.props;
-        const {getFieldProps} = form;
+        let {form,onCallback} = this.props;
+        let {getFieldProps} = form;
 
         return (
             <SearchPanel

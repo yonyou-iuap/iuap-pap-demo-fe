@@ -83,9 +83,9 @@ export default {
             // 正在加载数据，显示加载 Loading 图标
             actions.masterDetailMany.updateState({showLoading: true});
             // 调用 getList 请求数据
-            const {result} = processData(await api.getList(param));
-            const {data: resPassenger} = result;
-            const {content = []} = resPassenger || {};
+            let {result} = processData(await api.getList(param));
+            let {data: resPassenger} = result;
+            let {content = []} = resPassenger || {};
 
             if (content.length > 0) {
                 // 获取子表数据
@@ -95,7 +95,7 @@ export default {
 
                 actions.masterDetailMany.loadSubList()
             } else {
-                const {travelingObj, emergencyObj, passengerObj} = getState().masterDetailMany;
+                let {travelingObj, emergencyObj, passengerObj} = getState().masterDetailMany;
                 actions.masterDetailMany.updateState({   // 如果请求出错,数据初始化
                         passengerObj: initStateObj(passengerObj),
                         emergencyObj: initStateObj(emergencyObj),
@@ -115,11 +115,11 @@ export default {
          * */
 
         async loadSubList(param = {}, getState) {
-            const state = getState().masterDetailMany;
-            const { tabKey, passengerObj: {list}, passengerIndex} = state;
+            let state = getState().masterDetailMany;
+            let { tabKey, passengerObj: {list}, passengerIndex} = state;
             if (tabKey !== 'uploadFill' && list.length > 0) {
-                const passenger = list[passengerIndex];
-                const subObj = state[`${tabKey}Obj`];
+                let passenger = list[passengerIndex];
+                let subObj = state[`${tabKey}Obj`];
                 if (passenger) {
                     let _param = Object.assign({}, {
                         search_passengerId: passenger.id,
@@ -138,7 +138,7 @@ export default {
                         loadingKey = 'showTravelingLoading';
                     }
                     actions.masterDetailMany.updateState({[loadingKey]: true});
-                    const {result: { data: res }} = processData(await apiService(_param));
+                    let {result: { data: res }} = processData(await apiService(_param));
                     let newObj = null;
                     if (res) {
                         newObj = structureObj(res, param);
@@ -158,24 +158,24 @@ export default {
 
         async savePassenger(param, getState) {
             actions.masterDetailMany.updateState({showLoading: true});   // 正在加载数据，显示加载 Loading 图标
-            const {btnFlag} = param;
+            let {btnFlag} = param;
             let status = null;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加数据
-                const {result} = processData(await api.savePassenger(param), '添加成功');
+                let {result} = processData(await api.savePassenger(param), '添加成功');
                 status = result.status;
             }
             if (btnFlag === 1) { // 修改数据
-                const {result} = processData(await api.updatePassenger(param), '修改成功');
+                let {result} = processData(await api.updatePassenger(param), '修改成功');
                 status = result.status;
             }
 
             if (status === 'success') { // 如果不判断是会报错，param参数有错
-                const {
+                let {
                     passengerObj: {pageSize} ,
                     searchParam: {search_contactName}
                 } = getState().masterDetailMany;
-                const param = {pageIndex: 0, pageSize, search_contactName}; // 获取主表信息
+                let param = {pageIndex: 0, pageSize, search_contactName}; // 获取主表信息
                 actions.masterDetailMany.loadList(param);
             }
             actions.masterDetailMany.updateState({showLoading: false});
@@ -293,9 +293,9 @@ export default {
             let {status}=result;
             if(status==='success'){
                 // 获取表pageSize;
-                const {passengerObj} = getState().masterDetailMany;
-                const {pageSize} = passengerObj;
-                const initPage = {pageIndex: 0, pageSize};
+                let {passengerObj} = getState().masterDetailMany;
+                let {pageSize} = passengerObj;
+                let initPage = {pageIndex: 0, pageSize};
                 actions.masterDetailMany.loadList(initPage);
             }
         },

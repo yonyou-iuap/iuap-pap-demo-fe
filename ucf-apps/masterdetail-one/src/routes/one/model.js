@@ -62,12 +62,12 @@ export default {
          * @param {*} state
          * @param {*} data
          */
-        initState(state, data) { //更新state
-            const assignState = deepAssign(state, data);
-            return {
-                ...assignState,
-            };
-        },
+        // initState(state, data) { //更新state
+        //     const assignState = deepAssign(state, data);
+        //     return {
+        //         ...assignState,
+        //     };
+        // },
 
     },
     effects: {
@@ -80,22 +80,22 @@ export default {
         async loadList(param, getState) {
 
             actions.masterDetailOne.updateState({ showLoading: true });   // 正在加载数据，显示加载 Loading 图标
-            const { result } = processData(await api.getList(param));  // 调用 getList 请求数据
-            const { data: res } = result;
+            let { result } = processData(await api.getList(param));  // 调用 getList 请求数据
+            let { data: res } = result;
             // 默认选中第一条
             actions.masterDetailOne.updateState({ showLoading: false, selectIndex: 0 });
-            const { content = [] } = res || {};
+            let { content = [] } = res || {};
 
             if (content.length > 0) { // 获取子表数据
-                const orderObj = structureObj(res, param);
+                let orderObj = structureObj(res, param);
                 actions.masterDetailOne.updateState({ orderObj, searchParam: param }); // 更新主表数据
-                const { pageSize } = getState().masterDetailOne.detailObj;
-                const { id: search_orderId } = content[0];
-                const paramObj = { pageSize, pageIndex: 0, search_orderId };
+                let { pageSize } = getState().masterDetailOne.detailObj;
+                let { id: search_orderId } = content[0];
+                let paramObj = { pageSize, pageIndex: 0, search_orderId };
                 actions.masterDetailOne.loadOrderDetailList(paramObj);
             } else {
                 // 如果请求出错,数据初始化
-                const { orderObj, detailObj } = getState().masterDetailOne;
+                let { orderObj, detailObj } = getState().masterDetailOne;
                 actions.masterDetailOne.updateState({
                         orderObj: initStateObj(orderObj),
                         detailObj: initStateObj(detailObj),
@@ -115,15 +115,15 @@ export default {
         async loadOrderDetailList(param, getState) {
             // 调用 getList 请求数据
             actions.masterDetailOne.updateState({ showDetailLoading: true });
-            const { result } = processData(await api.getOrderDetail(param));  // 调用 getList 请求数据
+            let { result } = processData(await api.getOrderDetail(param));  // 调用 getList 请求数据
             actions.masterDetailOne.updateState({ showDetailLoading: false });
-            const { data: res } = result;
+            let { data: res } = result;
             if (res) {
-                const detailObj = structureObj(res, param);
+                let detailObj = structureObj(res, param);
                 actions.masterDetailOne.updateState({ detailObj }); // 更新主表数据
             } else {
                 // 如果请求出错,数据初始化
-                const { detailObj } = getState().masterDetailOne;
+                let { detailObj } = getState().masterDetailOne;
                 actions.masterDetailOne.updateState({ detailObj: initStateObj(detailObj) });
             }
         },
@@ -138,14 +138,14 @@ export default {
          */
         async delOrder(param, getState) {
             actions.masterDetailOne.updateState({ showLoading: true });
-            const { result } = processData(await api.delOrder([param]), '删除成功');
+            let { result } = processData(await api.delOrder([param]), '删除成功');
             actions.masterDetailOne.updateState({ showLoading: false });
-            const { status } = result;
+            let { status } = result;
             if (status === 'success') {
                 // 获取 pageSize
-                const { orderObj } = getState().masterDetailOne;
-                const { pageSize } = orderObj;
-                const initPage = { pageIndex: 0, pageSize };
+                let { orderObj } = getState().masterDetailOne;
+                let { pageSize } = orderObj;
+                let initPage = { pageIndex: 0, pageSize };
                 await actions.masterDetailOne.updateState({
                     selectIndex: 0
                 })

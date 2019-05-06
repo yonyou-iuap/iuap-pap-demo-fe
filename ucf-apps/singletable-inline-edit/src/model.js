@@ -59,18 +59,18 @@ export default {
                 selectData: []
             });
 
-            const inlineEditState = getState().inlineEdit;
-            const _param = param || inlineEditState.queryParam;
+            let inlineEditState = getState().inlineEdit;
+            let _param = param || inlineEditState.queryParam;
             // 调用 getList 请求数据
 
             let {result} = processData(await api.getList(_param));
-            const {data:res}=result;
-            const defState = { showLoading: false }
+            let {data:res}=result;
+            let defState = { showLoading: false }
             let _state = null;
             if (res) {
-                const { content: list, number, totalPages, totalElements: total } = res;
+                let { content: list, number, totalPages, totalElements: total } = res;
 
-                const pageIndex = number + 1;
+                let pageIndex = number + 1;
                 _state = Object.assign({}, defState, {
                     list,
                     pageIndex,
@@ -93,7 +93,7 @@ export default {
         async adds(param) {
             actions.inlineEdit.updateState({ showLoading: true });
             let { result } = processData(await api.adds(param),'保存成功');
-            const {status}=result;
+            let {status}=result;
             actions.inlineEdit.updateState({ showLoading: false});
             if (status === 'success') {
                 actions.inlineEdit.loadList();
@@ -110,14 +110,14 @@ export default {
         async removes(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
             let { result } = processData(await api.removes(param),'删除成功');
-            const {status}=result;
+            let {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
-                const inlineEditState = getState().inlineEdit;
-                const { queryParam, list, totalPages } = inlineEditState;
+                let inlineEditState = getState().inlineEdit;
+                let { queryParam, list, totalPages } = inlineEditState;
                 // 调用 getList 请求数据
 
-                const { pageParams: { pageIndex } } = queryParam;
+                let { pageParams: { pageIndex } } = queryParam;
                 if (pageIndex > 0 && pageIndex + 1 === totalPages && param.length === list.length) {
                     queryParam.pageParams.pageIndex = pageIndex - 1;
                 }
@@ -136,7 +136,7 @@ export default {
         async updates(param) {
             actions.inlineEdit.updateState({ showLoading: true });
             let { result } = processData(await api.updates(param),'更新成功');
-            const {status}=result;
+            let {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
                 actions.inlineEdit.loadList();

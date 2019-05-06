@@ -144,10 +144,10 @@ class CommonPop extends Component {
     render() {
         let _this = this;
 
-        const {form, comModalParam} = _this.props;
+        let {form, comModalParam} = _this.props;
         let {showModal = false, initEditValue = {}, btnFlag = 0} = comModalParam || {}
-        const {getFieldProps, getFieldError} = form;
-		const {name, sex, age} = initEditValue || {};
+        let {getFieldProps, getFieldError} = form;
+		let {name, sex, age} = initEditValue || {};
 
 		let btns = _this.onHandleBtns(btnFlag);
         return (

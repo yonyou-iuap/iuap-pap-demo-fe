@@ -59,9 +59,9 @@ export default {
             // 正在加载数据，显示加载 Loading 图标
             actions.popupEdit.updateState({showLoading: true});
             // 调用 getList 请求数据
-            const _param = param || getState().popupEdit.queryParam;
-            const {result} = processData(await api.getList(_param));
-            const {data:res}=result;
+            let _param = param || getState().popupEdit.queryParam;
+            let {result} = processData(await api.getList(_param));
+            let {data:res}=result;
             let _state = {
                 showLoading: false,
                 queryParam: _param //更新搜索条件
@@ -87,13 +87,13 @@ export default {
          */
         async removeList(param, getState) {
             actions.popupEdit.updateState({ showLoading: true });
-            const {id} = param;
-            const { result } = processData(await api.deleteList([{id}]),'删除成功');
+            let {id} = param;
+            let { result } = processData(await api.deleteList([{id}]),'删除成功');
             if (result.status === "success") {
-                const state = getState().popupEdit;
-                const { queryParam, list, totalPages } = state;
+                let state = getState().popupEdit;
+                let { queryParam, list, totalPages } = state;
                 // 调用 getList 请求数据
-                const { pageParams: { pageIndex } } = queryParam;
+                let { pageParams: { pageIndex } } = queryParam;
                 if ( pageIndex > 0 && pageIndex + 1 === totalPages && list.length === 1) {
                     queryParam.pageParams.pageIndex = pageIndex - 1;
                 }
@@ -108,7 +108,7 @@ export default {
         async saveOrder(param, getState) {//保存或许更新
             actions.popupEdit.updateState({showLoading: true});
             let status = null;
-            const {btnFlag} = param;
+            let {btnFlag} = param;
             delete param.btnFlag; //删除标识字段
             if (btnFlag === 0) { // 添加
                 let {result} = processData(await api.saveOrder(param), '保存成功');

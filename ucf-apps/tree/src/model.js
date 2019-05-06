@@ -62,7 +62,7 @@ export default {
          * @param {*} getState
          */
         async loadTree(param , getState) {
-            console.log("loadTree param", param);
+            // console.log("loadTree param", param);
             let cacheTree = getState().walsinTree.cacheTree;
             let {result} = processData(await api.getTreeData(param));
             let {data:res}=result;
@@ -160,7 +160,7 @@ export default {
          */
         async addTableData(param, getState) {
             let {result} = processData(await api.addTableData(param),'添加成功');
-            const {data:res}=result;
+            let {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
                 actions.walsinTree.loadTable(reqParam);
@@ -174,7 +174,7 @@ export default {
          */
         async addEditData(param, getState) {
             let {result} = processData(await api.addEditData(param),'修改成功');
-            const {data:res}=result;
+            let {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
                 actions.walsinTree.loadTable(reqParam);
@@ -187,7 +187,7 @@ export default {
          */
         async delTableData(param, getState) {
             let {result} = processData(await api.delTableData(param),'删除成功');
-            const {data:res}=result;
+            let {data:res}=result;
             if(res) {
                 let reqParam = getState().walsinTree.paginationParam.reqParam;
                 reqParam.pageIndex = 0;
@@ -213,16 +213,16 @@ export default {
                     paginationParam = deepClone(paginationParam);
                     let {reqParam, reqParam: {title, hierarchy}} = paginationParam;
 
-            console.log('searchValue',typeof param['searchValue']);
+            // console.log('searchValue',typeof param['searchValue']);
             try {
                 let {result} = processData(await api.getSearchTree(param));
-                const {data:res}=result;
+                let {data:res}=result;
                     // content = res['content'] && res['content'] || [];
                 let {content, parentIdSet} = typeof res !== 'undefined' && res || {
                         content : [],
                         parentIdSet : []
                     };
-                console.log('res',res);
+                // console.log('res',res);
                 if(Array.isArray(content)) {
 
                     let temp = {};

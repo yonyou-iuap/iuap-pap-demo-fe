@@ -139,7 +139,7 @@ class SearchAreaForm extends Component {
 
 
     render() {
-        const { form: { getFieldProps }, searchOpen, onCallback } = this.props;
+        let { form: { getFieldProps }, searchOpen, onCallback } = this.props;
         return (
             <SearchPanel
                 searchOpen={searchOpen}

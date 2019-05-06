@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {actions} from 'mirrorx';
 import queryString from "query-string";
 import Header from 'components/Header';
-import Button from 'components/Button';
+// import Button from 'components/Button';
 
 import './index.less';
 
@@ -15,9 +15,9 @@ export default class IndexView extends Component {
     }
 
     render() {
-        const _this = this;
-        const searchObj = queryString.parse(_this.props.location.search);
-        const {code, name, sexEnumValue, levelName} = searchObj;
+
+        let searchObj = queryString.parse(this.props.location.search);
+        let {code, name, sexEnumValue, levelName} = searchObj;
         return (
             <div className="employee">
                 <Header title='A1单表查询示例' back={true}>
