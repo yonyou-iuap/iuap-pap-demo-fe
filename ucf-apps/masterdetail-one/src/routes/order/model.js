@@ -57,9 +57,9 @@ export default {
          */
         initState(state, data) { //更新state
             if (data) {
-                const assignState = deepAssign(state, data);
+                let _data = deepClone(data);
                 return {
-                    ...assignState,
+                    ...state, ..._data
                 };
             } else {
                 return initialState

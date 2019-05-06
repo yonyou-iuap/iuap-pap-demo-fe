@@ -23,8 +23,8 @@ class AddEditBook extends Component {
     }
 
     async componentWillReceiveProps(nextProps) {
-        const {btnFlag, currentIndex} = this.props;
-        const {btnFlag: nextBtnFlag, currentIndex: nextCurrentIndex, checkTable, modalVisible} = nextProps;
+        let {btnFlag, currentIndex} = this.props;
+        let {btnFlag: nextBtnFlag, currentIndex: nextCurrentIndex, checkTable, modalVisible} = nextProps;
         if (btnFlag !== nextBtnFlag || currentIndex !== nextCurrentIndex) {
             // 防止网络阻塞造成btnFlag显示不正常
             this.setState({btnFlag: nextBtnFlag});
@@ -32,7 +32,7 @@ class AddEditBook extends Component {
             try {
                 if (nextBtnFlag !== 0 && checkTable === "traveling" && modalVisible) {
                     this.props.form.resetFields();
-                    const {list} = this.props.travelingObj;
+                    let {list} = this.props.travelingObj;
                     rowData = list[nextCurrentIndex] || {};
                 }
             } catch (error) {
@@ -59,12 +59,12 @@ class AddEditBook extends Component {
      */
     onSubmitEdit = () => {
         const _this = this;
-        const {btnFlag}=_this.state;
+        let {btnFlag}=_this.state;
         this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                const {passengerIndex, passengerObj} = this.props;
-                const {list} = passengerObj;
-                const {id: passengerId} = list[passengerIndex]; //获取父亲节点的id
+                let {passengerIndex, passengerObj} = this.props;
+                let {list} = passengerObj;
+                let {id: passengerId} = list[passengerIndex]; //获取父亲节点的id
                 let {rowData} = _this.state;
                 if (rowData && rowData.id) { // 如果是编辑，带上节点 id
                     values.id = rowData.id;
@@ -88,7 +88,7 @@ class AddEditBook extends Component {
      */
     onHandleBtns = (btnFlag) => {
 
-        let _this = this;
+
         let btns = [
             {
                 label: '取消',
@@ -97,7 +97,7 @@ class AddEditBook extends Component {
             },
             {
                 label: '确定',
-                fun: _this.onSubmitEdit,
+                fun: this.onSubmitEdit,
                 colors: 'primary'
             },
         ];
@@ -112,12 +112,12 @@ class AddEditBook extends Component {
 
     render() {
 
-        let _this = this;
-        const {form, modalVisible} = _this.props;
-        const {getFieldProps, getFieldError} = form;
-        const {rowData, btnFlag} = _this.state;
-        const {line, stationBegin, stationEnd, cost, remark, payStatus = ""} = rowData;
-        let btns = _this.onHandleBtns(btnFlag);
+
+        let {form, modalVisible} = this.props;
+        let {getFieldProps, getFieldError} = form;
+        let {rowData, btnFlag} = this.state;
+        let {line, stationBegin, stationEnd, cost, remark, payStatus = ""} = rowData;
+        let btns = this.onHandleBtns(btnFlag);
 
         return (
             <PopDialog
