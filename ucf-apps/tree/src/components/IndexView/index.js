@@ -157,7 +157,7 @@ class IndexView extends Component {
    * @returns null
    */
   onLoadData = (treeNode) => {
-    console.log("treeNode", treeNode);
+    // console.log("treeNode", treeNode);
     let id = treeNode.props['eventKey'];
     let _this = this;
 
@@ -257,18 +257,18 @@ class IndexView extends Component {
     const _this = this;
     let {showLoading, content, searchRes, paginationParam} = _this.props,
       {expandedKeys, autoExpandParent} = searchRes;
-    const {reqParam = {}} = paginationParam;
-    const {search_treeId} = reqParam;
+    let {reqParam = {}} = paginationParam;
+    let {search_treeId} = reqParam;
 
-    const {searchValue} = _this.state;
+    let {searchValue} = _this.state;
 
     let tableWidth = _this.getTableWidth();
 
     const loop2 = data => data.map(item => {
-      const index = item.name.search(searchValue);
-      const beforeStr = item.name.substr(0, index);
-      const afterStr = item.name.substr(index + searchValue.length);
-      const title = index > -1 ? (
+      let index = item.name.search(searchValue);
+      let beforeStr = item.name.substr(0, index);
+      let afterStr = item.name.substr(index + searchValue.length);
+      let title = index > -1 ? (
         <span>
 						{beforeStr}
           <span style={{color: '#f50'}}>{searchValue}</span>

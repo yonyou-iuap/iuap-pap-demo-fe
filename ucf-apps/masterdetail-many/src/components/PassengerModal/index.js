@@ -35,8 +35,8 @@ class AddEditPassenger extends Component {
     }
 
     async componentWillReceiveProps(nextProps) {
-        const {btnFlag, currentIndex} = this.props;
-        const {btnFlag: nextBtnFlag, currentIndex: nextCurrentIndex, passengerObj, checkTable, modalVisible} = nextProps;
+        let {btnFlag, currentIndex} = this.props;
+        let {btnFlag: nextBtnFlag, currentIndex: nextCurrentIndex, passengerObj, checkTable, modalVisible} = nextProps;
         if (btnFlag !== nextBtnFlag || currentIndex !== nextCurrentIndex) { // 弹框默认值的条件
             // 防止网络阻塞造成btnFlag显示不正常
             this.btns = this.onHandleBtns(nextProps);
@@ -47,7 +47,7 @@ class AddEditPassenger extends Component {
                 // 判断是否重后端请求数据
                 if (nextBtnFlag > 0 && checkTable === "passenger" && modalVisible) {
                     this.props.form.resetFields();
-                    const {list} = passengerObj;
+                    let {list} = passengerObj;
                     rowData = list[nextCurrentIndex] || {};
                     if (rowData.isVip) isVip = rowData.isVip;
                 }
@@ -76,24 +76,24 @@ class AddEditPassenger extends Component {
      *  提交信息
      */
     onSubmitEdit = () => {
-        const _this = this;
-        const {btnFlag}=_this.state;
+
+        let { btnFlag } = this.state;
         this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                let {rowData} = _this.state;
+                let {rowData} = this.state;
                 if (rowData && rowData.id) {
                     values.id = rowData.id;
                     values.ts = rowData.ts;
                 }
                 // 参照处理
-                const {dept} = values;
+                let {dept} = values;
                 if (dept) {
-                    const {refpk} = JSON.parse(dept);
+                    let {refpk} = JSON.parse(dept);
                     values.dept = refpk;
 
                 }
                 // 是否会员，从state中取值
-                const {isVip} = this.state; //不能使用form
+                let {isVip} = this.state; //不能使用form
                 values.isVip = isVip;
 
                 if(!isVip){ // 如果不是会员
@@ -106,7 +106,7 @@ class AddEditPassenger extends Component {
                 } catch (e) {
                 }
                 values.btnFlag=btnFlag;
-                _this.onCloseEdit(true); // 关闭弹框 无论成功失败
+                this.onCloseEdit(true); // 关闭弹框 无论成功失败
                 actions.masterDetailMany.savePassenger(values); //保存主表数据
 
             }
@@ -120,7 +120,7 @@ class AddEditPassenger extends Component {
      * @returns footer中的底部按钮
      */
     onHandleBtns = (btnFlag) => {
-        let _this = this;
+
         let btns = [
 
             {
@@ -130,7 +130,7 @@ class AddEditPassenger extends Component {
             },
             {
                 label: <FormattedMessage id="js.com.Pas.0005" defaultMessage="确定" />,
-                fun: _this.onSubmitEdit,
+                fun: this.onSubmitEdit,
                 colors: 'primary'
             },
         ];
@@ -147,13 +147,13 @@ class AddEditPassenger extends Component {
 
 
     render() {
-        let _this = this;
-        const {form, modalVisible} = _this.props;
 
-        const {getFieldProps, getFieldError,} = form;
-        const {rowData, btnFlag, isVip} = _this.state;
+        let {form, modalVisible} = this.props;
 
-        const {code, phone, sex, grade, name, dept, deptName, expirationDate} = rowData;
+        let {getFieldProps, getFieldError,} = form;
+        let {rowData, btnFlag, isVip} = this.state;
+
+        let {code, phone, sex, grade, name, dept, deptName, expirationDate} = rowData;
 
         let btns = this.btns,
             isDisabled = btnFlag > 1;

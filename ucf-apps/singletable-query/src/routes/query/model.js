@@ -3,7 +3,7 @@ import {actions} from "mirrorx";
 import * as api from "./service";
 // 接口返回数据公共处理方法，根据具体需要
 
-import {processData, structureObj, initStateObj} from "utils";
+import {processData, structureObj, initStateObj,deepClone} from "utils";
 
 
 export default {
@@ -39,7 +39,7 @@ export default {
         updateState(state, data) { //更新state
             return {
                 ...state,
-                ...data
+                ...deepClone(data)
             };
         }
     },
@@ -53,17 +53,17 @@ export default {
         async loadList(param = {}, getState) {
             // 正在加载数据，显示加载 Loading 图标
             actions.query.updateState({showLoading: true});
-            const {result} = processData(await api.getList(param));  // 调用 getList 请求数据
-            const {data:res}=result;
+            let {result} = processData(await api.getList(param));  // 调用 getList 请求数据
+            let {data:res}=result;
             let updateData = {showLoading: false};
             if (res) {
-                const {pageParams} = param;
-                const queryObj = structureObj(res, pageParams);
+                let {pageParams} = param;
+                let queryObj = structureObj(res, pageParams);
                 updateData.queryObj = queryObj;
                 updateData.queryParam = param;
             } else {
                 // 如果请求出错,数据初始化
-                const {queryObj} = getState().query;
+                let {queryObj} = getState().query;
                 updateData.queryObj = initStateObj(queryObj);
             }
             actions.query.updateState(updateData); // 更新数据和查询条件
@@ -74,12 +74,12 @@ export default {
          * @param {*} param
          */
         async getListByCol(param, getState) {
-            const {result} = processData(await api.getListByCol(param));
-            const {data=[]} = result;
-            const {distinctParams} = param,
+            let {result} = processData(await api.getListByCol(param));
+            let {data=[]} = result;
+            let {distinctParams} = param,
                 column = distinctParams[0];
-            const selectValList = data.map((item) => {
-                const {deptName, dept} = item;
+            let selectValList = data.map((item) => {
+                let {deptName, dept} = item;
                 return {key: deptName, value: dept};
             });
             actions.query.updateState({['colFilterSelect' + column]: selectValList});

@@ -33,8 +33,8 @@ class PopupModal extends Component {
 
     async componentWillReceiveProps(nextProps) {
         let _this = this;
-        const {btnFlag, currentIndex} = this.props;
-        const {btnFlag: nextBtnFlag, currentIndex: nextCurrentIndex, editModelVisible} = nextProps;
+        let {btnFlag, currentIndex} = this.props;
+        let {btnFlag: nextBtnFlag, currentIndex: nextCurrentIndex, editModelVisible} = nextProps;
         // 判断是否 btnFlag新弹框状态  currentIndex当前选中行
         if (btnFlag !== nextBtnFlag || currentIndex !== nextCurrentIndex) {
             _this.props.form.resetFields();
@@ -43,7 +43,7 @@ class PopupModal extends Component {
             let rowData = {};
             try {
                 if (nextBtnFlag !== 0 && editModelVisible) {
-                    const {list} = this.props;
+                    let {list} = this.props;
                     rowData = list[nextCurrentIndex] || {};
                 }
             } catch (error) {
@@ -68,7 +68,7 @@ class PopupModal extends Component {
      */
     onSubmitEdit = () => {
         let _this = this;
-        const {btnFlag}=_this.state;
+        let {btnFlag}=_this.state;
         _this.props.form.validateFields((err, values) => {
             if (!err) {
                 values = _this.onHandleSaveData(values);
@@ -139,11 +139,11 @@ class PopupModal extends Component {
 
 
     render() {
-        let _this = this;
-        const {form, editModelVisible} = _this.props;
-        const {rowData, btnFlag} = _this.state;
-        const {getFieldProps, getFieldError} = form;
-        const {
+        const _this = this;
+        let {form, editModelVisible} = _this.props;
+        let {rowData, btnFlag} = _this.state;
+        let {getFieldProps, getFieldError} = form;
+        let {
             code, serviceYearsCompany, pickTime,
             postLevel, levelName, year, sex, allowanceStandard, remark,
             deptName, dept, exdeeds, allowanceActual,
@@ -151,7 +151,7 @@ class PopupModal extends Component {
             serviceYears, applyTime
         } = rowData;
 
-        console.log('rowData', allowanceStandard);
+        // console.log('rowData', allowanceStandard);
         let btns = _this.onHandleBtns(btnFlag);
 
 

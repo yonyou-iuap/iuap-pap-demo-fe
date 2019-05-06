@@ -2,7 +2,7 @@ import {actions} from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
 // 接口返回数据公共处理方法，根据具体需要
-import {processData} from "utils";
+import {processData,deepClone} from "utils";
 
 
 /**
@@ -45,7 +45,7 @@ export default {
         updateState(state, data) { //更新state
             return {
                 ...state,
-                ...data
+                ...deepClone(data)
             };
         }
     },
@@ -59,9 +59,9 @@ export default {
             // 正在加载数据，显示加载 Loading 图标
             actions.popupEdit.updateState({showLoading: true});
             // 调用 getList 请求数据
-            const _param = param || getState().popupEdit.queryParam;
-            const {result} = processData(await api.getList(_param));
-            const {data:res}=result;
+            let _param = param || getState().popupEdit.queryParam;
+            let {result} = processData(await api.getList(_param));
+            let {data:res}=result;
             let _state = {
                 showLoading: false,
                 queryParam: _param //更新搜索条件
@@ -87,16 +87,16 @@ export default {
          */
         async removeList(param, getState) {
             actions.popupEdit.updateState({ showLoading: true });
-            const {id} = param;
-            const mirState = getState();
-            const { localeData } = mirState.intl;
-            const msg = localeData['js.sin.src5.0001'] || '删除成功';
-            const { result } = processData(await api.deleteList([{id}]),msg);
+            let {id} = param;
+            let mirState = getState();
+            let { localeData } = mirState.intl;
+            let msg = localeData['js.sin.src5.0001'] || '删除成功';
+            let { result } = processData(await api.deleteList([{id}]),msg);
             if (result.status === "success") {
-                const state = getState().popupEdit;
-                const { queryParam, list, totalPages } = state;
+                let state = getState().popupEdit;
+                let { queryParam, list, totalPages } = state;
                 // 调用 getList 请求数据
-                const { pageParams: { pageIndex } } = queryParam;
+                let { pageParams: { pageIndex } } = queryParam;
                 if ( pageIndex > 0 && pageIndex + 1 === totalPages && list.length === 1) {
                     queryParam.pageParams.pageIndex = pageIndex - 1;
                 }
@@ -111,7 +111,7 @@ export default {
         async saveOrder(param, getState) {//保存或许更新
             actions.popupEdit.updateState({showLoading: true});
             let status = null;
-            const {btnFlag} = param;
+            let {btnFlag} = param;
             delete param.btnFlag; //删除标识字段
             const mirState = getState();
             const { localeData } = mirState.intl;

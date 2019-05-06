@@ -1,6 +1,6 @@
 import {Message} from 'tinper-bee';
 import axios from "axios";
-
+import cloneDeep from './cloneDeep';
 
 export const success = (msg) => {
     Message.create({content: msg, color: 'success', duration: 3});
@@ -302,10 +302,9 @@ export function handleChild(parentArray, child, type) {
     return resChild;
 }
 
-
-// 数组深克隆
+// 深度拷贝
 export function deepClone(data) {
-    return JSON.parse(JSON.stringify(data));
+    return cloneDeep(data);
 }
 
 /**

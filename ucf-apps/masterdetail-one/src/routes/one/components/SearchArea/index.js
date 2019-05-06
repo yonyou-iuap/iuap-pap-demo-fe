@@ -24,7 +24,7 @@ class SearchArea extends Component {
         this.props.form.validateFields((err, values) => {
             // 获取默认请求的 分页信息
             if(!err){
-                const {pageSize} = this.props.orderObj;
+                let {pageSize} = this.props.orderObj;
                 values.pageIndex = 0;
                 values.pageSize = pageSize;
                 actions.masterDetailOne.loadList(values);
@@ -37,7 +37,7 @@ class SearchArea extends Component {
     }
 
     render() {
-        const {form: {getFieldProps}} = this.props;
+        let {form: {getFieldProps}} = this.props;
         return (
             <SearchPanel
                 reset={this.reset}

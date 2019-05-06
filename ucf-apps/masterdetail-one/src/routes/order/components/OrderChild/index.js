@@ -25,7 +25,7 @@ class OrderChild extends Component {
     render() {
         const _this = this;
         let {orderRow, btnFlag, form} = _this.props;
-        const {getFieldProps, getFieldError} = form;
+        let {getFieldProps, getFieldError} = form;
         return (
 
             <FormList className='detail-body form-panel order-panel'  layoutOpt={layoutOpt}>
@@ -40,6 +40,7 @@ class OrderChild extends Component {
 
                 <FormItem required label={<FormattedMessage id="js.com.Ord.0002" defaultMessage="名称" />} layoutOpt={layoutOpt}>
                     <FormControl disabled={btnFlag === 2}
+                                 maxLength={20}
                                  {...getFieldProps('orderName', {
                                          validateTrigger: 'onBlur',
                                          initialValue: orderRow.orderName || '',

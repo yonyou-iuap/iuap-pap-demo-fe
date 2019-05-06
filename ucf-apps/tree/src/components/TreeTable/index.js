@@ -66,7 +66,7 @@ class TreeTable extends Component {
 	 * @returns null
 	 */
 	getSelectedDataFunc = (selectData, record, index) => {
-		const { tableData } = this.props;
+		let { tableData } = this.props;
 		let _tableData = deepClone(tableData);
 		if (index != undefined) {
 			_tableData[index]['_checked'] = !_tableData[index]['_checked'];

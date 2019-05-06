@@ -6,7 +6,7 @@ import { actions } from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
 // 接口返回数据公共处理方法，根据具体需要
-import { processData, success, Error } from "utils";
+import { processData, success, Error ,deepClone} from "utils";
 
 
 export default {
@@ -41,7 +41,7 @@ export default {
         updateState(state, data) { //更新state
             return {
                 ...state,
-                ...data
+                ...deepClone(data)
             };
         }
     },
@@ -59,18 +59,18 @@ export default {
                 selectData: []
             });
 
-            const inlineEditState = getState().inlineEdit;
-            const _param = param || inlineEditState.queryParam;
+            let inlineEditState = getState().inlineEdit;
+            let _param = param || inlineEditState.queryParam;
             // 调用 getList 请求数据
 
             let {result} = processData(await api.getList(_param));
-            const {data:res}=result;
-            const defState = { showLoading: false }
+            let {data:res}=result;
+            let defState = { showLoading: false }
             let _state = null;
             if (res) {
-                const { content: list, number, totalPages, totalElements: total } = res;
+                let { content: list, number, totalPages, totalElements: total } = res;
 
-                const pageIndex = number + 1;
+                let pageIndex = number + 1;
                 _state = Object.assign({}, defState, {
                     list,
                     pageIndex,
@@ -92,9 +92,9 @@ export default {
          */
         async adds(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            const mirState = getState();
-            const { localeData } = mirState.intl;
-            const msg = localeData['js.sin.src.0001'] || '保存成功';
+            let mirState = getState();
+            let { localeData } = mirState.intl;
+            let msg = localeData['js.sin.src.0001'] || '保存成功';
             let { result } = processData(await api.adds(param),msg);
             const {status}=result;
             actions.inlineEdit.updateState({ showLoading: false});
@@ -112,18 +112,18 @@ export default {
          */
         async removes(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            const mirState = getState();
-            const { localeData } = mirState.intl;
-            const msg = localeData['js.sin.src.0002'] || '删除成功';
+            let mirState = getState();
+            let { localeData } = mirState.intl;
+            let msg = localeData['js.sin.src.0002'] || '删除成功';
             let { result } = processData(await api.removes(param),msg);
-            const {status}=result;
+            let {status}=result;
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
-                const inlineEditState = getState().inlineEdit;
-                const { queryParam, list, totalPages } = inlineEditState;
+                let inlineEditState = getState().inlineEdit;
+                let { queryParam, list, totalPages } = inlineEditState;
                 // 调用 getList 请求数据
 
-                const { pageParams: { pageIndex } } = queryParam;
+                let { pageParams: { pageIndex } } = queryParam;
                 if (pageIndex > 0 && pageIndex + 1 === totalPages && param.length === list.length) {
                     queryParam.pageParams.pageIndex = pageIndex - 1;
                 }
@@ -141,11 +141,12 @@ export default {
          */
         async updates(param, getState) {
             actions.inlineEdit.updateState({ showLoading: true });
-            const mirState = getState();
-            const { localeData } = mirState.intl;
-            const msg = localeData['js.sin.src.0003'] || '更新成功';
+            let mirState = getState();
+            let { localeData } = mirState.intl;
+            let msg = localeData['js.sin.src.0003'] || '更新成功';
             let { result } = processData(await api.updates(param),msg);
-            const {status}=result;
+            let {status}=result;
+
             actions.inlineEdit.updateState({ showLoading: false });
             if (status === 'success') {
                 actions.inlineEdit.loadList();

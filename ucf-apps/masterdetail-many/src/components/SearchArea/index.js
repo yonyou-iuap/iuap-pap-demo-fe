@@ -28,8 +28,8 @@ class SearchArea extends Component {
      */
     search = () => {
         this.props.form.validateFields((err, values) => {
-            const {passengerObj} = this.props;
-            const {pageSize} = passengerObj;
+            let {passengerObj} = this.props;
+            let {pageSize} = passengerObj;
             values.pageIndex = 0;  // 默认回到第一页
             values.pageSize = pageSize;
             actions.masterDetailMany.loadList(values);
@@ -45,8 +45,8 @@ class SearchArea extends Component {
     }
 
     render() {
-        const {form} = this.props;
-        const {getFieldProps} = form;
+        let {form} = this.props;
+        let {getFieldProps} = form;
         return (
             <SearchPanel
                 reset={this.reset}

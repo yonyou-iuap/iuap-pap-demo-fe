@@ -44,7 +44,7 @@ class IndexView extends Component {
         //后台获取部门行过滤下拉列表 动态更新 colFilterSelectdept 部门行过滤下拉列表
         if (!this.props.colFilterSelectdept && nextProps.colFilterSelectdept) {
             for (let i = 0, len = this.gridColumn.length; i<len; i++) {
-                const item = this.gridColumn[i]
+                let item = this.gridColumn[i];
                 if (item.key === 'dept') {
                     item.filterDropdownData = nextProps.colFilterSelectdept;
                     break;
@@ -60,7 +60,7 @@ class IndexView extends Component {
      * @param {string} key menu菜单key值
      */
     onRelevance = (record, key) => {
-        const {name} = record;
+        let {name} = record;
         if (key === "name") { // 跳转百度
             window.open('https://baike.baidu.com/item/' + name, "_blank");
         }
@@ -68,7 +68,7 @@ class IndexView extends Component {
             this.setState({record, showModal: true});
         }
         if (key === "year") {  // 跳转新页面
-            const {code, name, sexEnumValue, levelName} = record;
+            let {code, name, sexEnumValue, levelName} = record;
             actions.routing.push({
                 pathname: '/employee',
                 search: queryString.stringify({code, name, sexEnumValue, levelName})
@@ -99,14 +99,14 @@ class IndexView extends Component {
         let queryParam = deepClone(this.props.queryParam);
         let {whereParams, pageParams} = queryParam;
         pageParams.pageIndex = 0; // 默认跳转第一页
-        for (const [index, element] of whereParams.entries()) {
+        for (let [index, element] of whereParams.entries()) {
             if (element.key === key) { // 判断action 中是否有 过滤对象
                 whereParams[index] = this.handleFilterData(key, value, condition);
                 isAdd = false;
             }
         }
         if (isAdd) {
-            const filterData = this.handleFilterData(key, value, condition);
+            let filterData = this.handleFilterData(key, value, condition);
             whereParams.push(filterData);
         }
         actions.query.loadList(queryParam);
@@ -122,7 +122,7 @@ class IndexView extends Component {
      */
 
     handleFilterData = (key, value, condition) => {
-        const filterObj = {key, value, condition};
+        let filterObj = {key, value, condition};
         if (Array.isArray(value)) { // 判断是否日期
             filterObj.value = this.handleDateFormat(value); // moment 格式转换
             filterObj.condition="RANGE";
@@ -138,7 +138,7 @@ class IndexView extends Component {
     onFilterClear = (key) => {
         let queryParam = deepClone(this.props.queryParam);
         let {whereParams, pageParams} = queryParam;
-        for (const [index, element] of whereParams.entries()) {
+        for (let [index, element] of whereParams.entries()) {
             if (element.key === key) {
                 whereParams.splice(index, 1);
                 pageParams.pageIndex = 0; // 默认跳转第一页
@@ -268,7 +268,7 @@ class IndexView extends Component {
             render: (text, record, index) => {
 
                 //列注释的右键菜单
-                const menu = (
+                let menu = (
                     <Menu
                         onClick={e => this.onRelevance(record, e.key)}>
                         <Item key='code'><FormattedMessage id="js.com.Ind9.0002" defaultMessage='模态弹出' /></Item>
@@ -469,24 +469,24 @@ class IndexView extends Component {
     ]
 
     render() {
-        const _this = this;
-        const {queryObj, showLoading, queryParam} = _this.props;
-        const {pageIndex, total, totalPages} = queryObj;
-        const {filterable, record, tableHeight} = _this.state;
 
-        const paginationObj = {   // 分页
+        let {queryObj, showLoading, queryParam} = this.props;
+        let {pageIndex, total, totalPages} = queryObj;
+        let {filterable, record, tableHeight} = this.state;
+
+        let paginationObj = {   // 分页
             activePage: pageIndex,//当前页
             total,//总条数
             items: totalPages,
-            freshData: _this.freshData,
-            onDataNumSelect: _this.onDataNumSelect,
+            freshData: this.freshData,
+            onDataNumSelect: this.onDataNumSelect,
         }
 
         // const
-        const sortObj = {  //排序属性设置
+        let sortObj = {  //排序属性设置
             mode: 'multiple',
             backSource: true,
-            sortFun: _this.sortFun
+            sortFun: this.sortFun
         }
 
         return (
@@ -502,7 +502,7 @@ class IndexView extends Component {
                     <Button
                         className="ml8"
                         colors="primary"
-                        onClick={_this.export}
+                        onClick={this.export}
                     ><FormattedMessage id="js.com.Ind9.0025" defaultMessage="导出" /></Button>
                 </div>
                 <div className="gird-parent">
@@ -515,9 +515,9 @@ class IndexView extends Component {
                         multiSelect={false}  //false 单选，默认多选
                         showFilterMenu={true} //是否显示行过滤菜单
                         filterable={filterable}//是否开启过滤数据功能
-                        onFilterChange={_this.onFilterChange}  // 触发过滤输入操作以及下拉条件的回调
-                        onFilterClear={_this.onFilterClear} //清除过滤条件的回调函数，回调参数为清空的字段
-                        afterRowFilter={_this.afterRowFilter} //控制栏位的显示/隐藏
+                        onFilterChange={this.onFilterChange}  // 触发过滤输入操作以及下拉条件的回调
+                        onFilterClear={this.onFilterClear} //清除过滤条件的回调函数，回调参数为清空的字段
+                        afterRowFilter={this.afterRowFilter} //控制栏位的显示/隐藏
                         sort={sortObj} //排序属性设置
                         scroll={{y: tableHeight}}
                         sheetHeader={{height: 30, ifshow: false}} //设置excel导出的表头的样式、支持height、ifshow

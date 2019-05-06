@@ -39,7 +39,7 @@ class IndexView extends Component {
     }
 
     componentDidMount() {
-        const param = {pageIndex: 0, pageSize: 5};
+        let param = { pageIndex: 0, pageSize: 5 };
         actions.masterDetailMany.loadList(param);//table数据
     }
 
@@ -168,13 +168,14 @@ class IndexView extends Component {
      *
      */
     onPrint = () => {
-        const {passengerIndex, passengerObj, intl} = this.props;
-        const {list} = passengerObj;
+
+        let {passengerIndex, passengerObj} = this.props;
+        let {list} = passengerObj;
         if (list.length === 0) {
             Warning(intl.formatMessage({id:"js.com.Ind.0001", defaultMessage:"请选择需打印的数据"}));
             return;
         }
-        const {id} = list[passengerIndex];
+        let {id} = list[passengerIndex];
         actions.masterDetailMany.printDocument({
             queryParams: {
                 funccode: 'masterdetail-many',
@@ -204,24 +205,24 @@ class IndexView extends Component {
      * @param {number} type 1.删除 2.取消
      */
     async confirmGoBack(type) {
-        const {checkTable} = this.state; //获取删除的表名
-        const {list} = this.props[checkTable + "Obj"];
+        let {checkTable} = this.state; //获取删除的表名
+        let {list} = this.props[checkTable + "Obj"];
         this.setState({delModalVisible: false});
         if (type === 1 && list.length > 0) {
             if (checkTable === "passenger") { // 主表
-                const {passengerIndex} = this.props;
-                const record = list[passengerIndex];
+                let {passengerIndex} = this.props;
+                let record = list[passengerIndex];
                 await actions.masterDetailMany.delPassenger(record);
             }
             if (checkTable === "emergency") { // 子表
-                const {emergencyIndex} = this.state;
-                const record = list[emergencyIndex];
+                let {emergencyIndex} = this.state;
+                let record = list[emergencyIndex];
                 this.setState({emergencyIndex: 0}); //默认选中第一条
                 await actions.masterDetailMany.delEmergency(record);
             }
             if (checkTable === "traveling") { // 子表
-                const {travelingIndex} = this.state;
-                const record = list[travelingIndex];
+                let {travelingIndex} = this.state;
+                let record = list[travelingIndex];
                 this.setState({travelingIndex: 0}); //默认选中第一条
                 await actions.masterDetailMany.delTraveling(record);
             }
@@ -387,7 +388,7 @@ class IndexView extends Component {
      */
     getTotalCost = (data) => {
         let cost = 0;
-        for (const item of data) {
+        for (let item of data) {
             if (item.cost) cost += Number(item.cost);
         }
         return cost;
@@ -399,7 +400,7 @@ class IndexView extends Component {
      * @param {Object} data 组装分页参数
      */
     getBasicPage = (data) => {
-        const {pageIndex, total, totalPages} = data;
+        let {pageIndex, total, totalPages} = data;
         return {   // 分页
             activePage: pageIndex,//当前页
             total: total,//总条数
@@ -414,21 +415,21 @@ class IndexView extends Component {
 
 
     render() {
-        const _this = this;
-        const {
+
+        let {
             passengerObj, emergencyObj, travelingObj, showLoading,
             showTravelingLoading, showEmergencyLoading, tabKey, passengerIndex
         } = this.props;
-        const {
+        let {
             delModalVisible, modalVisible, flag, checkTable,
             emergencyIndex, travelingIndex, delPicModalVisible
         } = this.state;
 
         let selectRow = passengerObj['list'][passengerIndex] || {};
         // 主表数据为空
-        const passengerForbid = passengerObj.list.length <= 0;
-        const emergencyForbid = emergencyObj.list.length <= 0;
-        const travelingForbid = travelingObj.list.length <= 0;
+        let passengerForbid = passengerObj.list.length <= 0;
+        let emergencyForbid = emergencyObj.list.length <= 0;
+        let travelingForbid = travelingObj.list.length <= 0;
         return (
             <div className='master-detail-many'>
               <Header title={this.props.intl.formatMessage({id:"js.com.Ind.0021", defaultMessage:"B3 一主多子示例"})}/>
@@ -446,31 +447,31 @@ class IndexView extends Component {
                           role="update"
                           shape='border'
                           disabled={passengerForbid}
-                          onClick={() => _this.onShowModal("passenger", 1)}
+                          onClick={() => this.onShowModal("passenger", 1)}
                       ><FormattedMessage id="js.com.Ind.0023" defaultMessage="修改" /></Button>
                         <Button
                           className="ml8"
                           shape='border'
                           disabled={passengerForbid}
-                          onClick={() => _this.onShowModal("passenger", 2)}
+                          onClick={() => this.onShowModal("passenger", 2)}
                       ><FormattedMessage id="js.com.Ind.0024" defaultMessage="详情" /></Button>
                         <Button
                           className="ml8"
                           role="delete"
                           shape='border'
                           disabled={passengerForbid}
-                          onClick={() => _this.onClickDel("passenger")}
+                          onClick={() => this.onClickDel("passenger")}
                       ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
                         <Button
                           className="ml8"
                           shape='border'
-                          onClick={() => _this.export("passenger")}
+                          onClick={() => this.export("passenger")}
                       ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                         <Button
                           className="ml8"
                           shape='border'
                           disabled={passengerForbid}
-                          onClick={_this.onPrint}
+                          onClick={this.onPrint}
                         >
                           <FormattedMessage id="js.com.Ind.0027" defaultMessage="打印" />
                         </Button>
@@ -480,7 +481,7 @@ class IndexView extends Component {
                   ref="passenger"
                   data={passengerObj.list}
                   rowKey={(r, i) => i}
-                  columns={_this.passengerColumn}
+                  columns={this.passengerColumn}
                   getSelectedDataFunc={this.getSelectedDataFunc}
                   showHeaderMenu={true}
                   draggable={true}
@@ -495,10 +496,10 @@ class IndexView extends Component {
                   paginationObj={{
                       ...this.getBasicPage(passengerObj),
                       freshData: (pageSize) => {
-                          _this.freshData(pageSize, "passengerObj");
+                          this.freshData(pageSize, "passengerObj");
                       },
                       onDataNumSelect: (index, value) => {
-                          _this.onDataNumSelect(index, value, "passengerObj");
+                          this.onDataNumSelect(index, value, "passengerObj");
                       },
                       dataNum: 0,
                   }}
@@ -519,7 +520,7 @@ class IndexView extends Component {
                                         role="add_em"
                                         colors="primary"
                                         disabled={passengerForbid}
-                                        onClick={() => _this.onShowModal('emergency', 0)}
+                                        onClick={() => this.onShowModal('emergency', 0)}
                                   ><FormattedMessage id="js.com.Ind.0022" defaultMessage="新增" /></Button>
                                     <Button
                                         className="ml8"
@@ -527,26 +528,27 @@ class IndexView extends Component {
                                         shape="border"
                                         disabled={emergencyForbid}
                                         onClick={() => {
-                                            _this.onShowModal("emergency", 1);
+                                            this.onShowModal("emergency", 1);
                                         }}
                                   ><FormattedMessage id="js.com.Ind.0023" defaultMessage="修改" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
                                         disabled={emergencyForbid}
-                                        onClick={() => _this.onShowModal("emergency", 2)}
+                                        onClick={() => this.onShowModal("emergency", 2)}
                                   ><FormattedMessage id="js.com.Ind.0024" defaultMessage="详情" /></Button>
+
                                     <Button
                                         className="ml8"
                                         role="delete_em"
                                         shape="border"
                                         disabled={emergencyForbid}
-                                        onClick={() => _this.onClickDel("emergency")}
+                                        onClick={() => this.onClickDel("emergency")}
                                   ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
-                                        onClick={() => _this.export("emergency")}
+                                        onClick={() => this.export("emergency")}
                                   ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                                 </ButtonRoleGroup>
                             </div>
@@ -555,7 +557,7 @@ class IndexView extends Component {
                                     ref="emergency"
                                     data={emergencyObj.list}
                                     rowKey={(r, i) => i}
-                                    columns={_this.emergencyColumn}
+                                    columns={this.emergencyColumn}
                                     showHeaderMenu={true}
                                     draggable={true}
                                     multiSelect={false}
@@ -563,19 +565,19 @@ class IndexView extends Component {
                                     paginationObj={{
                                         ...this.getBasicPage(emergencyObj),
                                         freshData: (pageSize) => {
-                                            _this.freshData(pageSize, "emergencyObj");
+                                            this.freshData(pageSize, "emergencyObj");
                                         },
                                         onDataNumSelect: (index, value) => {
-                                            _this.onDataNumSelect(index, value, "emergencyObj");
+                                            this.onDataNumSelect(index, value, "emergencyObj");
                                         },
 
                                     }}
 
                                     onRowClick={(record, index) => {
-                                        _this.setState({emergencyIndex: index});
+                                        this.setState({emergencyIndex: index});
                                     }}
                                     rowClassName={(record, index, indent) => {
-                                        if (_this.state.emergencyIndex === index) {
+                                        if (this.state.emergencyIndex === index) {
                                             return 'selected';
                                         } else {
                                             return '';
@@ -602,34 +604,35 @@ class IndexView extends Component {
                                         role="update_tr"
                                         shape="border"
                                         disabled={travelingForbid}
-                                        onClick={() => _this.onShowModal("traveling", 1)}
+                                        onClick={() => this.onShowModal("traveling", 1)}
                                   ><FormattedMessage id="js.com.Ind.0023" defaultMessage="修改" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
                                         disabled={travelingForbid}
-                                        onClick={() => _this.onShowModal("traveling", 2)}
+                                        onClick={() => this.onShowModal("traveling", 2)}
                                   ><FormattedMessage id="js.com.Ind.0024" defaultMessage="详情" /></Button>
                                     <Button
                                         className="ml8" role="delete_tr"
                                         shape="border"
                                         disabled={travelingForbid}
-                                        onClick={() => _this.onClickDel("traveling")}
+                                        onClick={() => this.onClickDel("traveling")}
                                   ><FormattedMessage id="js.com.Ind.0025" defaultMessage="删除" /></Button>
                                     <Button
                                         className="ml8"
                                         shape="border"
-                                        onClick={() => _this.export("traveling")}
+                                        onClick={() => this.export("traveling")}
                                   ><FormattedMessage id="js.com.Ind.0026" defaultMessage="导出" /></Button>
                                 </ButtonRoleGroup>
                             </div>
-                          <div className="total"><FormattedMessage id="js.com.Ind.0030" defaultMessage="费用小计:" />{_this.getTotalCost(travelingObj.list)}<FormattedMessage id="js.com.Ind.0036" defaultMessage="元" /></div>
+                          <div className="total"><FormattedMessage id="js.com.Ind.0030" defaultMessage="费用小计:" />{this.getTotalCost(travelingObj.list)}<FormattedMessage id="js.com.Ind.0036" defaultMessage="元" /></div>
+
                             <div style={{marginBottom: 24}}>
                                 <Grid
                                     ref="traveling"
                                     data={travelingObj.list}
                                     rowKey={(r, i) => i}
-                                    columns={_this.travelingColumn}
+                                    columns={this.travelingColumn}
                                     showHeaderMenu={true}
                                     draggable={true}
                                     multiSelect={false}
@@ -637,17 +640,17 @@ class IndexView extends Component {
                                     paginationObj={{
                                         ...this.getBasicPage(travelingObj),
                                         freshData: (pageSize) => {
-                                            _this.freshData(pageSize, "travelingObj");
+                                            this.freshData(pageSize, "travelingObj");
                                         },
                                         onDataNumSelect: (index, value) => {
-                                            _this.onDataNumSelect(index, value, "travelingObj");
+                                            this.onDataNumSelect(index, value, "travelingObj");
                                         },
                                     }}
                                     onRowClick={(record, index) => {
-                                        _this.setState({travelingIndex: index});
+                                        this.setState({travelingIndex: index});
                                     }}
                                     rowClassName={(record, index, indent) => {
-                                        if (_this.state.travelingIndex === index) {
+                                        if (this.state.travelingIndex === index) {
                                             return 'selected';
                                         } else {
                                             return '';
@@ -669,8 +672,8 @@ class IndexView extends Component {
                                     groupname='abc'
                                     locale={U_LOCALE}
                                     onDelete={(attach) => {
-                                        _this.setState({delPicModalVisible: true});
-                                        _this.attach = attach;
+                                        this.setState({delPicModalVisible: true});
+                                        this.attach = attach;
                                     }}
                                 >
                                     <Button
@@ -738,14 +741,14 @@ class IndexView extends Component {
                 <Alert
                     show={delModalVisible}
                     context={this.props.intl.formatMessage({id: 'js.com.Ind.0034', defaultMessage: '确定删除这条记录吗 ?'})}
-                    confirmFn={() => _this.confirmGoBack(1)}
-                    cancelFn={() => _this.confirmGoBack(2)}/>
+                    confirmFn={() => this.confirmGoBack(1)}
+                    cancelFn={() => this.confirmGoBack(2)}/>
 
                 <Alert
                     show={delPicModalVisible}
                     context={this.props.intl.formatMessage({id: 'js.com.Ind.0035', defaultMessage: '确定删除文件吗 ?'})}
-                    confirmFn={() => _this.confirmDelPic(1)}
-                    cancelFn={() => _this.confirmDelPic(2)}/>
+                    confirmFn={() => this.confirmDelPic(1)}
+                    cancelFn={() => this.confirmDelPic(2)}/>
             </div>
 
         )

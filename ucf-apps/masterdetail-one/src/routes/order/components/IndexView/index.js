@@ -21,9 +21,9 @@ let titleArr = [<FormattedMessage id="js.com.Ind7.0001" defaultMessage="新增" 
 class IndexView extends Component {
     constructor(props) {
         super(props);
-        const searchObj = queryString.parse(props.location.search);
+        let searchObj = queryString.parse(props.location.search);
         let { btnFlag: flag, search_id: searchId, from, ...oterSearch } = searchObj;
-        const btnFlag = Number(flag);
+        let btnFlag = Number(flag);
 
         this.state = {
             showPopAlert: false,
@@ -45,22 +45,22 @@ class IndexView extends Component {
     oldData = []
 
     componentDidMount() {
-        const searchObj = queryString.parse(this.props.location.search);
+        let searchObj = queryString.parse(this.props.location.search);
         let {btnFlag: flag, search_id: searchId, from} = searchObj;
-        const { queryParent } = this.props;
+        let { queryParent } = this.props;
         //非新增状态 当 没有提前设置主数据时 根据 search_id 向后台请求主表数据
         if (!queryParent.id && flag > 0) {
-            const btnFlag = Number(flag);
+            let btnFlag = Number(flag);
             this.setState({btnFlag, searchId});
             if (btnFlag && btnFlag > 0) {
-                const param = {search_id: searchId, search_from: from};
+                let param = {search_id: searchId, search_from: from};
                 actions.masterDetailOrder.getQueryParent(param); // 获取主表
             }
         }
     }
 
     componentWillUnmount() {
-        const { history } = this.props;
+        let { history } = this.props;
         if (history.action === "POP") {
             actions.masterDetailOrder.initState();
         }
@@ -184,7 +184,7 @@ class IndexView extends Component {
      */
     handlerNew = () => {
         let list = this.oldData;
-        const queryDetailObj = deepClone(this.props.queryDetailObj);
+        let queryDetailObj = deepClone(this.props.queryDetailObj);
 
         let { list: queryDetailList } = queryDetailObj; // 获取子表数据
         // 如果是第一次添加，则从action取值
@@ -210,10 +210,10 @@ class IndexView extends Component {
         list.unshift(tmp);//插入到最前
         //禁用其他checked
         for (let i = 0; i < list.length; i++) {
-            const item = list[i];
-            if (!list[i]['_isNew']) {
-                list[i]['_checked'] = false;
-                list[i]['_status'] = 'new';
+            let item = list[i];
+            if (!item['_isNew']) {
+                item['_checked'] = false;
+                item['_status'] = 'new';
 
             }
         }
@@ -232,7 +232,7 @@ class IndexView extends Component {
      */
     onClickUpdate = () => {
         let list = this.oldData;
-        const queryDetailObj = deepClone(this.props.queryDetailObj);
+        let queryDetailObj = deepClone(this.props.queryDetailObj);
 
         let { list: queryDetailList } = deepClone(queryDetailObj); // 获取子表数据
         // 如果是第一次修改，则从action取值
@@ -240,8 +240,8 @@ class IndexView extends Component {
             list = queryDetailList;
         }
         //当前行数据设置编辑态
-        for (const index in list) {
-            const item = list[index];
+        for (let index in list) {
+            let item = list[index];
 
             item['_checked'] = false;
             item['_status'] = 'edit';
@@ -262,8 +262,9 @@ class IndexView extends Component {
 
 
     onClickDel = () => {
-        const { selectData } = this.state;
-        const {intl} = this.props;
+        let { selectData } = this.state;
+        let {intl} = this.props;
+
         if (selectData.length === 0) {
             Info(intl.formatMessage({id: 'js.com.Ind7.0008', defineMessage: '请勾选数据后再删除'}));
         } else {
@@ -281,9 +282,9 @@ class IndexView extends Component {
     async confirmDel(type) {
         this.setState({ showPopAlert: false });
         if (type === 1) { // 确定
-            const { selectData, searchId } = this.state;
+            let { selectData, searchId } = this.state;
             if (this.clearOldData()) {
-                const { status } = await actions.masterDetailOrder.delOrderDetail(selectData);
+                let { status } = await actions.masterDetailOrder.delOrderDetail(selectData);
                 if (status === "success") {
                     actions.masterDetailOrder.queryChild({ search_orderId: searchId }); // 获取子表
                     this.oldData = []; //清空用于编辑和添加的缓存数据
@@ -297,11 +298,11 @@ class IndexView extends Component {
      * @description 判断选中的行数据中是否有从后端的数据，有则后端删除，没有则前端删除
      */
     clearOldData = () => {
-        const queryDetailObj = deepClone(this.props.queryDetailObj);
+        let queryDetailObj = deepClone(this.props.queryDetailObj);
         let { list } = queryDetailObj;
-        const { selectData } = this.state;
-        for (const elementSelect of selectData) {
-            for (const [indexOld, elementOld] of list.entries()) {
+        let { selectData } = this.state;
+        for (let elementSelect of selectData) {
+            for (let [indexOld, elementOld] of list.entries()) {
                 // 判断当前数据是否来自后端，如果是来自后端，后端删除,
                 if (elementSelect.id && elementOld.id === elementSelect.id) {
                     return true;
@@ -340,10 +341,10 @@ class IndexView extends Component {
      */
 
     onBack = async () => {
-        const { btnFlag } = this.state;
+        let { btnFlag } = this.state;
         if (btnFlag === 2) { //判断是否为详情态
-            const searchObj = queryString.parse(this.props.location.search);
-            console.log(searchObj)
+            let searchObj = queryString.parse(this.props.location.search);
+            // console.log(searchObj)
             let { from } = searchObj;
             switch (from) {
                 case undefined:
@@ -367,8 +368,8 @@ class IndexView extends Component {
      * @returns
      */
     filterDataParam = (data) => {
-        for (const [index, detailItem] of data.entries()) {
-            const { detailDate = moment() } = detailItem;
+        for (let [index, detailItem] of data.entries()) {
+            let { detailDate = moment() } = detailItem;
             detailItem.detailDate = moment(detailDate).format("YYYY-MM-DD");
             data[index] = detailItem;
         }
@@ -403,10 +404,10 @@ class IndexView extends Component {
      * @returns
      */
     filterListKey = (childData) => {
-        const data = this.validateChild(childData);
+        let data = this.validateChild(childData);
         let flag = true;
-        for (const [index, rowObj] of data.entries()) {
-            for (const key in rowObj) {
+        for (let [index, rowObj] of data.entries()) {
+            for (let key in rowObj) {
                 // 默认验证通过
                 data[index]['_validate'] = false;
                 // 只要一个值为空，验证不通过
@@ -428,20 +429,20 @@ class IndexView extends Component {
      * @returns
      */
     filterOrder = (entity) => {
-        const btnFlag = Number(this.state.btnFlag);
+        let btnFlag = Number(this.state.btnFlag);
         if (btnFlag === 1) {  //为主表添加编辑信息
-            const { queryParent: orderRow } = this.props;
+            let { queryParent: orderRow } = this.props;
             if (orderRow && orderRow.id) {
                 entity.id = orderRow.id;
                 entity.ts = orderRow.ts;
             }
         }
         // 主表日期处理
-        const { orderDept, orderDate } = entity;
+        let { orderDept, orderDate } = entity;
         entity.orderDate = orderDate.format("YYYY-MM-DD");
         // 主表参照特殊处理
         if (orderDept) {
-            const { refpk } = JSON.parse(orderDept);
+            let { refpk } = JSON.parse(orderDept);
             entity.orderDept = refpk;
         }
         return entity;
@@ -452,7 +453,7 @@ class IndexView extends Component {
      * 保存
      */
     onClickSave =  () => {
-        const queryDetailObj = deepClone(this.props.queryDetailObj);
+        let queryDetailObj = deepClone(this.props.queryDetailObj);
         let { form } = this.props;
         let entity = {};
         let formValidate = false;
@@ -467,14 +468,14 @@ class IndexView extends Component {
         });
 
         //开始校验
-        const { rowData, flag } = this.filterListKey(this.oldData);
+        let { rowData, flag } = this.filterListKey(this.oldData);
         queryDetailObj.list = rowData;
         actions.masterDetailOrder.updateState({ queryDetailObj: deepClone(queryDetailObj) });
         //检查是否验证通过
         if (flag && formValidate) {
-            const purchaseOrderDetailList = this.filterDataParam(rowData);
-            const sublist = { purchaseOrderDetailList };
-            const param = { entity, sublist };
+            let purchaseOrderDetailList = this.filterDataParam(rowData);
+            let sublist = { purchaseOrderDetailList };
+            let param = { entity, sublist };
             actions.masterDetailOrder.adds(param);
             this.clearQuery();
         }
@@ -509,10 +510,10 @@ class IndexView extends Component {
      * @param {Number} type type 为0标识为 pageIndex,为1标识 pageSize
      */
     onPageSelect = (value, type) => {
-        const { queryDetailObj, queryParent } = this.props;
-        const { pageIndex, pageSize } = getPageParam(value, type, queryDetailObj);
-        const { id: search_orderId } = queryParent;
-        const temp = { search_orderId, pageSize, pageIndex };
+        let { queryDetailObj, queryParent } = this.props;
+        let { pageIndex, pageSize } = getPageParam(value, type, queryDetailObj);
+        let { id: search_orderId } = queryParent;
+        let temp = { search_orderId, pageSize, pageIndex };
         actions.masterDetailOrder.queryChild(temp);
     }
 
@@ -522,7 +523,7 @@ class IndexView extends Component {
      */
     getSelectedDataFunc = (selectData, record, index) => {
         this.setState({ selectData });
-        const { queryDetailObj } = this.props;
+        let { queryDetailObj } = this.props;
         let _list = deepClone(queryDetailObj.list);
         //当第一次没有同步数据
         // if (this.oldData.length == 0) {
@@ -635,7 +636,7 @@ class IndexView extends Component {
      * @memberof AddEditPassenger
      */
     onClickToBPM = (rowData) => {
-        const searchObj = queryString.parse(this.props.location.search);
+        let searchObj = queryString.parse(this.props.location.search);
         let { from } = searchObj;
         actions.routing.push({
             pathname: '/bpm-chart',
@@ -651,14 +652,14 @@ class IndexView extends Component {
     }
 
     render() {
-        const {
+        let {
             queryDetailObj, status, showLoading, form, queryParent: orderRow, showDetailLoading, showModalCover, intl
         } = this.props;
-        const { showPopAlert, showPopBackVisible, btnFlag, appType, processDefinitionId, processInstanceId } = this.state;
+        let { showPopAlert, showPopBackVisible, btnFlag, appType, processDefinitionId, processInstanceId } = this.state;
         if (!orderRow.id && btnFlag > 0) {
             return null
         }
-        const paginationObj = {   // 分页
+        let paginationObj = {   // 分页
             activePage: queryDetailObj.pageIndex,//当前页
             total: queryDetailObj.total,//总条数
             items: queryDetailObj.totalPages,
@@ -668,8 +669,8 @@ class IndexView extends Component {
             disabled: status !== "view"
         }
 
-        const rowEditStatus = btnFlag === 2;
-        const btnForbid = queryDetailObj.list.length === 0;
+        let rowEditStatus = btnFlag === 2;
+        let btnForbid = queryDetailObj.list.length === 0;
 
         return (
             <div className='purchase-order'>

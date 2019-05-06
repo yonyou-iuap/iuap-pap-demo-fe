@@ -36,9 +36,9 @@ class SearchAreaForm extends Component {
                 values.year = values.year.format('YYYY');
             }
             // 参照特殊处理
-            const {dept} = values;
+            let {dept} = values;
             if (dept) {
-                const {refpk} = JSON.parse(dept);
+                let {refpk} = JSON.parse(dept);
                 values.dept = refpk;
             }
 
@@ -69,8 +69,8 @@ class SearchAreaForm extends Component {
             let queryParam = deepClone(this.props.queryParam);
             let {whereParams} = queryParam;
 
-            const arrayNew = [];
-            for (const field in values) {
+            let arrayNew = [];
+            for (let field in values) {
                 arrayNew.push({key: field});
             }
             queryParam.whereParams = delListObj(whereParams, arrayNew, "key"); //合并对象
@@ -86,14 +86,14 @@ class SearchAreaForm extends Component {
      */
 
     getSearchPanel = (values) => {
-        const list = [];
+        let list = [];
         for (let key in values) {
 
             if (values[key] || ((typeof values[key]) === "number")) {
                 let condition = "LIKE";
                 // 这里通过根据项目自己优化
-                const equalArray = ["code", "month"]; // 当前字段查询条件为等于
-                const greaterThanArray = ["serviceYearsCompany"]; //  当前字段查询条件为大于等于
+                let equalArray = ["code", "month"]; // 当前字段查询条件为等于
+                let greaterThanArray = ["serviceYearsCompany"]; //  当前字段查询条件为大于等于
                 if (equalArray.includes(key)) { // 查询条件为 等于
                     condition = "EQ";
                 }
@@ -109,9 +109,9 @@ class SearchAreaForm extends Component {
 
 
     render() {
-        const _this = this;
-        const {form,onCallback} = _this.props;
-        const {getFieldProps} = form;
+
+        let {form,onCallback} = this.props;
+        let {getFieldProps} = form;
         return (
             <SearchPanel
                 reset={this.reset}

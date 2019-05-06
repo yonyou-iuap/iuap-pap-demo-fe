@@ -210,12 +210,12 @@ class FactoryComp extends Component {
      * @returns JSX
      */
     renderComp = () => {
-        const { type, value, record } = this.props;
-        const renderMap = renderComponentMap[type];
+        let { type, value, record } = this.props;
+        let renderMap = renderComponentMap[type];
         if (renderMap) {
-            const { component: Com, type: comType, props } = renderMap;
-            const _props = props || {};
-            const { _edit, _status, _validate } = record;
+            let { component: Com, type: comType, props } = renderMap;
+            let _props = props || {};
+            let { _edit, _status, _validate } = record;
             let _value;
             switch (comType) {
                 case 'dateYear':
@@ -229,8 +229,8 @@ class FactoryComp extends Component {
                     }
                     break;
                 case 'select':
-                    const { selectList } = renderMap;
-                    const selected = selectList.find(item => item.value === value);
+                    let { selectList } = renderMap;
+                    let selected = selectList.find(item => item.value === value);
                     _value = selected ? selected.key : '';
                     break;
                 case 'ref': _value = record[renderMap.valueKey]; break;

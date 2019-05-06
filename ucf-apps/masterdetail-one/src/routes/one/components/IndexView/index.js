@@ -36,9 +36,9 @@ class IndexView extends Component {
      */
     loadPage = (searchParam = {}) => {
         // 获取默认请求的 分页信息
-        const {pageSize, pageIndex} = this.props.orderObj;
-        const tempPageSize = pageIndex ? pageIndex : 1; //默认第一页
-        const initPage = {pageIndex: tempPageSize - 1, pageSize};
+        let {pageSize, pageIndex} = this.props.orderObj;
+        let tempPageSize = pageIndex ? pageIndex : 1; //默认第一页
+        let initPage = {pageIndex: tempPageSize - 1, pageSize};
         actions.masterDetailOne.loadList({...initPage, ...searchParam});
     }
 
@@ -48,8 +48,8 @@ class IndexView extends Component {
      * @param {Number} btnFlag 0标识为新增，1标识为修改，2标识为详情
      */
     onClickAddEditView = (btnFlag) => {
-        const {selectIndex, orderObj} = this.props;
-        const {list = []} = orderObj;
+        let {selectIndex, orderObj} = this.props;
+        let {list = []} = orderObj;
         let orderInfo = null;
 
         if (btnFlag !== 0) {
@@ -113,9 +113,9 @@ class IndexView extends Component {
         }
 
         if (tableName === "detailObj") { //detail 表分页
-            const {selectIndex, orderObj} = this.props;
-            const {id: search_orderId} = orderObj.list[selectIndex];
-            const temp = {search_orderId, pageSize, pageIndex};
+            let {selectIndex, orderObj} = this.props;
+            let {id: search_orderId} = orderObj.list[selectIndex];
+            let temp = {search_orderId, pageSize, pageIndex};
             actions.masterDetailOne.loadOrderDetailList(temp);
         }
 
@@ -132,9 +132,9 @@ class IndexView extends Component {
      * @param {Number} status  1确定删除 2 取消删除
      */
     async confirmGoBack(status) {
-        const {selectIndex, orderObj} = this.props;
-        const {list = []} = orderObj;
-        const record = list[selectIndex];
+        let {selectIndex, orderObj} = this.props;
+        let {list = []} = orderObj;
+        let record = list[selectIndex];
         this.setState({delModalVisible: false});
         if (status === 1) { // 主表
             await actions.masterDetailOne.delOrder(record);
@@ -258,7 +258,7 @@ class IndexView extends Component {
      * @returns
      */
     getBasicPage = (data) => {
-        const {pageIndex, total, totalPages} = data;
+        let {pageIndex, total, totalPages} = data;
         return {   // 分页
             activePage: pageIndex,//当前页
             total: total,//总条数
@@ -282,7 +282,7 @@ class IndexView extends Component {
         } else {
             let msg = operation == 'submit' && intl.formatMessage({id:"js.com.Ind6.0013", defaultMessage:"单据提交成功"}) || intl.formatMessage({id:"js.com.Ind6.0014", defaultMessage:"单据撤回成功"});
             success(msg);
-            const searchParam = deepClone(this.props.searchParam); // 深拷贝查询条件从action里
+            let searchParam = deepClone(this.props.searchParam); // 深拷贝查询条件从action里
             this.loadPage(searchParam);
         }
 
@@ -302,10 +302,10 @@ class IndexView extends Component {
         })
     }
 
-
+    dataNumMap = {"5": 0, "10": 1, "15": 2, "20": 3, "25": 4, "50": 5};
     getDataNum = (num) => {
-        const val = {"5": 0, "10": 1, "15": 2, "20": 3, "25": 4, "50": 5};
-        let dataNum = val[num];
+
+        let dataNum = this.dataNumMap[num];
         if (dataNum === undefined) {
             dataNum = 6;
         }
@@ -319,8 +319,8 @@ class IndexView extends Component {
         };
         if ( list.length ) {
             let bpmState = list[selectIndex]['bpmState'];
-            let submitForbid = bpmState ? true : false,
-                recallForbid = bpmState == 1 ? false : true;
+            let submitForbid = !!bpmState,
+                recallForbid = bpmState != 1;
 
             resObj = {
                 submitForbid,
@@ -333,12 +333,12 @@ class IndexView extends Component {
 
 
     render() {
-        const _this = this;
-        const {delModalVisible} = _this.state;
+
+        let {delModalVisible} = this.state;
         let {showLoading, showDetailLoading, orderObj, detailObj, selectIndex} = this.props;
         let {list} = orderObj;
 
-        const {submitForbid, recallForbid} = _this.handleBpmState(list, selectIndex);
+        const {submitForbid, recallForbid} = this.handleBpmState(list, selectIndex);
         //  数据为空，按钮disable
         const btnForbid = list.length === 0;
         return (
@@ -351,38 +351,38 @@ class IndexView extends Component {
                             colors="primary"
                             className="ml8"
                             role="add"
-                            onClick={() => _this.onClickAddEditView(0)}
+                            onClick={() => this.onClickAddEditView(0)}
                         ><FormattedMessage id="js.com.Ind6.0016" defaultMessage="新增" /></Button>
                         <Button
                             shape="border"
                             className="ml8"
                             role="update"
                             disabled={submitForbid || btnForbid }
-                            onClick={() => _this.onClickAddEditView(1)}
+                            onClick={() => this.onClickAddEditView(1)}
                         ><FormattedMessage id="js.com.Ind6.0017" defaultMessage="修改" /></Button>
                         <Button
                             shape="border"
                             className="ml8"
                             disabled={btnForbid}
-                            onClick={() => _this.onClickAddEditView(2)}
+                            onClick={() => this.onClickAddEditView(2)}
                         ><FormattedMessage id="js.com.Ind6.0018" defaultMessage="详情" /></Button>
                         <Button
                             role="delete"
                             shape="border"
                             className="ml8"
                             disabled={submitForbid || btnForbid}
-                            onClick={_this.onClickDel}
+                            onClick={this.onClickDel}
                         ><FormattedMessage id="js.com.Ind6.0019" defaultMessage="删除" /></Button>
                         <Alert show={delModalVisible} context="是否要删除 ?"
-                               confirmFn={() => _this.confirmGoBack(1)}
-                               cancelFn={() => _this.confirmGoBack(2)}
+                               confirmFn={() => this.confirmGoBack(1)}
+                               cancelFn={() => this.confirmGoBack(2)}
                         />
                         <Button
                           shape="border"
                           key="export"
                           className="ml8"
                           disabled={btnForbid}
-                          onClick={_this.export}
+                          onClick={this.export}
                         >
                             <FormattedMessage id="js.com.Ind6.0021" defaultMessage="导出" />
                         </Button>
@@ -393,10 +393,10 @@ class IndexView extends Component {
                             nodekey="purchaseOrder"
                             url={`${GROBAL_HTTP_CTX}/purchase_order/submit`}
                             urlAssignSubmit={`${GROBAL_HTTP_CTX}/purchase_order/assignSubmit`}
-                            onStart={_this.bpmStart('submit', 'start')}
-                            onSuccess={_this.bpmStart('submit', 'success')}
-                            onError={_this.bpmEnd('submit', 'error')}
-                            onEnd={_this.bpmEnd('submit', 'end')}
+                            onStart={this.bpmStart('submit', 'start')}
+                            onSuccess={this.bpmStart('submit', 'success')}
+                            onError={this.bpmEnd('submit', 'error')}
+                            onEnd={this.bpmEnd('submit', 'end')}
                         >
                             <Button className="ml8"  size='sm' colors="primary"
                                 disabled={submitForbid}><FormattedMessage id="js.com.Ind6.0022" defaultMessage="提交" /></Button>
@@ -404,10 +404,10 @@ class IndexView extends Component {
                         <BpmButtonRecall
                             checkedArray={[orderObj['list'][selectIndex]]}
                             url={`${GROBAL_HTTP_CTX}/purchase_order/recall`}
-                            onStart={_this.bpmStart('recall', 'start')}
-                            onSuccess={_this.bpmStart('recall', 'success')}
-                            onError={_this.bpmEnd('recall', 'error')}
-                            onEnd={_this.bpmEnd('recall', 'end')}
+                            onStart={this.bpmStart('recall', 'start')}
+                            onSuccess={this.bpmStart('recall', 'success')}
+                            onError={this.bpmEnd('recall', 'error')}
+                            onEnd={this.bpmEnd('recall', 'end')}
                         >
                             <Button
                               className="ml8"
@@ -440,9 +440,9 @@ class IndexView extends Component {
                     // 分页
                     paginationObj={{
                         ...this.getBasicPage(orderObj),
-                        freshData: pageSize => _this.freshData(pageSize, "orderObj"),
-                        onDataNumSelect: (index, value) => _this.onDataNumSelect(index, value, "orderObj"),
-                        dataNum: _this.getDataNum(orderObj.pageSize),
+                        freshData: pageSize => this.freshData(pageSize, "orderObj"),
+                        onDataNumSelect: (index, value) => this.onDataNumSelect(index, value, "orderObj"),
+                        dataNum: this.getDataNum(orderObj.pageSize),
                     }}
                 />
                 <div className="table-space"> </div>
@@ -455,9 +455,9 @@ class IndexView extends Component {
                         // 分页
                         paginationObj={{
                             ...this.getBasicPage(detailObj),
-                            freshData: pageSize => _this.freshData(pageSize, "detailObj"),
-                            onDataNumSelect: (index, value) => _this.onDataNumSelect(index, value, "detailObj"),
-                            dataNum: _this.getDataNum(detailObj.pageSize),
+                            freshData: pageSize => this.freshData(pageSize, "detailObj"),
+                            onDataNumSelect: (index, value) => this.onDataNumSelect(index, value, "detailObj"),
+                            dataNum: this.getDataNum(detailObj.pageSize),
                         }}
                         loading={{show: (!showLoading && showDetailLoading)}}
                     />
