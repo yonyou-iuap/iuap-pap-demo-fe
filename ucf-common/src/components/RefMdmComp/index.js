@@ -11,6 +11,7 @@ import {RefTreeWithInput} from 'ref-tree';
 import request from 'utils/request.js'
 // import RefMultipleTableBaseUI from 'ref-multiple-table';
 import {RefMultipleTableWithInput} from 'ref-multiple-table';
+import 'ref-multiple-table/lib/index.css'
 // import RefTreeTableBaseUI from 'ref-tree-table';
 import {RefTreeTableWithInput} from 'ref-tree-table';
 import Message from 'bee-message';
@@ -34,8 +35,16 @@ class MdmRefComp extends Component {
             treeData: [],
             showLoading: true,
             treeNodePk: '',
-            tableKey: ''
+            tableKey: '',
+            value: ''
         };
+        this.pageCount = 0;
+        this.totalElements = 0;
+        this.pageSize = 10;
+        this.currPageIndex = 1;
+        this.dataNumSelect = this.dataNumSelect.bind(this);
+        this.handlePagination = this.handlePagination.bind(this);
+        this.loadTableData = this.loadTableData.bind(this);
     }
     componentWillMount() {
         this.initComponent();
@@ -61,7 +70,7 @@ class MdmRefComp extends Component {
 
     initComponent = (nextProps) => {
         let propsObj = nextProps || this.props;
-        let requestFun = ( resp ) =>{
+        let requestFun = async ( resp ) =>{
             let data = resp.data;
             if(data.flag){
                 let fullclassname = data.fullclassname || '';
@@ -78,6 +87,19 @@ class MdmRefComp extends Component {
                     refPkGd: refPkGd,
                     '_': new Date().getTime()
                 }
+                
+                let value = this.props.value;
+                if(value){
+                    try{
+                        let valueObj = JSON.parse(value);
+                        if(valueObj.refpk && !valueObj.refname){
+                            valueObj.refname = await this.getName(valueObj.refpk,queryParams,type);
+                            value = JSON.stringify(valueObj);
+                        }
+                    }catch(e){
+                    }
+                }
+                
                 this.setState({
                     title: title,
                     fullclassname: fullclassname,
@@ -85,7 +107,8 @@ class MdmRefComp extends Component {
                     type: type,
                     pk_entityitem: pk_entityitem,
                     refPkGd: refPkGd,
-                    queryParams: queryParams
+                    queryParams: queryParams,
+                    value: value
                 })
                 this.forceUpdate();
             }else{
@@ -128,13 +151,17 @@ class MdmRefComp extends Component {
             params.key = key;
         if(treeNodePk)
             params.treeNodePk = treeNodePk;
-        let url = '/iuapmdm/reference/mdmref/'
+            let url = '/iuapmdm/reference/mdmref/'
         if(type === 'grid'){
-            url += '/grid';
+            url += 'grid';
+            params.pageSize = this.pageSize
+            params.pageIndex = this.currPageIndex
         }else if(type === 'tree'){
-            url += '/tree';
+            url += 'tree';
         }else if(type === 'treegrid'){
-            url += '/treegrid';
+            url += 'treegrid';
+            params.pageSize = this.pageSize
+            params.pageIndex = this.currPageIndex
         }
         request(url,{
             method: "GET",
@@ -144,6 +171,13 @@ class MdmRefComp extends Component {
             let tableData = [];
             let treeData = [];
             let gridDataObj,treeDataObj,pkField,writeField;
+            if(type === 'grid'){
+                this.pageCount = resp.data.pageCount;
+                this.totalElements = resp.data.total;
+            }else if(type === 'treegrid'){
+                this.pageCount = resp.data.gridData.pageCount;
+                this.totalElements = resp.data.gridData.total;
+            }
             if(type === 'grid' || type === 'treegrid'){
                 gridDataObj = resp.data;
                 if(type === 'treegrid'){
@@ -245,7 +279,8 @@ class MdmRefComp extends Component {
         let type = this.state.type;
         // console.log(refProps.treeData);
         if(type === 'grid'){
-            return <RefMultipleTableWithInput 
+            return <RefMultipleTableWithInput
+                theme="blue" 
                 {...props}
                 {...refProps}
                 >   
@@ -285,11 +320,71 @@ class MdmRefComp extends Component {
             return <div></div>
         }
     }
+    handlePagination(index) {
+        this.currPageIndex = index;
+        this.getData(this.state.tableKey)
+    }
+    dataNumSelect(index, pageSize){
+        this.currPageIndex = 1;
+        this.pageSize = pageSize;
+        this.getData(this.state.tableKey)
+    }
+    loadTableData(params){
+        this.currPageIndex = params['refClientPageInfo.currPageIndex'] + 1;
+        this.pageSize = params['refClientPageInfo.pageSize'];
+        this.getData(this.state.tableKey, this.state.treeNodePk)
+    }
+
+    getName(key,queryParams,type){
+        return new Promise((resolve, reject) => {
+            let params = Object.assign({},queryParams);
+            let url = '/iuapmdm/reference/mdmref/'
+            params['type_code'] = key
+            if(type === 'grid'){
+                url += 'gridname';
+            }else if(type === 'tree'){
+                url += 'treename';
+            }else if(type === 'treegrid'){
+                url += 'gridname';
+            }
+            request(url,{
+                method: "GET",
+                param: params 
+            }).then(( resp ) =>{
+                resolve(resp.data)
+            }).catch(() =>{
+                reject()
+            });
+        });
+            
+    }
+
+    async componentWillReceiveProps(nextProps){
+        let value = nextProps.value;
+        let nowValue = this.props.value;
+        if(value != nowValue && value && this.state.type){
+            try{
+                let valueObj = JSON.parse(value);
+                // console.log('valueObj:::',valueObj);
+                if(valueObj.refpk && !valueObj.refname){
+                    valueObj.refname = await this.getName(valueObj.refpk,this.state.queryParams,this.state.type);
+                    value = JSON.stringify(valueObj);
+                }
+            }catch(e){
+
+            }
+            
+            this.setState({
+                value: value
+            })
+            this.forceUpdate()
+        }
+    }
+    
     render() {
-        const {title,pkField,writeField,showLoading,columnsData,tableData,treeData} = this.state;
-        let type = this.state.type;
-        let value = this.props.value;
+        const {title,pkField,writeField,showLoading,columnsData,tableData,treeData,type,value} = this.state;
         let disabled = this.props.disabled;
+        let placeholder = this.props.placeholder; 
         const props = {
             title: title,
             valueField: pkField,
@@ -297,6 +392,7 @@ class MdmRefComp extends Component {
             className: 'mdm-ref',
             value:value,
             disabled:disabled,
+            placeholder: placeholder,
             canClickGoOn:()=>{
                 this.getData();
                 return true
@@ -310,7 +406,13 @@ class MdmRefComp extends Component {
                 showLoading: showLoading,
                 columnsData: columnsData,
                 tableData: tableData,
-                pageCount: 0,
+                pageCount: this.pageCount,
+                totalElements: this.totalElements,
+                pageSize: this.pageSize,
+                size : 'md',
+                currPageIndex: this.currPageIndex,
+                dataNumSelect: this.dataNumSelect,
+                handlePagination: this.handlePagination,
                 miniSearchFunc: (key) =>{
                     this.setState({
                         tableKey: key
@@ -332,8 +434,12 @@ class MdmRefComp extends Component {
                 columnsData: columnsData,
                 tableData: tableData,
                 page:{
-                    pageCount: 0
+                    pageCount: this.pageCount,
+                    totalElements: this.totalElements,
+                    pageSize: this.pageSize,
+                    currPageIndex: (this.currPageIndex -1)
                 },
+                loadTableData: this.loadTableData,
                 onTableSearch: (key) =>{
                     this.setState({
                         tableKey: key
