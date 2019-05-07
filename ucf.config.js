@@ -35,7 +35,7 @@ module.exports = (env, argv) => {
             {
                 enable: true,
                 headers: {
-                    "Referer": "http://172.20.52.123"
+                    "Referer": "http://yanshi01.app.yyuap.com"
                 },
                 //要代理访问的对方路由
                 router: [
@@ -50,9 +50,30 @@ module.exports = (env, argv) => {
                     '/pap_basedoc',
                     '/iuapmdm',
                 ],
-                url: 'http://172.20.52.123'
+                url: 'http://yanshi01.app.yyuap.com'
             }
+            // {
+            //     enable: true,
+            //     headers: {
+            //         "Referer": "http://172.20.52.123"
+            //     },
+            //     //要代理访问的对方路由
+            //     router: [
+            //         '/iuap-pap-demo-be',
+            //         '/wbalone',
+            //         '/iuap-saas-message-center/',
+            //         '/iuap-saas-filesystem-service/',
+            //         '/eiap-plus/',
+            //         '/newref/',
+            //         '/print_service/',
+            //         '/iuap-print/',
+            //         '/pap_basedoc',
+            //         '/iuapmdm',
+            //     ],
+            //     url: 'http://172.20.52.123'
+            // }
         ],
+        
         // 全局环境变量
         global_env: {
             __MODE__: JSON.stringify(env),
