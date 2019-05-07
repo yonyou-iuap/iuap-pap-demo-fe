@@ -27,17 +27,11 @@ class AddEditEmergency extends Component {
         if (btnFlag !== nextBtnFlag || currentIndex !== nextCurrentIndex) {
             // 防止网络阻塞造成btnFlag显示不正常
             this.setState({btnFlag: nextBtnFlag});
-            let rowData = {};
-            try {
-                // 判断是否从后端获取新数据
-                if (nextBtnFlag !== 0 && checkTable === "emergency" && modalVisible) {
-                    this.props.form.resetFields();
-                    let {list} = emergencyObj;
-                    rowData = list[nextCurrentIndex] || {};
-                }
-            } catch (error) {
-                console.log(error);
-            } finally {
+            // 判断是否从后端获取新数据
+            if (nextBtnFlag !== 0 && checkTable === "emergency" && modalVisible) {
+                this.props.form.resetFields();
+                let {list} = emergencyObj;
+                let rowData  = list[nextCurrentIndex] || {};
                 this.setState({rowData});
             }
         }
@@ -139,7 +133,8 @@ class AddEditEmergency extends Component {
                                              type: 'string',
                                              required: true,
                                              pattern: /\S+/ig,
-                                             message: <FormattedMessage id="js.com.Eme.0007" defaultMessage="请输入联系人姓名" />,
+                                             message: '请输入联系人姓名,长度小于10',
+                                             max:10
                                          }],
                                      })}
                         />

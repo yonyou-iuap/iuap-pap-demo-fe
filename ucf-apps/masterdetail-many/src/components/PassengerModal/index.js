@@ -41,19 +41,13 @@ class AddEditPassenger extends Component {
             // 防止网络阻塞造成btnFlag显示不正常
             this.btns = this.onHandleBtns(nextProps);
             this.setState({btnFlag: nextBtnFlag});
-            let rowData = {};
             let isVip = false;
-            try {
-                // 判断是否重后端请求数据
-                if (nextBtnFlag > 0 && checkTable === "passenger" && modalVisible) {
-                    this.props.form.resetFields();
-                    let {list} = passengerObj;
-                    rowData = list[nextCurrentIndex] || {};
-                    if (rowData.isVip) isVip = rowData.isVip;
-                }
-            } catch (error) {
-                console.log(error);
-            } finally {
+            // 判断是否重后端请求数据
+            if (nextBtnFlag > 0 && checkTable === "passenger" && modalVisible) {
+                this.props.form.resetFields();
+                let {list} = passengerObj;
+                let rowData = list[nextCurrentIndex] || {};
+                if (rowData.isVip) isVip = rowData.isVip;
                 this.setState({rowData, isVip});
             }
         }
@@ -182,8 +176,8 @@ class AddEditPassenger extends Component {
                                          validateTrigger: 'onBlur',
                                          initialValue: name || '',
                                          rules: [{
-                                             required: true, message: <FormattedMessage id="js.com.Pas.0008" defaultMessage="请输入乘客姓名" />
-
+                                             required: true, message: '请输入乘客姓名,小于20个字符',
+                                             max:20
                                          }],
                                      })}
                         />
@@ -232,8 +226,7 @@ class AddEditPassenger extends Component {
                                               rules: [{
                                                   required: true,
                                                   pattern: /^[1][3,4,5,7,8][0-9]{9}$/,
-                                                  message: <FormattedMessage id="js.com.Pas.0016" defaultMessage="请正确输入手机号" />,
-
+                                                  message: '请正确输入手机号',
                                               }],
                                           })}
                         />

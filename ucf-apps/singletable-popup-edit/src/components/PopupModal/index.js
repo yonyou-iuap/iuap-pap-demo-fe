@@ -39,16 +39,10 @@ class PopupModal extends Component {
         if (btnFlag !== nextBtnFlag || currentIndex !== nextCurrentIndex) {
             _this.props.form.resetFields();
             // 防止网络阻塞造成btnFlag显示不正常
-            this.setState({btnFlag: nextBtnFlag});
-            let rowData = {};
-            try {
-                if (nextBtnFlag !== 0 && editModelVisible) {
-                    let {list} = this.props;
-                    rowData = list[nextCurrentIndex] || {};
-                }
-            } catch (error) {
-                console.log(error);
-            } finally {
+            this.setState({btnFlag: nextBtnFlag}); 
+            if (nextBtnFlag !== 0 && editModelVisible) {
+                let {list} = this.props;
+                let rowData = list[nextCurrentIndex] || {};
                 this.setState({rowData});
             }
         }

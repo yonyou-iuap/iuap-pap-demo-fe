@@ -46,7 +46,8 @@ class OrderChild extends Component {
                                          initialValue: orderRow.orderName || '',
                                          rules: [{
                                              required: true,
-                                             message: <FormattedMessage id="js.com.Ord.0003" defaultMessage="请输入名称" />,
+                                             message: '请输入名称,长度小于20',
+                                             max:20
                                          }],
                                      }
                                  )}
