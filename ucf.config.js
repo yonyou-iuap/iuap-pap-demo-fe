@@ -32,6 +32,26 @@ module.exports = (env, argv) => {
                 router: ["/wbalone/appmenumgr/newSidebarList"],
                 url: 'https://mock.yonyoucloud.com/mock/535'
             },
+            // {
+            //     enable: true,
+            //     headers: {
+            //         "Referer": "http://yanshi01.app.yyuap.com"
+            //     },
+            //     //要代理访问的对方路由
+            //     router: [
+            //         '/iuap-pap-demo-be',
+            //         '/wbalone',
+            //         '/iuap-saas-message-center/',
+            //         '/iuap-saas-filesystem-service/',
+            //         '/eiap-plus/',
+            //         '/newref/',
+            //         '/print_service/',
+            //         '/iuap-print/',
+            //         '/pap_basedoc',
+            //         '/iuapmdm',
+            //     ],
+            //     url: 'http://yanshi01.app.yyuap.com'
+            // }
             {
                 enable: true,
                 headers: {
@@ -52,26 +72,6 @@ module.exports = (env, argv) => {
                 ],
                 url: 'http://172.20.52.123'
             }
-            // {
-            //     enable: true,
-            //     headers: {
-            //         "Referer": "http://172.20.52.123"
-            //     },
-            //     //要代理访问的对方路由
-            //     router: [
-            //         '/iuap-pap-demo-be',
-            //         '/wbalone',
-            //         '/iuap-saas-message-center/',
-            //         '/iuap-saas-filesystem-service/',
-            //         '/eiap-plus/',
-            //         '/newref/',
-            //         '/print_service/',
-            //         '/iuap-print/',
-            //         '/pap_basedoc',
-            //         '/iuapmdm',
-            //     ],
-            //     url: 'http://172.20.52.123'
-            // }
         ],
         
         // 全局环境变量
