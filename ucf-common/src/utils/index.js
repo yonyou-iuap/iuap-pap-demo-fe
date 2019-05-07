@@ -1,6 +1,6 @@
 import {Message} from 'tinper-bee';
 import axios from "axios";
-import cloneDeep from './cloneDeep';
+import cloneDeep from 'clone-deep';
 
 export const success = (msg) => {
     Message.create({content: msg, color: 'success', duration: 3});

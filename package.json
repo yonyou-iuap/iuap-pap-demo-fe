@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/iuap-design/ucf-webapp#readme",
   "devDependencies": {
-    "ucf-scripts": "1.1.3",
+    "ucf-scripts": "1.1.6",
     "webpack-bundle-analyzer": "^3.1.0"
   },
   "dependencies": {
@@ -40,10 +40,8 @@
     "bee-table": "^2.0.10",
     "bee-tooltip": "^2.0.3",
     "bee-tree": "^2.0.9",
-    "is-plain-object": "^2.0.4",
-    "kind-of": "^6.0.2",
-    "shallow-clone": "^3.0.0",
     "classnames": "2.2.6",
+    "clone-deep": "^4.0.1",
     "exceljs": "^1.7.0",
     "lanbuild": "^1.0.8-beta.0",
     "mirrorx": "0.2.13",
