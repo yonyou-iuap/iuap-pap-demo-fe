@@ -44,7 +44,8 @@ class OrderChild extends Component {
                                          initialValue: orderRow.orderName || '',
                                          rules: [{
                                              required: true,
-                                             message: '请输入名称',
+                                             message: '请输入名称,长度小于20',
+                                             max:20
                                          }],
                                      }
                                  )}

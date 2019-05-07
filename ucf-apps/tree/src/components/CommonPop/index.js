@@ -169,7 +169,8 @@ class CommonPop extends Component {
                                     type: 'string',
                                     required: true,
                                     pattern: /\S+/ig,
-                                    message: '请输入员工姓名',
+                                    message: '请输入员工姓名,长度小于10',
+                                    max:10
                                 }],
                             })}
                         />

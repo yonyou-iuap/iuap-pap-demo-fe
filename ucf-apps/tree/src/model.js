@@ -122,37 +122,25 @@ export default {
             await actions.walsinTree.updateState({
                 showLoading : true
             })
-
-            try {
-                let {result} = processData(await api.getTableData(param));
-                let {data:res}=result;
-                let tableData = [],
-                    resultObj = {};
-
-                if (res) {
-                    tableData = res.content;
-                    resultObj = Object.assign({},{
-                        reqParam : param,
-                        resParam : {
-                            total : res['totalElements'],
-                            totalPages : res['totalPages']
-                        }
-                    })
-                }
-
-                await actions.walsinTree.updateState({
-                    tableData,
-                    paginationParam : resultObj,
-                    tableSelValue : [],
-                    showLoading : false
+            let {result} = processData(await api.getTableData(param));
+            let {data:res}=result;
+            let tableData = [], resultObj = {}; 
+            if (res) {
+                tableData = res.content;
+                resultObj = Object.assign({},{
+                    reqParam : param,
+                    resParam : {
+                        total : res['totalElements'],
+                        totalPages : res['totalPages']
+                    }
                 })
-
-            } catch(e) {
-                actions.walsinTree.updateState({
-                    showLoading : false
-                })
-            }
-
+            } 
+            await actions.walsinTree.updateState({
+                tableData,
+                paginationParam : resultObj,
+                tableSelValue : [],
+                showLoading : false
+            })
         },
 
         /**
@@ -211,54 +199,41 @@ export default {
             let {searchValue} = param;
             let {paginationParam} = getState().walsinTree;
                     paginationParam = deepClone(paginationParam);
-                    let {reqParam, reqParam: {title, hierarchy}} = paginationParam;
-
-            // console.log('searchValue',typeof param['searchValue']);
-            try {
-                let {result} = processData(await api.getSearchTree(param));
-                let {data:res}=result;
-                    // content = res['content'] && res['content'] || [];
-                let {content, parentIdSet} = typeof res !== 'undefined' && res || {
-                        content : [],
-                        parentIdSet : []
-                    };
-                // console.log('res',res);
-                if(Array.isArray(content)) {
-
-                    let temp = {};
-
-                    let resultObj = {
-                        content,
-                        searchRes : {
-                            expandedKeys : parentIdSet,
-                            autoExpandParent : param['searchValue'] && true || false
-                        }
-                    };
-
-                    if ( (searchValue == '' && hierarchy != '0' || !title.includes(searchValue) ) ) {
-                        temp = {
-                            search_treeId : "",
-                            title : "",
-                            hierarchy : ''
-                        }
+            let {reqParam, reqParam: {title, hierarchy}} = paginationParam; 
+            let {result} = processData(await api.getSearchTree(param));
+            let {data:res}=result; 
+            let {content, parentIdSet} = typeof res !== 'undefined' && res || {
+                    content : [],
+                    parentIdSet : []
+                }; 
+            if(Array.isArray(content)) { 
+                let temp = {},resultObj = {
+                    content,
+                    searchRes : {
+                        expandedKeys : parentIdSet,
+                        autoExpandParent : param['searchValue'] && true || false
                     }
+                };
 
-                    paginationParam.reqParam = Object.assign({}, reqParam, temp)
-                    resultObj.paginationParam = paginationParam;
-
-                    await actions.walsinTree.updateState(resultObj)
-                } else {
-                    throw new Error('返回content为null');
+                if ( (searchValue == '' && hierarchy != '0' || !title.includes(searchValue) ) ) {
+                    temp = {
+                        search_treeId : "",
+                        title : "",
+                        hierarchy : ''
+                    }
                 }
 
-            } catch(e) {
-                console.log(e);
+                paginationParam.reqParam = Object.assign({}, reqParam, temp)
+                resultObj.paginationParam = paginationParam;
+
+                await actions.walsinTree.updateState(resultObj)
+            } else {
+                // throw new Error('返回content为null');
                 actions.walsinTree.updateState({
                     showLoading : false,
                     content : []
                 })
             }
-
             await actions.walsinTree.updateState({
                 showLoading: false
             })

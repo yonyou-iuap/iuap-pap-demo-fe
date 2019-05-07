@@ -28,16 +28,10 @@ class AddEditBook extends Component {
         if (btnFlag !== nextBtnFlag || currentIndex !== nextCurrentIndex) {
             // 防止网络阻塞造成btnFlag显示不正常
             this.setState({btnFlag: nextBtnFlag});
-            let rowData = {};
-            try {
-                if (nextBtnFlag !== 0 && checkTable === "traveling" && modalVisible) {
-                    this.props.form.resetFields();
-                    let {list} = this.props.travelingObj;
-                    rowData = list[nextCurrentIndex] || {};
-                }
-            } catch (error) {
-                console.log(error);
-            } finally {
+            if (nextBtnFlag !== 0 && checkTable === "traveling" && modalVisible) {
+                this.props.form.resetFields();
+                let {list} = this.props.travelingObj;
+                let rowData = list[nextCurrentIndex] || {};
                 this.setState({rowData});
             }
         }
