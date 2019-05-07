@@ -35,7 +35,7 @@ module.exports = (env, argv) => {
             {
                 enable: true,
                 headers: {
-                    "Referer": "http://yanshi01.app.yyuap.com"
+                    "Referer": "http://172.20.52.123"
                 },
                 //要代理访问的对方路由
                 router: [
@@ -50,7 +50,7 @@ module.exports = (env, argv) => {
                     '/pap_basedoc',
                     '/iuapmdm',
                 ],
-                url: 'http://yanshi01.app.yyuap.com'
+                url: 'http://172.20.52.123'
             }
             // {
             //     enable: true,
