@@ -170,7 +170,7 @@ class AddEditPassenger extends Component {
                     </FormItem>
 
                     <FormItem required label="乘客姓名">
-                        <FormControl disabled={isDisabled}
+                        <FormControl disabled={isDisabled} maxLength={20}
                                      {...getFieldProps('name', {
                                          validateTrigger: 'onBlur',
                                          initialValue: name || '',

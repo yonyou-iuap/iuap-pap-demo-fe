@@ -130,7 +130,7 @@ class AddEditEmergency extends Component {
 
                 <FormList>
                     <FormItem required label="联系人姓名">
-                        <FormControl disabled={btnFlag > 0}
+                        <FormControl disabled={btnFlag > 0} maxLength={20}
                                      {...getFieldProps('contactName', {
                                          validateTrigger: 'onBlur',
                                          initialValue: contactName || '',
