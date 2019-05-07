@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import RefComboBox,{ComboStore } from 'pap-refer/lib/ref-combobox/src/index';
+import RefComboBox,{ComboStore } from 'pap-refer/lib/pap-common-combobox/src/index';
 // import 'pap-refer/lib/ref-combobox.css';
 // import Button from 'bee-button';
 // import Icon from 'bee-icon';

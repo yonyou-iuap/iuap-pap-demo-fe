@@ -42,11 +42,11 @@ import {
   
   import {RefComboboxDemo1,RefComboboxDemo2} from "./components/Ref/RefCombobox"
   import {RefMdmDemo1} from "./components/Ref/RefMdm"
-  import 'pap-refer/lib/ref-tree/src/index.css'
-  import 'pap-refer/lib/ref-multiple-table/src/index.css'
-  import 'pap-refer/lib/ref-tree-table/src/index.css'
-  import 'pap-refer/lib/ref-combobox/src/index.css'
-  import 'pap-refer/lib/ref-tree-transfer/src/index.css';
+  import 'pap-refer/lib/pap-common-tree/src/index.css'
+  import 'pap-refer/lib/pap-common-table/src/index.css'
+  import 'pap-refer/lib/pap-common-treeTable/src/index.css'
+  import 'pap-refer/lib/pap-common-combobox/src/index.css'
+  import 'pap-refer/lib/pap-common-treeTransfer/src/index.css';
   class App extends Component {
     constructor() {
       super();

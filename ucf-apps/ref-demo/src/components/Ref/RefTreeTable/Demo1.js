@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 
-import  RefTreeTableWithInput  from 'pap-refer/lib/ref-tree-table/src/index';
+import  RefTreeTableWithInput  from 'pap-refer/lib/pap-common-treeTable/src/index';
 // import "pap-refer/lib/ref-tree-table.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
