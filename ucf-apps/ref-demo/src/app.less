@@ -1,9 +1,11 @@
 .change-theme{
     cursor: pointer;
 }
-.ref-red .u-input-group.simple .u-input-group-btn,.ref-blue .u-input-group.simple .u-input-group-btn{
+.ref-red .u-input-group.simple .u-input-group-btn,
+.ref-blue .u-input-group.simple .u-input-group-btn{
     top:0!important;
 }
+
 .demo{
     padding: 10px;
     
@@ -25,6 +27,13 @@
             width: 200px;
             text-align: right;
             margin-left: 10px;
+        }
+        .ref-filter-item:hover{
+            background: #ebecf0;
+            cursor: pointer;
+        }
+        .ref-filter-item:active{
+            background: rgb(255, 247, 231);
         }
     }
     &-label{ 
@@ -90,17 +99,7 @@
 .uf-group-2:before {
     content: "\e64c"
 }
-//解决radio没有文字的错误
-.ref-red .u-table td:first-child{
-    position: relative;
-}
-.ref-red .u-radio-group{
-    position: absolute!important;
-    top: 50%;
-    margin-top: -4px;
-    left: 50%;
-    margin-left: -10px;
-}
+
 .u-modal  .u-modal-content{
     transform: none !important;
 }
