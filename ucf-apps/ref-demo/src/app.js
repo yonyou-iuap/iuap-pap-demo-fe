@@ -12,7 +12,7 @@ let lang = getCookie('u_locale') || getCookie('i18next') || 'zh_CN';
 import Intl from 'components/Intl'
 // import './theme-blue.css'
 // let dir = lang.toLocaleLowerCase()==='en_us'?'Ref_EN':(lang.toLocaleLowerCase()==='zh_tw'?'Ref_TW':'Ref');
-import {  
+import {
   RefTreeDemo1,
   RefTreeDemo2,
   RefTreeDemo3,
@@ -26,7 +26,7 @@ import {
     RefTableDemo3,
     RefTableDemo4,
   } from "./components/Ref/RefTable"
-  
+
   import {
     RefTreeTransferDemo1,
     RefTreeTransferDemo2
@@ -35,14 +35,14 @@ import {
   import {
     RefTreeTableDemo1,
   } from "./components/Ref/RefTreeTable"
-  
+
   import {
     RefJiLianDemo1,
     RefJiLianDemo2,
     RefJiLianDemo3,
   } from "./components/Ref/RefJiLian"
 
-  
+
   import {RefComboboxDemo1,RefComboboxDemo2} from "./components/Ref/RefCombobox"
   import {RefMdmDemo1} from "./components/Ref/RefMdm"
 
@@ -63,7 +63,7 @@ import {
         strictMode: false,
         theme:'ref-red',//切换主题，默认红色
       }
-  
+
       setTimeout(() => {
         this.setState({
           strictMode: true
@@ -75,13 +75,13 @@ import {
         theme:this.state.theme === 'ref-red'?'ref-blue':'ref-red'
       })
     }
-  
+
     render() {
       let { strictMode,theme } = this.state;
       return (
         <div>
           {/* <h2 className="change-theme" onClick={this.changeTheme} >{`切换主题：当前主题是（${theme==='ref-red'?'红色':'蓝色'}）`}</h2> */}
-          <h2><FormattedMessage id="js.ref.src.0001" defaultMessage="树参照" /></h2>
+          <h2><FormattedMessage id="js.ref.src.0001" defaultMessage="参照示例" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
               <RefTreeDemo1 lang={lang} theme={theme} {...this.props}/>
@@ -135,7 +135,7 @@ import {
               <RefJiLianDemo3 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
-          
+
           <h2><FormattedMessage id="js.ref.src.0004" defaultMessage="穿梭参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">
@@ -145,7 +145,7 @@ import {
               <RefTreeTransferDemo2 lang={lang} theme={theme} {...this.props}/>
             </div>
           </div>
-     
+
           <h2><FormattedMessage id="js.ref.src.0005" defaultMessage="树表参照" /></h2>
           <div className={`demo-row ${theme}`}>
             <div className="demo-col">

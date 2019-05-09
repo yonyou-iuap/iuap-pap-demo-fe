@@ -21,7 +21,7 @@ class IndexView extends Component {
         let {code, name, sexEnumValue, levelName} = searchObj;
         return (
             <div className="employee">
-                <Header title={this.props.intl.formatMessage({id:"js.com.Ind10.0001", defaultMessage:"A1单表查询示例"})} back={true}>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind10.0001", defaultMessage:"A1单表查询"})} back={true}>
                     {/*<div className='head-btn'>*/}
                         {/*<Button shape="border" className="ml8" onClick={_this.onBack}>取消</Button>*/}
                     {/*</div>*/}

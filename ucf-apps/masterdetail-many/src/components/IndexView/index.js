@@ -432,7 +432,7 @@ class IndexView extends Component {
         let travelingForbid = travelingObj.list.length <= 0;
         return (
             <div className='master-detail-many'>
-              <Header title={this.props.intl.formatMessage({id:"js.com.Ind.0021", defaultMessage:"B3 一主多子示例"})}/>
+              <Header title={this.props.intl.formatMessage({id:"js.com.Ind.0021", defaultMessage:"B3一主多子"})}/>
                 <SearchArea passengerObj={passengerObj} onRef={this.onRef}/>
                 <div className='table-header'>
                     <ButtonRoleGroup funcCode="masterdetail-many">

@@ -343,7 +343,7 @@ class IndexView extends Component {
         const btnForbid = list.length === 0;
         return (
             <div className="master-detail-one">
-                <Header title={this.props.intl.formatMessage({id:"js.com.Ind6.0015", defaultMessage:"B2 一主一子示例"})}/>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind6.0015", defaultMessage:"B2一主一子"})}/>
                 <SearchArea orderObj={orderObj}/>
                 <div className='table-header'>
                     <ButtonRoleGroup funcCode="masterdetail-one">
