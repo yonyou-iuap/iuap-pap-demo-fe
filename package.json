@@ -4,7 +4,7 @@
   "description": "典型案例",
   "main": "index.js",
   "scripts": {
-    "start": "ucf-scripts start --homepage=index.html",
+    "start": "ucf-scripts start --homepage=index.html  --port=8082",
     "build": "ucf-scripts build",
     "dic": "node lanbuild.js 1",
     "dic2": "node lanbuild.js 2"

@@ -35,7 +35,8 @@ module.exports = (env, argv) => {
             {
                 enable: true,
                 headers: {
-                    "Referer": "http://172.20.53.249:8088"
+                    "Referer": "https://liczadedebug.yonyoucloud.com/",
+                      "Host": "liczadedebug.yonyoucloud.com"
                 },
                 //要代理访问的对方路由
                 router: [
@@ -50,7 +51,7 @@ module.exports = (env, argv) => {
                     '/pap_basedoc',
                     '/iuapmdm',
                 ],
-                url: 'http://172.20.53.249:8088'
+                url: 'http://127.0.0.1:8088'
             }
         ],
         // 全局环境变量
