@@ -781,7 +781,7 @@ class IndexView extends Component {
         }
         return (
             <div className='inline-edit'>
-                <Header title={this.props.intl.formatMessage({id:"js.com.Ind1.0022", defaultMessage:"A2单表行内编辑示例"})} />
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind1.0022", defaultMessage:"A2单表行内编辑"})} />
                 <SearchAreaForm
                     queryParam={queryParam}
                     status={status}

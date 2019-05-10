@@ -285,7 +285,7 @@ class IndexView extends Component {
     })
     return (
       <div className="tree-example">
-        <Header title={this.props.intl.formatMessage({id:"js.com.Ind3.0002", defaultMessage:"B1左树右表示例"})}/>
+        <Header title={this.props.intl.formatMessage({id:"js.com.Ind3.0002", defaultMessage:"B1左树右表"})}/>
         <div className="tree-body">
           <div className='tree-wrap'>
             <div className='tree'>

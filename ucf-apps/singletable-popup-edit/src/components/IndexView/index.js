@@ -302,7 +302,7 @@ class IndexView extends Component {
 
         return (
             <div className='single-table-popup'>
-                <Header title={this.props.intl.formatMessage({id:"js.com.Ind4.0019", defaultMessage:"A3 单表弹框编辑示例"})}/>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind4.0019", defaultMessage:"A3单表弹框编辑"})}/>
                 <SearchArea
                     {...this.props}
                     onCloseEdit={this.onCloseEdit}
@@ -439,5 +439,3 @@ class IndexView extends Component {
 }
 
 export default injectIntl(IndexView);
-
-
