@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ucf-scripts start --homepage=index.html",
-    "build": "ucf-scripts build",
+    "build":"node --max_old_space_size=9000 ./node_modules/.bin/ucf-scripts build",
     "war": "rimraf war && mkdir war && jar cvfM0 ./war/dist.war ./ucf-publish/"
   },
   "repository": {
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/iuap-design/ucf-webapp#readme",
   "devDependencies": {
-    "ucf-scripts": "1.1.7",
+    "ucf-scripts": "1.1.6",
     "webpack-bundle-analyzer": "^3.1.0"
   },
   "dependencies": {
@@ -41,7 +41,7 @@
     "bee-table": "^2.0.17",
     "bee-tooltip": "^2.0.3",
     "bee-tree": "^2.0.9",
-    "bee-icon":"^1.0.11",
+    "bee-icon": "^1.0.11",
     "classnames": "2.2.6",
     "clone-deep": "^4.0.1",
     "exceljs": "^1.7.0",
