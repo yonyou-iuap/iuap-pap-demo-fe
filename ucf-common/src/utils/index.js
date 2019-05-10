@@ -616,3 +616,25 @@ export function getPageParam(value, type, pageParams) {
     return {pageIndex, pageSize}
 
 }
+
+function isString(str){ 
+    return (typeof str=='string')&&str.constructor==String; 
+} 
+
+
+/**
+ *@description 处理form的 validateFields 返回空格问题。
+ * @param {*} 数据源
+ */
+export function getValidateFieldsTrim(values) {
+    for (const key in values) {
+        if (values.hasOwnProperty(key)) {
+            const element = values[key];
+            if(isString(element)){
+                values[key] = (values[key]).trim();
+            }
+        }
+    }
+    return values;
+}
+

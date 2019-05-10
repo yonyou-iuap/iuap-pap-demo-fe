@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {FormControl, InputNumber, Select} from "tinper-bee";
 import {actions} from "mirrorx";
-
+import {getValidateFieldsTrim} from "utils";
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
 
@@ -54,7 +54,8 @@ class AddEditBook extends Component {
     onSubmitEdit = () => {
         const _this = this;
         let {btnFlag}=_this.state;
-        this.props.form.validateFields(async (err, values) => {
+        this.props.form.validateFields(async (err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             if (!err) {
                 let {passengerIndex, passengerObj} = this.props;
                 let {list} = passengerObj;

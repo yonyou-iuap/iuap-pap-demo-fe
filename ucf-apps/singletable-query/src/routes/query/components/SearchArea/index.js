@@ -6,8 +6,7 @@ import DatePicker from "tinper-bee/lib/Datepicker";
 import {RefIuapDept} from 'components/RefViews';
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
-
-import {deepClone, mergeListObj, delListObj} from "utils";
+import {deepClone, mergeListObj, delListObj,getValidateFieldsTrim} from "utils";
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
 import './index.less'
@@ -29,7 +28,8 @@ class SearchAreaForm extends Component {
      * @param {*} values 表单数据
      */
     search = () => {
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             // 年份特殊处理
             if (values.year) {
                 values.year = values.year.format('YYYY');
@@ -64,7 +64,8 @@ class SearchAreaForm extends Component {
      */
     reset = () => {
         this.props.form.resetFields();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             let queryParam = deepClone(this.props.queryParam);
             let {whereParams} = queryParam;
 

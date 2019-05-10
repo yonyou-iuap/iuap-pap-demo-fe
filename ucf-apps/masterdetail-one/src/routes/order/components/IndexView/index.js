@@ -11,6 +11,7 @@ import Button from 'components/Button';
 import Alert from 'components/Alert';
 import Child from '../OrderChild';
 import FactoryComp from './FactoryComp';
+import {getValidateFieldsTrim} from "utils";
 
 import { uuid, deepClone, getCookie, Info, getPageParam } from "utils";
 import './index.less'
@@ -456,7 +457,8 @@ class IndexView extends Component {
         let formValidate = false;
 
         //对主表数据进行处理
-        form.validateFields((error, value) => {
+        form.validateFields((error, _value) => {
+             let values = getValidateFieldsTrim(_values);
             if (!error) {
                 entity = this.filterOrder(value);
                 entity.orderUser = decodeURIComponent(getCookie("_A_P_userId"));

@@ -1,5 +1,5 @@
 {
-  "name": "iuap-demo",
+  "name": "iuap-pap-demo-fe",
   "version": "3.5.6",
   "description": "典型案例",
   "main": "index.js",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/iuap-design/ucf-webapp#readme",
   "devDependencies": {
-    "ucf-scripts": "1.1.6",
+    "ucf-scripts": "1.1.7",
     "webpack-bundle-analyzer": "^3.1.0"
   },
   "dependencies": {
@@ -38,7 +38,7 @@
     "bee-modal": "^2.0.5",
     "bee-radio": "^2.0.7",
     "bee-search-panel": "2.0.13",
-    "bee-table": "^2.0.10",
+    "bee-table": "^2.0.17",
     "bee-tooltip": "^2.0.3",
     "bee-tree": "^2.0.9",
     "classnames": "2.2.6",
@@ -58,7 +58,7 @@
     "ref-tree": "^2.0.2",
     "ref-tree-table": "2.0.1",
     "ref-tree-transfer": "^2.0.2-beta.0",
-    "tinper-bee": "^2.0.7",
+    "tinper-bee": "^2.0.10-alpha.4",
     "ucf-fe": "^0.1.0",
     "ucf-request": "^1.0.0",
     "yyuap-bpm": "0.3.37",
