@@ -12,6 +12,7 @@ import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
 import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg/src/index';
 // import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
 import { Button, Form, Message } from 'tinper-bee';
+import 'bee-message/build/Message.css';
 import Card from '../Card'
 let code =
 `
@@ -31,10 +32,7 @@ class Demo3 extends Component {
       sum: 1,
       singleClientParam: {},
       messageShow: false,
-      jiLianValue: {
-        refname: "",
-        refpk: "",
-      },
+      jiLianValue: null,
     }
 
   }
@@ -50,8 +48,8 @@ class Demo3 extends Component {
   }
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
-      // alert('请先选择部门')
-      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择部门" />, color: 'danger', duration: 0.5 });
+      // alert('请先选择组织')
+      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择组织" />, color: 'danger', duration: 0.5 });
       return false;
     }
     return true;
@@ -162,10 +160,7 @@ class Demo3 extends Component {
       sum: 1,
       singleClientParam: {},
       messageShow: false,
-      jiLianValue: {
-        refname: "",
-        refpk: "",
-      },
+      jiLianValue: null,
     }
 
   }
@@ -181,8 +176,7 @@ class Demo3 extends Component {
   }
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
-      // alert('请先选择部门')
-      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择部门" />, color: 'danger', duration: 0.5 });
+      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择组织" />, color: 'danger', duration: 0.5 });
       return false;
     }
     return true;

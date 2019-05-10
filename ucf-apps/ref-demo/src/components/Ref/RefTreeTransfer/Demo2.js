@@ -169,6 +169,7 @@ class Demo2 extends Component {
               tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',
               tableBodyUrlSearch: ''
             }}
+            filterUrl={'/pap_basedoc/common-ref/filterRefJSON'}
             displayField='{refname}-{refcode}'
             valueField='refpk'
             lang={this.props.lang}

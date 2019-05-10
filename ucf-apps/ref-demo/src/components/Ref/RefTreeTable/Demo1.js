@@ -54,7 +54,7 @@ return (
         }
     >
         <div className="demo-label">
-            <span ><FormattedMessage id="js.Ref.Ref20.0004" defaultMessage="组织人员：" /></span>
+            <span ><FormattedMessage id="js.Ref.Ref20.0005" defaultMessage="组织部门人员：" /></span>
             <RefTreeTableWithInput
                 title = {this.props.intl.formatMessage({id:"js.Ref.Ref20.0005", defaultMessage:"组织部门人员"})}
                 textOption= {{
@@ -134,7 +134,7 @@ class Demo1 extends Component {
         }
       >
         <div className="demo-label">
-          <span ><FormattedMessage id="js.Ref.Ref20.0004" defaultMessage="组织人员：" /></span>
+          <span ><FormattedMessage id="js.Ref.Ref20.0005" defaultMessage="组织部门人员：" /></span>
           <RefTreeTableWithInput
             title={this.props.intl.formatMessage({id:"js.Ref.Ref20.0005", defaultMessage:"组织部门人员"})}
             textOption={{

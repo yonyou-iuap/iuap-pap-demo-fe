@@ -157,6 +157,7 @@ export default Form.createForm()(Demo1);
               theme={this.props.theme}
               searchPlaceholder={this.props.intl.formatMessage({id:"js.Ref.Ref224.0013", defaultMessage:"搜索"})}
               notFoundContent={this.props.intl.formatMessage({id:"js.Ref.Ref224.0014", defaultMessage:"暂无数据"})}
+              filterUrl={'/pap_basedoc/common-ref/filterRefJSON'}
               {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
