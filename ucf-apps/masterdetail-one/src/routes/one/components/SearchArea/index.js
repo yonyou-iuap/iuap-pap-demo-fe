@@ -4,6 +4,7 @@ import {actions} from "mirrorx";
 import {FormControl, Select} from "tinper-bee";
 import FormList from 'components/FormList';
 import SearchPanel from 'components/SearchPanel';
+import {getValidateFieldsTrim} from "utils";
 
 import './index.less'
 
@@ -21,7 +22,8 @@ class SearchArea extends Component {
      * @param {Object} values 表单数据
      */
     search = () => {
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             // 获取默认请求的 分页信息
             if(!err){
                 let {pageSize} = this.props.orderObj;

@@ -6,6 +6,7 @@ import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
 import FormControlPhone from 'components/FormControlPhone';
 import FormList from 'components/FormList';
+import {getValidateFieldsTrim} from "utils";
 import './index.less'
 
 const FormItem = FormList.Item;
@@ -55,7 +56,9 @@ class AddEditEmergency extends Component {
     onSubmitEdit = async () => {
         const _this = this;
         let { btnFlag }=_this.state;
-        this.props.form.validateFields(async (err, values) => {
+        this.props.form.validateFields(async (err, _values) => { 
+            let values = getValidateFieldsTrim(_values);
+
             if (!err) {
                 let {passengerIndex, passengerObj} = this.props;
                 let {list} = passengerObj;

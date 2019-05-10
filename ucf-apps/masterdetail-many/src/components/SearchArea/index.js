@@ -5,6 +5,7 @@ import {FormControl} from "tinper-bee";
 import FormList from 'components/FormList';
 import SearchPanel from 'components/SearchPanel';
 import FormControlPhone from 'components/FormControlPhone';
+import {getValidateFieldsTrim} from "utils";
 
 import './index.less'
 
@@ -27,7 +28,8 @@ class SearchArea extends Component {
      * @param {object} values 表单数据
      */
     search = () => {
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             let {passengerObj} = this.props;
             let {pageSize} = passengerObj;
             values.pageIndex = 0;  // 默认回到第一页

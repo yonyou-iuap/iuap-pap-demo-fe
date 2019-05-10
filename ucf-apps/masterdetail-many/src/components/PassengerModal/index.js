@@ -10,6 +10,7 @@ import FormControlPhone from 'components/FormControlPhone';
 import FormError from 'components/FormError';
 import { dateLocal } from 'components/Intl'
 import FormList from 'components/FormList'
+import {getValidateFieldsTrim} from "utils";
 import './index.less'
 
 const FormItem = FormList.Item;
@@ -72,7 +73,8 @@ class AddEditPassenger extends Component {
     onSubmitEdit = () => {
 
         let { btnFlag } = this.state;
-        this.props.form.validateFields(async (err, values) => {
+        this.props.form.validateFields(async (err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             if (!err) {
                 let {rowData} = this.state;
                 if (rowData && rowData.id) {

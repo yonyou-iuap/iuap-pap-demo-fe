@@ -6,7 +6,7 @@ import {
 import FormList from 'components/FormList';
 import PopDialog from 'components/Pop';
 
-import {success, Error} from "utils";
+import {Error,getValidateFieldsTrim} from "utils";
 import {actions} from "mirrorx";
 
 import './index.less';
@@ -52,7 +52,8 @@ class CommonPop extends Component {
 	 */
 	onSubmitEdit = async () => { // 提交modal信息
         let _this = this;
-        _this.props.form.validateFields( async (err, values) => {
+        _this.props.form.validateFields( async (err, _values) => {
+             let values = getValidateFieldsTrim(_values);
 
             if (err) {
                 return ;

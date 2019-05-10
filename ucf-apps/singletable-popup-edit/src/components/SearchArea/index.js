@@ -5,12 +5,10 @@ import {FormControl, Select} from "tinper-bee";
 import DatePicker from "bee-datepicker";
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
-import { RefIuapDept } from 'components/RefViews';
-
+import { RefIuapDept } from 'components/RefViews'; 
 import FormList from 'components/FormList'
-
-import {deepClone} from "utils";
 import { dateLocal } from 'components/Intl'
+import {deepClone,getValidateFieldsTrim} from "utils";
 
 import './index.less'
 
@@ -26,7 +24,8 @@ class SearchAreaForm extends Component {
      * @param {*} values 表单数据
      */
     search = () => {
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             if (values.year) {
                 values.year = values.year.format('YYYY');
             }

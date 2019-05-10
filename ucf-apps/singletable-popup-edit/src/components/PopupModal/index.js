@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {actions} from "mirrorx";
 import {FormControl, Select, InputNumber} from "tinper-bee";
 import FormList from 'components/FormList';
-
+import {getValidateFieldsTrim} from "utils";
 import moment from "moment";
 import DatePicker from "bee-datepicker";
 import SelectMonth from 'components/SelectMonth';
@@ -63,7 +63,8 @@ class PopupModal extends Component {
     onSubmitEdit = () => {
         let _this = this;
         let {btnFlag}=_this.state;
-        _this.props.form.validateFields((err, values) => {
+        _this.props.form.validateFields((err, _values) => {
+            let values = getValidateFieldsTrim(_values);
             if (!err) {
                 values = _this.onHandleSaveData(values);
                 this.onCloseEdit();

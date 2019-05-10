@@ -7,7 +7,7 @@ import './index.less'
 const NoData = () => {
     return (
       <p className="no-data">
-          <Icon type="uf-list-s-o"/>
+          <Icon type="uf-nodata"/>
           <p><FormattedMessage id="js.Ref.Ref224.0014" defaultMessage="暂无数据"/></p>
       </p>
     )
