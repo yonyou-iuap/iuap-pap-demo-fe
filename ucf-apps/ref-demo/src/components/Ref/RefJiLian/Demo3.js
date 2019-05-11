@@ -173,10 +173,15 @@ class Demo3 extends Component {
     });
 
   }
+  danger = () =>{
+    Message.destroy();
+    Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择组织" />, color: 'danger',position:'topRight'});
+    
+  }
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
-      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择组织" />, color: 'danger', duration: 1});
-      return false;
+      this.danger();
+     return false;
     }
     return true;
   }
