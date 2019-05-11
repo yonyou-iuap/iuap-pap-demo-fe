@@ -167,16 +167,15 @@ class Demo3 extends Component {
 
   singleSaveOrgParam = (result) => {
     //组织单选的保存，级联参照
+    this.props.form.setFieldsValue({code1:{'refname':'',refpk:''}})
     this.setState({
-      jiLianValue: Object.assign({}, { "refname": "", "refpk": this.state.sum+'' }),//更换完清空级联的数据
-      sum: ++this.state.sum,
       singleClientParam: result.length === 0 ? {} : { 'organization_id': result[0].refpk },
     });
 
   }
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
-      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择组织" />, color: 'danger', duration: 0.5 });
+      Message.create({ content: <FormattedMessage id="js.Ref.Ref18.0001" defaultMessage="请先选择组织" />, color: 'danger', duration: 1});
       return false;
     }
     return true;
