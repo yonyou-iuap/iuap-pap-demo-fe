@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ucf-scripts start --homepage=index.html",
-    "build":"node --max_old_space_size=9000 ./node_modules/.bin/ucf-scripts build",
+    "build": "node --max_old_space_size=9000 ./node_modules/.bin/ucf-scripts build",
     "war": "rimraf war && mkdir war && jar cvfM0 ./war/dist.war ./ucf-publish/"
   },
   "repository": {
@@ -62,7 +62,7 @@
     "tinper-bee": "^2.0.10",
     "ucf-fe": "^0.1.0",
     "ucf-request": "^1.0.0",
-    "yyuap-bpm": "0.3.37",
+    "yyuap-bpm": "0.3.38",
     "yyuap-ref": "^1.1.62"
   }
 }
