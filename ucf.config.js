@@ -97,8 +97,8 @@ module.exports = (env, argv) => {
         // 构建服务需要运行的插件
         buildPlugins: [
             // new BundleAnalyzerPlugin()
-        ]
-        // open_source_map: isBuild,
+        ],
+        open_source_map: false,
         // res_extra: isBuild
     }
 }
