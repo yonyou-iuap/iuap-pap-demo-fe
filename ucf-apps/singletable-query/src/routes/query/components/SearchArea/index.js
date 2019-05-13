@@ -143,7 +143,7 @@ class SearchAreaForm extends Component {
                         <InputNumber
                             min={0}
                             iconStyle="one"
-                            {...getFieldProps('serviceYearsCompany', {initialValue: "",})}
+                            {...getFieldProps('serviceYearsCompany', {initialValue: "0",})}
                         />
                     </FormItem>
 
