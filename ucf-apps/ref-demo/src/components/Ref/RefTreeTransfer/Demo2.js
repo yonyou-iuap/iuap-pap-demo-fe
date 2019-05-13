@@ -5,7 +5,6 @@
  *
  */
 
-import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 
 import RefTreeTransferWithInput from 'pap-refer/lib/pap-common-treeTransfer/src/index.js';
@@ -16,7 +15,7 @@ let code =
   `
   import React, { Component } from 'react';
 
-  import RefTreeTransferWithInput from 'pap-refer/lib/pap-common-treeTransfer/src/index.js';
+  import RefTreeTransferWithInput from 'pap-refer/lib/ref-tree-transfer/src/index.js';
   // import "pap-refer/dist/index.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
@@ -33,9 +32,8 @@ import Card from '../Card'
       const { getFieldProps, getFieldError } = this.props.form;
       return (
         <Card
-          title={this.props.intl.formatMessage({id:"js.Ref.Ref22.0001", defaultMessage:"穿梭框不带任何标题"})}
+          title="穿梭框不带任何标题"
           codeText={code}
-          intl={this.props.intl}
           footer={
             <Button colors="primary"
               style={{
@@ -46,21 +44,21 @@ import Card from '../Card'
               onClick={() => {
                 this.props.form.validateFields((err, values) => {
                   if (err) return;
-                  alert(this.props.intl.formatMessage({id:"js.Ref.Ref22.0009", defaultMessage:"您选择的是"})+JSON.stringify(values))
+                  alert("您选择的是"+JSON.stringify(values))
                 });
               }}
             >
-              <FormattedMessage id="js.Ref.Ref22.0003" defaultMessage="提交" />
+              提交
                               </Button>
           }
         >
           <div className="demo-label">
-            <span ><FormattedMessage id="js.Ref.Ref22.0004" defaultMessage="穿梭框：：" /></span>
+            <span >穿梭框：：</span>
             <RefTreeTransferWithInput
-              title={this.props.intl.formatMessage({id:"js.Ref.Ref22.0005", defaultMessage:"组织部门人员穿梭"})}
+              title='组织部门人员穿梭'
               textOption={{
-                leftTitle: this.props.intl.formatMessage({id:"js.Ref.Ref22.0006", defaultMessage:"组织部门树" }),
-                rightTitle: this.props.intl.formatMessage({id:"js.Ref.Ref22.0007", defaultMessage:"人员穿梭框"})
+                leftTitle: '组织部门树',
+                rightTitle: '人员穿梭框'
               }}
               textOption={
                 {
@@ -87,7 +85,7 @@ import Card from '../Card'
               {...getFieldProps('code', {
                 initialValue: '{"refname":"","refpk":""}',
                 rules: [{
-                  message: <FormattedMessage id="js.Ref.Ref22.0008" defaultMessage="提示：请选择" />,
+                  message: '提示：请选择',
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
               })}
@@ -124,9 +122,8 @@ class Demo2 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title={this.props.intl.formatMessage({id:"js.Ref.Ref22.0001", defaultMessage:"穿梭框不带任何标题"})}
+        title="穿梭框不带任何标题"
         codeText={code}
-        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -137,21 +134,21 @@ class Demo2 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(this.props.intl.formatMessage({id:"js.Ref.Ref22.0009", defaultMessage:"您选择的是"})+JSON.stringify(values))
+                alert(`您选择的是${JSON.stringify(values)}`)
               });
             }}
           >
-            <FormattedMessage id="js.Ref.Ref22.0003" defaultMessage="提交" />
+            提交
                             </Button>
         }
       >
         <div className="demo-label">
-          <span ><FormattedMessage id="js.Ref.Ref22.0004" defaultMessage="穿梭框：：" /></span>
+          <span >穿梭框：：</span>
           <RefTreeTransferWithInput
-            title={this.props.intl.formatMessage({id:"js.Ref.Ref22.0005", defaultMessage:"组织部门人员穿梭"})}
+            title='组织部门人员穿梭'
             textOption={{
-              leftTitle: this.props.intl.formatMessage({id:"js.Ref.Ref22.0006", defaultMessage:"组织部门树" }),
-              rightTitle: this.props.intl.formatMessage({id:"js.Ref.Ref22.0007", defaultMessage:"人员穿梭框"})
+              leftTitle: '组织部门树',
+              rightTitle: '人员穿梭框'
             }}
             textOption={
               {
@@ -169,17 +166,16 @@ class Demo2 extends Component {
               tableBodyUrl: '/pap_basedoc/common-ref/blobRefTreeGrid',
               tableBodyUrlSearch: ''
             }}
-            filterUrl={'/pap_basedoc/common-ref/filterRefJSON'}
             displayField='{refname}-{refcode}'
             valueField='refpk'
             lang={this.props.lang}
             theme={this.props.theme}
-            searchPlaceholder={this.props.intl.formatMessage({id:"js.Ref.Ref224.0013", defaultMessage:"搜索"})}
-            notFoundContent={this.props.intl.formatMessage({id:"js.Ref.Ref224.0014", defaultMessage:"暂无数据"})}
+            searchPlaceholder={'搜索'}
+            notFoundContent={'暂无数据'}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: <FormattedMessage id="js.Ref.Ref22.0008" defaultMessage="提示：请选择" />,
+                message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

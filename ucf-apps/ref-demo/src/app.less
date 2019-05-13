@@ -1,18 +1,9 @@
 .change-theme{
     cursor: pointer;
 }
-.ref-red .u-input-group.simple .u-input-group-btn,
-.ref-blue .u-input-group.simple .u-input-group-btn{
-    top:0!important;
-}
-.ref-red .transferWrap .u-button .uf.uf-arrow-right, 
-.ref-blue .transferWrap .u-button .uf.uf-arrow-right {
-    font-size: 16px!important;
-    vertical-align: middle;
-}
 .demo{
     padding: 10px;
-    
+   
     //主题
     &-row.ref-blue{
          .u-button.u-button-primary{
@@ -25,21 +16,16 @@
         display: inline-block;
         vertical-align: top;
         padding: 10px 10px;
-        
         &>span{
             display: inline-block;
             width: 200px;
             text-align: right;
             margin-left: 10px;
         }
-        .ref-filter-item:hover{
-            background: #ebecf0;
-            cursor: pointer;
+        .ref-input-wrap .u-input-group.simple .u-input-group-btn {
+            min-width: 20px;
+            line-height: 32px;
         }
-        .ref-filter-item:active{
-            background: rgb(255, 247, 231);
-        }
-
     }
     &-label{ 
         vertical-align: top;
@@ -103,8 +89,4 @@
 }
 .uf-group-2:before {
     content: "\e64c"
-}
-
-.u-modal  .u-modal-content{
-    transform: none !important;
 }

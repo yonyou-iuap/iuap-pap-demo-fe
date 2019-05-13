@@ -5,7 +5,6 @@
  *
  */
 
-import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import RefComboBox,{ ComboStore } from 'pap-refer/lib/pap-common-combobox/src/index';
 // import 'pap-refer/lib/ref-combobox.css';
@@ -17,7 +16,7 @@ import Card from '../Card'
 let code = 
 `
 import React, { Component } from 'react';
-import RefComboBox,{ ComboStore } from 'pap-refer/lib/pap-common-combobox/src/index';
+import RefComboBox,{ ComboStore } from 'pap-refer/lib/ref-combobox/src/index';
 // import 'pap-refer/lib/ref-combobox.css';
 // import Button from 'bee-button';
 // import Icon from 'bee-icon';
@@ -30,9 +29,8 @@ class Demo1 extends Component {
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title={this.props.intl.formatMessage({id:"js.Ref.Ref7.0001", defaultMessage:"基础示例"})}
+        title="基础示例"
         codeText={code}
-        intl={this.props.intl}
       >
         <div className="demoPadding">
           <RefComboBox
@@ -47,7 +45,7 @@ class Demo1 extends Component {
             {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                message: <FormattedMessage id="js.Ref.Ref7.0002" defaultMessage="提示：请选择" />,
+                message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -82,7 +80,7 @@ class Demo1 extends Component {
                 alert(""+JSON.stringify(values))
               });
             }}>
-            <FormattedMessage id="js.Ref.Ref7.0003" defaultMessage="提交" />
+            提交
           </Button>
         </div>
 
@@ -97,12 +95,12 @@ export default Form.createForm()(Demo1);
 `
 class Demo1 extends Component {
   render() {
+
     const { getFieldError, getFieldProps } = this.props.form;
     return (
       <Card
-        title={this.props.intl.formatMessage({id:"js.Ref.Ref7.0001", defaultMessage:"基础示例"})}
+        title="基础示例"
         codeText={code}
-        intl={this.props.intl}
       >
         <div className="demoPadding">
           <RefComboBox
@@ -117,7 +115,7 @@ class Demo1 extends Component {
             {...getFieldProps('combobox', {
               // initialValue:'{"refpk":"level1","refname":"初级"}',  //M0000000000002
               rules: [{
-                message: <FormattedMessage id="js.Ref.Ref7.0002" defaultMessage="提示：请选择" />,
+                message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -152,7 +150,7 @@ class Demo1 extends Component {
                 alert(""+JSON.stringify(values))
               });
             }}>
-            <FormattedMessage id="js.Ref.Ref7.0003" defaultMessage="提交" />
+            提交
           </Button>
         </div>
 
