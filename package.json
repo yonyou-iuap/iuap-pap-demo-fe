@@ -43,10 +43,6 @@
     "bee-table": "^2.0.17",
     "bee-tooltip": "^2.0.3",
     "bee-tree": "^2.0.9",
-<<<<<<< HEAD
-    "bee-icon": "^1.0.11",
-=======
->>>>>>> develop
     "classnames": "2.2.6",
     "clone-deep": "^4.0.1",
     "exceljs": "^1.7.0",
