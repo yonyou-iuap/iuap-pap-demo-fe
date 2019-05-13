@@ -198,7 +198,7 @@ class CommonPop extends Component {
                         <InputNumber iconStyle="one" min={1} step={1}  max={99}
                                      disabled = {btnFlag == 2}
                                      {...getFieldProps('age', {
-                                         initialValue: age ? age : "",
+                                         initialValue: age ? age : "1",
                                          rules: [{
                                            type: 'number',
                                            max: 99,

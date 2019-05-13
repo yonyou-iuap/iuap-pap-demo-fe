@@ -267,7 +267,7 @@ class Demo3 extends Component {
             })}
             canInputGoOn={this.canGetData}
             canClickGoOn={this.canGetData}
-            value={JSON.stringify(jiLianValue)}
+            // value={JSON.stringify(jiLianValue)}
           />
 
           <span style={{
