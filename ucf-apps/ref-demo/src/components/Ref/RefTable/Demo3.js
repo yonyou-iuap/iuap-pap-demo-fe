@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapRefStaff from 'pap-refer/lib/pap-ref-staff/src/index';
 // import 'pap-refer/lib/pap-ref-staff.css';
@@ -40,9 +41,9 @@ import Card from '../Card'
     return (
       <Card
         style={style}
-        title="提取参照详细数据"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref12.0001", defaultMessage:"提取参照详细数据"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -53,16 +54,16 @@ import Card from '../Card'
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref12.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref12.0003" defaultMessage="提交" />
                             </Button>
         }
       >
         <div className="demo-label">
-          <span >人员参照：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0004" defaultMessage="人员参照：" /></span>
           <PapRefStaff
             multiple={false}
             searchable={true}
@@ -73,12 +74,16 @@ import Card from '../Card'
            lang={this.props.lang}
             theme={this.props.theme}
             emptyBut={true}
-            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-
+            searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+            'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+            'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+            'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+            'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+          }}
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref12.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -103,7 +108,7 @@ import Card from '../Card'
           </span>
         </div>
         <div className="demo-label">
-          <span >人员名称：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0006" defaultMessage="人员名称：" /></span>
           <FormControl
             style={{
               width: 200
@@ -112,7 +117,7 @@ import Card from '../Card'
           />
         </div>
         <div className="demo-label">
-          <span >人员邮箱：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0007" defaultMessage="人员邮箱：" /></span>
           <FormControl
             style={{
               width: 200
@@ -121,7 +126,7 @@ import Card from '../Card'
           />
         </div>
         <div className="demo-label">
-          <span >人员电话：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0008" defaultMessage="人员电话：" /></span>
           <FormControl
             style={{
               width: 200
@@ -157,9 +162,9 @@ class Demo3 extends Component {
     return (
       <Card
         style={style}
-        title="提取参照详细数据"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref12.0001", defaultMessage:"提取参照详细数据"})}
         codeText={code}
-
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -170,16 +175,16 @@ class Demo3 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref12.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref12.0003" defaultMessage="提交" />
                             </Button>
         }
       >
         <div className="demo-label">
-          <span >人员参照：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0004" defaultMessage="人员参照：" /></span>
           <PapRefStaff
             multiple={false}
             searchable={true}
@@ -190,12 +195,16 @@ class Demo3 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             emptyBut={true}
-            searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
-
+            searchPanelLocale={{'title': this.props.intl.formatMessage({id:"js.Ref.Ref224.0008", defaultMessage:"条件筛选"}),
+            'resetName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0009", defaultMessage:"重置"}),
+            'searchName': this.props.intl.formatMessage({id:"js.Ref.Ref224.0010", defaultMessage:"查询"}),
+            'down':this.props.intl.formatMessage({id:"js.Ref.Ref224.0011", defaultMessage:"打开"}),
+            'up':this.props.intl.formatMessage({id:"js.Ref.Ref224.0012", defaultMessage:"关闭"}),
+          }}
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择',
+                message: <FormattedMessage id="js.Ref.Ref12.0005" defaultMessage="提示：请选择" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -220,7 +229,7 @@ class Demo3 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >人员名称：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0006" defaultMessage="人员名称：" /></span>
           <FormControl
             style={{
               width: 200
@@ -229,7 +238,7 @@ class Demo3 extends Component {
           />
         </div>
         <div className="demo-label">
-          <span >人员邮箱：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0007" defaultMessage="人员邮箱：" /></span>
           <FormControl
             style={{
               width: 200
@@ -238,7 +247,7 @@ class Demo3 extends Component {
           />
         </div>
         <div className="demo-label">
-          <span >人员电话：</span>
+          <span ><FormattedMessage id="js.Ref.Ref12.0008" defaultMessage="人员电话：" /></span>
           <FormControl
             style={{
               width: 200

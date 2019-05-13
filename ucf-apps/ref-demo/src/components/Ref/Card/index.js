@@ -5,54 +5,68 @@
  *
  */
 
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, { Component } from 'react';
 
 
-import {  Panel, Icon } from 'tinper-bee';
+import { Panel, Icon } from 'tinper-bee';
 import Drawer from 'ac-drawer';
 import 'ac-drawer/dist/ac-drawer.css'
 
 import './index.less'
-class Card extends Component{
-    constructor(props){
+class Card extends Component {
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             showDrawer: false
         }
     }
     showCode = () => {
         this.setState({
             showDrawer: true
+        },()=>{
+            document.body.style.overflow = 'hidden'
         })
     }
     fCloseDrawer = () => {
         this.setState({
             showDrawer: false
+        },()=>{
+            document.body.style.overflow = 'auto'
         })
     }
-    render(){
+    render() {
         const { title = '', codeText = '', footer = '' } = this.props;
         let opt = {}
-        if(footer){
+        if (footer) {
             opt.footer = footer;
         }
         return (
-            <Panel
-                className="card"//<Icon type="uf-pencil-s" />
-                header={<div><span className="card-title">{title} </span><span onClick={this.showCode} className="card-check-code">查看源码</span></div>}
-                {...opt}
-            >
-            {
-                this.props.children
-            }
-                <Drawer title={'示例源码'} show={this.state.showDrawer} placement={'right'} onClose={this.fCloseDrawer}>
-                    <pre>
-                        <code className="hljs javascript">
-                            {codeText}     
-                        </code>
-                    </pre>                                          
-                </Drawer>
-            </Panel>
+            <div>
+                <Panel
+                    className="card"//<Icon type="uf-pencil-s" />
+                    header={<div><span className="card-title">{title} </span><span onClick={this.showCode} className="card-check-code"><FormattedMessage id="js.Ref.Car.0002" defaultMessage="查看源码" /></span></div>}
+                    {...opt}
+                >
+                    {
+                        this.props.children
+                    }
+                    {
+                        this.state.showDrawer && (
+                        <Drawer title={this.props.intl.formatMessage({ id: "js.Ref.Car.0001", defaultMessage: "示例源码" })} show={this.state.showDrawer} placement={'right'} onClose={this.fCloseDrawer}>
+                            <pre>
+                                <code className="hljs javascript">
+                                    {codeText}
+                                </code>
+                            </pre>
+                        </Drawer>
+                        )
+                    }
+                    
+                </Panel>
+                
+            </div>
+
         )
     }
 }

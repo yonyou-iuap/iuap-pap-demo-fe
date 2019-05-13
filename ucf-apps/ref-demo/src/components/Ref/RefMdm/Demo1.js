@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage, } from 'react-intl';
 import React, { Component } from 'react';
 import RefMdmComp from "components/RefMdmComp"
 import { Button, Form, FormControl} from 'tinper-bee';
@@ -42,8 +43,9 @@ class Demo1 extends Component {
     } = this.state;
     return (
       <Card
-        title="基础示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref7.0001", defaultMessage:"基础示例"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <div>
           <Button colors="primary"
@@ -60,7 +62,7 @@ class Demo1 extends Component {
               this.forceUpdate()
             }}
           >
-            确定
+            <FormattedMessage id="js.com.Eme.0005" defaultMessage="确定" />
                             </Button>
           <Button colors="primary"
             style={{
@@ -75,22 +77,13 @@ class Demo1 extends Component {
               });
             }}
           >
-            提交
-                            </Button>
+            <FormattedMessage id="js.Ref.Ref24.0002" defaultMessage="提交" />
+          </Button>
           </div>
         }
       >
         <div className="demo-label">
-          <span >字段编码：</span>
-          <FormControl
-            style={{
-              width: 200
-            }}
-            onChange={this.onEntityItemCodeChange}
-          />
-        </div>
-        <div className="demo-label">
-          <span >实体编码：</span>
+          <span ><FormattedMessage id="js.Ref.Ref224.0005" defaultMessage="实体编码：" /></span>
           <FormControl
             style={{
               width: 200
@@ -98,19 +91,30 @@ class Demo1 extends Component {
             onChange={this.onEntityCodeChange}
           />
         </div>
+        <div className="demo-label">
+          <span ><FormattedMessage id="js.Ref.Ref224.0006" defaultMessage="字段编码：" /></span>
+          <FormControl
+            style={{
+              width: 200
+            }}
+            onChange={this.onEntityItemCodeChange}
+          />
+        </div>
 
         <div className="demo-label">
-          <span >自定义参照：</span>
+          <span ><FormattedMessage id="js.Ref.Ref224.0007" defaultMessage="自定义参照：" /></span>
           <div style={{
               width: 200,
               display: 'inline-block'
             }}>
             <RefMdmComp
+              // pk_entityitem='4b72c5cd-c301-48cc-9f77-2d44c36d9651'
+              // pk_gd='39d7075c-4a45-489d-b309-a1a1a35dea8d'
               entityItemCode={refEntityItemCode}
               entityCode={refEntityCode}
               {...getFieldProps('refmdm', {
                 rules: [{
-                  message: '提示：请选择',
+                  message: <FormattedMessage id="js.Ref.Ref20.0008" defaultMessage="提示：请选择" />,
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
               })}
@@ -153,8 +157,9 @@ class Demo1 extends Component {
     } = this.state;
     return (
       <Card
-        title="基础示例"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref7.0001", defaultMessage:"基础示例"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <div>
           <Button colors="primary"
@@ -176,7 +181,7 @@ class Demo1 extends Component {
               });
             }}
           >
-            确定
+            <FormattedMessage id="js.com.Eme.0005" defaultMessage="确定" />
                             </Button>
           <Button colors="primary"
             style={{
@@ -191,14 +196,14 @@ class Demo1 extends Component {
               });
             }}
           >
-            提交
-                            </Button>
+            <FormattedMessage id="js.Ref.Ref24.0002" defaultMessage="提交" />
+          </Button>
           </div>
         }
       >
         <div className="demo-label-require">
           <div className="labelDiv">
-            <span className='label'>实体编码：</span>
+      <span className='label' title={this.props.intl.formatMessage({id: 'js.Ref.Ref224.0005',defaultMessage:"实体编码："})}><FormattedMessage id="js.Ref.Ref224.0005" defaultMessage="实体编码：" /></span>
             <span className='mast'>*</span>
           </div>
           <FormControl
@@ -210,7 +215,7 @@ class Demo1 extends Component {
               validateTrigger: 'onBlur',
               rules: [{
                   required: true,
-                  message: "请输入实体编码",
+                  message: <FormattedMessage id="js.Ref.Cus.0001" defaultMessage="请输入实体编码"/>,
               }],
           }) }
           />
@@ -220,7 +225,7 @@ class Demo1 extends Component {
         </div>
         <div className="demo-label-require">
           <div className="labelDiv">
-            <span className='label'>字段编码：</span>
+            <span className='label' title={this.props.intl.formatMessage({id: 'js.Ref.Ref224.0006',defaultMessage:"字段编码："})}><FormattedMessage id="js.Ref.Ref224.0006" defaultMessage="字段编码：" /></span>
             <span className='mast'>*</span>
           </div>
           <FormControl
@@ -232,7 +237,7 @@ class Demo1 extends Component {
               validateTrigger: 'onBlur',
               rules: [{
                   required: true,
-                  message: "请输入字段编码",
+                  message: <FormattedMessage id="js.Ref.Cus.0002" defaultMessage="请输入字段编码"/>,
               }],
           }) }
           />
@@ -242,7 +247,7 @@ class Demo1 extends Component {
         </div>
 
         <div className="demo-label">
-          <span >自定义参照：</span>
+          <span ><FormattedMessage id="js.Ref.Ref224.0007" defaultMessage="自定义参照：" /></span>
           <div style={{
               width: 200,
               display: 'inline-block'
@@ -254,7 +259,7 @@ class Demo1 extends Component {
               entityCode={refEntityCode}
               {...getFieldProps('refmdm', {
                 rules: [{
-                  message: '提示：请选择',
+                  message: <FormattedMessage id="js.Ref.Ref20.0008" defaultMessage="提示：请选择" />,
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                 }]
               })}

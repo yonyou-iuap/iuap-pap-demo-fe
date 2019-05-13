@@ -5,6 +5,7 @@
  *
  */
 
+import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
 // import 'pap-refer/lib/pap-ref-org.css';
@@ -48,8 +49,9 @@ class Demo1 extends Component {
     multiClientParam = Object.assign({}, clientParam, multiClientParam)
     return (
       <Card
-        title="多选级联参照：组织-部门"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref15.0001", defaultMessage:"多选级联参照：组织-部门"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -60,16 +62,16 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref15.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref15.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >多选（组织）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref15.0004" defaultMessage="多选（组织）：" /></span>
           <PapReferOrg
             multiple={true}
             searchable={true}
@@ -82,7 +84,7 @@ class Demo1 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: <FormattedMessage id="js.Ref.Ref15.0005" defaultMessage="提示：请选择组织" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -97,7 +99,7 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >级联（部门）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref15.0006" defaultMessage="级联（部门）：" /></span>
           <PapReferDeptUnderOrg
             multiple={true}
             searchable={true}
@@ -114,7 +116,7 @@ class Demo1 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择部门',
+                message: <FormattedMessage id="js.Ref.Ref15.0007" defaultMessage="提示：请选择部门" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -164,8 +166,9 @@ class Demo1 extends Component {
     multiClientParam = Object.assign({}, clientParam, multiClientParam)
     return (
       <Card
-        title="多选级联参照：组织-部门"
+        title={this.props.intl.formatMessage({id:"js.Ref.Ref15.0001", defaultMessage:"多选级联参照：组织-部门"})}
         codeText={code}
+        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -176,16 +179,16 @@ class Demo1 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert("您选择的是"+JSON.stringify(values))
+                alert(this.props.intl.formatMessage({id:"js.Ref.Ref15.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
               });
             }}
           >
-            提交
+            <FormattedMessage id="js.Ref.Ref15.0003" defaultMessage="提交" />
           </Button>
         }
       >
         <div className="demo-label">
-          <span >多选（组织）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref15.0004" defaultMessage="多选（组织）：" /></span>
           <PapReferOrg
             multiple={true}
             searchable={true}
@@ -198,7 +201,7 @@ class Demo1 extends Component {
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择组织',
+                message: <FormattedMessage id="js.Ref.Ref15.0005" defaultMessage="提示：请选择组织" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -213,7 +216,7 @@ class Demo1 extends Component {
           </span>
         </div>
         <div className="demo-label">
-          <span >级联（部门）：</span>
+          <span ><FormattedMessage id="js.Ref.Ref15.0006" defaultMessage="级联（部门）：" /></span>
           <PapReferDeptUnderOrg
             multiple={true}
             searchable={true}
@@ -230,7 +233,7 @@ class Demo1 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: '提示：请选择部门',
+                message: <FormattedMessage id="js.Ref.Ref15.0007" defaultMessage="提示：请选择部门" />,
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
