@@ -11,7 +11,8 @@ import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
 // import 'pap-refer/lib/pap-ref-org.css';
 import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg/src/index';
 // import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
-import { Button, Form, Message } from 'tinper-bee';
+import { Button, Form } from 'tinper-bee';
+import Message from 'bee-message';
 import 'bee-message/build/Message.css';
 import Card from '../Card'
 let code =
@@ -39,9 +40,8 @@ class Demo3 extends Component {
 
   singleSaveOrgParam = (result) => {
     //组织单选的保存，级联参照
+    this.props.form.setFieldsValue({code1:{'refname':'',refpk:''}})
     this.setState({
-      jiLianValue: Object.assign({}, { "refname": "", "refpk": this.state.sum+'' }),//更换完清空级联的数据
-      sum: ++this.state.sum,
       singleClientParam: result.length === 0 ? {} : { 'organization_id': result[0].refpk },
     });
 

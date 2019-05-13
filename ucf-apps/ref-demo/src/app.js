@@ -49,8 +49,8 @@ import {
   import 'pap-refer/lib/pap-common-tree/src/index.css'
   import 'pap-refer/lib/pap-common-table/src/index.css'
   import 'pap-refer/lib/pap-common-treeTable/src/index.css'
-  // import 'pap-refer/lib/pap-common-combobox/src/index.css'
-  // import 'pap-refer/lib/pap-common-treeTransfer/src/index.css';
+  import 'pap-refer/lib/pap-common-combobox/src/index.css'
+  import 'pap-refer/lib/pap-common-treeTransfer/src/index.css';
   class App extends Component {
     constructor() {
       super();
