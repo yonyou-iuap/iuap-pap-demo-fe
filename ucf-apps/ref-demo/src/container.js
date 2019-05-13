@@ -2,7 +2,6 @@
  * 容器类组件
  */
 
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import mirror, { connect } from 'mirrorx';
 import App from './components/App';
 import model from './model'

@@ -5,13 +5,12 @@
  *
  */
 
-import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
 // import 'pap-refer/lib/pap-ref-orgDept.css'
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
-let code =
+let code = 
 `
 import React, { Component } from 'react';
 import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept';
@@ -31,9 +30,8 @@ class Demo3 extends Component {
         const { getFieldProps, getFieldError } = this.props.form;
         return (
                     <Card
-                        title={this.props.intl.formatMessage({id:"js.Ref.Ref6.0001", defaultMessage:"组合树"})}
+                        title="组合树"
                         codeText={code}
-                        intl={this.props.intl}
                         footer={
                             <Button colors="primary"
                                 style={{
@@ -44,17 +42,17 @@ class Demo3 extends Component {
                                 onClick={() => {
                                     this.props.form.validateFields((err, values) => {
                                         if(err) return;
-                                        alert(this.props.intl.formatMessage({id:"js.Ref.Ref6.0007", defaultMessage:"您选择的是"}) + JSON.stringify(values))
+                                        alert("您选择的是"+JSON.stringify(values))
                                         console.log(values);
                                     });
                                 }}
                             >
-                                <FormattedMessage id="js.Ref.Ref6.0003" defaultMessage="提交" />
+                                提交
                             </Button>
                         }
                     >
                         <div className="demo-label">
-                            <span ><FormattedMessage id="js.Ref.Ref6.0004" defaultMessage="组织部门：" /></span>
+                            <span >组织部门：</span>
                             <PapRefOrgDept
                                 multiple={false}
                                 searchable={true}
@@ -77,7 +75,7 @@ class Demo3 extends Component {
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: <FormattedMessage id="js.Ref.Ref6.0005" defaultMessage="提示：请选择" />,
+                                        message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
@@ -91,7 +89,7 @@ class Demo3 extends Component {
                             </span>
                         </div>
                         <div className="demo-label">
-                            <span ><FormattedMessage id="js.Ref.Ref6.0006" defaultMessage="组织部门懒加载：" /></span>
+                            <span >组织部门懒加载：</span>
                             <PapRefOrgDept
                                 multiple={false}
                                 searchable={true}
@@ -115,7 +113,7 @@ class Demo3 extends Component {
                                 {...getFieldProps('code1', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: <FormattedMessage id="js.Ref.Ref6.0005" defaultMessage="提示：请选择" />,
+                                        message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
@@ -148,9 +146,8 @@ class Demo3 extends Component {
         const { getFieldProps, getFieldError } = this.props.form;
         return (
                     <Card
-                        title={this.props.intl.formatMessage({id:"js.Ref.Ref6.0001", defaultMessage:"组合树"})}
+                        title="组合树"
                         codeText={code}
-                        intl={this.props.intl}
                         footer={
                             <Button colors="primary"
                                 style={{
@@ -161,17 +158,17 @@ class Demo3 extends Component {
                                 onClick={() => {
                                     this.props.form.validateFields((err, values) => {
                                         if(err) return;
-                                        alert(this.props.intl.formatMessage({id:"js.Ref.Ref6.0007", defaultMessage:"您选择的是"}) + JSON.stringify(values))
+                                        alert(`您选择的是${JSON.stringify(values)}`)
                                         console.log(values);
                                     });
                                 }}
                             >
-                                <FormattedMessage id="js.Ref.Ref6.0003" defaultMessage="提交" />
+                                提交
                             </Button>
                         }
                     >
                         <div className="demo-label">
-                            <span ><FormattedMessage id="js.Ref.Ref6.0004" defaultMessage="组织部门：" /></span>
+                            <span >组织部门：</span>
                             <PapRefOrgDept
                                 multiple={false}
                                 searchable={true}
@@ -194,7 +191,7 @@ class Demo3 extends Component {
                                 {...getFieldProps('code', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: <FormattedMessage id="js.Ref.Ref6.0005" defaultMessage="提示：请选择" />,
+                                        message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}
@@ -208,7 +205,7 @@ class Demo3 extends Component {
                             </span>
                         </div>
                         <div className="demo-label">
-                            <span ><FormattedMessage id="js.Ref.Ref6.0006" defaultMessage="组织部门懒加载：" /></span>
+                            <span >组织部门懒加载：</span>
                             <PapRefOrgDept
                                 multiple={false}
                                 searchable={true}
@@ -232,7 +229,7 @@ class Demo3 extends Component {
                                 {...getFieldProps('code1', {
                                     initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
-                                        message: <FormattedMessage id="js.Ref.Ref6.0005" defaultMessage="提示：请选择" />,
+                                        message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
                                     }]
                                 })}

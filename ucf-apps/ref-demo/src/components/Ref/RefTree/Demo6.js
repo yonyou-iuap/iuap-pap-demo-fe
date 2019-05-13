@@ -5,7 +5,6 @@
  *
  */
 
-import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
 // import 'pap-refer/lib/pap-ref-orgDept.css'
@@ -31,9 +30,8 @@ class Demo6 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title={this.props.intl.formatMessage({id:"js.Ref.Ref3.0001", defaultMessage:"初始值和自定义icon"})}
+        title="初始值和自定义icon"
         codeText={code}
-        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -44,16 +42,16 @@ class Demo6 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(this.props.intl.formatMessage({id:"js.Ref.Ref3.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
+                alert("您选择的是"+JSON.stringify(values))
               });
             }}
           >
-            <FormattedMessage id="js.Ref.Ref3.0003" defaultMessage="提交" />
+            提交
                     </Button>
         }
       >
         <div className="demo-label">
-          <span ><FormattedMessage id="js.Ref.Ref3.0004" defaultMessage="组织部门单选：" /></span>
+          <span >组织部门单选：</span>
           <PapRefOrgDept
             multiple={false}
             searchable={true}
@@ -65,7 +63,7 @@ class Demo6 extends Component {
            lang={this.props.lang}
             theme={this.props.theme} emptyBut={true}            
             value={JSON.stringify({
-              refname: this.props.intl.formatMessage({id:"js.Ref.Ref3.0005", defaultMessage:"财务处"}),
+              refname: "财务处",
               refpk: "95b60f35-ed0b-454e-b948-fb45ae30b911",
             })}
             nodeDisplay={(record) => {
@@ -117,9 +115,8 @@ class Demo6 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title={this.props.intl.formatMessage({id:"js.Ref.Ref3.0001", defaultMessage:"初始值和自定义icon"})}
+        title="初始值和自定义icon"
         codeText={code}
-        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -130,16 +127,16 @@ class Demo6 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(this.props.intl.formatMessage({id:"js.Ref.Ref3.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
+                alert("您选择的是"+JSON.stringify(values))
               });
             }}
           >
-            <FormattedMessage id="js.Ref.Ref3.0003" defaultMessage="提交" />
+            提交
                     </Button>
         }
       >
         <div className="demo-label">
-          <span ><FormattedMessage id="js.Ref.Ref3.0004" defaultMessage="组织部门单选：" /></span>
+          <span >组织部门单选：</span>
           <PapRefOrgDept
             multiple={false}
             searchable={true}
@@ -151,7 +148,7 @@ class Demo6 extends Component {
            lang={this.props.lang}
             theme={this.props.theme} emptyBut={true}            
             value={JSON.stringify({
-              refname: this.props.intl.formatMessage({id:"js.Ref.Ref3.0005", defaultMessage:"财务处"}),
+              refname: "财务处",
               refpk: "95b60f35-ed0b-454e-b948-fb45ae30b911",
             })}
             nodeDisplay={(record) => {
@@ -170,7 +167,7 @@ class Demo6 extends Component {
             {...getFieldProps('code1', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: <FormattedMessage id="js.Ref.Ref3.0006" defaultMessage="提示：请选择" />,
+                message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}

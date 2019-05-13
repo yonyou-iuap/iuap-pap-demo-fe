@@ -5,7 +5,6 @@
  *
  */
 
-import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
 // import 'pap-refer/lib/pap-ref-orgDept.css'
@@ -31,9 +30,8 @@ class Demo5 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title={this.props.intl.formatMessage({id:"js.Ref.Ref1.0001", defaultMessage:"数据权限"})}
+        title="数据权限"
         codeText={code}
-        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -44,12 +42,12 @@ class Demo5 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(this.props.intl.formatMessage({id:"js.Ref.Ref1.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
+                alert("您选择的是"+JSON.stringify(values))
                 console.log(values)
               });
             }}
           >
-            <FormattedMessage id="js.Ref.Ref1.0003" defaultMessage="提交" />
+            提交
           </Button>
         }
       >
@@ -72,15 +70,10 @@ class Demo5 extends Component {
                 return (<span><i className="uf uf-users" /> {record.refname} </span>);
               }
             }}
-            param={{
-              "refCode": "newdeptUnderOrg_trees",
-              "clientParam":{"isUseDataPower":"true"}
-                
-            }}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: <FormattedMessage id="js.Ref.Ref1.0005" defaultMessage="提示：请选择" />,
+                message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
@@ -113,9 +106,8 @@ class Demo5 extends Component {
     const { getFieldProps, getFieldError } = this.props.form;
     return (
       <Card
-        title={this.props.intl.formatMessage({id:"js.Ref.Ref1.0001", defaultMessage:"数据权限"})}
+        title="数据权限"
         codeText={code}
-        intl={this.props.intl}
         footer={
           <Button colors="primary"
             style={{
@@ -126,17 +118,17 @@ class Demo5 extends Component {
             onClick={() => {
               this.props.form.validateFields((err, values) => {
                 if (err) return;
-                alert(this.props.intl.formatMessage({id:"js.Ref.Ref1.0002", defaultMessage:"您选择的是"})+JSON.stringify(values))
+                alert("您选择的是"+JSON.stringify(values))
                 console.log(values)
               });
             }}
           >
-            <FormattedMessage id="js.Ref.Ref1.0003" defaultMessage="提交" />
+            提交
           </Button>
         }
       >
         <div className="demo-label">
-          <span ><FormattedMessage id="js.Ref.Ref1.0004" defaultMessage="组织部门：" /></span>
+          <span >组织部门：</span>
           <PapRefOrgDept
             multiple={false}
             searchable={true}
@@ -144,7 +136,7 @@ class Demo5 extends Component {
             strictMode={true}
             displayField='{refname}'
             valueField='refpk'
-            lang={this.props.lang}
+           lang={this.props.lang}
             theme={this.props.theme} 
             emptyBut={true}
             nodeDisplay={(record) => {
@@ -154,15 +146,10 @@ class Demo5 extends Component {
                 return (<span><i className="uf uf-users" /> {record.refname} </span>);
               }
             }}
-            param={{
-              "refCode": "newdeptUnderOrg_trees",
-              "clientParam":{"isUseDataPower":"true"}
-                
-            }}
             {...getFieldProps('code', {
               initialValue: '{"refname":"","refpk":""}',
               rules: [{
-                message: <FormattedMessage id="js.Ref.Ref1.0005" defaultMessage="提示：请选择" />,
+                message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
