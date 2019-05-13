@@ -26,11 +26,11 @@ export const processData = (response, successMsg) => {
     let result={};
     try {
         if (typeof response != 'object') {
-            Error('数据返回出错：1、请确保服务运行正常；2、请确保您的前端工程代理服务正常；3、请确认您已在本地登录过应用平台');
+            // Error('数据返回出错：1、请确保服务运行正常；2、请确保您的前端工程代理服务正常；3、请确认您已在本地登录过应用平台');
             throw new Error('数据返回出错：1、请确保服务运行正常；2、请确保您的前端工程代理服务正常；3、请确认您已在本地登录过应用平台')
         }
         if (response.status == '401') {
-            Error(`错误:${(response.data.msg)}`);
+            // Error(`错误:${(response.data.msg)}`);
             throw new Error(`错误:${(response.data.msg)}`);
         }
         if (response.status == '200') {
@@ -45,14 +45,14 @@ export const processData = (response, successMsg) => {
                 result.data = data.detailMsg.data || {};
                 return {result};
             } else if (repMsg == 'fail_field') {
-                Error(`错误:${(data && data.detailMsg && convert(data.detailMsg.msg)) || '数据返回出错'}`);
+                // Error(`错误:${(data && data.detailMsg && convert(data.detailMsg.msg)) || '数据返回出错'}`);
                 throw new Error(`错误:${(data && data.detailMsg && convert(data.detailMsg.msg)) || '数据返回出错'}`)
             } else {
-                Error(`错误:${convert(data.message)}`);
+                // Error(`错误:${convert(data.message)}`);
                 throw new Error(`错误:${convert(data.message)}`);
             }
         } else {
-            Error('请求错误');
+            // Error('请求错误');
             throw new Error(`错误:${(response.status)}`);
         }
 
