@@ -4,8 +4,8 @@ const URL = {
 
     "DEL_ORDER_DETAIL":  `${GROBAL_HTTP_CTX}/purchase_order_detail/deleteBatch`, // 删除子表
     "SAVE_ASSO":  `${GROBAL_HTTP_CTX}/purchase_order/saveAssoVo`, //保存
+    "UPDATE_ASSO":  `${GROBAL_HTTP_CTX}/purchase_order/updateAssoVo`, //保存
     "GET_USER": `${GROBAL_HTTP_CTX}/purchase_order/listForAdd`, //保存
-
 }
 
 
@@ -19,6 +19,20 @@ export const saveAsso = (params) => {
         data:params
     });
 }
+
+
+/**
+ * 修改
+ * @param {*} params
+ */
+export const updateAsso = (params) => {
+    return request(URL.UPDATE_ASSO, {
+        method: "post",
+        data:params
+    });
+}
+
+
 
 /**
  * 删除子表数据
