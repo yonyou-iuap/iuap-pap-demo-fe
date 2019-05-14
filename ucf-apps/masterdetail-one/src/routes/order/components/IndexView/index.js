@@ -452,7 +452,7 @@ class IndexView extends Component {
      */
     onClickSave =  () => {
         let queryDetailObj = deepClone(this.props.queryDetailObj);
-        let { form } = this.props;
+        let { form ,status} = this.props;
         let entity = {};
         let formValidate = false;
 
@@ -475,15 +475,15 @@ class IndexView extends Component {
             let purchaseOrderDetailList = this.filterDataParam(rowData);
             let sublist = { purchaseOrderDetailList };
             let param = { entity, sublist };
-            actions.masterDetailOrder.adds(param);
+            if(status == "edit"){
+                actions.masterDetailOrder.updateAsso(param);
+            }else  if(status == "new"){
+                actions.masterDetailOrder.adds(param);
+            }
             this.clearQuery();
         }
 
     }
-
-
-
-
 
     /**
      *

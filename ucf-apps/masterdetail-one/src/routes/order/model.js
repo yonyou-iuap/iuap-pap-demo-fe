@@ -149,7 +149,21 @@ export default {
             }
         },
 
-
+         /**
+         * 修改主表和子表
+         * @param param
+         * @param getState
+         * @returns {Promise<void>}
+         */
+        async updateAsso(param, getState) {
+            actions.masterDetailOrder.updateState({ showLoading: true });
+            let { result } = processData(await api.updateAsso(param), '修改成功');
+            let { data: res } = result;
+            actions.masterDetailOrder.updateState({ showLoading: false, status: 'view' });
+            if (res) {
+                actions.routing.push({ pathname: '/' });
+            }
+        },
 
         /**
          * 删除子表数据
