@@ -390,7 +390,7 @@ export default {
                     break;
             }
             await api.printDocument({
-                tenantId: tenantid,
+                tenantId: tenantid.data,
                 printcode: res['res_code'],
                 serverUrl: `${GROBAL_HTTP_CTX}/passenger/dataForPrint`,
                 params: encodeURIComponent(JSON.stringify(param.printParams)),
