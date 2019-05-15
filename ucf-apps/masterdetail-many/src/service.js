@@ -18,6 +18,7 @@ const URL = {
     "DEL_TRAVELING": `${GROBAL_HTTP_CTX}/traveling_information/deleteBatch`, // 删除子表 乘车信息
 
     "GET_QUERYPRINTTEMPLATEALLOCATE": `/eiap-plus/appResAllocate/queryPrintTemplateAllocate`,  // 查询打印模板
+    "GET_TENANT":`/eiap-plus/remote/getTenantId`,//获取租户id
     "PRINTSERVER": '/print_service/print/preview',                                              // 打印
 
 }
@@ -54,6 +55,17 @@ export const getTraveling = (param) => {
     });
 }
 
+
+/**
+ * 获取打印租户ID
+ * @param {*} params
+ */
+export const getTenant = (param) => {
+    return request(URL.GET_TENANT, {
+        method: "get",
+        param
+    });
+}
 /**
  * 保存主表数据
  * @param {*} params
