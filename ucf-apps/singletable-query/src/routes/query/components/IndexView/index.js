@@ -492,7 +492,7 @@ class IndexView extends Component {
         return (
             <div className='single-table-query'>
                 <Loading showBackDrop={true} show={showLoading} fullScreen={true}/>
-                <Header title={this.props.intl.formatMessage({id:"js.com.Ind9.0024", defaultMessage:"A1单表查询示例"})}/>
+                <Header title={this.props.intl.formatMessage({id:"js.com.Ind9.0024", defaultMessage:"A1单表查询"})}/>
                 <SearchArea
                     queryParam={queryParam}
                     clearRowFilter={this.clearRowFilter}
