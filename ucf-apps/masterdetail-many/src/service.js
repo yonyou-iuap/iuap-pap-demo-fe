@@ -67,6 +67,18 @@ export const getTenant = (param) => {
     });
 }
 /**
+ * 获取打印租户ID
+ * @param {*} params
+ */
+export const getTenant = (param) => {
+    return request(URL.GET_TENANT, {
+        method: "get",
+        param
+    });
+}
+
+
+/**
  * 保存主表数据
  * @param {*} params
  */
