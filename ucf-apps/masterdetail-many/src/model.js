@@ -347,12 +347,13 @@ export default {
         async printDocument(param) {
 
             let {result} = processData(await api.queryPrintTemplateAllocate(param.queryParams), '');
+            let tenantid =  await api.getTenant;
             let {data:res}=result;
             if (!res || !res.res_code) {
                 return false;
             }
             await api.printDocument({
-                tenantId: getCookie('tenantid'),
+                tenantId: tenantid,
                 printcode: res['res_code'],
                 serverUrl: `${GROBAL_HTTP_CTX}/passenger/dataForPrint`,
                 params: encodeURIComponent(JSON.stringify(param.printParams)),
