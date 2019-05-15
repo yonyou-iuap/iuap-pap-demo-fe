@@ -478,9 +478,9 @@ class IndexView extends Component {
             let purchaseOrderDetailList = this.filterDataParam(rowData);
             let sublist = { purchaseOrderDetailList };
             let param = { entity, sublist };
-            if(status == "edit"){
+            if(this.state.btnFlag === 1){
                 actions.masterDetailOrder.updateAsso(param);
-            }else  if(status == "new"){
+            }else if(this.state.btnFlag === 0){
                 actions.masterDetailOrder.adds(param);
             }
             this.clearQuery();
