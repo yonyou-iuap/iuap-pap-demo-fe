@@ -36,7 +36,7 @@ export function RefIuapDept(props){
             matchUrl='/newref/rest/iref_ctr/matchPKRefJSON'
             filterUrl='/newref/rest/iref_ctr/filterRefJSON'
             {...props}
-            emptyBut
+            modalProps={{'animation':false}}
         >
             <RefTree />
         </RefTreeWithInput>
