@@ -2,7 +2,7 @@
 import request from "utils/request";
 //定义接口地址
 const URL = {
-    "GET_ORDER_DETAIL":  `${GROBAL_HTTP_CTX}/purchase_order_detail/list`, // 获取子表
+    "GET_ORDER_DETAIL":  `${GROBAL_HTTP_CTX}/purchase_order_detail/getOrderDetail`, // 获取子表
 }
 
 /**
