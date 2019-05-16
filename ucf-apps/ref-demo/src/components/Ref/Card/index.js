@@ -23,11 +23,15 @@ class Card extends Component{
     showCode = () => {
         this.setState({
             showDrawer: true
+        },()=>{
+            document.body.style.overflow = 'hidden'
         })
     }
     fCloseDrawer = () => {
         this.setState({
             showDrawer: false
+        },()=>{
+            document.body.style.overflow = 'auto'
         })
     }
     render(){

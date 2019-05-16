@@ -10,7 +10,9 @@ import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
 // import 'pap-refer/lib/pap-ref-org.css';
 import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg/src/index';
 // import 'pap-refer/lib/pap-ref-deptUnderOrg.css';
-import { Button, Form, Message } from 'tinper-bee';
+import { Button, Form } from 'tinper-bee';
+import Message from 'bee-message';
+import 'bee-message/build/Message.css';
 import Card from '../Card'
 let code =
 `
@@ -40,18 +42,21 @@ class Demo3 extends Component {
 
   singleSaveOrgParam = (result) => {
     //组织单选的保存，级联参照
+    this.props.form.setFieldsValue({code1:{'refname':'',refpk:''}})
     this.setState({
-      jiLianValue: Object.assign({}, { "refname": "", "refpk": this.state.sum+'' }),//更换完清空级联的数据
-      sum: ++this.state.sum,
       singleClientParam: result.length === 0 ? {} : { 'organization_id': result[0].refpk },
     });
 
   }
+  danger = () =>{
+    Message.destroy();
+    Message.create({ content: '请先选择组织', color: 'danger',position:'topRight'});
+    
+  }
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
-      // alert('请先选择部门')
-      Message.create({ content: '请先选择部门', color: 'danger', duration: 0.5 });
-      return false;
+      this.danger();
+     return false;
     }
     return true;
   }
@@ -136,7 +141,7 @@ class Demo3 extends Component {
             })}
             canInputGoOn={this.canGetData}
             canClickGoOn={this.canGetData}
-            value={JSON.stringify(jiLianValue)}
+            // value={JSON.stringify(jiLianValue)}
           />
 
           <span style={{
@@ -151,6 +156,7 @@ class Demo3 extends Component {
     )
   }
 };
+export default Form.createForm()(Demo3);
 `
 class Demo3 extends Component {
   constructor() {
@@ -170,18 +176,21 @@ class Demo3 extends Component {
 
   singleSaveOrgParam = (result) => {
     //组织单选的保存，级联参照
+    this.props.form.setFieldsValue({code1:{'refname':'',refpk:''}})
     this.setState({
-      jiLianValue: Object.assign({}, { "refname": "", "refpk": this.state.sum+'' }),//更换完清空级联的数据
-      sum: ++this.state.sum,
       singleClientParam: result.length === 0 ? {} : { 'organization_id': result[0].refpk },
     });
 
   }
+  danger = () =>{
+    Message.destroy();
+    Message.create({ content: '请先选择组织', color: 'danger',position:'topRight'});
+    
+  }
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
-      // alert('请先选择部门')
-      Message.create({ content: '请先选择部门', color: 'danger', duration: 0.5 });
-      return false;
+      this.danger();
+     return false;
     }
     return true;
   }
@@ -266,7 +275,7 @@ class Demo3 extends Component {
             })}
             canInputGoOn={this.canGetData}
             canClickGoOn={this.canGetData}
-            value={JSON.stringify(jiLianValue)}
+            // value={JSON.stringify(jiLianValue)}
           />
 
           <span style={{
