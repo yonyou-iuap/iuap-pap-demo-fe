@@ -99,6 +99,6 @@ module.exports = (env, argv) => {
             // new BundleAnalyzerPlugin()
         ],
         open_source_map: false,
-        // res_extra: isBuild
+        res_extra:true
     }
 }
