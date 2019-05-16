@@ -46,6 +46,11 @@ class Demo3 extends Component {
     });
 
   }
+  danger = () =>{
+    Message.destroy();
+    Message.create({ content: '请先选择组织', color: 'danger',position:'topRight'});
+    
+  }
   canGetData = () => {
     if (Object.keys(this.state.singleClientParam).length === 0) {
       // alert('请先选择组织')
@@ -136,7 +141,7 @@ class Demo3 extends Component {
             })}
             canInputGoOn={this.canGetData}
             canClickGoOn={this.canGetData}
-            value={JSON.stringify(jiLianValue)}
+            // value={JSON.stringify(jiLianValue)}
           />
 
           <span style={{
@@ -151,6 +156,7 @@ class Demo3 extends Component {
     )
   }
 };
+export default Form.createForm()(Demo3);
 `
 class Demo3 extends Component {
   constructor() {
