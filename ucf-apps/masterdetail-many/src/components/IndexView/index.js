@@ -72,27 +72,8 @@ export default class IndexView extends Component {
      * @param {string} tabKey uploadFill为文件上传，emergency子表，traveling子表
      */
     onChangeTab = (tabKey) => {
-        // if (tabKey !== "uploadFill") { // 判断是否文件上传
-        //     const {passengerObj, passengerIndex, searchParam} = this.props;
-        //     const {pageSize} = this.props[tabKey + "Obj"];
-        //     const {id: search_passengerId} = passengerObj.list[passengerIndex] || {};
-        //     if (search_passengerId) { //如果主表有数据，子表在获取数据
-        //         const param = {search_passengerId, pageIndex: 0, pageSize};
-        //         if (tabKey === "emergency") {
-        //             const {search_contactName} = searchParam;
-        //             param.search_contactName = search_contactName; // 添加子表数据
-        //             actions.masterDetailMany.loadEmergencyList(param); //获取emergency
-        //         }
-        //         if (tabKey === "traveling") {
-        //             actions.masterDetailMany.loadTravelingList(param);  //获取traveling
-        //         }
-        //     }
-        // }
-        Promise
-            .resolve(actions.masterDetailMany.updateState({tabKey}))
-            .then(() => {
-                actions.masterDetailMany.loadSubList()
-            })
+        actions.masterDetailMany.updateState({tabKey});
+        actions.masterDetailMany.loadSubList();
     }
 
 
