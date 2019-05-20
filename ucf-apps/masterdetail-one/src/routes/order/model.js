@@ -1,8 +1,8 @@
 import { actions } from "mirrorx";
 // 引入services，如不需要接口请求可不写
 import * as api from "./service";
-import * as oneApi from '../one/service'
-import * as commonApi from '../common/service'
+import * as oneApi from '../one/service';
+import * as commonApi from "../../common/service";
 // 接口返回数据公共处理方法，根据具体需要
 import { processData, deepAssign, structureObj, initStateObj, Error ,deepClone} from "utils";
 

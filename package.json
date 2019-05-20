@@ -4,63 +4,52 @@
   "description": "典型案例",
   "main": "index.js",
   "scripts": {
-    "start": "ucf-scripts start --homepage=index.html",
+    "start": "ucf-scripts start --homepage=iuap-pap-demo-fe/singletable-query",
     "build": "ucf-scripts build",
     "war": "rimraf war && mkdir war && jar cvfM0 ./war/dist.war ./ucf-publish/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iuap-design/ucf-webapp.git"
+    "url": "git+https://github.com/yonyou-iuap/iuap-pap-demo-fe.git"
   },
-  "author": "Kvkens(yueming@yonyou.com)",
+  "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iuap-design/ucf-webapp/issues"
+    "url": "https://github.com/yonyou-iuap/iuap-pap-demo-fe/issues"
   },
-  "homepage": "https://github.com/iuap-design/ucf-webapp#readme",
+  "homepage": "https://github.com/yonyou-iuap/iuap-pap-demo-fe#readme",
   "devDependencies": {
     "ucf-scripts": "1.1.6",
     "webpack-bundle-analyzer": "^3.1.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "ac-attachment": "^0.3.0",
-    "ac-drawer": "0.0.2",
     "async-validator": "1.10.0",
     "axios": "0.18.0",
-    "babel-polyfill": "^6.26.0",
-    "bee-checkbox": "^2.0.2",
-    "bee-complex-grid": "^2.0.1",
-    "bee-datepicker": "^2.0.2",
-    "bee-icon": "^1.0.11",
-    "bee-label": "^1.0.0",
-    "bee-locale": "^0.0.13",
-    "bee-message": "^2.0.3",
-    "bee-modal": "^2.0.13",
-    "bee-radio": "^2.0.7",
-    "bee-search-panel": "2.0.13",
-    "bee-table": "^2.0.17",
-    "bee-tooltip": "^2.0.3",
-    "bee-tree": "^2.0.9",
     "classnames": "2.2.6",
-    "clone-deep": "^4.0.1",
-    "exceljs": "^1.7.0",
+    "clone-deep": "4.0.1",
     "mirrorx": "0.2.13",
     "moment": "2.23.0",
-    "pap-refer": "^1.0.4",
     "prop-types": "15.6.2",
     "query-string": "5.1.1",
     "react": "16.6.3",
     "react-dom": "16.6.3",
-    "react-hot-loader": "^4.8.3",
+    "tinper-bee": "2.0.10",
+    "bee-checkbox": "2.0.5",
+    "bee-complex-grid": "2.0.13",
+    "bee-datepicker": "2.0.34",
+    "bee-message": "2.0.4",
+    "bee-search-panel": "2.0.13",
+    "bee-table": "2.0.19",
+    "ac-attachment": "0.3.0",
+    "ac-drawer": "0.0.2",
     "ref-multiple-table": "2.0.1",
-    "ref-tree": "^2.0.2",
+    "ref-tree": "2.0.2",
     "ref-tree-table": "2.0.1",
-    "tinper-bee": "^2.0.10",
-    "ucf-fe": "^0.1.0",
-    "ucf-request": "^1.0.0",
+    "pap-refer": "1.0.4",
     "yyuap-bpm": "0.3.38",
-    "yyuap-ref": "^1.1.62"
+    "yyuap-ref": "1.1.67"
   }
 }

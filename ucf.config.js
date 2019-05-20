@@ -31,26 +31,6 @@ module.exports = (env, argv) => {
                 router: ["/wbalone/appmenumgr/newSidebarList"],
                 url: 'https://mock.yonyoucloud.com/mock/535'
             },
-            // {
-            //     enable: true,
-            //     headers: {
-            //         "Referer": "http://yanshi01.app.yyuap.com"
-            //     },
-            //     //要代理访问的对方路由
-            //     router: [
-            //         '/iuap-pap-demo-be',
-            //         '/wbalone',
-            //         '/iuap-saas-message-center/',
-            //         '/iuap-saas-filesystem-service/',
-            //         '/eiap-plus/',
-            //         '/newref/',
-            //         '/print_service/',
-            //         '/iuap-print/',
-            //         '/pap_basedoc',
-            //         '/iuapmdm',
-            //     ],
-            //     url: 'http://yanshi01.app.yyuap.com'
-            // }
             {
                 enable: true,
                 headers: {
@@ -86,14 +66,6 @@ module.exports = (env, argv) => {
             static: path.resolve(__dirname, 'ucf-common/src/static/'),
             styles: path.resolve(__dirname, 'ucf-common/src/styles/'),
         },
-        // 构建排除指定包
-        externals: {
-            // 'tinper-bee': 'TinperBee'
-        },
-        // 加载器Loader
-        loader: [],
-        // 调试服务需要运行的插件
-        devPlugins: [],
         // 构建服务需要运行的插件
         buildPlugins: [
             // new BundleAnalyzerPlugin()
