@@ -5,14 +5,14 @@
 ---
 
 ## 1. 介绍
-    典型案例，帮助我们快速交付项目而提供的一组项目级的案例。
+    典型案例是帮助我们快速交付项目而提供的一套完整的项目级的前端解决案例，内置一些基础组件、基础组件的项目级封装、以及 和页面级的示例代码。
 
 ## 2. 启动
 
-> 建议使用项目自带依赖`ucf-scripts`工具使用，使用全局会有安装权限问题
+> 建议使用项目自带依赖`ucf-scripts`工具使用，使用全局会有安装权限问题[文档见](http://tinper.org/ucf-web/gj-ucfscripts)
 
 
-1. 通过`npm scripts`启动
+通过`npm scripts`启动
 
 ```bash
 
@@ -21,6 +21,7 @@ $ npm start
 
 # 开发构建
 $ npm run build
+> 如果打包内存溢出、特慢的情况，请更新node v 12 版本，即可解决。
 ```
 内置配置脚本启动
 ```js
@@ -29,30 +30,16 @@ $ npm run build
     "build": "ucf-scripts build"
   },
   "devDependencies": {
-    "ucf-scripts": "^1.0.2"
+    "ucf-scripts": "1.1.6"
   }
 ``` 
-
-2. 通过全局命令启动
-
-切换到项目根目录后执行开发调试、上线构建：
-```bash
-# 全局安装工具
-$ npm install ucf-scripts -g
-
-# 开发启动
-$ ucf-scripts start
-
-# 开发构建
-$ ucf-scripts build
-```
  
 ## 3. 访问
 
 启动器`bootList`的模块名字就是我们的访问路径，例如：`ucf-apps/demo-app-org`下的文件夹就是我们运行后的模块路径
 
 ```bash
-http://127.0.0.1:3000/iuap-pap-demo-fe
+http://127.0.0.1:3000/iuap-pap-demo-fe/singletable-query
 ```
 程序会根据你所设置的`bootList`来扫描启动的，`bootList:true`表示全部开启，`bootList:[]`指定模块启动
 ```js
@@ -72,13 +59,13 @@ bootList: [
 ```bash
 # 典型案例工程模块
 ucf-apps
-├── masterdetail-many
-├── masterdetail-one
-├── singletable-inline-edit
-├── singletable-popup-edit
-├── singletable-query
-├── tree
-└── ref-demo
+├── masterdetail-many       (B3 一主多子示例)
+├── masterdetail-one        (B2 一主一子示例)
+├── singletable-inline-edit (A2单表行内编辑示例)
+├── singletable-popup-edit (A3 单表弹框编辑示例)
+├── singletable-query   (A1单表查询示例)
+├── tree                (B1左树右表示例)
+└── ref-demo            (参照组件展示)
 
 ```
 
@@ -165,6 +152,7 @@ source_map | 构建资源生产环境的时候产出sourceMap | false | true,fal
     static: path.resolve('.', 'ucf-common/src/static/'),
     utils: path.resolve('.', 'ucf-common/src/utils/')
 }
+
 ```
 当然，使用css、less的时候遇到使用背景图片的时候可以使用以下：
 
@@ -175,13 +163,5 @@ source_map | 构建资源生产环境的时候产出sourceMap | false | true,fal
 }
 ```
 
-## 6. 分支管理
-
->注: 所有的代码合并必须是master --> develop --> release
-
-  - master 此分支用来维护工程源代码，进行新功能添加，debug等工作，修改完此分支后请自行向相关分支合并
-  - develop 应用平台多语分支，由master分支向此分支合并代码，然后进行多语功能的添添加，此分支不允许向master合并
-  -  release 分支 iuap5 开发平台分支
-
-
+## 注意事项
 

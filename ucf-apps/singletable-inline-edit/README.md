@@ -1,0 +1,1 @@
+# singletable-inline-edit  A2单表行内编辑示例
