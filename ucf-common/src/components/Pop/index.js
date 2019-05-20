@@ -83,6 +83,7 @@ class PopDialog extends Component {
             className={(this.props.className ? this.props.className : "") + " pop_dialog "}
             size={this.props.size ? this.props.size : "lg"} backdrop={this.props.backdrop ? true : 'static'}
             show={this.props.show} onHide={this.props.close}
+            animation={false}
         >
           <Modal.Header closeButton={closeButton}>
             <Modal.Title>
