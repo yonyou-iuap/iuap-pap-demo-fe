@@ -353,7 +353,8 @@ class IndexView extends Component {
                     actions.routing.replace({ pathname: '/' });
                     break;
                 default:
-                    window.history.go(-1);
+                    // window.history.go(-1);
+                    window.parent.bpmCloseOrder && window.parent.bpmCloseOrder()
             }
 
         } else {
