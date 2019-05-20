@@ -61,7 +61,7 @@ class IndexView extends Component {
     onRelevance = (record, key) => {
         let {name} = record;
         if (key === "name") { // 跳转百度
-            window.open('http://bee.tinper.org/prepaper?a=' + name, "_blank");
+            window.open(window.location.href+'?a=' + name, "_blank");
         }
         if (key === "code") {  // 弹出模态框
             this.setState({record, showModal: true});
