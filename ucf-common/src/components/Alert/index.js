@@ -88,7 +88,6 @@ class AlertDialog extends Component {
                     titleIcon="uf-qm-c"
                     backdrop={false}
                     closeButton={false}
-                    animation={false}
                     btns={this.dialogBtnConfig}>
                     <span className="alert-modal-cont">{context}</span>
                 </PopDialog>
