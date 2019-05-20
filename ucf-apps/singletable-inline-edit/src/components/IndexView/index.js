@@ -520,12 +520,13 @@ class IndexView extends Component {
      */
     handlerNew = () => {
         let newData = deepClone(this.props.list);//克隆原始数据
+        // let newData =JSON.parse(JSON.stringify(this.props.list));
         //这里是新增后的新数据模板，用于默认值
         let tmp = {
             key: uuid(),
             ...this.newDataTmp
         }
-
+        // debugger;
         //当第一次新增的时候
         // 禁用其他checked
         //重置表头状态
@@ -540,8 +541,19 @@ class IndexView extends Component {
         this.oldData.unshift(tmp);//插入到最前
         newData.unshift(tmp);
 
-        //保存处理后的数据，并且切换操作态'新增'
-        actions.inlineEdit.updateState({ list: newData, status: "new", rowEditStatus: false, selectData: [] });
+        if(this.oldData.length != 0 ){
+            for (let index = 0; index < this.oldData.length; index++) {
+                const element = this.oldData[index];
+                for (let i = 0; i < newData.length; i++) {
+                    if(element.key ===  newData[i].key){
+                        newData[i] = {...element};
+                        break;
+                    }
+                }
+            }
+        }
+        //保存处理后的数据，并且切换操作态'新增' this.oldData.concat(
+        actions.inlineEdit.updateState({ list:newData, status: "new", rowEditStatus: false, selectData: [] });
     }
 
     /**
