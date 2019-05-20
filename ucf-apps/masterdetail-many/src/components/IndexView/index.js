@@ -72,11 +72,8 @@ export default class IndexView extends Component {
      * @param {string} tabKey uploadFill为文件上传，emergency子表，traveling子表
      */
     onChangeTab = (tabKey) => {
-        Promise
-            .resolve(actions.masterDetailMany.updateState({tabKey}))
-            .then(() => {
-                actions.masterDetailMany.loadSubList()
-            })
+        actions.masterDetailMany.updateState({tabKey});
+        actions.masterDetailMany.loadSubList();
     }
 
 
