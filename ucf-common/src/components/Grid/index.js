@@ -62,7 +62,6 @@ class Grid extends Component {
                     exportData={_exportData}
                     paginationObj={_paginationObj}
                     ref={el => this.grid = el}
-                    emptyText={() => <Icon style={{fontSize: "60px"}} type="uf-nodata"/>}
                 />
             </div>
         );

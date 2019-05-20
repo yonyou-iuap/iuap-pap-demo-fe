@@ -746,7 +746,6 @@ class IndexView extends Component {
                         syncHover={rowEditStatus}
                         multiSelect={!rowEditStatus}
                         getSelectedDataFunc={this.getSelectedDataFunc}
-                        emptyText={() => <Icon style={{ "fontSize": "60px" }} type="uf-nodata" />}
                         loading={{ show: (!showLoading && showDetailLoading), }}
                     />
                 </div>
