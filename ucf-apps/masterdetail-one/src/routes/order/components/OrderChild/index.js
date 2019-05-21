@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import moment from "moment";
 import {FormControl, Select} from 'tinper-bee'
-import InputNumber from 'bee-input-number';
 import {RefIuapDept} from 'components/RefViews';
 import DatePicker from 'bee-datepicker';
 import FormList from 'components/FormList';
@@ -89,7 +88,7 @@ class OrderChild extends Component {
 
 
                 <FormItem required label={"价格"} layoutOpt={layoutOpt}>
-                    <InputNumber
+                    {/* <InputNumber
                         iconStyle="one"
                         precision={2}
                         min={0}
@@ -99,7 +98,24 @@ class OrderChild extends Component {
                         {...getFieldProps('orderPrice', {
                             initialValue: orderRow.orderPrice ? Number(orderRow.orderPrice) : 0.00,
                         })}
+                    /> */}
+                     <FormControl disabled={btnFlag === 2} maxLength={8} 
+                                {...getFieldProps('orderPrice', {
+                                         validateTrigger: 'onBlur',
+                                         initialValue: orderRow.orderPrice || '',
+                                         rules: [{
+                                             required: true,
+                                             message: '请输入价格,长度小于8',
+                                             
+                                         },
+                                         {
+                                            pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
+                                            message: '请输入价格,类型为数字!',
+                                        }],
+                                     }
+                                 )}
                     />
+                    <FormError errorMsg={getFieldError('orderPrice')}/>
                 </FormItem>
 
                 <FormItem label={"申请人"} layoutOpt={layoutOpt}>

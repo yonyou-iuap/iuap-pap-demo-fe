@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {actions} from "mirrorx";
 import {FormControl, Select} from 'tinper-bee'
-import InputNumber from 'bee-input-number';
 import FormList from 'components/FormList';
 import DatePicker from "tinper-bee/lib/Datepicker";
 import {RefIuapDept} from 'components/RefViews';
 import SearchPanel from 'components/SearchPanel';
 import SelectMonth from 'components/SelectMonth';
+// import FormError from 'components/FormError';
 import {deepClone, mergeListObj, delListObj,getValidateFieldsTrim} from "utils";
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 
@@ -141,11 +141,27 @@ class SearchAreaForm extends Component {
                     <FormItem
                         label="司龄"
                     >
-                        <InputNumber
+                        {/* <InputNumber
                             min={0}
                             iconStyle="one"
                             {...getFieldProps('serviceYearsCompany', {initialValue: "0",})}
+                        /> */}
+                        <FormControl maxLength={2} 
+                            {...getFieldProps('serviceYearsCompany', {
+                                    validateTrigger: 'onBlur',
+                                    initialValue: '0',
+                                    rules: [{
+                                        required: true,
+                                        message: '请输入,长度小于2',
+                                    },
+                                    {
+                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
+                                        message: '请输入,类型为数字!',
+                                    }],
+                                }
+                            )}
                         />
+                        {/* <FormError errorMsg={getFieldError('serviceYearsCompany')}/> */}
                     </FormItem>
 
                     <FormItem

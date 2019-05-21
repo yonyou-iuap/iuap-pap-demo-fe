@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {actions} from "mirrorx";
 import {FormControl, Select} from 'tinper-bee'
-import InputNumber from 'bee-input-number';
 import FormList from 'components/FormList';
 import {getValidateFieldsTrim} from "utils";
 import moment from "moment";
@@ -259,12 +258,29 @@ class PopupModal extends Component {
                         required
                         label="工龄"
                     >
-                        <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}
+                        {/* <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}
                                      {...getFieldProps('serviceYears', {
                                          initialValue: (typeof serviceYears) === "number" ? serviceYears : 1,
                                          rules: [{pattern: /^[0-9]+$/, required: true}],
                                      })}
+                        /> */}
+                        <FormControl disabled={btnFlag === 2} maxLength={2} 
+                            {...getFieldProps('serviceYears', {
+                                    validateTrigger: 'onBlur',
+                                    initialValue: serviceYears || '1',
+                                    rules: [{
+                                        required: true,
+                                        message: '请输入,长度小于8',
+                                    },
+                                    {
+                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
+                                        message: '请输入,类型为数字!',
+                                    }],
+                                }
+                            )}
                         />
+                        <FormError errorMsg={getFieldError('serviceYears')}/>
+
                     </FormItem>
 
                     <FormItem
@@ -272,12 +288,29 @@ class PopupModal extends Component {
                         required
                         label="司龄"
                     >
-                        <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}
+                        {/* <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={99}
                                      {...getFieldProps('serviceYearsCompany', {
                                          initialValue: (typeof serviceYearsCompany) === "number" ? serviceYearsCompany : 1,
                                          rules: [{pattern: /^[0-9]+$/, required: true}],
                                      })}
+                        /> */}
+                        <FormControl disabled={btnFlag === 2} maxLength={2} 
+                            {...getFieldProps('serviceYearsCompany', {
+                                    validateTrigger: 'onBlur',
+                                    initialValue: serviceYearsCompany || '1',
+                                    rules: [{
+                                        required: true,
+                                        message: '请输入,长度小于8',
+                                        
+                                    },
+                                    {
+                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
+                                        message: '请输入,类型为数字!',
+                                    }],
+                                }
+                            )}
                         />
+                        <FormError errorMsg={getFieldError('serviceYearsCompany')}/>
                     </FormItem>
 
                     <FormItem
@@ -338,11 +371,28 @@ class PopupModal extends Component {
                         required
                         label="补贴标准"
                     >
-                        <InputNumber iconStyle="one" precision={2} min={0} max={9999} disabled={btnFlag === 2}
+                        {/* <InputNumber iconStyle="one" precision={2} min={0} max={9999} disabled={btnFlag === 2}
                                      {...getFieldProps('allowanceStandard', {
                                          initialValue: allowanceStandard ? Number(allowanceStandard) : 100,
                                      })}
+                        /> */}
+                         <FormControl disabled={btnFlag === 2} maxLength={8} 
+                            {...getFieldProps('allowanceStandard', {
+                                    validateTrigger: 'onBlur',
+                                    initialValue: allowanceStandard || '',
+                                    rules: [{
+                                        required: true,
+                                        message: '请输入,长度小于8',
+                                        
+                                    },
+                                    {
+                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
+                                        message: '请输入,类型为数字!',
+                                    }],
+                                }
+                            )}
                         />
+                        <FormError errorMsg={getFieldError('allowanceStandard')}/>
                     </FormItem>
 
                     <FormItem
@@ -350,11 +400,28 @@ class PopupModal extends Component {
                         required
                         label="实际补贴"
                     >
-                        <InputNumber iconStyle="one" precision={2} min={0} max={9999} disabled={btnFlag === 2}
+                        {/* <InputNumber iconStyle="one" precision={2} min={0} max={9999} disabled={btnFlag === 2}
                                      {...getFieldProps('allowanceActual', {
                                          initialValue: allowanceActual ? Number(allowanceActual) : 100,
                                      })}
-                        />
+                        /> */}
+                        <FormControl disabled={btnFlag === 2} maxLength={8} 
+                            {...getFieldProps('allowanceActual', {
+                                    validateTrigger: 'onBlur',
+                                    initialValue: allowanceActual || '',
+                                    rules: [{
+                                        required: true,
+                                        message: '请输入,长度小于8',
+                                        
+                                    },
+                                    {
+                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
+                                        message: '请输入,类型为数字!',
+                                    }],
+                                }
+                            )}
+                        /> 
+                        <FormError errorMsg={getFieldError('allowanceActual')}/>
                     </FormItem>
 
                     <FormItem

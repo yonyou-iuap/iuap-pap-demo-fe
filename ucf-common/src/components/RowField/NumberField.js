@@ -1,7 +1,3 @@
-/**
- * InputNumber (数值选择框)
- */
-
 //React导入
 import React, { Component } from 'react';
 import {FormControl, Select} from 'tinper-bee'
