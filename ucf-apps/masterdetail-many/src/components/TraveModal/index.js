@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {FormControl, InputNumber, Select} from "tinper-bee";
+import {FormControl, Select} from 'tinper-bee'
+import InputNumber from 'bee-input-number';
 import {actions} from "mirrorx";
 import {getValidateFieldsTrim} from "utils";
 import PopDialog from 'components/Pop';

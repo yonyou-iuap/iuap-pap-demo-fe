@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import moment from "moment";
-import { FormControl, InputNumber, Select} from "tinper-bee";
+import {FormControl, Select} from 'tinper-bee'
+import InputNumber from 'bee-input-number';
 import {RefIuapDept} from 'components/RefViews';
 import DatePicker from 'bee-datepicker';
 import FormList from 'components/FormList';

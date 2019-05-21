@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {actions} from "mirrorx";
-import {FormControl, Select, InputNumber} from "tinper-bee";
+import {FormControl, Select} from 'tinper-bee'
+import InputNumber from 'bee-input-number';
 import FormList from 'components/FormList';
 import {getValidateFieldsTrim} from "utils";
 import moment from "moment";

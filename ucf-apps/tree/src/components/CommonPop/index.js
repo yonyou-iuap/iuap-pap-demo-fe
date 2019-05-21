@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import {
-	FormControl, Select, InputNumber
-} from "tinper-bee";
+import {FormControl, Select} from 'tinper-bee';
+import InputNumber from 'bee-input-number';
 import FormList from 'components/FormList';
 import PopDialog from 'components/Pop';
 
