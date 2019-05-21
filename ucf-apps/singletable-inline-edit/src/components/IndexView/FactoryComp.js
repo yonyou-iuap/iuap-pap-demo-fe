@@ -190,12 +190,14 @@ const renderComponentMap = {
     dept: {//部门
         component: RefDept,
         type: 'ref',
-        valueKey: 'deptName'
+        valueKey: 'deptName',
+        key:'dept'
     },
     level: {//职级
         component: RefLevel,
         type : 'ref',
-        valueKey: 'levelName'
+        valueKey: 'levelName',
+        key:'level'
     }
 }
 

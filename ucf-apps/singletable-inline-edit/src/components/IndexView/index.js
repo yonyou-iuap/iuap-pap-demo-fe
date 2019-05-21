@@ -346,6 +346,7 @@ class IndexView extends Component {
             }
         }
     ];
+    
     componentWillMount() {
         //计算表格滚动条高度
         this.resetTableHeight(true);
@@ -361,15 +362,18 @@ class IndexView extends Component {
     }
     /**
      * 同步修改后的数据不操作State
-     *
+     * @param refObj 有数据表示为参照返回函数
      * @param {string} field 字段
      * @param {any} value 值
      * @param {number} index 位置
      */
-    changeAllData = (field, value, index) => {
+    changeAllData = (field, value, index,refname) => {
         let oldData = this.oldData;
         let _sourseData = deepClone(this.props.list);
         oldData[index][field] = value;
+        if(refname){
+            oldData[index][field+"Name"] = refname;
+        }
         //有字段修改后去同步左侧对号checkbox
         if (!_sourseData[index]['_checked']) {
             _sourseData[index]['_checked'] = true;
@@ -556,6 +560,7 @@ class IndexView extends Component {
                 }
             }
         }
+        console.log(" ---oldData---- ",this.oldData);
         //保存处理后的数据，并且切换操作态'新增' this.oldData.concat(
         actions.inlineEdit.updateState({ list:newData, status: "new", rowEditStatus: false, selectData: [] });
     }
@@ -782,6 +787,45 @@ class IndexView extends Component {
         const _this = this;
         let { showPop, showPopCancel, tableHeight } = _this.state;
         let { list, showLoading, pageIndex, pageSize, totalPages, total, status, rowEditStatus, queryParam } = _this.props;
+
+        // let column = [ 
+        //     {
+        //         title: "员工姓名",
+        //         dataIndex: "name",
+        //         key: "name",
+        //         width: 120,
+        //         render: (text, record, index) => {
+        //             return <FactoryComp
+        //                 type='name'//姓名业务组件类型
+        //                 value={text}//初始化值
+        //                 field='name'//修改的字段
+        //                 index={index}//字段的行号
+        //                 required={true}//必输项
+        //                 record={record}//记录集用于多字段处理
+        //                 onChange={this.changeAllData}//回调函数
+        //                 onValidate={this.onValidate}//校验的回调
+        //             />
+        //         }
+        //     },
+        //     {
+        //         title: "所属部门",
+        //         dataIndex: "deptName",
+        //         key: "deptName",
+        //         width: 120,
+        //         render: (text, record, index) => {
+        //             return <FactoryComp
+        //                 type='dept'//性别业务组件类型
+        //                 field='dept'//修改的字段
+        //                 index={index}//字段的行号
+        //                 required={true}//必输项
+        //                 record={record}//记录集用于多字段处理
+        //                 onChange={this.changeAllData}//回调函数
+        //                 onValidate={this.onValidate}//校验的回调
+        //             />
+        //         }
+        //     }
+        // ];
+
         //分页条数据
         let paginationObj = {
             activePage: pageIndex,//当前页

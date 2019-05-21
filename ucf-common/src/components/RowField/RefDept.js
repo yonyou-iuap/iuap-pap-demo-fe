@@ -79,16 +79,32 @@ class RefDept extends Component {
      *
      * @param {string} value
      */
-    handlerChange = (value) => {
+    // handlerChange = (value) => {
+    //     let { onChange, field, index, status } = this.props;
+    //     //处理是否有修改状态改变、状态同步之后校验输入是否正确
+    //     //处理参照不兼容字段
+    //     let _value = JSON.parse(value).refpk;
+    //     this.setState({ value, flag: status == 'edit' }, () => {
+    //         this.validate();
+    //     });
+    //     //回调外部函数
+    //     onChange && onChange(field, _value, index,JSON.parse(value).refname);
+    //     // onChange && onChange(field, value, index);
+    // }
+
+    onSave = result =>{
         let { onChange, field, index, status } = this.props;
         //处理是否有修改状态改变、状态同步之后校验输入是否正确
         //处理参照不兼容字段
-        let _value = JSON.parse(value).refpk;
-        this.setState({ value, flag: status == 'edit' }, () => {
+        let value  = result[0];
+        let str = JSON.stringify(value);
+        let _value = value.refpk;
+        this.setState({ value:str, flag: status == 'edit' }, () => {
             this.validate();
         });
         //回调外部函数
-        onChange && onChange(field, _value, index);
+        onChange && onChange(field, _value, index, value.refname);
+        // onChange && onChange(field, value, index);
     }
     /**
      * 校验方法
@@ -131,7 +147,8 @@ class RefDept extends Component {
                     style={{ "width": "100%" }}
                     className={className}
                     value={value}
-                    onChange={this.handlerChange}
+                    // onChange={this.handlerChange}
+                    onSave={this.onSave}
                 />
             </FieldWrap>
         );
