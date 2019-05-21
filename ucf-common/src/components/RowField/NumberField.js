@@ -1,11 +1,8 @@
-/**
- * InputNumber (数值选择框)
- */
-
 //React导入
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
 import React, { Component } from 'react';
-import { InputNumber } from 'tinper-bee'
+import {FormControl, Select} from 'tinper-bee'
+import InputNumber from 'bee-input-number';
 //类型校验
 import PropTypes from 'prop-types';
 //验证组件 https://www.npmjs.com/package/async-validator

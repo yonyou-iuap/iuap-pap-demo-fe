@@ -1,8 +1,6 @@
 import { FormattedMessage, injectIntl } from 'react-intl';
 import React, {Component} from "react";
-import {
-	FormControl, Select, InputNumber
-} from "tinper-bee";
+import {FormControl, Select} from 'tinper-bee';
 import FormList from 'components/FormList';
 import PopDialog from 'components/Pop';
 
@@ -194,8 +192,8 @@ class CommonPop extends Component {
                         </Select>
                         <span className='error'>{getFieldError('sex')}</span>
                     </FormItem>
-                    <FormItem required label={<FormattedMessage id="js.com.Com.0013" defaultMessage="年龄" />}>
-                        <InputNumber iconStyle="one" min={1} step={1}  max={99}
+                    <FormItem required label={"年龄"}>
+                        {/* <InputNumber iconStyle="one" min={1} step={1}  max={99}
                                      disabled = {btnFlag == 2}
                                      {...getFieldProps('age', {
                                          initialValue: age ? age : "1",
@@ -211,7 +209,24 @@ class CommonPop extends Component {
                                          }],
                                      })}
                         />
-                        <span className='error'>{getFieldError('age')}</span>
+                        <span className='error'>{getFieldError('age')}</span> */} 
+                        <FormControl disabled={btnFlag === 2} maxLength={2} 
+                            {...getFieldProps('age', {
+                                    validateTrigger: 'onBlur',
+                                    initialValue: age || '0',
+                                    rules: [{
+                                        required: true,
+                                        message: '请输入,长度小于2',
+                                    },
+                                    {
+                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
+                                        message: '请输入,类型为数字!',
+                                    }],
+                                }
+                            )}
+                        />
+                        <FormError errorMsg={getFieldError('age')}/>
+
                     </FormItem>
 				</FormList>
 			</PopDialog>
