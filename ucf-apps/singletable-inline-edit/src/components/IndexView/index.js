@@ -314,19 +314,29 @@ class IndexView extends Component {
                 />
             }
         },
-        {
-            title: this.formatMessage({id:"js.com.Ind1.0016", defaultMessage:"领取时间"}),
-            dataIndex: "pickTime",
-            key: "pickTime",
-            width: 200,
-            render: (text, record, index) => {
-                if (text !== "" && (typeof text !== 'undefined')) {
-                    return <div>{moment(text).format('YYYY-MM-DD hh:mm:ss')}</div>
-                } else {
-                    return <div></div>
-                }
-            }
-        },
+        // {
+        //     title: "领取时间",
+        //     dataIndex: "pickTime",
+        //     key: "pickTime",
+        //     width: 200,
+        //     render: (text, record, index) => {
+        //         return <FactoryCompRender
+        //             type='detailDate'//需求日期业务组件类型
+        //             value={text}//初始化值
+        //             field='data'//修改的字段
+        //             index={index}//字段的行号
+        //             required={true}//必输项
+        //             record={record}//记录集用于多字段处理
+        //             onChange={this.changeAllData}//回调函数
+        //         />
+        //         // if (text !== "" && (typeof text !== 'undefined')) {
+        //         //     return <div>{moment(text).format('YYYY-MM-DD hh:mm:ss')}</div>
+        //         // } else {
+        //         //     return <div>{text ? moment(text).format(format) : ""}</div>
+        //         // }
+        //         // return <div>{text ? moment(text).format(format) : ""}</div>
+        //     }
+        // },
         {
             title: this.formatMessage({id:"js.com.Ind1.0017", defaultMessage:"备注"}),
             dataIndex: "remark",
@@ -560,7 +570,6 @@ class IndexView extends Component {
                 }
             }
         }
-        console.log(" ---oldData---- ",this.oldData);
         //保存处理后的数据，并且切换操作态'新增' this.oldData.concat(
         actions.inlineEdit.updateState({ list:newData, status: "new", rowEditStatus: false, selectData: [] });
     }
@@ -787,44 +796,6 @@ class IndexView extends Component {
         const _this = this;
         let { showPop, showPopCancel, tableHeight } = _this.state;
         let { list, showLoading, pageIndex, pageSize, totalPages, total, status, rowEditStatus, queryParam } = _this.props;
-
-        // let column = [ 
-        //     {
-        //         title: "员工姓名",
-        //         dataIndex: "name",
-        //         key: "name",
-        //         width: 120,
-        //         render: (text, record, index) => {
-        //             return <FactoryComp
-        //                 type='name'//姓名业务组件类型
-        //                 value={text}//初始化值
-        //                 field='name'//修改的字段
-        //                 index={index}//字段的行号
-        //                 required={true}//必输项
-        //                 record={record}//记录集用于多字段处理
-        //                 onChange={this.changeAllData}//回调函数
-        //                 onValidate={this.onValidate}//校验的回调
-        //             />
-        //         }
-        //     },
-        //     {
-        //         title: "所属部门",
-        //         dataIndex: "deptName",
-        //         key: "deptName",
-        //         width: 120,
-        //         render: (text, record, index) => {
-        //             return <FactoryComp
-        //                 type='dept'//性别业务组件类型
-        //                 field='dept'//修改的字段
-        //                 index={index}//字段的行号
-        //                 required={true}//必输项
-        //                 record={record}//记录集用于多字段处理
-        //                 onChange={this.changeAllData}//回调函数
-        //                 onValidate={this.onValidate}//校验的回调
-        //             />
-        //         }
-        //     }
-        // ];
 
         //分页条数据
         let paginationObj = {

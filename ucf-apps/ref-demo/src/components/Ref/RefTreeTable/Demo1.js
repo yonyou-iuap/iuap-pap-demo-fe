@@ -9,14 +9,12 @@ import { FormattedMessage } from 'react-intl';
 import React, { Component } from 'react';
 
 import  RefTreeTableWithInput  from 'pap-refer/lib/pap-common-treeTable/src/index';
-// import "pap-refer/lib/ref-tree-table.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 let code =
   `
 import React, { Component } from 'react';
 import  RefTreeTableWithInput  from 'pap-refer/lib/pap-common-treeTable/src/index';
-// import "pap-refer/lib/ref-tree-table.css"
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 class Demo1 extends Component {

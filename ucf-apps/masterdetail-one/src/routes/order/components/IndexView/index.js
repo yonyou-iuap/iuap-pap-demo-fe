@@ -462,6 +462,7 @@ class IndexView extends Component {
 
         //对主表数据进行处理
         form.validateFields((error, _values) => {
+            console.log(" ------_values-------- ",_values);
              let value = getValidateFieldsTrim(_values);
             if (!error) {
                 entity = this.filterOrder(value);
