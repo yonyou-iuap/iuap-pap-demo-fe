@@ -70,6 +70,8 @@ export default {
             if (res) {
                 let { content: list, number, totalPages, totalElements: total } = res;
 
+                list[0].postLevelName = list[0].levelName;
+
                 let pageIndex = number + 1;
                 _state = Object.assign({}, defState, {
                     list,

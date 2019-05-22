@@ -36,7 +36,7 @@ class FactoryCompRender extends Component {
                             status={record['_status']}//是否修改过标记
                             validate={record['_validate']}//启用验证
                             iconStyle="one"
-                            max={99}
+                            max={99999}
                             min={0}
                             step={1}
                         /> : <div>{value}</div>}

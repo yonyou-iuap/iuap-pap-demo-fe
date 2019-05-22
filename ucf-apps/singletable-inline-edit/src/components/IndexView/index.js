@@ -283,19 +283,19 @@ class IndexView extends Component {
                 />
             }
         },
-        {
-            title: this.formatMessage({id:"js.com.Ind1.0014", defaultMessage:"申请时间"}),
-            dataIndex: "applyTime",
-            key: "applyTime",
-            width: 200,
-            render: (text, record, index) => {
-                if (text !== "" && (typeof text !== 'undefined')) {
-                    return <div>{moment(text).format('YYYY-MM-DD hh:mm:ss')}</div>
-                } else {
-                    return <div></div>
-                }
-            }
-        },
+        // {
+        //     title: "申请时间",
+        //     dataIndex: "applyTime",
+        //     key: "applyTime",
+        //     width: 200,
+        //     render: (text, record, index) => {
+        //         if (text !== "" && (typeof text !== 'undefined')) {
+        //             return <div>{moment(text).format('YYYY-MM-DD hh:mm:ss')}</div>
+        //         } else {
+        //             return <div></div>
+        //         }
+        //     }
+        // },
         {
             title: this.formatMessage({id:"js.com.Ind1.0015", defaultMessage:"领取方式"}),
             dataIndex: "pickTypeEnumValue",
