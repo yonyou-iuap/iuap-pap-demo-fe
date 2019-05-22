@@ -38,7 +38,7 @@ export function RefIuapDept(props){
             {...props}
             modalProps={{'animation':false}}
         >
-            <RefTree />
+            {/* <RefTree /> */}
         </RefTreeWithInput>
     )
 }
@@ -63,7 +63,7 @@ export function RefWalsinLevel(props){
             {...props}
             emptyBut
         >
-            <RefMultipleTable />
+            {/* <RefMultipleTable /> */}
         </RefMultipleTableWithInput>
     )
 }
