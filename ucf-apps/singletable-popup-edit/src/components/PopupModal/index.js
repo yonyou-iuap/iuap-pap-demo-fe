@@ -297,7 +297,7 @@ class PopupModal extends Component {
                         <FormControl disabled={btnFlag === 2} maxLength={2} 
                             {...getFieldProps('serviceYearsCompany', {
                                     validateTrigger: 'onBlur',
-                                    initialValue: serviceYearsCompany || '1',
+                                    initialValue: serviceYearsCompany || '',
                                     rules: [{
                                         required: true,
                                         message: '请输入,长度小于8',
