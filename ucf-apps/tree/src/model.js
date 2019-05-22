@@ -202,7 +202,8 @@ export default {
                     paginationParam = deepClone(paginationParam);
             let {reqParam, reqParam: {title, hierarchy}} = paginationParam; 
             let {result} = processData(await api.getSearchTree(param));
-            let {data:res}=result; 
+            // let {data:res}=result; 
+            let res = result?result.data:null;
             let {content, parentIdSet} = typeof res !== 'undefined' && res || {
                     content : [],
                     parentIdSet : []
