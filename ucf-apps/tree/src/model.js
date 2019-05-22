@@ -123,7 +123,8 @@ export default {
                 showLoading : true
             })
             let {result} = processData(await api.getTableData(param));
-            let {data:res}=result;
+            // let {data:res}=result;
+            let res = result?result.data:null;
             let tableData = [], resultObj = {}; 
             if (res) {
                 tableData = res.content;

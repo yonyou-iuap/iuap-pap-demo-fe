@@ -28,10 +28,12 @@ export const processData = (response, successMsg) => {
         if (typeof response != 'object') {
             Error('数据返回出错：1、请确保服务运行正常；2、请确保您的前端工程代理服务正常；3、请确认您已在本地登录过应用平台');
             // throw new Error('数据返回出错：1、请确保服务运行正常；2、请确保您的前端工程代理服务正常；3、请确认您已在本地登录过应用平台')
+            return {result:null};
         }
         if (response.status == '401') {
             Error(`错误:${(response.data.msg)}`);
             // throw new Error(`错误:${(response.data.msg)}`);
+            return {result:null};
         }
         if (response.status == '200') {
             let data = response.data;
@@ -51,6 +53,7 @@ export const processData = (response, successMsg) => {
             } else {
                 Error(`错误:${convert(data.message)}`);
                 // throw new Error(`错误:${convert(data.message)}`);
+                return {result:null};
             }
         } else {
             Error('请求错误');
