@@ -458,7 +458,6 @@ class IndexView extends Component {
 
         //对主表数据进行处理
         form.validateFields((error, _values) => {
-            console.log(" ------_values-------- ",_values);
              let value = getValidateFieldsTrim(_values);
             if (!error) {
                 entity = this.filterOrder(value);
@@ -466,7 +465,7 @@ class IndexView extends Component {
                 formValidate = true;
             }
         });
-
+        
         //开始校验
         let { rowData, flag } = this.filterListKey(this.oldData);
         queryDetailObj.list = rowData;
@@ -477,13 +476,19 @@ class IndexView extends Component {
             let sublist = { purchaseOrderDetailList };
             let param = { entity, sublist };
             if(this.state.btnFlag === 1){
-                actions.masterDetailOrder.updateAsso(param);
+                 actions.masterDetailOrder.updateAsso(param).then((data)=>{
+                     if(data){
+                        this.clearQuery();
+                     }
+                 })
             }else if(this.state.btnFlag === 0){
-                actions.masterDetailOrder.adds(param);
+                actions.masterDetailOrder.adds(param).then((data)=>{
+                    if(data){
+                        this.clearQuery();
+                    }
+                })
             }
-            this.clearQuery();
         }
-
     }
 
     /**

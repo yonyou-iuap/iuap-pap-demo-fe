@@ -142,11 +142,13 @@ export default {
         async adds(param, getState) {
             actions.masterDetailOrder.updateState({ showLoading: true });
             let { result } = processData(await api.saveAsso(param), '保存成功');
-            let { data: res } = result;
+            let res = result?result.data:null;
+            // let { data: res } = result;
             actions.masterDetailOrder.updateState({ showLoading: false, status: 'view' });
             if (res) {
                 actions.routing.push({ pathname: '/' });
             }
+            return result;
         },
 
          /**
@@ -158,11 +160,13 @@ export default {
         async updateAsso(param, getState) {
             actions.masterDetailOrder.updateState({ showLoading: true });
             let { result } = processData(await api.updateAsso(param), '修改成功');
-            let { data: res } = result;
+            // let { data: res } = result;
+            let res = result?result.data:null;
             actions.masterDetailOrder.updateState({ showLoading: false, status: 'view' });
             if (res) {
                 actions.routing.push({ pathname: '/' });
             }
+            return result;
         },
 
         /**

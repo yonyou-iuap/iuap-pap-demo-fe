@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {FormControl, Select} from 'tinper-bee';
 import FormList from 'components/FormList';
 import PopDialog from 'components/Pop';
-
+import FormError from 'components/FormError';
 import {Error,getValidateFieldsTrim} from "utils";
 import {actions} from "mirrorx";
 
