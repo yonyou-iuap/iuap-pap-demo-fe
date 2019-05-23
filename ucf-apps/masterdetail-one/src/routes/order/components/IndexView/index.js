@@ -724,7 +724,7 @@ class IndexView extends Component {
                         onClick={this.onClickUpdate}>
                         <FormattedMessage id="js.com.Ind7.0013" defaultMessage="修改" />
                     </Button>
-                    {/* <Button
+                    <Button
                         shape="border"
                         disabled={btnFlag === 2 || btnForbid}
                         className="ml8"
@@ -733,7 +733,7 @@ class IndexView extends Component {
                         <FormattedMessage id="js.com.Ind7.0014" defaultMessage="删除" />
                     </Button>
                         删除
-                    </Button> */}
+                    </Button>
                     <Alert
                         show={showPopAlert}
                         context={intl.formatMessage({id: 'js.com.Ind7.0015', defineMessages: '新增、修改数据未保存将无法生效，确定删除这些记录吗 ?'})}
@@ -756,7 +756,7 @@ class IndexView extends Component {
                         dragborder={rowEditStatus}
                         draggable={rowEditStatus}
                         syncHover={rowEditStatus}
-                        multiSelect={!rowEditStatus}
+                        // multiSelect={rowEditStatus}
                         getSelectedDataFunc={this.getSelectedDataFunc}
                         loading={{ show: (!showLoading && showDetailLoading), }}
                     />
