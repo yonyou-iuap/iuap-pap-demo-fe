@@ -179,7 +179,6 @@ export default {
             let { result } = processData(await api.delOrderDetail(param), '删除成功');
             actions.masterDetailOrder.updateState({ showLoading: false });
             return result;
-
         },
     }
 };

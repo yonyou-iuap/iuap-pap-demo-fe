@@ -720,14 +720,14 @@ class IndexView extends Component {
                         onClick={this.onClickUpdate}>
                         修改
                     </Button>
-                    <Button
+                    {/* <Button
                         shape="border"
                         disabled={btnFlag === 2 || btnForbid}
                         className="ml8"
                         size='sm'
                         onClick={this.onClickDel}>
                         删除
-                    </Button>
+                    </Button> */}
                     <Alert
                         show={showPopAlert}
                         context="新增、修改数据未保存将无法生效，确定删除这些记录吗 ?"
