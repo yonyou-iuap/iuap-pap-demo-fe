@@ -64,14 +64,15 @@ export default {
             // 调用 getList 请求数据
 
             let {result} = processData(await api.getList(_param));
-            let {data:res}=result;
+            let res = result?result.data:null;
             let defState = { showLoading: false }
             let _state = null;
             if (res) {
                 let { content: list, number, totalPages, totalElements: total } = res;
 
-                list[0].postLevelName = list[0].levelName;
-
+                list.forEach(da=>{
+                    da.postLevelName = da.levelName;
+                })
                 let pageIndex = number + 1;
                 _state = Object.assign({}, defState, {
                     list,

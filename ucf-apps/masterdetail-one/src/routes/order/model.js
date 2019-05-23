@@ -185,7 +185,6 @@ export default {
             let { result } = processData(await api.delOrderDetail(param), msg);
             actions.masterDetailOrder.updateState({ showLoading: false });
             return result;
-
         },
     }
 };
