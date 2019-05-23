@@ -540,7 +540,6 @@ class IndexView extends Component {
             key: uuid(),
             ...this.newDataTmp
         }
-        // debugger;
         //当第一次新增的时候
         // 禁用其他checked
         //重置表头状态
