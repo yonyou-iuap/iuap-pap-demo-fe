@@ -37,7 +37,7 @@
     "bee-locale": "0.0.14",
     "bee-message": "2.0.4",
     "bee-search-panel": "2.0.13",
-    "bee-table": "2.0.24",
+    "bee-table": "^2.0.24",
     "classnames": "2.2.6",
     "clone-deep": "4.0.1",
     "mirrorx": "0.2.13",
