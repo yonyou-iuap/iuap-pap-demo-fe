@@ -73,21 +73,6 @@ class NumberField extends Component {
         if (nextProps.validate == true) {
             this.validate();
         }
-        // if(this.state.message != nextProps.message){ 
-        //     this.setState({
-        //         message:nextProps.message
-        //     })
-        // }
-        // if(this.state.required != nextProps.required){ 
-        //     this.setState({
-        //         required:nextProps.required
-        //     })
-        // }
-        // if(this.state.error != nextProps.error){ 
-        //     this.setState({
-        //         error:nextProps.error
-        //     })
-        // }
     }
 
     /**
@@ -96,12 +81,13 @@ class NumberField extends Component {
      * @param {string} value
      */
     handlerChange = (value) => {
-        let { onChange, field, index, status,max,maxLeng } = this.props;
+        let { onChange, field, index, status,max,min } = this.props;
         //处理是否有修改状态改变、状态同步之后校验输入是否正确
         this.setState({ value, flag: status == 'edit' }, () => {
             this.validate();
         });
-        if(value > max){
+        value = parseFloat(value);
+        if(value > max || value < 0){
             this.setState({
                 required:true,
             },()=>{ 
@@ -110,6 +96,7 @@ class NumberField extends Component {
         }else{
             this.setState({
                 message:"",
+                error:false,
                 required:false
             })
             this._value = value;
@@ -143,15 +130,17 @@ class NumberField extends Component {
      *
      */
     validate = () => {
+        // return null;
         let { field, index, onValidate,max } = this.props;
         let { value ,required} = this.state;
         //设置校验规则
         let descriptor = {
             [field]: { type: "number", required }
         }
+        value = parseFloat(value);
         let validator = new schema(descriptor);
         validator.validate({ [field]: value }, (errors, fields) => {
-            if (errors || value > max) {
+            if (errors || value > max) { 
                 this.setState({
                     error: true
                 });

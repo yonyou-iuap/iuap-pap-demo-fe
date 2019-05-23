@@ -65,6 +65,12 @@ export default {
             // console.log("loadTree param", param);
             let cacheTree = getState().walsinTree.cacheTree;
             let {result} = processData(await api.getTreeData(param));
+            if(!result){
+                actions.walsinTree.updateState({
+                    showLoading: false
+                })
+                return;
+            }
             let {data:res}=result;
             let handledContent = [];
             let content = res && res.content || [];
@@ -124,6 +130,9 @@ export default {
             })
             let {result} = processData(await api.getTableData(param));
             // let {data:res}=result;
+            actions.walsinTree.updateState({
+                showLoading: false
+            })
             let res = result?result.data:null;
             let tableData = [], resultObj = {}; 
             if (res) {
@@ -205,19 +214,26 @@ export default {
             await actions.walsinTree.updateState({
                 showLoading : true
             })
-
             let {searchValue} = param;
             const mirState = getState();
             let {paginationParam} = mirState.walsinTree;
                     paginationParam = deepClone(paginationParam);
-            let {reqParam, reqParam: {title, hierarchy}} = paginationParam; 
             let {result} = processData(await api.getSearchTree(param));
-            // let {data:res}=result; 
             let res = result?result.data:null;
+            actions.walsinTree.updateState({
+                showLoading: false
+            })
             let {content, parentIdSet} = typeof res !== 'undefined' && res || {
                     content : [],
                     parentIdSet : []
                 }; 
+            let {reqParam } = paginationParam;
+            let title = "", hierarchy = "";
+            if(reqParam){
+                title = reqParam.title;
+                hierarchy = reqParam.hierarchy;
+                return;
+            }
             if(Array.isArray(content)) { 
                 let temp = {},resultObj = {
                     content,
@@ -246,10 +262,6 @@ export default {
                     content : []
                 })
             }
-            await actions.walsinTree.updateState({
-                showLoading: false
-            })
-
         }
     }
 };
