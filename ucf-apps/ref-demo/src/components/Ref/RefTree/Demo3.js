@@ -7,14 +7,12 @@
 
 import React, { Component } from 'react';
 import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
-// import 'pap-refer/lib/pap-ref-orgDept.css'
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
 let code = 
 `
 import React, { Component } from 'react';
-import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept';
-import 'pap-refer/lib/pap-ref-orgDept.css'
+import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
 import {Button,Form} from 'tinper-bee';
 import Card from '../Card'
 class Demo3 extends Component {
@@ -73,7 +71,7 @@ class Demo3 extends Component {
                                     }
                                 }}
                                 {...getFieldProps('code', {
-                                    initialValue: '{"refname":"","refpk":""}',
+                                    //initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -111,7 +109,7 @@ class Demo3 extends Component {
             theme={this.props.theme} 
                                 emptyBut={true}
                                 {...getFieldProps('code1', {
-                                    initialValue: '{"refname":"","refpk":""}',
+                                    //initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -189,7 +187,7 @@ class Demo3 extends Component {
                                     }
                                 }}
                                 {...getFieldProps('code', {
-                                    initialValue: '{"refname":"","refpk":""}',
+                                    //initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -227,7 +225,7 @@ class Demo3 extends Component {
             theme={this.props.theme} 
                                 emptyBut={true}
                                 {...getFieldProps('code1', {
-                                    initialValue: '{"refname":"","refpk":""}',
+                                    //initialValue: '{"refname":"","refpk":""}',
                                     rules: [{
                                         message: '提示：请选择',
                                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

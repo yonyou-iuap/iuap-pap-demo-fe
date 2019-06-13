@@ -7,14 +7,12 @@
 
 import React, { Component } from 'react';
 import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
-// import 'pap-refer/lib/pap-ref-orgDept.css'
 import {Button,Form,Panel} from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
 import React, { Component } from 'react';
-import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept';
-import 'pap-refer/lib/pap-ref-orgDept.css'
+import PapRefOrgDept from 'pap-refer/lib/pap-ref-orgDept/src/index';
 import {Button,Form,Panel} from 'tinper-bee';
 import Card from '../Card'
 class Demo6 extends Component {
@@ -80,7 +78,7 @@ class Demo6 extends Component {
               treeUrl: '/pap_basedoc/common-ref/blobRefTree',
             }}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -147,10 +145,6 @@ class Demo6 extends Component {
             valueField={'refpk'} //真实 value 的键
            lang={this.props.lang}
             theme={this.props.theme} emptyBut={true}            
-            value={JSON.stringify({
-              refname: "财务处",
-              refpk: "95b60f35-ed0b-454e-b948-fb45ae30b911",
-            })}
             nodeDisplay={(record) => {
               if (record.entityType === "mainEntity") {
                 return (<span><i className="uf uf-group-2" /> {record.refname} </span>);
@@ -165,12 +159,16 @@ class Demo6 extends Component {
               treeUrl: '/pap_basedoc/common-ref/blobRefTree',
             }}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
               }]
             })}
+            // value={JSON.stringify({
+            //   refname: "财务处",
+            //   refpk: "95b60f35-ed0b-454e-b948-fb45ae30b911",
+            // })}
           />
            <span style={{
             color: 'red'

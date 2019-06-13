@@ -74,7 +74,7 @@ return (
                lang={this.props.lang}
             theme={this.props.theme}
                 {...getFieldProps('code', {
-                    initialValue: '{"refname":"","refpk":""}',
+                    //initialValue: '{"refname":"","refpk":""}',
                     rules: [{
                         message: '提示：请选择',
                         pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -154,7 +154,7 @@ class Demo1 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

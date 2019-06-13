@@ -4,7 +4,7 @@ import {actions} from "mirrorx";
 import {getValidateFieldsTrim} from "utils";
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
-
+import InputNumber from 'bee-input-number';
 import FormList from 'components/FormList'
 
 import './index.less'
@@ -173,29 +173,12 @@ class AddEditBook extends Component {
                     </FormItem>
 
                     <FormItem required label="费用">
-                        {/* <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={999999}
+                        <InputNumber iconStyle="one" min={0} step={1} disabled={btnFlag === 2} max={999999}
                                      {...getFieldProps('cost', {
                                          initialValue: cost !== undefined ? cost : 1,
                                          rules: [{pattern: /^[0-9]+$/, required: true}],
                                      })}
-                        /> */}
-                         <FormControl disabled={btnFlag === 2} maxLength={8} 
-                            {...getFieldProps('cost', {
-                                    validateTrigger: 'onBlur',
-                                    initialValue: cost || 1,
-                                    rules: [{
-                                        required: true,
-                                        message: '请输入,长度小于8',
-                                        
-                                    },
-                                    {
-                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
-                                        message: '请输入,类型为数字!',
-                                    }],
-                                }
-                            )}
                         />
-                        <FormError errorMsg={getFieldError('cost')}/>
                     </FormItem>
 
                     <FormItem required label="支付状态">

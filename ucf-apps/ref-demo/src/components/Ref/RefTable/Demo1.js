@@ -7,18 +7,14 @@
 
 import React, { Component } from 'react';
 import PapRefUser from 'pap-refer/lib/pap-ref-user/src/index';
-// import 'pap-refer/lib/pap-ref-user.css';
 import PapRefStaff from 'pap-refer/lib/pap-ref-staff/src/index';
-// import 'pap-refer/lib/pap-ref-staff.css';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
 import React, { Component } from 'react';
-import PapRefUser from 'pap-refer/lib/pap-ref-user';
-import 'pap-refer/lib/pap-ref-user.css';
-import PapRefStaff from 'pap-refer/lib/pap-ref-staff';
-import 'pap-refer/lib/pap-ref-staff.css';
+import PapRefUser from 'pap-refer/lib/pap-ref-user/src/index';
+import PapRefStaff from 'pap-refer/lib/pap-ref-staff/src/index';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 class Demo1 extends Component {
@@ -69,7 +65,7 @@ class Demo1 extends Component {
             searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
 
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -100,7 +96,7 @@ class Demo1 extends Component {
             emptyBut={true}
             searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -168,7 +164,7 @@ class Demo1 extends Component {
             theme={this.props.theme}
             searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -199,7 +195,7 @@ class Demo1 extends Component {
             emptyBut={true}
             searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

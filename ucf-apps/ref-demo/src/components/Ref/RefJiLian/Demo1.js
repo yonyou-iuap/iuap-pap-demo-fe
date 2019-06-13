@@ -83,7 +83,7 @@ class Demo1 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择组织',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -116,7 +116,7 @@ class Demo1 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择部门',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -195,7 +195,7 @@ class Demo1 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择组织',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -228,7 +228,7 @@ class Demo1 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择部门',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

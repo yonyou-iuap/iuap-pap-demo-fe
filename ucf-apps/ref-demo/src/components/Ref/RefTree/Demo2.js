@@ -7,14 +7,12 @@
 
 import React, { Component } from 'react';
 import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
-// import 'pap-refer/lib/pap-ref-org.css';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
 import React, { Component } from 'react';
-import PapReferOrg from 'pap-refer/lib/pap-ref-org';
-import 'pap-refer/lib/pap-ref-org.css';
+import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 class Demo2 extends Component {
@@ -64,7 +62,7 @@ class Demo2 extends Component {
             emptyBut={true}
 
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择组织',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -132,7 +130,7 @@ class Demo2 extends Component {
             lazyModal={true}
             emptyBut={true}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择组织',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

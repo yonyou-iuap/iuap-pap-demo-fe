@@ -3,6 +3,7 @@ import {FormControl, Select} from 'tinper-bee';
 import FormList from 'components/FormList';
 import PopDialog from 'components/Pop';
 import FormError from 'components/FormError';
+import InputNumber from 'bee-input-number';
 import {Error,getValidateFieldsTrim} from "utils";
 import {actions} from "mirrorx";
 
@@ -192,7 +193,7 @@ class CommonPop extends Component {
                         <span className='error'>{getFieldError('sex')}</span>
                     </FormItem>
                     <FormItem required label={"年龄"}>
-                        {/* <InputNumber iconStyle="one" min={1} step={1}  max={99}
+                        <InputNumber iconStyle="one" min={1} step={1}  max={99}
                                      disabled = {btnFlag == 2}
                                      {...getFieldProps('age', {
                                          initialValue: age ? age : "1",
@@ -208,24 +209,7 @@ class CommonPop extends Component {
                                          }],
                                      })}
                         />
-                        <span className='error'>{getFieldError('age')}</span> */} 
-                        <FormControl disabled={btnFlag === 2} maxLength={2} 
-                            {...getFieldProps('age', {
-                                    validateTrigger: 'onBlur',
-                                    initialValue: age || '0',
-                                    rules: [{
-                                        required: true,
-                                        message: '请输入,长度小于2',
-                                    },
-                                    {
-                                        pattern:/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/,
-                                        message: '请输入,类型为数字!',
-                                    }],
-                                }
-                            )}
-                        />
-                        <FormError errorMsg={getFieldError('age')}/>
-
+                        <span className='error'>{getFieldError('age')}</span>
                     </FormItem>
 				</FormList>
 			</PopDialog>

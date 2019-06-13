@@ -32,17 +32,15 @@ class Demo3 extends Component {
       sum: 1,
       singleClientParam: {},
       messageShow: false,
-      jiLianValue: {
-        refname: "",
-        refpk: "",
-      },
+      jiLianValue: null,
     }
 
   }
 
   singleSaveOrgParam = (result) => {
     //组织单选的保存，级联参照
-    this.props.form.setFieldsValue({code1:{'refname':'',refpk:''}})
+    this.props.form.resetFields();
+    // this.props.form.setFieldsValue({code1:{'refname':'',"refpk":''}})
     this.setState({
       singleClientParam: result.length === 0 ? {} : { 'organization_id': result[0].refpk },
     });
@@ -100,7 +98,7 @@ class Demo3 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择组织',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -166,17 +164,15 @@ class Demo3 extends Component {
       sum: 1,
       singleClientParam: {},
       messageShow: false,
-      jiLianValue: {
-        refname: "",
-        refpk: "",
-      },
+      jiLianValue: null,
     }
 
   }
 
   singleSaveOrgParam = (result) => {
     //组织单选的保存，级联参照
-    this.props.form.setFieldsValue({code1:{'refname':'',refpk:''}})
+    this.props.form.resetFields();
+    // this.props.form.setFieldsValue({code1:{'refname':'',"refpk":''}})
     this.setState({
       singleClientParam: result.length === 0 ? {} : { 'organization_id': result[0].refpk },
     });
@@ -234,7 +230,7 @@ class Demo3 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择组织',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -267,7 +263,7 @@ class Demo3 extends Component {
            lang={this.props.lang}
             theme={this.props.theme}
             {...getFieldProps('code1', {
-              initialValue: JSON.stringify(jiLianValue),
+              // initialValue: JSON.stringify(jiLianValue),
               rules: [{
                 message: '提示：请选择部门',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -275,7 +271,6 @@ class Demo3 extends Component {
             })}
             canInputGoOn={this.canGetData}
             canClickGoOn={this.canGetData}
-            // value={JSON.stringify(jiLianValue)}
           />
 
           <span style={{

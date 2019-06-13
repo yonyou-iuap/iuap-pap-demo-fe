@@ -74,6 +74,7 @@ class IndexView extends Component {
      * @param {Number} index 位置
      */
     changeAllData = (field, value, index) => {
+        console.log(field + " --- ",value);
         this.oldData[index][field] = value;
     }
 
@@ -298,6 +299,7 @@ class IndexView extends Component {
     clearOldData = () => {
         let queryDetailObj = deepClone(this.props.queryDetailObj);
         let { list } = queryDetailObj;
+        this.asyncOldDataOrList(list);
         let { selectData } = this.state;
         for (let elementSelect of selectData) {
             for (let [indexOld, elementOld] of list.entries()) {
@@ -316,6 +318,14 @@ class IndexView extends Component {
         this.setState({ selectData: [] }); //清空选中的数据
         actions.masterDetailOrder.updateState({ queryDetailObj });  //更新action里的子表数据
         return false
+    }
+
+    asyncOldDataOrList = (list)=>{
+        list.forEach((da,i)=>{
+            if(da.key === (this.oldData[i])['key']){
+                list[i] = this.oldData[i]
+            }
+        })
     }
 
 

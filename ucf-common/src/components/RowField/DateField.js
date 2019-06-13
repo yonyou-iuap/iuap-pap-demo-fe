@@ -12,7 +12,7 @@ import moment from 'moment';
 import schema from 'async-validator';
 
 //日期组件
-import DatePicker from "tinper-bee/lib/Datepicker";
+import DatePicker from "bee-datepicker";
 //本地化日期
 import zhCN from "rc-calendar/lib/locale/zh_CN";
 

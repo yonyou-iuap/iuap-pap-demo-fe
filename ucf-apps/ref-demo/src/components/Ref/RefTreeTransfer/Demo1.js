@@ -74,7 +74,7 @@ class Demo1 extends Component {
             searchPlaceholder={'搜索'}
               notFoundContent={'暂无数据'}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -155,7 +155,7 @@ export default Form.createForm()(Demo1);
               searchPlaceholder={'搜索'}
               notFoundContent={'暂无数据'}
               {...getFieldProps('code', {
-                initialValue: '{"refname":"","refpk":""}',
+                //initialValue: '{"refname":"","refpk":""}',
                 rules: [{
                   message: '提示：请选择',
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

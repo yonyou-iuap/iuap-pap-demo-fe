@@ -81,7 +81,7 @@ import Card from '../Card'
             searchPlaceholder={'搜索'}
               notFoundContent={'暂无数据'}
               {...getFieldProps('code', {
-                initialValue: '{"refname":"","refpk":""}',
+                //initialValue: '{"refname":"","refpk":""}',
                 rules: [{
                   message: '提示：请选择',
                   pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -171,7 +171,7 @@ class Demo2 extends Component {
             searchPlaceholder={'搜索'}
             notFoundContent={'暂无数据'}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

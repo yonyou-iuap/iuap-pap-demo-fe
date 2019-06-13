@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/yonyou-iuap/iuap-pap-demo-fe#readme",
   "devDependencies": {
+    "babel-plugin-import-bee": "^2.1.0",
+    "copy-webpack-plugin": "^5.0.3",
     "ucf-scripts": "1.1.6",
     "webpack-bundle-analyzer": "^3.1.0"
   },
@@ -32,7 +34,7 @@
     "babel-polyfill": "^6.26.0",
     "bee-checkbox": "2.0.5",
     "bee-complex-grid": "2.0.15",
-    "bee-datepicker": "2.0.34",
+    "bee-datepicker": "^2.0.34",
     "bee-input-number": "2.0.15",
     "bee-locale": "0.0.14",
     "bee-message": "2.0.4",
@@ -47,9 +49,10 @@
     "query-string": "5.1.1",
     "react": "16.6.3",
     "react-dom": "16.6.3",
-    "ref-multiple-table": "2.0.1",
-    "ref-tree": "2.0.2",
-    "ref-tree-table": "2.0.1",
+    "ref-core": "0.2.6",
+    "ref-multiple-table": "2.0.4",
+    "ref-tree": "2.0.9",
+    "ref-tree-table": "2.0.6",
     "tinper-bee": "2.0.10",
     "yyuap-bpm": "0.3.38",
     "yyuap-ref": "1.1.67"

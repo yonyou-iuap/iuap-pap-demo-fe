@@ -171,6 +171,7 @@ class NumberField extends Component {
                     onChange={this.handlerChange}
                     iconStyle={iconStyle}
                     step={step}
+                    max={max}
                     precision={precision}
                 />
             </FieldWrap>

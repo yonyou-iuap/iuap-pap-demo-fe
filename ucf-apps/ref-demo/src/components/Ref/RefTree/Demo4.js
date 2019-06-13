@@ -7,18 +7,14 @@
 
 import React, { Component } from 'react';
 import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
-// import 'pap-refer/lib/pap-ref-org.css';
 import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg/src/index';
-// import 'pap-refer/lib/pap-ref-deptUnderOrg';
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
 import React, { Component } from 'react';
-import PapReferOrg from 'pap-refer/lib/pap-ref-org';
-import 'pap-refer/lib/pap-ref-org.css';
-import PapReferDept from 'pap-refer/lib/pap-ref-dept';
-import 'pap-refer/lib/pap-ref-dept.css';
+import PapReferOrg from 'pap-refer/lib/pap-ref-org/src/index';
+import PapReferDeptUnderOrg from 'pap-refer/lib/pap-ref-deptUnderOrg/src/index';
 import { Button, Form, Panel } from 'tinper-bee';
 import Card from '../Card'
 class Demo4 extends Component {
@@ -78,7 +74,7 @@ class Demo4 extends Component {
             theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -106,7 +102,7 @@ class Demo4 extends Component {
             theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code1', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -192,7 +188,7 @@ class Demo4 extends Component {
             theme={this.props.theme}
             emptyBut={true}
             {...getFieldProps('code', {
-              initialValue: '{"refname":"","refpk":""}',
+              //initialValue: '{"refname":"","refpk":""}',
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -224,7 +220,7 @@ class Demo4 extends Component {
                 
             }}
             {...getFieldProps('code1', {
-              initialValue: JSON.stringify(jiLianValue),
+              //initialValue: JSON.stringify(jiLianValue),
               rules: [{
                 message: '提示：请选择',
                 pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

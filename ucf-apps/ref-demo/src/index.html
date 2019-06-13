@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="http://iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/2.0.4/assets/tinper-bee.css" rel="stylesheet" media="screen">
   <title> UCF 不包含路由 </title>
+  <link href="${process.env.STATIC_HTTP_PATH}/tinper-bee/latest/assets/tinper-bee.css" rel="stylesheet" media="screen" />
 </head>
 
 <body>
@@ -14,5 +14,11 @@
     var GROBAL_HTTP_PREFIX = '';
   </script>
   <div id="app"></div>
+  <script src="${process.env.STATIC_HTTP_PATH}/es5-shim/es5-shim.min.js"></script>
+  <script src="${process.env.STATIC_HTTP_PATH}/es5-shim/es5-sham.min.js"></script>
+  <script src="${process.env.STATIC_HTTP_PATH}/react/16.8.4/umd/react.production.min.js"></script>
+  <script src="${process.env.STATIC_HTTP_PATH}/react/16.8.4/umd/react-dom.production.min.js"></script>
+  <script src="${process.env.STATIC_HTTP_PATH}/prop-types/15.6.0/prop-types.min.js"></script>
+  <script src="${process.env.STATIC_HTTP_PATH}/tinper-bee/latest/build/tinper-bee.js"></script>
 </body>
 </html>

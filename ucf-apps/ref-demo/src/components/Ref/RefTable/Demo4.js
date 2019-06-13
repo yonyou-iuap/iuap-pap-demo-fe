@@ -7,19 +7,15 @@
 
 import React, { Component } from 'react';
 import PapRefRole from 'pap-refer/lib/pap-ref-role/src/index';
-// import 'pap-refer/lib/pap-ref-role.css';
 import PapRefPosition from 'pap-refer/lib/pap-ref-position/src/index';
-// import 'pap-refer/lib/pap-ref-position.css';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 let code =
 `
 
 import React, { Component } from 'react';
-import PapRefRole from 'pap-refer/lib/pap-ref-role';
-import 'pap-refer/lib/pap-ref-role.css';
-import PapRefPosition from 'pap-refer/lib/pap-ref-position';
-import 'pap-refer/lib/pap-ref-position.css';
+import PapRefRole from 'pap-refer/lib/pap-ref-role/src/index';
+import PapRefPosition from 'pap-refer/lib/pap-ref-position/src/index';
 import { Button, Form } from 'tinper-bee';
 import Card from '../Card'
 class Demo4 extends Component {
@@ -67,7 +63,7 @@ class Demo4 extends Component {
 						valueField='refpk'
 						lang={this.props.lang}
 						{...getFieldProps('code', {
-							initialValue: '{"refname":"","refpk":""}',
+							//initialValue: '{"refname":"","refpk":""}',
 							rules: [{
 								message: '提示：请选择',
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -99,7 +95,7 @@ class Demo4 extends Component {
 						searchPanelLocale={{'title': '条件筛选','resetName': '重置','searchName': '查询','down':'打开','up':'关闭',}}
 
 						{...getFieldProps('code1', {
-							initialValue: '{"refname":"","refpk":""}',
+							//initialValue: '{"refname":"","refpk":""}',
 							rules: [{
 								message: '提示：请选择',
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -166,7 +162,7 @@ class Demo4 extends Component {
 						valueField='refpk'
 						lang={this.props.lang}
 						{...getFieldProps('code', {
-							initialValue: '{"refname":"","refpk":""}',
+							//initialValue: '{"refname":"","refpk":""}',
 							rules: [{
 								message: '提示：请选择',
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/
@@ -197,7 +193,7 @@ class Demo4 extends Component {
 						emptyBut={true}
 
 						{...getFieldProps('code1', {
-							initialValue: '{"refname":"","refpk":""}',
+							//initialValue: '{"refname":"","refpk":""}',
 							rules: [{
 								message: '提示：请选择',
 								pattern: /[^{"refname":"","refpk":""}|{"refpk":"","refname":""}]/

@@ -10,7 +10,6 @@ import Routes from './routes'
 
 import "./app.less";
 
-
 const MiddlewareConfig = [];
 
 

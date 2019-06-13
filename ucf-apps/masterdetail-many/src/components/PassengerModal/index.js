@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {actions} from "mirrorx";
 import { FormControl, Switch, Select} from "tinper-bee";
 import moment from "moment";
-import DatePicker from "tinper-bee/lib/Datepicker";
+import DatePicker from "bee-datepicker";
 import {RefIuapDept} from 'components/RefViews';
 import PopDialog from 'components/Pop';
 import FormControlPhone from 'components/FormControlPhone';
